@@ -1,0 +1,32 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <EmbedAllSources>true</EmbedAllSources>
+        <DebugType>embedded</DebugType>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <PackageOutputPath>C:\Dev\packages</PackageOutputPath>
+        <Major>13</Major>
+        <Minor>$([System.DateTime]::UtcNow.ToString(`yyyy`))</Minor>
+        <Patch>$([System.DateTime]::UtcNow.ToString(`MMdd`).TrimStart(`0`))</Patch>
+        <Suffix>-alpha-$([System.DateTime]::UtcNow.ToString(`Hmm-ss`).TrimStart(`.`))</Suffix>
+        <PackageVersion>$(Major).$(Minor).$(Patch)$(Suffix)</PackageVersion>
+        <Version>$(PackageVersion)</Version>
+        <Description>⚠ This is a local debug version. Do not reference this version beyond local development</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\docs\icon.png" Pack="true" PackagePath="images\icon.png"/>
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    </PropertyGroup>
+
+    <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+        <ItemGroup>
+            <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+        </ItemGroup>
+    </Target>
+</Project>

@@ -1,0 +1,30 @@
+name: 🚀 Release
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [ closed ]
+jobs:
+  release:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Build
+        id: build
+        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Build@main
+        with:
+          project-name: ReadingRoom.Umbraco.CloudflareStream
+          project-path: src/ReadingRoom.Umbraco.CloudflareStream/ReadingRoom.Umbraco.CloudflareStream.csproj
+          umbraco-version: 13
+          dotnet-version: "8"
+          npm-working-dir: src/ReadingRoom.Umbraco.CloudflareStream.Client
+          npm-enabled: true
+          npm-version: "20.x"
+      - name: Release
+        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Release@main
+        with:
+          artifact-name: ${{ steps.build.outputs.artifact-name }}
+          version: ${{ steps.build.outputs.version }}
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

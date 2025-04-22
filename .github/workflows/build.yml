@@ -1,0 +1,18 @@
+name: 🏗️ Build
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        uses: jcdcdev/jcdcdev.Umbraco.Github.Build@main
+        with:
+          project-name: ReadingRoom.Umbraco.CloudflareStream
+          project-path: src/ReadingRoom.Umbraco.CloudflareStream/ReadingRoom.Umbraco.CloudflareStream.csproj
+          umbraco-version: 13
+          dotnet-version: "8"
+          npm-working-dir: src/ReadingRoom.Umbraco.CloudflareStream.Client
+          npm-enabled: true
+          npm-version: "20.x"
