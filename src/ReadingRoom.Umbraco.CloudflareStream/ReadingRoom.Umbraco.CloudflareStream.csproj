@@ -12,7 +12,7 @@
         <PackageId>ReadingRoom.Umbraco.CloudflareStream</PackageId>
         <Title>Umbraco Cloudflare Stream</Title>
         <Description>Integrate Cloudflare Stream in Umbraco CMS</Description>
-        <PackageTags>umbraco</PackageTags>
+        <PackageTags>umbraco umbraco-marketplace cloudflare stream</PackageTags>
         <Authors>Reading Room</Authors>
         <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Reading Room</Copyright>
         <PackageReadmeFile>README.md</PackageReadmeFile>
