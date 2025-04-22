@@ -1,0 +1,11 @@
+<div ng-controller="Umbraco.Editors.CloudflareStream as vm">
+    <cf-stream-editor dataTypeKey="{{vm.model.dataTypeKey}}" videoId="{{vm.model.value.id}}"></cf-stream-editor>
+    <div class="mt3">
+        <span class="alert alert-info" ng-if="vm.model.value.id">
+            <span><b>Cloudflare Stream Video ID</b> {{vm.model.value.id}}</span>
+        </span>
+        <input type="hidden" id="videoId" ng-model="vm.model.value.id" required readonly/>
+    </div>
+</div>
+
+<script defer="defer" src="/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/dist/index.js" type="module"></script>

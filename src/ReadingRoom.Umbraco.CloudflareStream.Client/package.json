@@ -1,0 +1,33 @@
+{
+    "name": "readingroom-umbraco-cloudflarestream",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite build --watch --emptyOutDir",
+        "build": "tsc && vite build --emptyOutDir",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@uppy/audio": "^2.1.2",
+        "@uppy/core": "^4.4.4",
+        "@uppy/dashboard": "^4.3.3",
+        "@uppy/remote-sources": "^2.3.2",
+        "@uppy/tus": "^4.2.2",
+        "byte-size": "^9.0.1",
+        "class-transformer": "^0.5.1",
+        "lit": "^3.3.0",
+        "reflect-metadata": "^0.2.2"
+    },
+    "devDependencies": {
+        "@types/byte-size": "^8.1.2",
+        "@umbraco-ui/uui": "^1.13.0",
+        "rollup-plugin-postcss-lit": "^2.2.0",
+        "tus-js-client": "^4.3.1",
+        "typescript": "^5.8.3",
+        "vite": "^6.3.2"
+    },
+    "volta": {
+        "node": "20.19.1"
+    }
+}
