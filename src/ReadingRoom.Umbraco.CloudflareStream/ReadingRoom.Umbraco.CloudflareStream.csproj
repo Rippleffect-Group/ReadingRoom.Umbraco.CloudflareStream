@@ -31,6 +31,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <EmbeddedResource Include="Migrations\package.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
 

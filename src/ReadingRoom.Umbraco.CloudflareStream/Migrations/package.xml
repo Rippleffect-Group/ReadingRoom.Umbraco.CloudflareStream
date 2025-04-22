@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<umbPackage>
+    <info>
+        <package>
+            <name>Cloudflare Stream</name>
+        </package>
+    </info>
+    <DocumentTypes />
+    <MediaTypes>
+        <MediaType>
+            <Info>
+                <Name>Cloudflare Stream Video</Name>
+                <Alias>cloudflareStreamVideo</Alias>
+                <Key>436a6dc6-960e-4190-aed8-e43c217500df</Key>
+                <Icon>icon-cloud-upload color-orange</Icon>
+                <Thumbnail>icon-video</Thumbnail>
+                <Description />
+                <AllowAtRoot>True</AllowAtRoot>
+            </Info>
+            <Structure />
+            <GenericProperties>
+                <GenericProperty>
+                    <Name>Video</Name>
+                    <Alias>umbracoFile</Alias>
+                    <Key>c5d840b7-db76-449e-a4bc-970084ab80ed</Key>
+                    <Type>CloudflareStreamMedia</Type>
+                    <Definition>718936c7-6da5-45ca-beb4-ed975de04dd1</Definition>
+                    <Tab Alias="video">Video</Tab>
+                    <SortOrder>0</SortOrder>
+                    <Mandatory>True</Mandatory>
+                    <LabelOnTop>False</LabelOnTop>
+                    <MandatoryMessage></MandatoryMessage>
+                    <Validation></Validation>
+                    <ValidationRegExpMessage></ValidationRegExpMessage>
+                    <Description><![CDATA[]]></Description>
+                    <Variations>Nothing</Variations>
+                </GenericProperty>
+            </GenericProperties>
+            <Tabs>
+                <Tab>
+                    <Id>59</Id>
+                    <Key>9a1ec24b-7c8f-4467-88fe-40637450d25d</Key>
+                    <Type>Group</Type>
+                    <Caption>Video</Caption>
+                    <Alias>video</Alias>
+                    <SortOrder>1</SortOrder>
+                </Tab>
+            </Tabs>
+        </MediaType>
+    </MediaTypes>
+    <Templates />
+    <Stylesheets />
+    <Scripts />
+    <PartialViews />
+    <Macros />
+    <MacroPartialViews />
+    <DictionaryItems />
+    <Languages />
+    <DataTypes>
+        <DataType Name="Cloudflare Stream Video Picker" Id="CloudflareStreamMediaPicker" Definition="d7459e7e-df43-43a5-8c36-ee528f3cfdc7" DatabaseType="Ntext" Configuration="{&quot;multiple&quot;:false,&quot;validationLimit&quot;:{},&quot;enableLocalFocalPoint&quot;:false,&quot;ignoreUserStartNodes&quot;:false}" />
+        <DataType Name="Cloudflare Stream Video Upload" Id="CloudflareStreamMedia" Definition="718936c7-6da5-45ca-beb4-ed975de04dd1" DatabaseType="Nvarchar" Configuration="{&quot;requiresignedurls&quot;:false,&quot;deleteAfter&quot;:30,&quot;GetDeleteAfter&quot;:&quot;30.00:00:00&quot;}" />
+    </DataTypes>
+    <MediaItems />
+</umbPackage>
