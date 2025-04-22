@@ -16,7 +16,7 @@
         <PackageTags>umbraco cloudflare stream</PackageTags>
         <Authors>Reading Room</Authors>
         <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Reading Room</Copyright>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
         <PackageIcon>images\icon.png</PackageIcon>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
