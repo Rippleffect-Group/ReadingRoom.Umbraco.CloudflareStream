@@ -1,0 +1,209 @@
+<div ng-controller="Umbraco.Editors.MediaPickerController as vm">
+    <umb-editor-view>
+
+        <umb-editor-header
+                hide-alias="true"
+                hide-description="true"
+                hide-icon="true"
+                name="model.title"
+                name-locked="true"
+                navigation="vm.navigation"
+                on-select-navigation-item="vm.onNavigationChanged(item)">
+        </umb-editor-header>
+
+        <umb-editor-container ng-if="vm.activeTab.alias === 'empty'">
+
+            <form enctype="multipart/form-data" id="fileupload" method="POST" umb-image-upload="options">
+
+                <div on-drag-end="vm.dragLeave()" on-drag-enter="vm.dragEnter()" on-drag-leave="vm.dragLeave()">
+
+                    <div class="umb-control-group">
+
+                        <div class="umb-mediapicker-upload">
+                            <div class="form-search">
+                                <umb-search-filter auto-focus="true"
+                                                   css-class="w-100"
+                                                   input-id="datatype-search"
+                                                   label-key="placeholders_search"
+                                                   model="vm.searchOptions.filter"
+                                                   on-change="vm.changeSearch()"
+                                                   text="Type to search">
+                                </umb-search-filter>
+
+                                <div class="form-search__toggle">
+                                    <umb-checkbox label-key="general_excludeFromSubFolders"
+                                                  model="filterOptions.excludeSubFolders"
+                                                  on-change="vm.toggle()"
+                                                  text="Include subfolders in search">
+                                    </umb-checkbox>
+                                </div>
+                            </div>
+
+                            <div class="upload-button">
+                                <umb-button action="vm.showDropZone=!vm.showDropZone"
+                                            button-style="action"
+                                            disabled="lockedFolder"
+                                            label-key="{{vm.showDropZone ? 'general_close' : 'general_upload'}}"
+                                            type="button">
+                                </umb-button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row umb-control-group"
+                         ng-show="vm.searchOptions.filter && images.length > 0 && !vm.loading && !activeDrag">
+                        <div style="margin-left:auto;text-align:right">
+                            <umb-layout-selector active-layout="vm.layout.activeLayout"
+                                                 layouts="vm.layout.layouts"
+                                                 ng-show="vm.layout.layouts"
+                                                 on-layout-select="vm.selectLayout(layout)">
+                            </umb-layout-selector>
+                        </div>
+                    </div>
+                    <div class="row umb-control-group" ng-show="!vm.searchOptions.filter">
+                        <div class="pull-right">
+                            <umb-layout-selector active-layout="vm.layout.activeLayout"
+                                                 layouts="vm.layout.layouts"
+                                                 ng-show="vm.layout.layouts"
+                                                 on-layout-select="vm.selectLayout(layout)">
+                            </umb-layout-selector>
+                        </div>
+
+                        <ul class="umb-breadcrumbs">
+                            <li class="umb-breadcrumbs__ancestor" ng-hide="startNodeId != -1">
+                                <button class="umb-breadcrumbs__action umb-outline umb-outline--surronding"
+                                        ng-class="{'--current':path.length === 0}"
+                                        ng-click="vm.gotoFolder()" type="button">
+                                    <localize key="treeHeaders_media">Media</localize>
+                                </button>
+                                <span aria-hidden="true" class="umb-breadcrumbs__separator">&#47;</span>
+                            </li>
+                            <li class="umb-breadcrumbs__ancestor" ng-repeat="item in path">
+                                <button class="umb-breadcrumbs__action umb-outline umb-outline--surronding"
+                                        ng-class="{'--current':$last}"
+                                        ng-click="vm.gotoFolder(item)" type="button">{{item.name}}
+                                </button>
+                                <span aria-hidden="true" class="umb-breadcrumbs__separator">&#47;</span>
+                            </li>
+                            <li class="umb-breadcrumbs__ancestor" ng-show="!lockedFolder">
+                                <button class="umb-breadcrumbs__action umb-outline umb-outline--surronding"
+                                        ng-click="model.showFolderInput = true"
+                                        ng-hide="model.showFolderInput" type="button">
+                                    <umb-icon class="icon small" icon="icon-add"></umb-icon>
+                                    <span class="sr-only">
+                                        <localize key="visuallyHiddenTexts_createNewFolder">Create new folder</localize>
+                                    </span>
+                                </button>
+
+                                <input class="umb-breadcrumbs__add-ancestor"
+                                       focus-when="{{model.showFolderInput}}"
+                                       ng-blur="vm.submitFolder()"
+                                       ng-keydown="vm.enterSubmitFolder($event)"
+                                       ng-model="model.newFolderName"
+                                       ng-show="model.showFolderInput"
+                                       type="text"/>
+                            </li>
+                        </ul>
+                        <umb-loader ng-if="model.creatingFolder"></umb-loader>
+                    </div>
+                    
+                    <div ng-if="vm.showDropZone">
+                        <umb-file-dropzone accept="{{vm.acceptedFileTypes}}"
+                                           accepted-mediatypes="vm.acceptedMediatypes"
+                                           compact="{{ images.length > 0 }}"
+                                           files-queued="vm.onFilesQueue"
+                                           files-uploaded="vm.onUploadComplete"
+                                           hide-dropzone="{{ (!activeDrag && (vm.searchOptions.filter !== '')) && !vm.showDropZone}}"
+                                           max-file-size="{{vm.maxFileSize}}"
+                                           ng-if="vm.acceptedMediatypes.length > 0 && !vm.loading && !lockedFolder"
+                                           parent-id="{{currentFolder.id}}">
+                        </umb-file-dropzone>
+                    </div>
+
+                    <umb-media-grid current-folder-id="{{currentFolder.id}}"
+                                    disable-folder-select={{disableFolderSelect}}
+                                    include-sub-folders={{!filterOptions.excludeSubFolders}}
+                                    item-max-height="150"
+                                    item-max-width="150"
+                                    item-min-height="100"
+                                    item-min-width="100"
+                                    items="images"
+                                    ng-if="!vm.loading"
+                                    on-click="vm.clickHandler"
+                                    on-click-name="vm.clickItemName"
+                                    only-folders={{onlyFolders}}
+                                    only-images={{onlyImages}}
+                                    show-media-list=vm.showMediaList>
+                    </umb-media-grid>
+
+
+                    <umb-load-indicator ng-if="vm.loading">
+                    </umb-load-indicator>
+
+                    <div class="flex justify-center">
+                        <umb-pagination ng-if="vm.searchOptions.totalPages > 0 && !vm.loading"
+                                        on-change="vm.changePagination(pageNumber)"
+                                        page-number="vm.searchOptions.pageNumber"
+                                        total-pages="vm.searchOptions.totalPages">
+                        </umb-pagination>
+                    </div>
+
+                    <umb-empty-state
+                            ng-if="vm.searchOptions.filter && images.length === 0 && !vm.loading && !activeDrag"
+                            position="center">
+                        <localize key="general_searchNoResult">Sorry, we can not find what you are looking for.
+                        </localize>
+                    </umb-empty-state>
+
+                </div>
+            </form>
+
+        </umb-editor-container>
+        <umb-editor-container ng-if="vm.activeTab.alias === 'clipboard'">
+
+            <div style="margin-bottom:20px; text-align: right;">
+                <umb-button
+                        action="vm.clickClearClipboard()"
+                        button-style="link"
+                        icon="icon-trash"
+                        label-key="clipboard_labelForClearClipboard"
+                        type="button">
+                </umb-button>
+            </div>
+
+            <div class="umb-media-card-grid">
+                <umb-media-card
+                        icon="media.data.length ? media.icon : null"
+                        media-key="!media.data.length ? media.data.mediaKey : null"
+                        name="media.data.length ? media.label : null"
+                        ng-click="model.clickPasteItem(media, $event)"
+                        ng-repeat="media in model.clipboardItems">
+                </umb-media-card>
+            </div>
+
+        </umb-editor-container>
+
+        <umb-editor-footer>
+            <umb-editor-footer-content-right>
+
+                <umb-button
+                        action="vm.close()"
+                        button-style="link"
+                        label-key="general_close"
+                        shortcut="esc"
+                        type="button">
+                </umb-button>
+
+                <umb-button
+                        action="vm.submit(model)"
+                        button-style="success"
+                        disabled="model.selection.length === 0"
+                        label-key="buttons_select"
+                        type="button">
+                </umb-button>
+
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+
+    </umb-editor-view>
+
+</div>
