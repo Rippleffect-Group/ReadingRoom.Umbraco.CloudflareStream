@@ -89,7 +89,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-10:
-    regex: ^v10/main$
+    regex: ^v10$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -101,7 +101,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-12:
-    regex: ^v12/main$
+    regex: ^v12$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -113,7 +113,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-13:
-    regex: ^v13/main$
+    regex: ^v13$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -125,7 +125,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-14:
-    regex: ^v14/main$
+    regex: ^v14$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -137,7 +137,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-develop-10:
-    regex: ^v10/dev$
+    regex: ^dev/v10$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -150,7 +150,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-develop-12:
-    regex: ^v12/dev$
+    regex: ^dev/v12$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -163,7 +163,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-develop-13:
-    regex: ^v13/dev$
+    regex: ^dev/v13$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -176,7 +176,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-develop-14:
-    regex: ^v14/dev$
+    regex: ^dev/v14$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -189,7 +189,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-15:
-    regex: ^v15/main$
+    regex: ^v15$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -201,7 +201,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-develop-15:
-    regex: ^v15/dev$
+    regex: ^dev/v15$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -214,7 +214,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-16:
-    regex: ^v16/main$
+    regex: ^v16$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -226,7 +226,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-develop-16:
-    regex: ^v16/dev$
+    regex: ^dev/v16$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -239,7 +239,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-17:
-    regex: ^v17/main$
+    regex: ^v17$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -251,7 +251,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-develop-17:
-    regex: ^v17/dev$
+    regex: ^dev/v17$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -264,7 +264,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-18:
-    regex: ^v18/main$
+    regex: ^v18$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -276,7 +276,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-develop-18:
-    regex: ^v18/dev$
+    regex: ^dev/v18$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -289,7 +289,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-19:
-    regex: ^v19/main$
+    regex: ^v19$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -301,7 +301,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-develop-19:
-    regex: ^v19/dev$
+    regex: ^dev/v19$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
@@ -314,7 +314,7 @@ branches:
     is-mainline: false
     pre-release-weight: 0
   version-20:
-    regex: ^v20/main$
+    regex: ^v20$
     mode: ContinuousDelivery
     tag: ""
     increment: Patch
@@ -326,7 +326,7 @@ branches:
     is-mainline: true
     pre-release-weight: 55000
   version-develop-20:
-    regex: ^v20/dev$
+    regex: ^dev/v20$
     mode: ContinuousDeployment
     tag: alpha
     increment: Patch
