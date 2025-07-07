@@ -1,16 +1,33 @@
 # ReadingRoom.Umbraco.CloudflareStream
+[![Umbraco Marketplace](https://img.shields.io/badge/Umbraco-Marketplace-%233544B1?style=flat&logo=umbraco)](https://marketplace.umbraco.com/package/ReadingRoom.Umbraco.CloudflareStream)
+[![License](https://img.shields.io/github/license/Rippleffect-Group/ReadingRoom.Umbraco.CloudflareStream?color=8AB803&label=License&logo=github)](https://github.com/Rippleffect-Group/ReadingRoom.Umbraco.CloudflareStream?tab=BSD-3-Clause-1-ov-file)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/ReadingRoom.Umbraco.CloudflareStream?color=cc9900&label=Downloads&logo=nuget)](https://www.nuget.org/packages/ReadingRoom.Umbraco.CloudflareStream)
+
+> [!Important]
+>**ReadingRoom.Umbraco.CloudflareStream** integrates [Cloudflare Stream](https://www.cloudflare.com/en-gb/developer-platform/products/cloudflare-stream/) seemlessly into the [Umbraco](https://umbraco.com/) content editing experience. 
+
+> [!Tip]
+> No technical expertise is required by content editors to use the integration.
 ## About
 
-Upload videos directly to Cloudflare Stream (CFS) within Umbraco CMS, and display these videos on your site. CFS allows you to display videos on your site, without needing to host the files directly on your server, often improving video load speed.
 
-The package adds a Media Type and Media Picker to provide a seamless experience for content editors - no technical expertise needed to use the integration once installed and configured.
+Upload videos to Cloudflare Stream within Umbraco CMS, and display these videos on your site. This integration allows you to display videos without needing to host the files directly on your server. Your videos will be streamed via Cloudflare’s global Content Delivery Network (CDN), helping to improve load times and playback performance for your users, no matter where they are.
+
+Cloudflare Stream also supports adaptive bitrate streaming, which automatically adjusts video quality based on the viewer’s connection, ensuring smooth playback even on slower networks. By offloading storage and bandwidth demands, this approach reduces strain on your server and improves overall site efficiency. 
+
+Encoding, delivery, and player integration are all handled for you, removing the need to manage complex infrastructure or third-party tools.
+
+The package also adds a default [Media Type](https://docs.umbraco.com/umbraco-cms/fundamentals/data/creating-media/default-media-types) and [Media Picker](https://docs.umbraco.com/umbraco-cms/fundamentals/backoffice/property-editors/built-in-umbraco-property-editors/media-picker-3) to provide an out of the box experience for content editors.
+
 
 ## Quick Start
+> [!Note]
+> You will first need an active Cloudflare Stream subscription and [API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
 
 ### Install the package via NuGet
 
 ```bash
-  dotnet add package ReadingRoom.Umbraco.CloudflareStream
+dotnet add package ReadingRoom.Umbraco.CloudflareStream
 ```
 
 ### Configure `appsettings.json`
@@ -37,13 +54,17 @@ Add the following section to your `appsettings.json` file:
 
 You can now select the video from the Media Picker in the Content section.
 
-### Media Picker
+### Select a video
 
-Videos uploaded to Cloudflare Stream are displayed in the Media Picker alongside other media items.
+Videos uploaded to Cloudflare Stream will be displayed in the Media Picker alongside other media items.
 
-Alternatively, you can use the `CloudflareStreamVideoPicker` Data Type to restrict the Media Picker to only show
-Cloudflare Stream videos. This also tells Models Builder to return `CloudflareStreamMediaValue` instead
-of `MediaWithCrops`
+> [!TIP]
+> You can use the `CloudflareStreamVideoPicker` Data Type to restrict the Media Picker to only show
+Cloudflare Stream videos. 
+>
+> This also tells Models Builder to return `CloudflareStreamMediaValue` instead of `MediaWithCrops`
+
+## Display a video
 
 ### Accessing Video URL
 
