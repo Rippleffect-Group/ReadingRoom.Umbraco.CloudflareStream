@@ -11,7 +11,9 @@ The following table outlines the versions of the project that are currently supp
 ## Future Support
 
 Project maintainers plan to support all STS (Short-Term Support) and LTS (Long-Term Support) versions of Umbraco.
-However, exact release dates cannot be guaranteed.
+
+> [!Important]
+> v15+ rollout is planned and in progress, but no confirmed release dates are available at this time.
 
 ## Reporting a Vulnerability
 
