@@ -1,2 +1,32 @@
 {
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+    "Title": "Cloudflare Stream Integration",
+    "Description": "Upload videos directly to Cloudflare Stream video streaming services, within Umbraco CMS.",
+    "DocumentationUrl": "https://github.com/Rippleffect-Group/ReadingRoom.Umbraco.CloudflareStream",
+    "Category": "Editor Tools",
+    "AlternateCategory": "Developer Tools",
+    "IssueTrackerUrl": "https://github.com/Rippleffect-Group/ReadingRoom.Umbraco.CloudflareStream/issues",
+    "LicenseTypes": [
+        "Free"
+    ],
+    "PackageType": "Package",
+    "Tags": [
+        "integration",
+        "cloudflare",
+        "stream",
+        "video",
+        "media"
+    ],
+    "AuthorDetails": {
+        "Name": "Reading Room",
+        "Description": "We are a full-service digital transformation agency, specialising in .NET website design and development. Proud to be Umbraco Platinum Partners.",
+        "Url": "https://www.readingroom.com/",
+        "ImageUrl": "https://www.readingroom.com/dist/favicon.ico",
+        "Contributors": [
+            {
+                "Name": "James Carter - jcdcdev",
+                "Url": "https://jcdc.dev/about"
+            }
+        ]
+    }
 }

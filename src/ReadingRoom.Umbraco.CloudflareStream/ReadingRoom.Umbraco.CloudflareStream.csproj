@@ -12,10 +12,10 @@
         <PackageId>ReadingRoom.Umbraco.CloudflareStream</PackageId>
         <Title>Umbraco Cloudflare Stream</Title>
         <Description>Integrate Cloudflare Stream in Umbraco CMS</Description>
-        <PackageTags>umbraco</PackageTags>
+        <PackageTags>umbraco umbraco-marketplace cloudflare stream</PackageTags>
         <Authors>Reading Room</Authors>
         <Copyright>$([System.DateTime]::UtcNow.ToString(`yyyy`)) © Reading Room</Copyright>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
         <RepositoryType>git</RepositoryType>
         <PackageIcon>images\icon.png</PackageIcon>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
@@ -31,6 +31,16 @@
     </ItemGroup>
 
     <ItemGroup>
+        <EmbeddedResource Include="Migrations\package.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ReadingRoom.CloudflareStream\ReadingRoom.CloudflareStream.csproj" PrivateAssets="All"/>
     </ItemGroup>
 </Project>
