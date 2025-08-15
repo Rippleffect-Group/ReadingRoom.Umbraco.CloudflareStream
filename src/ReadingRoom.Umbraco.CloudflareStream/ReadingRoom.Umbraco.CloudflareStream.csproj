@@ -19,6 +19,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageIcon>images\icon.png</PackageIcon>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/Rippleffect-Group/ReadingRoom.Umbraco.CloudflareStream</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
