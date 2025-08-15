@@ -2,13 +2,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ReadingRoom.Umbraco.CloudflareStream.Services;
-using System.Text.Json.Serialization;
 using Umbraco.Cms.Web.BackOffice.Filters;
 using Umbraco.Cms.Web.Common.Attributes;
 using Umbraco.Cms.Web.Common.Authorization;
 using Umbraco.Cms.Web.Common.Controllers;
 using Umbraco.Cms.Web.Common.Filters;
-using Umbraco.Extensions;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.Controllers;
 
@@ -18,7 +16,9 @@ namespace ReadingRoom.Umbraco.CloudflareStream.Controllers;
 [DisableBrowserCache]
 [UmbracoRequireHttps]
 [CustomJsonFormatter]
-public class CloudflareStreamController(ICloudflareStreamMediaService cloudflareStreamMediaService, ILogger<CloudflareStreamController> logger) : UmbracoApiController
+public class CloudflareStreamController(ICloudflareStreamMediaService cloudflareStreamMediaService, 
+    ILogger<CloudflareStreamController> logger, 
+    ICloudflareStreamCreatorResolver creatorResolver) : UmbracoApiController
 {
     private readonly ILogger _logger = logger;
 
@@ -27,17 +27,14 @@ public class CloudflareStreamController(ICloudflareStreamMediaService cloudflare
     {
         var length = Request.Headers["Upload-Length"].ToString();
         var metadata = Request.Headers["Upload-Metadata"].ToString();
-        var creator = Request.Headers["Upload-Creator"].ToString();
+        
         if (!Guid.TryParse(Request.Headers["Upload-DataType"].ToString(), out var dataType))
         {
             _logger.LogError("Invalid data type");
             return BadRequest();
         }
-
-        if (creator.IsNullOrWhiteSpace())
-        {
-            creator = User.Identity?.GetUserId();
-        }
+        
+        var creator = creatorResolver.ResolveCreator(HttpContext);
 
         var result = await cloudflareStreamMediaService.InitialiseUploadAsync(length, metadata, creator, dataType);
         if (!result.IsSuccess)
