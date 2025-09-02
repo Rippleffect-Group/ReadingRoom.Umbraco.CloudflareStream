@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using ReadingRoom.CloudflareStream;
 using ReadingRoom.Umbraco.CloudflareStream.Mappers;
-using ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaEditor;
-using ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaPicker;
 using ReadingRoom.Umbraco.CloudflareStream.Services;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Notifications;
@@ -20,10 +16,16 @@ public static class UmbracoBuilderExtensions
         builder.Services.AddSingleton<ICloudflareStreamMediaAuthoriseService, T>();
         return builder;
     }
-
+    
     public static IUmbracoBuilder SetCloudflareStreamAuthoriseService<T>(this IUmbracoBuilder builder, Func<IServiceProvider, T> implementationFactory) where T : class, ICloudflareStreamMediaAuthoriseService
     {
         builder.Services.AddSingleton<ICloudflareStreamMediaAuthoriseService, T>(implementationFactory);
+        return builder;
+    }
+    
+    public static IUmbracoBuilder SetCloudflareStreamCreatorService<T>(this IUmbracoBuilder builder) where T : class, ICloudflareStreamCreatorResolver
+    {
+        builder.Services.AddSingleton<ICloudflareStreamCreatorResolver, T>();
         return builder;
     }
 
@@ -32,6 +34,7 @@ public static class UmbracoBuilderExtensions
         builder.Services.AddCloudflareStreamApiClient(builder.Config);
         builder.Services.AddSingleton<ICloudflareStreamMediaService, CloudflareStreamMediaService>();
         builder.Services.AddSingleton<ICloudflareStreamUrlHelper, CloudflareStreamUrlHelper>();
+        builder.Services.AddSingleton<ICloudflareStreamCreatorResolver, CloudflareStreamCreatorResolver>();
         builder.SetCloudflareStreamAuthoriseService<DefaultCloudflareStreamMediaAuthoriseService>();
         builder.AddNotificationHandler<ServerVariablesParsingNotification, ServerVariableNotificationHandler>();
 
