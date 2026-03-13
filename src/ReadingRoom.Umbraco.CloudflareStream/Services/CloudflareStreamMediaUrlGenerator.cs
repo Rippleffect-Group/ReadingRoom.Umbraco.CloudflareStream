@@ -1,5 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using System.Text.Json;
 using ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaEditor;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Extensions;
@@ -25,7 +25,7 @@ public class CloudflareStreamMediaUrlGenerator(ICloudflareStreamUrlHelper urlHel
 
         try
         {
-            var dto = JsonConvert.DeserializeObject<CloudflareStreamMediaValueDto>(data);
+            var dto = JsonSerializer.Deserialize<CloudflareStreamMediaValueDto>(data);
             if (dto == null)
             {
                 return false;

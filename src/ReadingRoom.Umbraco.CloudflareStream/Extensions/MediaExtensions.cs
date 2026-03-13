@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json;
 using ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaEditor;
 using Umbraco.Cms.Core.Models;
 
@@ -19,7 +19,7 @@ public static class MediaExtensions
 
         try
         {
-            return JsonConvert.DeserializeObject<CloudflareStreamMediaValueDto>(json);
+            return JsonSerializer.Deserialize<CloudflareStreamMediaValueDto>(json);
         }
         catch
         {
