@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json;
 using ReadingRoom.Umbraco.CloudflareStream.Models;
 using ReadingRoom.Umbraco.CloudflareStream.Services;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -25,7 +25,7 @@ public class CloudflareStreamMediaValueConverter(ICloudflareStreamUrlHelper urlH
             return null;
         }
 
-        var dto = JsonConvert.DeserializeObject<CloudflareStreamMediaValueDto>(data);
+        var dto = JsonSerializer.Deserialize<CloudflareStreamMediaValueDto>(data);
         if (dto == null)
         {
             return null;

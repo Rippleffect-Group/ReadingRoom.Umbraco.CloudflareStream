@@ -41,7 +41,7 @@ public class CloudflareStreamMediaNotificationHandler(
         }
     }
 
-    public void Handle(MediaSavingNotification notification)
+    public async void Handle(MediaSavingNotification notification)
     {
         foreach (var media in notification.SavedEntities)
         {
@@ -64,7 +64,7 @@ public class CloudflareStreamMediaNotificationHandler(
                 continue;
             }
             
-            var dataType = dataTypeService.GetDataType(property.PropertyType.DataTypeKey);
+            var dataType = await dataTypeService.GetAsync(property.PropertyType.DataTypeKey);
             var config = dataType?.ConfigurationAs<CloudflareStreamMediaConfiguration>();
             if (config == null)
             {
