@@ -13,17 +13,14 @@ jobs:
     steps:
       - name: Build
         id: build
-        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Build@main
+        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Build@v17
         with:
           project-name: ReadingRoom.Umbraco.CloudflareStream
           project-path: src/ReadingRoom.Umbraco.CloudflareStream/ReadingRoom.Umbraco.CloudflareStream.csproj
-          umbraco-version: 13
-          dotnet-version: "8"
           npm-working-dir: src/ReadingRoom.Umbraco.CloudflareStream.Client
           npm-enabled: true
-          npm-version: "20.x"
       - name: Release
-        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Release@main
+        uses: jcdcdev/jcdcdev.Umbraco.GitHub.Release@v17
         with:
           artifact-name: ${{ steps.build.outputs.artifact-name }}
           version: ${{ steps.build.outputs.version }}
