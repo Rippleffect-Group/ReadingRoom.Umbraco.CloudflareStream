@@ -4,13 +4,13 @@ namespace ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamM
 
 public class CloudflareStreamMediaConfiguration
 {
-    [ConfigurationField("requiresignedurls", "Require Signed Urls", "boolean")]
+    //[ConfigurationField("requiresignedurls", "Require Signed Urls", "boolean")]
     public bool RequiresSignedUrls { get; set; }
 
-    [ConfigurationField("expiry", "Expiry", "number")]
+    //[ConfigurationField("expiry", "Expiry", "number")]
     public int? Expiry { get; set; }
 
-    [ConfigurationField("deleteAfter", "Delete After", "number")]
+    //[ConfigurationField("deleteAfter", "Delete After", "number")]
     public int? DeleteAfter { get; set; }
 
     public TimeSpan? GetExpiry => Expiry.HasValue ? TimeSpan.FromDays(Expiry.Value) : null;

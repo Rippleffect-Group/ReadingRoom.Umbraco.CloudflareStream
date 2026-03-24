@@ -1,29 +1,17 @@
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
-using Umbraco.Cms.Core.Services;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaPicker;
 
 [DataEditor(
     Constants.PropertyEditors.Aliases.CloudflareStreamMediaPicker,
-    EditorType.PropertyValue,
-    Constants.PropertyEditors.Names.CloudflareStreamMediaPicker,
-    "mediapicker3",
     ValueType = ValueTypes.Json,
-    Group = Constants.PropertyEditors.Groups.CloudflareStream,
-    Icon = global::Umbraco.Cms.Core.Constants.Icons.MediaImage,
     ValueEditorIsReusable = true)]
-public class CloudflareStreamMediaPicker : MediaPicker3PropertyEditor
+public class CloudflareStreamMediaPicker(
+    IDataValueEditorFactory dataValueEditorFactory,
+    IIOHelper ioHelper)
+    : MediaPicker3PropertyEditor(dataValueEditorFactory, ioHelper)
 {
-    [Obsolete("Obsolete")]
-    public CloudflareStreamMediaPicker(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper, EditorType type = EditorType.PropertyValue) : base(dataValueEditorFactory, ioHelper, type) { }
-
-    public CloudflareStreamMediaPicker(
-        IDataValueEditorFactory dataValueEditorFactory,
-        IIOHelper ioHelper,
-        IEditorConfigurationParser editorConfigurationParser,
-        EditorType type = EditorType.PropertyValue) : base(dataValueEditorFactory, ioHelper, editorConfigurationParser, type) { }
-
     protected override IConfigurationEditor CreateConfigurationEditor()
     {
         var config = base.CreateConfigurationEditor();
