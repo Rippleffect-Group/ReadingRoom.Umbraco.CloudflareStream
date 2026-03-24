@@ -1,0 +1,20 @@
+﻿{
+  "$schema": "../../umbraco-package-schema.json",
+  "name": "ReadingRoom.Umbraco.CloudflareStream",
+  "version": "0.1.0",
+  "extensions": [
+    {
+      "type": "propertyEditorUi",
+      "alias": "ReadingRoom.Umbraco.CloudflareStream.Ui",
+      "name": "RR CloudflareStream Property Editor UI",
+      "element": "/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/index.js",
+      "elementName": "cf-stream-editor",
+      "meta": {
+        "label": "Cloudflare Stream Media",
+        "icon": "icon-video",
+        "group": "common",
+        "propertyEditorSchemaAlias": "CloudflareStreamMedia"
+      }
+    }
+  ]
+}

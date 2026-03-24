@@ -1,4 +1,4 @@
-import {LitElement, html, PropertyValues, unsafeCSS, css} from 'lit';
+import { html, PropertyValues, unsafeCSS, css } from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import Dashboard from "@uppy/dashboard";
 import Tus from "@uppy/tus";
@@ -7,10 +7,24 @@ import UppyCss from '@uppy/core/dist/style.min.css?inline';
 import UppyDashboardCss from '@uppy/dashboard/dist/style.min.css?inline';
 import {HttpRequest, HttpResponse} from "tus-js-client";
 import {Meta, Body, Uppy, UppyFile} from "@uppy/core";
+import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
+import {UMB_AUTH_CONTEXT, UmbAuthContext} from "@umbraco-cms/backoffice/auth";
 
 @customElement('uppy-upload')
-export default class UpplyUpload extends LitElement {
-
+export default class UpplyUpload extends UmbLitElement {
+    
+    #authContext?: UmbAuthContext | undefined;
+    
+    constructor()
+    {
+        super();
+        this.consumeContext(UMB_AUTH_CONTEXT, (instance) => {
+            this.#authContext = instance;
+        });
+    }
+    
+    
+    
     @property()
     endpoint = '';
     private selector: string = 'drag-drop-area'
@@ -71,7 +85,10 @@ export default class UpplyUpload extends LitElement {
     }
 
     private onBeforeRequest(req: HttpRequest, file: UppyFile<Meta, Body>): Promise<void> {
-        return new Promise((resolve) => {
+        return new Promise(async (resolve) => {
+            const token = await this.#authContext?.getLatestToken();
+            req.setHeader('Authorization', `Bearer ${token}`);
+            
             const event =
                 new CustomEvent('before-request', {
                     detail: {

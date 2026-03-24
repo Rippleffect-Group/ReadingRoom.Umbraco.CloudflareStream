@@ -1,24 +1,19 @@
-import {defineConfig} from "vite";
-import postcssLit from 'rollup-plugin-postcss-lit';
+import { defineConfig } from "vite";
 
 export default defineConfig({
     build: {
-        minify: false,
-        terserOptions: {
-            compress: false,
-            mangle: false,
-        },
         lib: {
-            entry: ["src/index.ts", "src/backoffice.ts"],
+            entry: [
+                "src/index.ts"
+            ],
             formats: ["es"],
         },
-        outDir: "../ReadingRoom.Umbraco.CloudflareStream/wwwroot/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/dist/",
+        outDir: "../ReadingRoom.Umbraco.CloudflareStream/wwwroot/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/",
+        emptyOutDir: true,
         sourcemap: true,
         rollupOptions: {
-            // external: [/^@umbraco-ui/],
-            plugins: [
-                postcssLit(),
-            ]
+            external: [/^@umbraco-cms/, /^@umbraco\/backoffice/], // ignore the Umbraco Backoffice package in the build
         },
     },
+    base: "/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/", // the base path of the app in the browser (used for assets)
 });

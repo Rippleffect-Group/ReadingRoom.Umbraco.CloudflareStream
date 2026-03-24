@@ -5,13 +5,12 @@ using Microsoft.Extensions.Logging;
 using ReadingRoom.Umbraco.CloudflareStream.Services;
 using Umbraco.Cms.Web.Common.Attributes;
 using Umbraco.Cms.Web.Common.Authorization;
-using Umbraco.Cms.Web.Common.Controllers;
 using Umbraco.Cms.Web.Common.Filters;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.Controllers;
 
 [ApiController]
-[Route("/umbraco/api/CloudflareStream")]
+[Route("/umbraco/backoffice/api/CloudflareStream")]
 [IsBackOffice]
 [UmbracoUserTimeoutFilter]
 [Authorize(Policy = AuthorizationPolicies.BackOfficeAccess)]
@@ -19,11 +18,11 @@ namespace ReadingRoom.Umbraco.CloudflareStream.Controllers;
 [CustomJsonFormatter]
 public class CloudflareStreamController(ICloudflareStreamMediaService cloudflareStreamMediaService, 
     ILogger<CloudflareStreamController> logger, 
-    ICloudflareStreamCreatorResolver creatorResolver) : UmbracoApiController
+    ICloudflareStreamCreatorResolver creatorResolver) : ControllerBase
 {
     private readonly ILogger _logger = logger;
 
-    [HttpPost("")]
+    [HttpPost("initialise")]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.BadRequest)]
     public async Task<IActionResult> Initialise()
@@ -52,7 +51,7 @@ public class CloudflareStreamController(ICloudflareStreamMediaService cloudflare
         return Ok();
     }
 
-    [HttpGet("")]
+    [HttpGet("status")]
     [ProducesResponseType((int) HttpStatusCode.OK)]
     [ProducesResponseType((int) HttpStatusCode.NotFound)]
     public async Task<IActionResult> Status(string id)

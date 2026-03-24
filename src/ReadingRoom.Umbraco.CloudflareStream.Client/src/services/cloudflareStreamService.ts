@@ -4,7 +4,7 @@ import {CloudflareStreamMediaDetails} from "../models/cloudflareStreamMediaDetai
 
 export class CloudflareStreamService {
 // @ts-ignore
-    private static baseurl = `${window.Umbraco.Sys.ServerVariables.umbracoSettings.umbracoPath}/backoffice/api/cloudflarestream`
+    private static baseurl = `/umbraco/backoffice/api/cloudflarestream`
     static initialiseEndpoint = `${CloudflareStreamService.baseurl}/initialise`
     static statusEndpoint = `${CloudflareStreamService.baseurl}/status`
 

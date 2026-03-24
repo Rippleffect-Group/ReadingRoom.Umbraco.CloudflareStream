@@ -21,6 +21,7 @@
     },
     "devDependencies": {
         "@types/byte-size": "^8.1.2",
+        "@umbraco-cms/backoffice": "^17.2.2",
         "@umbraco-ui/uui": "^1.13.0",
         "rollup-plugin-postcss-lit": "^2.2.0",
         "tus-js-client": "^4.3.1",
