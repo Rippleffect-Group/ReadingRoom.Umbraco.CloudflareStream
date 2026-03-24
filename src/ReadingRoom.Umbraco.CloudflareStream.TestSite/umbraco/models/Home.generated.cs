@@ -55,7 +55,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.2.2+11a412c")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("betterPicker")]
-		public virtual global::ReadingRoom.Umbraco.CloudflareStream.Models.CloudflareStreamMediaValue BetterPicker => this.Value<global::ReadingRoom.Umbraco.CloudflareStream.Models.CloudflareStreamMediaValue>(_publishedValueFallback, "betterPicker");
+		public virtual string BetterPicker => this.Value<string>(_publishedValueFallback, "betterPicker");
 
 		///<summary>
 		/// Generic Media Picker: The original media picker view is used here
