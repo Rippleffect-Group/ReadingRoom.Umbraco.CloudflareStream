@@ -3,7 +3,5 @@ using Umbraco.Cms.Core.PropertyEditors;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaEditor;
 
-public class CloudflareStreamMediaConfigurationEditor : ConfigurationEditor<CloudflareStreamMediaConfiguration>
-{
-    public CloudflareStreamMediaConfigurationEditor(IIOHelper ioHelper) : base(ioHelper) { }
-}
+public class CloudflareStreamMediaConfigurationEditor(IIOHelper ioHelper)
+    : ConfigurationEditor<CloudflareStreamMediaConfiguration>(ioHelper);

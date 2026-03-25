@@ -9,29 +9,11 @@ import {Meta, Body, UppyFile} from "@uppy/core";
 import byteSize from 'byte-size';
 import {UUITextStyles} from '@umbraco-ui/uui-css';
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
-import { UMB_PROPERTY_DATASET_CONTEXT, UMB_PROPERTY_CONTEXT } from '@umbraco-cms/backoffice/property';
 
 @customElement('cf-stream-editor')
 export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) {
     constructor() {
         super();
-
-        // 1. Get the current property's alias from the Property Context
-        this.consumeContext(UMB_PROPERTY_CONTEXT, (propertyContext) => {
-            const propertyAlias = propertyContext?.getAlias();
-
-            // 2. Consume the Dataset Context to find metadata for this alias
-            this.consumeContext(UMB_PROPERTY_DATASET_CONTEXT, async (datasetContext) => {
-                // Access the property's metadata through the dataset
-                this.observe(await datasetContext?.propertyValueByAlias(propertyAlias ?? ''), (details) => {
-                    if (details) {
-                        // This contains the Data Type GUID
-                        
-                        console.log("Data Type Unique ID:", details);
-                    }
-                });
-            });
-        });
     }
 
     @property()
@@ -120,7 +102,7 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) 
         if (request.getURL() === this.uploadUrl) {
             this.previousVideoId = '';
             this.extension = file.extension;
-            request.setHeader("Upload-DataType", `${this.dataTypeKey}`);
+            //request.setHeader("Upload-DataType", `${this.dataTypeKey}`);
             this.dispatchEvent(new CustomEvent('cf-stream-editor-uploading', {
                 detail: {},
                 bubbles: true,
