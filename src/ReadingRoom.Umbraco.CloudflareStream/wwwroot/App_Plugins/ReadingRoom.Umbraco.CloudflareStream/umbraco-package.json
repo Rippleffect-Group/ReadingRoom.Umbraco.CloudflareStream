@@ -1,5 +1,5 @@
 ﻿{
-  "$schema": "../../umbraco-package-schema.json",
+  "$schema": "../../ReadingRoom.Umbraco.CloudflareStream.TestSite/umbraco-package-schema.json",
   "name": "ReadingRoom.Umbraco.CloudflareStream",
   "version": "0.1.0",
   "extensions": [
@@ -14,6 +14,20 @@
         "icon": "icon-video",
         "group": "common",
         "propertyEditorSchemaAlias": "CloudflareStreamMedia"
+      }
+    },
+    {
+      "type": "propertyEditorUi",
+      "alias": "Cloudflare.Stream.MediaPicker.UI",
+      "name": "Cloudflare Stream Media Picker",
+      "element": "/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/media-picker.js",
+      "elementName": "cf-stream-media-picker",
+      "meta": {
+        "label": "Cloudflare Stream Media Picker",
+        "icon": "icon-video",
+        "group": "media",
+        "propertyEditorSchemaAlias": "CloudflareStreamMediaPicker",
+        "supportsReadOnly": true
       }
     },
     {
