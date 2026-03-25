@@ -1,14 +1,14 @@
 import { html, PropertyValues, unsafeCSS, css } from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import Dashboard from "@uppy/dashboard";
 import Tus from "@uppy/tus";
-import {query} from 'lit/decorators/query.js';
+import { query } from 'lit/decorators/query.js';
 import UppyCss from '@uppy/core/dist/style.min.css?inline';
 import UppyDashboardCss from '@uppy/dashboard/dist/style.min.css?inline';
-import {HttpRequest, HttpResponse} from "tus-js-client";
-import {Meta, Body, Uppy, UppyFile} from "@uppy/core";
+import { HttpRequest, HttpResponse } from "tus-js-client";
+import { Meta, Body, Uppy, UppyFile } from "@uppy/core";
 import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
-import {UMB_AUTH_CONTEXT, UmbAuthContext} from "@umbraco-cms/backoffice/auth";
+import { UMB_AUTH_CONTEXT, UmbAuthContext } from "@umbraco-cms/backoffice/auth";
 
 @customElement('uppy-upload')
 export default class UpplyUpload extends UmbLitElement {
@@ -22,8 +22,6 @@ export default class UpplyUpload extends UmbLitElement {
             this.#authContext = instance;
         });
     }
-    
-    
     
     @property()
     endpoint = '';

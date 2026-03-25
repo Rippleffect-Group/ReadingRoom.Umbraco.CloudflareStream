@@ -4,7 +4,8 @@ export default defineConfig({
     build: {
         lib: {
             entry: [
-                "src/index.ts"
+                "src/index.ts",
+                "src/components/save-action.ts"
             ],
             formats: ["es"],
         },
@@ -13,6 +14,12 @@ export default defineConfig({
         sourcemap: true,
         rollupOptions: {
             external: [/^@umbraco-cms/, /^@umbraco\/backoffice/], // ignore the Umbraco Backoffice package in the build
+            output: {
+                // Force shared modules into a separate chunk so the singleton is truly shared
+                manualChunks: {
+                    'shared': ['./src/components/cf-stream-upload-context.ts']
+                },
+            }
         },
     },
     base: "/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/", // the base path of the app in the browser (used for assets)

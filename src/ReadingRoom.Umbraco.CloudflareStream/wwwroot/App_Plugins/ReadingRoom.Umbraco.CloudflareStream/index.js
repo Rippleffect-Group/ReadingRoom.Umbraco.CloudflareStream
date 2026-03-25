@@ -1,13 +1,14 @@
-import { UmbElementMixin as Ku } from "@umbraco-cms/backoffice/element-api";
-import { UmbLitElement as Xu } from "@umbraco-cms/backoffice/lit-element";
-import { UMB_AUTH_CONTEXT as Yu } from "@umbraco-cms/backoffice/auth";
+import { UmbElementMixin as Xu } from "@umbraco-cms/backoffice/element-api";
+import { c as ns } from "./shared-DtVjuqT4.js";
+import { UmbLitElement as Yu } from "@umbraco-cms/backoffice/lit-element";
+import { UMB_AUTH_CONTEXT as Zu } from "@umbraco-cms/backoffice/auth";
 /**
  * @license
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const vi = globalThis, Pn = vi.ShadowRoot && (vi.ShadyCSS === void 0 || vi.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, kn = Symbol(), ns = /* @__PURE__ */ new WeakMap();
-let el = class {
+const vi = globalThis, Pn = vi.ShadowRoot && (vi.ShadyCSS === void 0 || vi.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, kn = Symbol(), ss = /* @__PURE__ */ new WeakMap();
+let tl = class {
   constructor(e, t, i) {
     if (this._$cssResult$ = !0, i !== kn) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = e, this.t = t;
@@ -17,7 +18,7 @@ let el = class {
     const t = this.t;
     if (Pn && e === void 0) {
       const i = t !== void 0 && t.length === 1;
-      i && (e = ns.get(t)), e === void 0 && ((this.o = e = new CSSStyleSheet()).replaceSync(this.cssText), i && ns.set(t, e));
+      i && (e = ss.get(t)), e === void 0 && ((this.o = e = new CSSStyleSheet()).replaceSync(this.cssText), i && ss.set(t, e));
     }
     return e;
   }
@@ -25,20 +26,20 @@ let el = class {
     return this.cssText;
   }
 };
-const Ti = (r) => new el(typeof r == "string" ? r : r + "", void 0, kn), Fn = (r, ...e) => {
+const Ti = (r) => new tl(typeof r == "string" ? r : r + "", void 0, kn), Fn = (r, ...e) => {
   const t = r.length === 1 ? r[0] : e.reduce((i, o, n) => i + ((s) => {
     if (s._$cssResult$ === !0) return s.cssText;
     if (typeof s == "number") return s;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + s + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
   })(o) + r[n + 1], r[0]);
-  return new el(t, r, kn);
-}, Zu = (r, e) => {
+  return new tl(t, r, kn);
+}, Ju = (r, e) => {
   if (Pn) r.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
     const i = document.createElement("style"), o = vi.litNonce;
     o !== void 0 && i.setAttribute("nonce", o), i.textContent = t.cssText, r.appendChild(i);
   }
-}, ss = Pn ? (r) => r : (r) => r instanceof CSSStyleSheet ? ((e) => {
+}, as = Pn ? (r) => r : (r) => r instanceof CSSStyleSheet ? ((e) => {
   let t = "";
   for (const i of e.cssRules) t += i.cssText;
   return Ti(t);
@@ -48,10 +49,10 @@ const Ti = (r) => new el(typeof r == "string" ? r : r + "", void 0, kn), Fn = (r
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: Ju, defineProperty: Qu, getOwnPropertyDescriptor: ep, getOwnPropertyNames: tp, getOwnPropertySymbols: rp, getPrototypeOf: ip } = Object, mt = globalThis, as = mt.trustedTypes, op = as ? as.emptyScript : "", Wi = mt.reactiveElementPolyfillSupport, Ar = (r, e) => r, Ii = { toAttribute(r, e) {
+const { is: Qu, defineProperty: ep, getOwnPropertyDescriptor: tp, getOwnPropertyNames: rp, getOwnPropertySymbols: ip, getPrototypeOf: op } = Object, mt = globalThis, ls = mt.trustedTypes, np = ls ? ls.emptyScript : "", Wi = mt.reactiveElementPolyfillSupport, Ar = (r, e) => r, Ii = { toAttribute(r, e) {
   switch (e) {
     case Boolean:
-      r = r ? op : null;
+      r = r ? np : null;
       break;
     case Object:
     case Array:
@@ -76,7 +77,7 @@ const { is: Ju, defineProperty: Qu, getOwnPropertyDescriptor: ep, getOwnProperty
       }
   }
   return t;
-} }, Dn = (r, e) => !Ju(r, e), ls = { attribute: !0, type: String, converter: Ii, reflect: !1, useDefault: !1, hasChanged: Dn };
+} }, Dn = (r, e) => !Qu(r, e), us = { attribute: !0, type: String, converter: Ii, reflect: !1, useDefault: !1, hasChanged: Dn };
 Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), mt.litPropertyMetadata ?? (mt.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
 let Wt = class extends HTMLElement {
   static addInitializer(e) {
@@ -85,14 +86,14 @@ let Wt = class extends HTMLElement {
   static get observedAttributes() {
     return this.finalize(), this._$Eh && [...this._$Eh.keys()];
   }
-  static createProperty(e, t = ls) {
+  static createProperty(e, t = us) {
     if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
       const i = Symbol(), o = this.getPropertyDescriptor(e, i, t);
-      o !== void 0 && Qu(this.prototype, e, o);
+      o !== void 0 && ep(this.prototype, e, o);
     }
   }
   static getPropertyDescriptor(e, t, i) {
-    const { get: o, set: n } = ep(this.prototype, e) ?? { get() {
+    const { get: o, set: n } = tp(this.prototype, e) ?? { get() {
       return this[t];
     }, set(s) {
       this[t] = s;
@@ -103,17 +104,17 @@ let Wt = class extends HTMLElement {
     }, configurable: !0, enumerable: !0 };
   }
   static getPropertyOptions(e) {
-    return this.elementProperties.get(e) ?? ls;
+    return this.elementProperties.get(e) ?? us;
   }
   static _$Ei() {
     if (this.hasOwnProperty(Ar("elementProperties"))) return;
-    const e = ip(this);
+    const e = op(this);
     e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
   }
   static finalize() {
     if (this.hasOwnProperty(Ar("finalized"))) return;
     if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(Ar("properties"))) {
-      const t = this.properties, i = [...tp(t), ...rp(t)];
+      const t = this.properties, i = [...rp(t), ...ip(t)];
       for (const o of i) this.createProperty(o, t[o]);
     }
     const e = this[Symbol.metadata];
@@ -132,8 +133,8 @@ let Wt = class extends HTMLElement {
     const t = [];
     if (Array.isArray(e)) {
       const i = new Set(e.flat(1 / 0).reverse());
-      for (const o of i) t.unshift(ss(o));
-    } else e !== void 0 && t.push(ss(e));
+      for (const o of i) t.unshift(as(o));
+    } else e !== void 0 && t.push(as(e));
     return t;
   }
   static _$Eu(e, t) {
@@ -162,7 +163,7 @@ let Wt = class extends HTMLElement {
   }
   createRenderRoot() {
     const e = this.shadowRoot ?? this.attachShadow(this.constructor.shadowRootOptions);
-    return Zu(e, this.constructor.elementStyles), e;
+    return Ju(e, this.constructor.elementStyles), e;
   }
   connectedCallback() {
     var e;
@@ -285,42 +286,42 @@ Wt.elementStyles = [], Wt.shadowRootOptions = { mode: "open" }, Wt[Ar("elementPr
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Er = globalThis, Ci = Er.trustedTypes, us = Ci ? Ci.createPolicy("lit-html", { createHTML: (r) => r }) : void 0, tl = "$lit$", ct = `lit$${Math.random().toFixed(9).slice(2)}$`, rl = "?" + ct, np = `<${rl}>`, Ut = document, Nr = () => Ut.createComment(""), Lr = (r) => r === null || typeof r != "object" && typeof r != "function", Tn = Array.isArray, sp = (r) => Tn(r) || typeof (r == null ? void 0 : r[Symbol.iterator]) == "function", Gi = `[ 	
-\f\r]`, lr = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ps = /-->/g, ds = />/g, vt = RegExp(`>|${Gi}(?:([^\\s"'>=/]+)(${Gi}*=${Gi}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), cs = /'/g, hs = /"/g, il = /^(?:script|style|textarea|title)$/i, ap = (r) => (e, ...t) => ({ _$litType$: r, strings: e, values: t }), De = ap(1), Qt = Symbol.for("lit-noChange"), ae = Symbol.for("lit-nothing"), fs = /* @__PURE__ */ new WeakMap(), Ct = Ut.createTreeWalker(Ut, 129);
-function ol(r, e) {
+const Er = globalThis, Ci = Er.trustedTypes, ps = Ci ? Ci.createPolicy("lit-html", { createHTML: (r) => r }) : void 0, rl = "$lit$", ct = `lit$${Math.random().toFixed(9).slice(2)}$`, il = "?" + ct, sp = `<${il}>`, Ut = document, Nr = () => Ut.createComment(""), Lr = (r) => r === null || typeof r != "object" && typeof r != "function", Tn = Array.isArray, ap = (r) => Tn(r) || typeof (r == null ? void 0 : r[Symbol.iterator]) == "function", Gi = `[ 	
+\f\r]`, lr = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ds = /-->/g, cs = />/g, vt = RegExp(`>|${Gi}(?:([^\\s"'>=/]+)(${Gi}*=${Gi}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), hs = /'/g, fs = /"/g, ol = /^(?:script|style|textarea|title)$/i, lp = (r) => (e, ...t) => ({ _$litType$: r, strings: e, values: t }), De = lp(1), Qt = Symbol.for("lit-noChange"), ae = Symbol.for("lit-nothing"), ys = /* @__PURE__ */ new WeakMap(), Ct = Ut.createTreeWalker(Ut, 129);
+function nl(r, e) {
   if (!Tn(r) || !r.hasOwnProperty("raw")) throw Error("invalid template strings array");
-  return us !== void 0 ? us.createHTML(e) : e;
+  return ps !== void 0 ? ps.createHTML(e) : e;
 }
-const lp = (r, e) => {
+const up = (r, e) => {
   const t = r.length - 1, i = [];
   let o, n = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", s = lr;
   for (let a = 0; a < t; a++) {
     const l = r[a];
     let u, p, d = -1, h = 0;
-    for (; h < l.length && (s.lastIndex = h, p = s.exec(l), p !== null); ) h = s.lastIndex, s === lr ? p[1] === "!--" ? s = ps : p[1] !== void 0 ? s = ds : p[2] !== void 0 ? (il.test(p[2]) && (o = RegExp("</" + p[2], "g")), s = vt) : p[3] !== void 0 && (s = vt) : s === vt ? p[0] === ">" ? (s = o ?? lr, d = -1) : p[1] === void 0 ? d = -2 : (d = s.lastIndex - p[2].length, u = p[1], s = p[3] === void 0 ? vt : p[3] === '"' ? hs : cs) : s === hs || s === cs ? s = vt : s === ps || s === ds ? s = lr : (s = vt, o = void 0);
+    for (; h < l.length && (s.lastIndex = h, p = s.exec(l), p !== null); ) h = s.lastIndex, s === lr ? p[1] === "!--" ? s = ds : p[1] !== void 0 ? s = cs : p[2] !== void 0 ? (ol.test(p[2]) && (o = RegExp("</" + p[2], "g")), s = vt) : p[3] !== void 0 && (s = vt) : s === vt ? p[0] === ">" ? (s = o ?? lr, d = -1) : p[1] === void 0 ? d = -2 : (d = s.lastIndex - p[2].length, u = p[1], s = p[3] === void 0 ? vt : p[3] === '"' ? fs : hs) : s === fs || s === hs ? s = vt : s === ds || s === cs ? s = lr : (s = vt, o = void 0);
     const x = s === vt && r[a + 1].startsWith("/>") ? " " : "";
-    n += s === lr ? l + np : d >= 0 ? (i.push(u), l.slice(0, d) + tl + l.slice(d) + ct + x) : l + ct + (d === -2 ? a : x);
+    n += s === lr ? l + sp : d >= 0 ? (i.push(u), l.slice(0, d) + rl + l.slice(d) + ct + x) : l + ct + (d === -2 ? a : x);
   }
-  return [ol(r, n + (r[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
+  return [nl(r, n + (r[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
-let Ko = class nl {
+let Ko = class sl {
   constructor({ strings: e, _$litType$: t }, i) {
     let o;
     this.parts = [];
     let n = 0, s = 0;
-    const a = e.length - 1, l = this.parts, [u, p] = lp(e, t);
-    if (this.el = nl.createElement(u, i), Ct.currentNode = this.el.content, t === 2 || t === 3) {
+    const a = e.length - 1, l = this.parts, [u, p] = up(e, t);
+    if (this.el = sl.createElement(u, i), Ct.currentNode = this.el.content, t === 2 || t === 3) {
       const d = this.el.content.firstChild;
       d.replaceWith(...d.childNodes);
     }
     for (; (o = Ct.nextNode()) !== null && l.length < a; ) {
       if (o.nodeType === 1) {
-        if (o.hasAttributes()) for (const d of o.getAttributeNames()) if (d.endsWith(tl)) {
+        if (o.hasAttributes()) for (const d of o.getAttributeNames()) if (d.endsWith(rl)) {
           const h = p[s++], x = o.getAttribute(d).split(ct), D = /([.?@])?(.*)/.exec(h);
-          l.push({ type: 1, index: n, name: D[2], strings: x, ctor: D[1] === "." ? pp : D[1] === "?" ? dp : D[1] === "@" ? cp : $i }), o.removeAttribute(d);
+          l.push({ type: 1, index: n, name: D[2], strings: x, ctor: D[1] === "." ? dp : D[1] === "?" ? cp : D[1] === "@" ? hp : $i }), o.removeAttribute(d);
         } else d.startsWith(ct) && (l.push({ type: 6, index: n }), o.removeAttribute(d));
-        if (il.test(o.tagName)) {
+        if (ol.test(o.tagName)) {
           const d = o.textContent.split(ct), h = d.length - 1;
           if (h > 0) {
             o.textContent = Ci ? Ci.emptyScript : "";
@@ -328,7 +329,7 @@ let Ko = class nl {
             o.append(d[h], Nr());
           }
         }
-      } else if (o.nodeType === 8) if (o.data === rl) l.push({ type: 2, index: n });
+      } else if (o.nodeType === 8) if (o.data === il) l.push({ type: 2, index: n });
       else {
         let d = -1;
         for (; (d = o.data.indexOf(ct, d + 1)) !== -1; ) l.push({ type: 7, index: n }), d += ct.length - 1;
@@ -348,7 +349,7 @@ function er(r, e, t = r, i) {
   const n = Lr(e) ? void 0 : e._$litDirective$;
   return (o == null ? void 0 : o.constructor) !== n && ((a = o == null ? void 0 : o._$AO) == null || a.call(o, !1), n === void 0 ? o = void 0 : (o = new n(r), o._$AT(r, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = o : t._$Cl = o), o !== void 0 && (e = er(r, o._$AS(r, e.values), o, i)), e;
 }
-let up = class {
+let pp = class {
   constructor(e, t) {
     this._$AV = [], this._$AN = void 0, this._$AD = e, this._$AM = t;
   }
@@ -365,7 +366,7 @@ let up = class {
     for (; l !== void 0; ) {
       if (s === l.index) {
         let u;
-        l.type === 2 ? u = new In(n, n.nextSibling, this, e) : l.type === 1 ? u = new l.ctor(n, l.name, l.strings, this, e) : l.type === 6 && (u = new hp(n, this, e)), this._$AV.push(u), l = i[++a];
+        l.type === 2 ? u = new In(n, n.nextSibling, this, e) : l.type === 1 ? u = new l.ctor(n, l.name, l.strings, this, e) : l.type === 6 && (u = new fp(n, this, e)), this._$AV.push(u), l = i[++a];
       }
       s !== (l == null ? void 0 : l.index) && (n = Ct.nextNode(), s++);
     }
@@ -375,7 +376,7 @@ let up = class {
     let t = 0;
     for (const i of this._$AV) i !== void 0 && (i.strings !== void 0 ? (i._$AI(e, i, t), t += i.strings.length - 2) : i._$AI(e[t])), t++;
   }
-}, In = class sl {
+}, In = class al {
   get _$AU() {
     var e;
     return ((e = this._$AM) == null ? void 0 : e._$AU) ?? this._$Cv;
@@ -395,7 +396,7 @@ let up = class {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = er(this, e, t), Lr(e) ? e === ae || e == null || e === "" ? (this._$AH !== ae && this._$AR(), this._$AH = ae) : e !== this._$AH && e !== Qt && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : sp(e) ? this.k(e) : this._(e);
+    e = er(this, e, t), Lr(e) ? e === ae || e == null || e === "" ? (this._$AH !== ae && this._$AR(), this._$AH = ae) : e !== this._$AH && e !== Qt && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : ap(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -408,22 +409,22 @@ let up = class {
   }
   $(e) {
     var n;
-    const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = Ko.createElement(ol(i.h, i.h[0]), this.options)), i);
+    const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = Ko.createElement(nl(i.h, i.h[0]), this.options)), i);
     if (((n = this._$AH) == null ? void 0 : n._$AD) === o) this._$AH.p(t);
     else {
-      const s = new up(o, this), a = s.u(this.options);
+      const s = new pp(o, this), a = s.u(this.options);
       s.p(t), this.T(a), this._$AH = s;
     }
   }
   _$AC(e) {
-    let t = fs.get(e.strings);
-    return t === void 0 && fs.set(e.strings, t = new Ko(e)), t;
+    let t = ys.get(e.strings);
+    return t === void 0 && ys.set(e.strings, t = new Ko(e)), t;
   }
   k(e) {
     Tn(this._$AH) || (this._$AH = [], this._$AR());
     const t = this._$AH;
     let i, o = 0;
-    for (const n of e) o === t.length ? t.push(i = new sl(this.O(Nr()), this.O(Nr()), this, this.options)) : i = t[o], i._$AI(n), o++;
+    for (const n of e) o === t.length ? t.push(i = new al(this.O(Nr()), this.O(Nr()), this, this.options)) : i = t[o], i._$AI(n), o++;
     o < t.length && (this._$AR(i && i._$AB.nextSibling, o), t.length = o);
   }
   _$AR(e = this._$AA.nextSibling, t) {
@@ -461,21 +462,21 @@ let up = class {
   j(e) {
     e === ae ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
   }
-}, pp = class extends $i {
+}, dp = class extends $i {
   constructor() {
     super(...arguments), this.type = 3;
   }
   j(e) {
     this.element[this.name] = e === ae ? void 0 : e;
   }
-}, dp = class extends $i {
+}, cp = class extends $i {
   constructor() {
     super(...arguments), this.type = 4;
   }
   j(e) {
     this.element.toggleAttribute(this.name, !!e && e !== ae);
   }
-}, cp = class extends $i {
+}, hp = class extends $i {
   constructor(e, t, i, o, n) {
     super(e, t, i, o, n), this.type = 5;
   }
@@ -488,7 +489,7 @@ let up = class {
     var t;
     typeof this._$AH == "function" ? this._$AH.call(((t = this.options) == null ? void 0 : t.host) ?? this.element, e) : this._$AH.handleEvent(e);
   }
-}, hp = class {
+}, fp = class {
   constructor(e, t, i) {
     this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = i;
   }
@@ -501,7 +502,7 @@ let up = class {
 };
 const Vi = Er.litHtmlPolyfillSupport;
 Vi == null || Vi(Ko, In), (Er.litHtmlVersions ?? (Er.litHtmlVersions = [])).push("3.3.0");
-const fp = (r, e, t) => {
+const yp = (r, e, t) => {
   const i = (t == null ? void 0 : t.renderBefore) ?? e;
   let o = i._$litPart$;
   if (o === void 0) {
@@ -527,7 +528,7 @@ let Zt = class extends Wt {
   }
   update(e) {
     const t = this.render();
-    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = fp(t, this.renderRoot, this.renderOptions);
+    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = yp(t, this.renderRoot, this.renderOptions);
   }
   connectedCallback() {
     var e;
@@ -541,8 +542,8 @@ let Zt = class extends Wt {
     return Qt;
   }
 };
-var Qa;
-Zt._$litElement$ = !0, Zt.finalized = !0, (Qa = Et.litElementHydrateSupport) == null || Qa.call(Et, { LitElement: Zt });
+var el;
+Zt._$litElement$ = !0, Zt.finalized = !0, (el = Et.litElementHydrateSupport) == null || el.call(Et, { LitElement: Zt });
 const Ki = Et.litElementPolyfillSupport;
 Ki == null || Ki({ LitElement: Zt });
 (Et.litElementVersions ?? (Et.litElementVersions = [])).push("4.2.0");
@@ -561,7 +562,7 @@ const Cn = (r) => (e, t) => {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const yp = { attribute: !0, type: String, converter: Ii, reflect: !1, hasChanged: Dn }, mp = (r = yp, e, t) => {
+const mp = { attribute: !0, type: String, converter: Ii, reflect: !1, hasChanged: Dn }, gp = (r = mp, e, t) => {
   const { kind: i, metadata: o } = t;
   let n = globalThis.litPropertyMetadata.get(o);
   if (n === void 0 && globalThis.litPropertyMetadata.set(o, n = /* @__PURE__ */ new Map()), i === "setter" && ((r = Object.create(r)).wrapped = !0), n.set(t.name, r), i === "accessor") {
@@ -583,7 +584,7 @@ const yp = { attribute: !0, type: String, converter: Ii, reflect: !1, hasChanged
   throw Error("Unsupported decorator location: " + i);
 };
 function Re(r) {
-  return (e, t) => typeof t == "object" ? mp(r, e, t) : ((i, o, n) => {
+  return (e, t) => typeof t == "object" ? gp(r, e, t) : ((i, o, n) => {
     const s = o.hasOwnProperty(n);
     return o.constructor.createProperty(n, i), s ? Object.getOwnPropertyDescriptor(o, n) : void 0;
   })(r, e, t);
@@ -601,19 +602,19 @@ function lt(r) {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const gp = (r, e, t) => (t.configurable = !0, t.enumerable = !0, Reflect.decorate && typeof e != "object" && Object.defineProperty(r, e, t), t);
+const bp = (r, e, t) => (t.configurable = !0, t.enumerable = !0, Reflect.decorate && typeof e != "object" && Object.defineProperty(r, e, t), t);
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-function bp(r, e) {
+function vp(r, e) {
   return (t, i, o) => {
     const n = (s) => {
       var a;
       return ((a = s.renderRoot) == null ? void 0 : a.querySelector(r)) ?? null;
     };
-    return gp(t, i, { get() {
+    return bp(t, i, { get() {
       return n(this);
     } });
   };
@@ -622,7 +623,7 @@ var ht = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
 function zt(r) {
   return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
 }
-var ys = {};
+var ms = {};
 /*! *****************************************************************************
 Copyright (C) Microsoft. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -637,10 +638,10 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
-var ms;
-function vp() {
-  if (ms) return ys;
-  ms = 1;
+var gs;
+function wp() {
+  if (gs) return ms;
+  gs = 1;
   var r;
   return function(e) {
     (function(t) {
@@ -686,7 +687,7 @@ function vp() {
         } : function(b, v) {
           return b[v];
         }
-      }, h = Object.getPrototypeOf(Function), x = typeof Map == "function" && typeof Map.prototype.entries == "function" ? Map : qu(), D = typeof Set == "function" && typeof Set.prototype.entries == "function" ? Set : Hu(), O = typeof WeakMap == "function" ? WeakMap : Wu(), _ = n ? Symbol.for("@reflect-metadata:registry") : void 0, T = Nu(), m = Lu(T);
+      }, h = Object.getPrototypeOf(Function), x = typeof Map == "function" && typeof Map.prototype.entries == "function" ? Map : Hu(), D = typeof Set == "function" && typeof Set.prototype.entries == "function" ? Set : Wu(), O = typeof WeakMap == "function" ? WeakMap : Gu(), _ = n ? Symbol.for("@reflect-metadata:registry") : void 0, T = Lu(), m = ju(T);
       function w(b, v, k, $) {
         if (R(k)) {
           if (!Zn(b))
@@ -709,7 +710,7 @@ function vp() {
         function k($, H) {
           if (!K($))
             throw new TypeError();
-          if (!R(H) && !$u(H))
+          if (!R(H) && !zu(H))
             throw new TypeError();
           F(b, v, $, H);
         }
@@ -943,12 +944,12 @@ function vp() {
       function bt(b) {
         return !!b;
       }
-      function Mu(b) {
+      function $u(b) {
         return "" + b;
       }
       function We(b) {
         var v = ye(b);
-        return ce(v) ? v : Mu(v);
+        return ce(v) ? v : $u(v);
       }
       function Zn(b) {
         return Array.isArray ? Array.isArray(b) : b instanceof Object ? b instanceof Array : Object.prototype.toString.call(b) === "[object Array]";
@@ -959,7 +960,7 @@ function vp() {
       function Jn(b) {
         return typeof b == "function";
       }
-      function $u(b) {
+      function zu(b) {
         switch (W(b)) {
           case 3:
             return !0;
@@ -1010,9 +1011,9 @@ function vp() {
         var H = $.constructor;
         return typeof H != "function" || H === b ? v : H;
       }
-      function zu() {
+      function Nu() {
         var b;
-        !R(_) && typeof i.Reflect < "u" && !(_ in i.Reflect) && typeof i.Reflect.defineMetadata == "function" && (b = ju(i.Reflect));
+        !R(_) && typeof i.Reflect < "u" && !(_ in i.Reflect) && typeof i.Reflect.defineMetadata == "function" && (b = qu(i.Reflect));
         var v, k, $, H = new O(), me = {
           registerProvider: fe,
           getProvider: z,
@@ -1083,16 +1084,16 @@ function vp() {
           return !0;
         }
       }
-      function Nu() {
+      function Lu() {
         var b;
-        return !R(_) && K(i.Reflect) && Object.isExtensible(i.Reflect) && (b = i.Reflect[_]), R(b) && (b = zu()), !R(_) && K(i.Reflect) && Object.isExtensible(i.Reflect) && Object.defineProperty(i.Reflect, _, {
+        return !R(_) && K(i.Reflect) && Object.isExtensible(i.Reflect) && (b = i.Reflect[_]), R(b) && (b = Nu()), !R(_) && K(i.Reflect) && Object.isExtensible(i.Reflect) && Object.defineProperty(i.Reflect, _, {
           enumerable: !1,
           configurable: !1,
           writable: !1,
           value: b
         }), b;
       }
-      function Lu(b) {
+      function ju(b) {
         var v = new O(), k = {
           isProviderFor: function(N, j) {
             var q = v.get(N);
@@ -1162,14 +1163,14 @@ function vp() {
             var os = rs(pe);
             if (!os)
               return q.length = ze, q;
-            var Gu = ts(os);
+            var Vu = ts(os);
             try {
-              q[ze] = Gu;
-            } catch (Vu) {
+              q[ze] = Vu;
+            } catch (Ku) {
               try {
                 is(pe);
               } finally {
-                throw Vu;
+                throw Ku;
               }
             }
             ze++;
@@ -1191,7 +1192,7 @@ function vp() {
           return !0;
         }
       }
-      function ju(b) {
+      function qu(b) {
         var v = b.defineMetadata, k = b.hasOwnMetadata, $ = b.getOwnMetadata, H = b.getOwnMetadataKeys, me = b.deleteMetadata, fe = new O(), Y = {
           isProviderFor: function(z, N) {
             var j = fe.get(z);
@@ -1215,7 +1216,7 @@ function vp() {
           throw new Error("Illegal state.");
         }
       }
-      function qu() {
+      function Hu() {
         var b = {}, v = [], k = (
           /** @class */
           function() {
@@ -1319,7 +1320,7 @@ function vp() {
           return [Y, z];
         }
       }
-      function Hu() {
+      function Wu() {
         var b = (
           /** @class */
           function() {
@@ -1355,7 +1356,7 @@ function vp() {
         );
         return b;
       }
-      function Wu() {
+      function Gu() {
         var b = 16, v = d.create(), k = $();
         return (
           /** @class */
@@ -1437,14 +1438,14 @@ function vp() {
         return b.__ = void 0, delete b.__, b;
       }
     });
-  }(r || (r = {})), ys;
+  }(r || (r = {})), ms;
 }
-vp();
+wp();
 var X;
 (function(r) {
   r[r.PLAIN_TO_CLASS = 0] = "PLAIN_TO_CLASS", r[r.CLASS_TO_PLAIN = 1] = "CLASS_TO_PLAIN", r[r.CLASS_TO_CLASS = 2] = "CLASS_TO_CLASS";
 })(X || (X = {}));
-var wp = (
+var _p = (
   /** @class */
   function() {
     function r() {
@@ -1542,8 +1543,8 @@ var wp = (
       return this._ancestorsMap.get(e);
     }, r;
   }()
-), ke = new wp();
-function _p() {
+), ke = new _p();
+function xp() {
   if (typeof globalThis < "u")
     return globalThis;
   if (typeof global < "u")
@@ -1553,15 +1554,15 @@ function _p() {
   if (typeof self < "u")
     return self;
 }
-function xp(r) {
+function Sp(r) {
   return r !== null && typeof r == "object" && typeof r.then == "function";
 }
-var gs = function(r, e, t) {
+var bs = function(r, e, t) {
   if (t || arguments.length === 2) for (var i = 0, o = e.length, n; i < o; i++)
     (n || !(i in e)) && (n || (n = Array.prototype.slice.call(e, 0, i)), n[i] = e[i]);
   return r.concat(n || Array.prototype.slice.call(e));
 };
-function Sp(r) {
+function Pp(r) {
   var e = new r();
   return !(e instanceof Set) && !("push" in e) ? [] : e;
 }
@@ -1574,7 +1575,7 @@ var Lt = (
     return r.prototype.transform = function(e, t, i, o, n, s) {
       var a = this;
       if (s === void 0 && (s = 0), Array.isArray(t) || t instanceof Set) {
-        var l = o && this.transformationType === X.PLAIN_TO_CLASS ? Sp(o) : [];
+        var l = o && this.transformationType === X.PLAIN_TO_CLASS ? Pp(o) : [];
         return t.forEach(function(_, T) {
           var m = e ? e[T] : void 0;
           if (!a.options.enableCircularCheck || !a.isCircular(_)) {
@@ -1605,9 +1606,9 @@ var Lt = (
           return t == null ? t : !!t;
         if ((i === Date || t instanceof Date) && !n)
           return t instanceof Date ? new Date(t.valueOf()) : t == null ? t : new Date(t);
-        if (_p().Buffer && (i === Buffer || t instanceof Buffer) && !n)
+        if (xp().Buffer && (i === Buffer || t instanceof Buffer) && !n)
           return t == null ? t : Buffer.from(t);
-        if (xp(t) && !n)
+        if (Sp(t) && !n)
           return new Promise(function(_, T) {
             t.then(function(m) {
               return _(a.transform(void 0, m, i, void 0, void 0, s + 1));
@@ -1706,7 +1707,7 @@ var Lt = (
         return s;
       if (this.options.ignoreDecorators && this.options.excludeExtraneousValues && e) {
         var a = ke.getExposedProperties(e, this.transformationType), l = ke.getExcludedProperties(e, this.transformationType);
-        s = gs(gs([], a, !0), l, !0);
+        s = bs(bs([], a, !0), l, !0);
       }
       if (!this.options.ignoreDecorators && e) {
         var a = ke.getExposedProperties(e, this.transformationType);
@@ -1764,7 +1765,7 @@ var Lt = (
     }
     return r;
   }, Ce.apply(this, arguments);
-}, Pp = (
+}, kp = (
   /** @class */
   function() {
     function r() {
@@ -1810,73 +1811,73 @@ function or(r, e) {
     });
   };
 }
-var kp = new Pp();
-function Fp(r, e, t) {
-  return kp.plainToInstance(r, e, t);
+var Fp = new kp();
+function Dp(r, e, t) {
+  return Fp.plainToInstance(r, e, t);
 }
-class al {
+class ll {
   constructor() {
     this.ErrorReasonCode = "", this.ErrorReasonText = "", this.PctComplete = "", this.State = "";
   }
 }
-class ll {
+class ul {
   constructor() {
     this.Height = 0, this.Width = 0;
   }
 }
-class ul {
+class pl {
   constructor() {
     this.Name = "";
   }
 }
-class pl {
+class dl {
   constructor() {
     this.Dash = "", this.Hls = "", this.Frame = "";
   }
 }
-class dl {
+class cl {
   constructor() {
     this.Created = /* @__PURE__ */ new Date(), this.DownloadedFrom = "", this.Height = 0, this.Name = "", this.Opacity = 0, this.Padding = 0, this.Position = "", this.Scale = 0, this.Size = 0, this.Uid = "", this.Width = 0;
   }
 }
-var Dp = Object.defineProperty, ti = (r, e, t, i) => {
-  for (var o = void 0, n = r.length - 1, s; n >= 0; n--)
-    (s = r[n]) && (o = s(e, t, o) || o);
-  return o && Dp(e, t, o), o;
-};
-class Nt {
-  constructor() {
-    this.AllowedOrigins = [], this.Created = /* @__PURE__ */ new Date(), this.Creator = "", this.Duration = 0, this.Input = new ll(), this.LiveInput = "", this.MaxDurationSeconds = 0, this.Meta = new ul(), this.Modified = /* @__PURE__ */ new Date(), this.Playback = new pl(), this.Preview = "", this.ReadyToStream = !1, this.ReadyToStreamAt = /* @__PURE__ */ new Date(), this.RequireSignedURLs = !1, this.ScheduledDeletion = /* @__PURE__ */ new Date(), this.Size = 0, this.Status = new al(), this.Thumbnail = "", this.ThumbnailTimestampPct = 0, this.Uid = "", this.UploadExpiry = /* @__PURE__ */ new Date(), this.Uploaded = /* @__PURE__ */ new Date(), this.Watermark = new dl();
-  }
-}
-ti([
-  or(() => ll)
-], Nt.prototype, "Input");
-ti([
-  or(() => ul)
-], Nt.prototype, "Meta");
-ti([
-  or(() => pl)
-], Nt.prototype, "Playback");
-ti([
-  or(() => al)
-], Nt.prototype, "Status");
-ti([
-  or(() => dl)
-], Nt.prototype, "Watermark");
-var Tp = Object.defineProperty, Ip = (r, e, t, i) => {
+var Tp = Object.defineProperty, ti = (r, e, t, i) => {
   for (var o = void 0, n = r.length - 1, s; n >= 0; n--)
     (s = r[n]) && (o = s(e, t, o) || o);
   return o && Tp(e, t, o), o;
 };
-class cl {
+class Nt {
+  constructor() {
+    this.AllowedOrigins = [], this.Created = /* @__PURE__ */ new Date(), this.Creator = "", this.Duration = 0, this.Input = new ul(), this.LiveInput = "", this.MaxDurationSeconds = 0, this.Meta = new pl(), this.Modified = /* @__PURE__ */ new Date(), this.Playback = new dl(), this.Preview = "", this.ReadyToStream = !1, this.ReadyToStreamAt = /* @__PURE__ */ new Date(), this.RequireSignedURLs = !1, this.ScheduledDeletion = /* @__PURE__ */ new Date(), this.Size = 0, this.Status = new ll(), this.Thumbnail = "", this.ThumbnailTimestampPct = 0, this.Uid = "", this.UploadExpiry = /* @__PURE__ */ new Date(), this.Uploaded = /* @__PURE__ */ new Date(), this.Watermark = new cl();
+  }
+}
+ti([
+  or(() => ul)
+], Nt.prototype, "Input");
+ti([
+  or(() => pl)
+], Nt.prototype, "Meta");
+ti([
+  or(() => dl)
+], Nt.prototype, "Playback");
+ti([
+  or(() => ll)
+], Nt.prototype, "Status");
+ti([
+  or(() => cl)
+], Nt.prototype, "Watermark");
+var Ip = Object.defineProperty, Cp = (r, e, t, i) => {
+  for (var o = void 0, n = r.length - 1, s; n >= 0; n--)
+    (s = r[n]) && (o = s(e, t, o) || o);
+  return o && Ip(e, t, o), o;
+};
+class hl {
   constructor() {
     this.Errors = [], this.Messages = [], this.Result = new Nt(), this.Success = !1;
   }
 }
-Ip([
+Cp([
   or(() => Nt)
-], cl.prototype, "Result");
+], hl.prototype, "Result");
 const pt = class pt {
   static async getVideoDetails(e) {
     try {
@@ -1884,7 +1885,7 @@ const pt = class pt {
       if (t.status === 404)
         return;
       const i = await t.json();
-      return Fp(cl, i);
+      return Dp(hl, i);
     } catch (t) {
       throw console.error("There has been a problem with your fetch operation:", t), t;
     }
@@ -1895,8 +1896,8 @@ let Bi = pt;
 const dt = class dt {
 };
 dt.DOWNLOADING = "downloading", dt.QUEUED = "queued", dt.IN_PROGRESS = "inprogress", dt.READY = "ready", dt.ERROR = "error", dt.PENDING_UPLOAD = "pendingupload";
-let Oi = dt, hl = {};
-const bs = /* @__PURE__ */ new WeakMap(), vs = {
+let Oi = dt, fl = {};
+const vs = /* @__PURE__ */ new WeakMap(), ws = {
   metric: [
     { from: 0, to: 1e3, unit: "B", long: "bytes" },
     { from: 1e3, to: 1e6, unit: "kB", long: "kilobytes" },
@@ -1942,17 +1943,17 @@ const bs = /* @__PURE__ */ new WeakMap(), vs = {
     { from: Math.pow(1024, 8), to: Math.pow(1024, 9), unit: "Yio", long: "yobioctets" }
   ]
 };
-class Cp {
+class Bp {
   constructor(e, t) {
     t = Object.assign({
       units: "metric",
       precision: 1,
       locale: void 0
       // Default to the user's system locale
-    }, hl, t), bs.set(this, t), Object.assign(vs, t.customUnits);
+    }, fl, t), vs.set(this, t), Object.assign(ws, t.customUnits);
     const i = e < 0 ? "-" : "";
     e = Math.abs(e);
-    const o = vs[t.units];
+    const o = ws[t.units];
     if (o) {
       const n = o.find((s) => e >= s.from && e < s.to);
       if (n) {
@@ -1967,17 +1968,17 @@ class Cp {
       throw new Error(`Invalid units specified: ${t.units}`);
   }
   toString() {
-    const e = bs.get(this);
+    const e = vs.get(this);
     return e.toStringFn ? e.toStringFn.bind(this)() : `${this.value} ${this.unit}`;
   }
 }
-function fl(r, e) {
-  return new Cp(r, e);
+function yl(r, e) {
+  return new Bp(r, e);
 }
-fl.defaultOptions = function(r) {
-  hl = r;
+yl.defaultOptions = function(r) {
+  fl = r;
 };
-var Bp = `.uui-h1,
+var Op = `.uui-h1,
 .uui-h2,
 .uui-h3,
 .uui-h4,
@@ -2177,15 +2178,21 @@ var Bp = `.uui-h1,
   margin-bottom: var(--uui-size-layout-1,24px);
 }
 `;
-const yl = Ti(Bp);
-var Op = Object.defineProperty, Ap = Object.getOwnPropertyDescriptor, Me = (r, e, t, i) => {
-  for (var o = i > 1 ? void 0 : i ? Ap(e, t) : e, n = r.length - 1, s; n >= 0; n--)
+const ml = Ti(Op);
+var Ap = Object.defineProperty, Ep = Object.getOwnPropertyDescriptor, Me = (r, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Ep(e, t) : e, n = r.length - 1, s; n >= 0; n--)
     (s = r[n]) && (o = (i ? s(e, t, o) : s(o)) || o);
-  return i && o && Op(e, t, o), o;
+  return i && o && Ap(e, t, o), o;
 };
-let Ie = class extends Ku(Zt) {
+let Ie = class extends Xu(Zt) {
   constructor() {
     super(), this.videoId = "", this.customerDomain = "", this.dataTypeKey = "", this.loading = !1, this.extension = "", this.notFound = !1, this.previousVideoId = "", this.showDebug = !1, this.enableDebug = !1, this.refreshInterval = 1e3, this.uploadUrl = Bi.initialiseEndpoint;
+  }
+  _lockSave() {
+    ns.setUploading(!0);
+  }
+  _unlockSave() {
+    ns.setUploading(!1);
   }
   firstUpdated(r) {
     this.videoId && this._getStatus(this.videoId);
@@ -2200,14 +2207,14 @@ let Ie = class extends Ku(Zt) {
   }
   _beforeRequest(r) {
     const e = r.detail.request, t = r.detail.file;
-    e.getURL() === this.uploadUrl && (this.previousVideoId = "", this.extension = t.extension, this.dispatchEvent(new CustomEvent("cf-stream-editor-uploading", {
+    e.getURL() === this.uploadUrl && (this.previousVideoId = "", this.extension = t.extension, this._lockSave(), this.dispatchEvent(new CustomEvent("cf-stream-editor-uploading", {
       detail: {},
       bubbles: !0,
       composed: !0
     })));
   }
   async _uploadSuccess(r) {
-    r.stopPropagation(), this.dispatchEvent(new CustomEvent("cf-stream-editor-uploaded", {
+    r.stopPropagation(), this._unlockSave(), this.dispatchEvent(new CustomEvent("cf-stream-editor-uploaded", {
       detail: {
         videoId: this.pendingVideoId
       },
@@ -2273,7 +2280,7 @@ let Ie = class extends Ku(Zt) {
             `;
   }
   _renderVideo(r) {
-    const e = r.Playback.Frame, t = `${fl(r.Size)}`;
+    const e = r.Playback.Frame, t = `${yl(r.Size)}`;
     return De`
                 <uui-box headline="${r.Meta.Name} | ${t}">
                     <div class="cf-player-wrapper">
@@ -2372,7 +2379,7 @@ let Ie = class extends Ku(Zt) {
   }
 };
 Ie.styles = [
-  yl,
+  ml,
   Fn`
                 .cf-player {
                     border: none;
@@ -2436,11 +2443,11 @@ function ni(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var Ep = 0;
-function ml(r) {
-  return "__private_" + Ep++ + "_" + r;
+var Up = 0;
+function gl(r) {
+  return "__private_" + Up++ + "_" + r;
 }
-function Up(r, e, t) {
+function Rp(r, e, t) {
   const i = [];
   return r.forEach((o) => typeof o != "string" ? i.push(o) : e[Symbol.split](o).forEach((n, s, a) => {
     n !== "" && i.push(n), s < a.length - 1 && i.push(t);
@@ -2456,28 +2463,28 @@ function Up(r, e, t) {
  * @param phrase that needs interpolation, with placeholders
  * @param options with values that will be used to replace placeholders
  */
-function ws(r, e) {
+function _s(r, e) {
   const t = /\$/g, i = "$$$$";
   let o = [r];
   if (e == null) return o;
   for (const n of Object.keys(e))
     if (n !== "_") {
       let s = e[n];
-      typeof s == "string" && (s = t[Symbol.replace](s, i)), o = Up(o, new RegExp(`%\\{${n}\\}`, "g"), s);
+      typeof s == "string" && (s = t[Symbol.replace](s, i)), o = Rp(o, new RegExp(`%\\{${n}\\}`, "g"), s);
     }
   return o;
 }
-const Rp = (r) => {
+const Mp = (r) => {
   throw new Error(`missing string: ${r}`);
 };
-var ur = /* @__PURE__ */ ml("onMissingKey"), pr = /* @__PURE__ */ ml("apply");
-class gl {
+var ur = /* @__PURE__ */ gl("onMissingKey"), pr = /* @__PURE__ */ gl("apply");
+class bl {
   constructor(e, t) {
     let {
-      onMissingKey: i = Rp
+      onMissingKey: i = Mp
     } = t === void 0 ? {} : t;
     Object.defineProperty(this, pr, {
-      value: Mp
+      value: $p
     }), Object.defineProperty(this, ur, {
       writable: !0,
       value: void 0
@@ -2508,16 +2515,16 @@ class gl {
     if (i == null && (ni(this, ur)[ur](e), i = e), typeof i == "object") {
       if (t && typeof t.smart_count < "u") {
         const n = this.locale.pluralize(t.smart_count);
-        return ws(i[n], t);
+        return _s(i[n], t);
       }
       throw new Error("Attempted to use a string with plural forms, but no value was given for %{smart_count}");
     }
     if (typeof i != "string")
       throw new Error("string was not a string");
-    return ws(i, t);
+    return _s(i, t);
   }
 }
-function Mp(r) {
+function $p(r) {
   if (!(r != null && r.strings))
     return;
   const e = this.locale;
@@ -2529,9 +2536,9 @@ function Mp(r) {
     pluralize: r.pluralize || e.pluralize
   });
 }
-var Xi, _s;
-function $p() {
-  return _s || (_s = 1, Xi = function() {
+var Xi, xs;
+function zp() {
+  return xs || (xs = 1, Xi = function() {
     var e = {}, t = e._fns = {};
     e.emit = function(s, a, l, u, p, d, h) {
       var x = i(s);
@@ -2571,51 +2578,51 @@ function $p() {
     return e;
   }), Xi;
 }
-var zp = $p();
-const Np = /* @__PURE__ */ zt(zp);
-let Lp = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict", Bn = (r = 21) => {
+var Np = zp();
+const Lp = /* @__PURE__ */ zt(Np);
+let jp = "useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict", Bn = (r = 21) => {
   let e = "", t = r | 0;
   for (; t--; )
-    e += Lp[Math.random() * 64 | 0];
+    e += jp[Math.random() * 64 | 0];
   return e;
 };
-var Yi, xs;
+var Yi, Ss;
 function On() {
-  if (xs) return Yi;
-  xs = 1;
+  if (Ss) return Yi;
+  Ss = 1;
   function r(e) {
     var t = typeof e;
     return e != null && (t == "object" || t == "function");
   }
   return Yi = r, Yi;
 }
-var Zi, Ss;
-function jp() {
-  if (Ss) return Zi;
-  Ss = 1;
+var Zi, Ps;
+function qp() {
+  if (Ps) return Zi;
+  Ps = 1;
   var r = typeof ht == "object" && ht && ht.Object === Object && ht;
   return Zi = r, Zi;
 }
-var Ji, Ps;
-function bl() {
-  if (Ps) return Ji;
-  Ps = 1;
-  var r = jp(), e = typeof self == "object" && self && self.Object === Object && self, t = r || e || Function("return this")();
+var Ji, ks;
+function vl() {
+  if (ks) return Ji;
+  ks = 1;
+  var r = qp(), e = typeof self == "object" && self && self.Object === Object && self, t = r || e || Function("return this")();
   return Ji = t, Ji;
 }
-var Qi, ks;
-function qp() {
-  if (ks) return Qi;
-  ks = 1;
-  var r = bl(), e = function() {
+var Qi, Fs;
+function Hp() {
+  if (Fs) return Qi;
+  Fs = 1;
+  var r = vl(), e = function() {
     return r.Date.now();
   };
   return Qi = e, Qi;
 }
-var eo, Fs;
-function Hp() {
-  if (Fs) return eo;
-  Fs = 1;
+var eo, Ds;
+function Wp() {
+  if (Ds) return eo;
+  Ds = 1;
   var r = /\s/;
   function e(t) {
     for (var i = t.length; i-- && r.test(t.charAt(i)); )
@@ -2624,28 +2631,28 @@ function Hp() {
   }
   return eo = e, eo;
 }
-var to, Ds;
-function Wp() {
-  if (Ds) return to;
-  Ds = 1;
-  var r = Hp(), e = /^\s+/;
+var to, Ts;
+function Gp() {
+  if (Ts) return to;
+  Ts = 1;
+  var r = Wp(), e = /^\s+/;
   function t(i) {
     return i && i.slice(0, r(i) + 1).replace(e, "");
   }
   return to = t, to;
 }
-var ro, Ts;
-function vl() {
-  if (Ts) return ro;
-  Ts = 1;
-  var r = bl(), e = r.Symbol;
+var ro, Is;
+function wl() {
+  if (Is) return ro;
+  Is = 1;
+  var r = vl(), e = r.Symbol;
   return ro = e, ro;
 }
-var io, Is;
-function Gp() {
-  if (Is) return io;
-  Is = 1;
-  var r = vl(), e = Object.prototype, t = e.hasOwnProperty, i = e.toString, o = r ? r.toStringTag : void 0;
+var io, Cs;
+function Vp() {
+  if (Cs) return io;
+  Cs = 1;
+  var r = wl(), e = Object.prototype, t = e.hasOwnProperty, i = e.toString, o = r ? r.toStringTag : void 0;
   function n(s) {
     var a = t.call(s, o), l = s[o];
     try {
@@ -2658,50 +2665,50 @@ function Gp() {
   }
   return io = n, io;
 }
-var oo, Cs;
-function Vp() {
-  if (Cs) return oo;
-  Cs = 1;
+var oo, Bs;
+function Kp() {
+  if (Bs) return oo;
+  Bs = 1;
   var r = Object.prototype, e = r.toString;
   function t(i) {
     return e.call(i);
   }
   return oo = t, oo;
 }
-var no, Bs;
-function Kp() {
-  if (Bs) return no;
-  Bs = 1;
-  var r = vl(), e = Gp(), t = Vp(), i = "[object Null]", o = "[object Undefined]", n = r ? r.toStringTag : void 0;
+var no, Os;
+function Xp() {
+  if (Os) return no;
+  Os = 1;
+  var r = wl(), e = Vp(), t = Kp(), i = "[object Null]", o = "[object Undefined]", n = r ? r.toStringTag : void 0;
   function s(a) {
     return a == null ? a === void 0 ? o : i : n && n in Object(a) ? e(a) : t(a);
   }
   return no = s, no;
 }
-var so, Os;
-function Xp() {
-  if (Os) return so;
-  Os = 1;
+var so, As;
+function Yp() {
+  if (As) return so;
+  As = 1;
   function r(e) {
     return e != null && typeof e == "object";
   }
   return so = r, so;
 }
-var ao, As;
-function Yp() {
-  if (As) return ao;
-  As = 1;
-  var r = Kp(), e = Xp(), t = "[object Symbol]";
+var ao, Es;
+function Zp() {
+  if (Es) return ao;
+  Es = 1;
+  var r = Xp(), e = Yp(), t = "[object Symbol]";
   function i(o) {
     return typeof o == "symbol" || e(o) && r(o) == t;
   }
   return ao = i, ao;
 }
-var lo, Es;
-function Zp() {
-  if (Es) return lo;
-  Es = 1;
-  var r = Wp(), e = On(), t = Yp(), i = NaN, o = /^[-+]0x[0-9a-f]+$/i, n = /^0b[01]+$/i, s = /^0o[0-7]+$/i, a = parseInt;
+var lo, Us;
+function Jp() {
+  if (Us) return lo;
+  Us = 1;
+  var r = Gp(), e = On(), t = Zp(), i = NaN, o = /^[-+]0x[0-9a-f]+$/i, n = /^0b[01]+$/i, s = /^0o[0-7]+$/i, a = parseInt;
   function l(u) {
     if (typeof u == "number")
       return u;
@@ -2719,11 +2726,11 @@ function Zp() {
   }
   return lo = l, lo;
 }
-var uo, Us;
-function wl() {
-  if (Us) return uo;
-  Us = 1;
-  var r = On(), e = qp(), t = Zp(), i = "Expected a function", o = Math.max, n = Math.min;
+var uo, Rs;
+function _l() {
+  if (Rs) return uo;
+  Rs = 1;
+  var r = On(), e = Hp(), t = Jp(), i = "Expected a function", o = Math.max, n = Math.min;
   function s(a, l, u) {
     var p, d, h, x, D, O, _ = 0, T = !1, m = !1, w = !0;
     if (typeof a != "function")
@@ -2773,11 +2780,11 @@ function wl() {
   }
   return uo = s, uo;
 }
-var po, Rs;
-function Jp() {
-  if (Rs) return po;
-  Rs = 1;
-  var r = wl(), e = On(), t = "Expected a function";
+var po, Ms;
+function Qp() {
+  if (Ms) return po;
+  Ms = 1;
+  var r = _l(), e = On(), t = "Expected a function";
   function i(o, n, s) {
     var a = !0, l = !0;
     if (typeof o != "function")
@@ -2790,24 +2797,24 @@ function Jp() {
   }
   return po = i, po;
 }
-var Qp = Jp();
-const ed = /* @__PURE__ */ zt(Qp);
+var ed = Qp();
+const td = /* @__PURE__ */ zt(ed);
 function wi(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var td = 0;
-function _l(r) {
-  return "__private_" + td++ + "_" + r;
+var rd = 0;
+function xl(r) {
+  return "__private_" + rd++ + "_" + r;
 }
-const rd = {
+const id = {
   version: "4.2.0"
 };
-var Ft = /* @__PURE__ */ _l("callbacks"), co = /* @__PURE__ */ _l("publish");
-class xl {
+var Ft = /* @__PURE__ */ xl("callbacks"), co = /* @__PURE__ */ xl("publish");
+class Sl {
   constructor() {
     Object.defineProperty(this, co, {
-      value: id
+      value: od
     }), this.state = {}, Object.defineProperty(this, Ft, {
       writable: !0,
       value: /* @__PURE__ */ new Set()
@@ -2831,15 +2838,15 @@ class xl {
     };
   }
 }
-function id() {
+function od() {
   for (var r = arguments.length, e = new Array(r), t = 0; t < r; t++)
     e[t] = arguments[t];
   wi(this, Ft)[Ft].forEach((i) => {
     i(...e);
   });
 }
-xl.VERSION = rd.version;
-function Sl(r) {
+Sl.VERSION = id.version;
+function Pl(r) {
   const e = r.lastIndexOf(".");
   return e === -1 || e === r.length - 1 ? {
     name: r,
@@ -2849,7 +2856,7 @@ function Sl(r) {
     extension: r.slice(e + 1)
   };
 }
-const Ms = {
+const $s = {
   __proto__: null,
   md: "text/markdown",
   markdown: "text/markdown",
@@ -2904,42 +2911,42 @@ const Ms = {
   gz: "application/gzip",
   dmg: "application/x-apple-diskimage"
 };
-function Pl(r) {
+function kl(r) {
   var e;
   if (r.type) return r.type;
-  const t = r.name ? (e = Sl(r.name).extension) == null ? void 0 : e.toLowerCase() : null;
-  return t && t in Ms ? Ms[t] : "application/octet-stream";
+  const t = r.name ? (e = Pl(r.name).extension) == null ? void 0 : e.toLowerCase() : null;
+  return t && t in $s ? $s[t] : "application/octet-stream";
 }
-function od(r) {
+function nd(r) {
   return r.charCodeAt(0).toString(32);
 }
-function $s(r) {
+function zs(r) {
   let e = "";
-  return r.replace(/[^A-Z0-9]/gi, (t) => (e += `-${od(t)}`, "/")) + e;
+  return r.replace(/[^A-Z0-9]/gi, (t) => (e += `-${nd(t)}`, "/")) + e;
 }
-function nd(r, e) {
+function sd(r, e) {
   let t = e || "uppy";
-  return typeof r.name == "string" && (t += `-${$s(r.name.toLowerCase())}`), r.type !== void 0 && (t += `-${r.type}`), r.meta && typeof r.meta.relativePath == "string" && (t += `-${$s(r.meta.relativePath.toLowerCase())}`), r.data.size !== void 0 && (t += `-${r.data.size}`), r.data.lastModified !== void 0 && (t += `-${r.data.lastModified}`), t;
+  return typeof r.name == "string" && (t += `-${zs(r.name.toLowerCase())}`), r.type !== void 0 && (t += `-${r.type}`), r.meta && typeof r.meta.relativePath == "string" && (t += `-${zs(r.meta.relativePath.toLowerCase())}`), r.data.size !== void 0 && (t += `-${r.data.size}`), r.data.lastModified !== void 0 && (t += `-${r.data.lastModified}`), t;
 }
-function sd(r) {
+function ad(r) {
   return !r.isRemote || !r.remote ? !1 : (/* @__PURE__ */ new Set(["box", "dropbox", "drive", "facebook", "unsplash"])).has(r.remote.provider);
 }
-function ad(r, e) {
-  if (sd(r)) return r.id;
-  const t = Pl(r);
-  return nd({
+function ld(r, e) {
+  if (ad(r)) return r.id;
+  const t = kl(r);
+  return sd({
     ...r,
     type: t
   }, e);
 }
-function ld(r) {
+function ud(r) {
   if (r == null && typeof navigator < "u" && (r = navigator.userAgent), !r) return !0;
   const e = /Edge\/(\d+\.\d+)/.exec(r);
   if (!e) return !0;
   const i = e[1].split(".", 2), o = parseInt(i[0], 10), n = parseInt(i[1], 10);
   return o < 15 || o === 15 && n < 15063 || o > 18 || o === 18 && n >= 18218;
 }
-function ud(r, e) {
+function pd(r, e) {
   return e.name ? e.name : r.split("/")[0] === "image" ? `${r.split("/")[0]}.${r.split("/")[1]}` : "noname";
 }
 function ho(r) {
@@ -2949,7 +2956,7 @@ function _i() {
   const r = /* @__PURE__ */ new Date(), e = ho(r.getHours()), t = ho(r.getMinutes()), i = ho(r.getSeconds());
   return `${e}:${t}:${i}`;
 }
-const pd = {
+const dd = {
   debug: () => {
   },
   warn: () => {
@@ -2959,7 +2966,7 @@ const pd = {
       e[t] = arguments[t];
     return console.error(`[Uppy] [${_i()}]`, ...e);
   }
-}, dd = {
+}, cd = {
   debug: function() {
     for (var r = arguments.length, e = new Array(r), t = 0; t < r; t++)
       e[t] = arguments[t];
@@ -2976,9 +2983,9 @@ const pd = {
     return console.error(`[Uppy] [${_i()}]`, ...e);
   }
 };
-var fo, zs;
-function cd() {
-  return zs || (zs = 1, fo = function(e) {
+var fo, Ns;
+function hd() {
+  return Ns || (Ns = 1, fo = function(e) {
     if (typeof e != "number" || Number.isNaN(e))
       throw new TypeError(`Expected a number, got ${typeof e}`);
     const t = e < 0;
@@ -2989,12 +2996,12 @@ function cd() {
     return `${s >= 10 || s % 1 === 0 ? Math.round(s) : s.toFixed(1)} ${a}`;
   }), fo;
 }
-var hd = cd();
-const Bt = /* @__PURE__ */ zt(hd);
-var yo, Ns;
-function fd() {
-  if (Ns) return yo;
-  Ns = 1;
+var fd = hd();
+const Bt = /* @__PURE__ */ zt(fd);
+var yo, Ls;
+function yd() {
+  if (Ls) return yo;
+  Ls = 1;
   function r(e, t) {
     this.text = e = e || "", this.hasWild = ~e.indexOf("*"), this.separator = t, this.parts = e.split(t);
   }
@@ -3022,11 +3029,11 @@ function fd() {
     return typeof t < "u" ? o.match(t) : o;
   }, yo;
 }
-var mo, Ls;
-function yd() {
-  if (Ls) return mo;
-  Ls = 1;
-  var r = fd(), e = /[\/\+\.]/;
+var mo, js;
+function md() {
+  if (js) return mo;
+  js = 1;
+  var r = yd(), e = /[\/\+\.]/;
   return mo = function(t, i) {
     function o(n) {
       var s = r(n, t, e);
@@ -3035,8 +3042,8 @@ function yd() {
     return i ? o(i.split(";")[0]) : o;
   }, mo;
 }
-var md = yd();
-const gd = /* @__PURE__ */ zt(md), bd = {
+var gd = md();
+const bd = /* @__PURE__ */ zt(gd), vd = {
   maxFileSize: null,
   minFileSize: null,
   maxTotalFileSize: null,
@@ -3051,7 +3058,7 @@ class Ne extends Error {
     super(e), this.isRestriction = !0, this.isUserFacing = (i = t == null ? void 0 : t.isUserFacing) != null ? i : !0, t != null && t.file && (this.file = t.file);
   }
 }
-class vd {
+class wd {
   constructor(e, t) {
     this.getI18n = t, this.getOpts = () => {
       var i;
@@ -3089,7 +3096,7 @@ class vd {
       minFileSize: i,
       allowedFileTypes: o
     } = this.getOpts().restrictions;
-    if (o && !o.some((a) => a.includes("/") ? e.type ? gd(e.type.replace(/;.*?$/, ""), a) : !1 : a[0] === "." && e.extension ? e.extension.toLowerCase() === a.slice(1).toLowerCase() : !1)) {
+    if (o && !o.some((a) => a.includes("/") ? e.type ? bd(e.type.replace(/;.*?$/, ""), a) : !1 : a[0] === "." && e.extension ? e.extension.toLowerCase() === a.slice(1).toLowerCase() : !1)) {
       const a = o.join(", ");
       throw new Ne(this.getI18n()("youCanOnlyUploadFileTypes", {
         types: a
@@ -3142,7 +3149,7 @@ class vd {
     };
   }
 }
-const wd = {
+const _d = {
   strings: {
     addBulkFilesFailed: {
       0: "Failed to add %{smart_count} file due to an internal error",
@@ -3211,11 +3218,11 @@ function M(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var _d = 0;
+var xd = 0;
 function oe(r) {
-  return "__private_" + _d++ + "_" + r;
+  return "__private_" + xd++ + "_" + r;
 }
-const xd = {
+const Sd = {
   version: "4.4.4"
 }, si = {
   totalProgress: 0,
@@ -3230,37 +3237,37 @@ class zi {
    */
   constructor(e) {
     Object.defineProperty(this, tt, {
-      value: $d
+      value: zd
     }), Object.defineProperty(this, Ot, {
-      value: Md
+      value: $d
     }), Object.defineProperty(this, vo, {
-      value: Rd
+      value: Md
     }), Object.defineProperty(this, et, {
-      value: Ud
+      value: Rd
     }), Object.defineProperty(this, bo, {
-      value: Ed
+      value: Ud
     }), Object.defineProperty(this, Zo, {
-      value: Ad
+      value: Ed
     }), Object.defineProperty(this, mr, {
-      value: Od
+      value: Ad
     }), Object.defineProperty(this, yr, {
-      value: Bd
+      value: Od
     }), Object.defineProperty(this, Ur, {
-      value: Cd
+      value: Bd
     }), Object.defineProperty(this, fr, {
-      value: Id
+      value: Cd
     }), Object.defineProperty(this, hr, {
-      value: Td
+      value: Id
     }), Object.defineProperty(this, Xo, {
-      value: Dd
+      value: Td
     }), Object.defineProperty(this, cr, {
-      value: Fd
+      value: Dd
     }), Object.defineProperty(this, go, {
-      value: kd
+      value: Fd
     }), Object.defineProperty(this, jr, {
-      value: Pd
+      value: kd
     }), Object.defineProperty(this, Ue, {
-      value: Sd
+      value: Pd
     }), Object.defineProperty(this, ve, {
       writable: !0,
       value: /* @__PURE__ */ Object.create(null)
@@ -3272,7 +3279,7 @@ class zi {
       value: void 0
     }), Object.defineProperty(this, Xe, {
       writable: !0,
-      value: Np()
+      value: Lp()
     }), Object.defineProperty(this, Dt, {
       writable: !0,
       value: /* @__PURE__ */ new Set()
@@ -3314,7 +3321,7 @@ class zi {
       }
     }), Object.defineProperty(this, ot, {
       writable: !0,
-      value: ed(() => M(this, mr)[mr](), 500, {
+      value: td(() => M(this, mr)[mr](), 500, {
         leading: !0,
         trailing: !0
       })
@@ -3324,18 +3331,18 @@ class zi {
     }), Object.defineProperty(this, gr, {
       writable: !0,
       value: /* @__PURE__ */ new Map()
-    }), this.defaultLocale = wd;
+    }), this.defaultLocale = _d;
     const t = {
       id: "uppy",
       autoProceed: !1,
       allowMultipleUploadBatches: !0,
       debug: !1,
-      restrictions: bd,
+      restrictions: vd,
       meta: {},
       onBeforeFileAdded: (o, n) => !Object.hasOwn(n, o.id),
       onBeforeUpload: (o) => o,
-      store: new xl(),
-      logger: pd,
+      store: new Sl(),
+      logger: dd,
       infoTimeout: 5e3
     }, i = {
       ...t,
@@ -3347,13 +3354,13 @@ class zi {
         ...t.restrictions,
         ...e && e.restrictions
       }
-    }, e && e.logger && e.debug ? this.log("You are using a custom `logger`, but also set `debug: true`, which uses built-in logger to output logs to console. Ignoring `debug: true` and using your custom `logger`.", "warning") : e && e.debug && (this.opts.logger = dd), this.log(`Using Core v${zi.VERSION}`), this.i18nInit(), this.store = this.opts.store, this.setState({
+    }, e && e.logger && e.debug ? this.log("You are using a custom `logger`, but also set `debug: true`, which uses built-in logger to output logs to console. Ignoring `debug: true` and using your custom `logger`.", "warning") : e && e.debug && (this.opts.logger = cd), this.log(`Using Core v${zi.VERSION}`), this.i18nInit(), this.store = this.opts.store, this.setState({
       ...si,
       plugins: {},
       files: {},
       currentUploads: {},
       capabilities: {
-        uploadProgress: ld(),
+        uploadProgress: ud(),
         individualCancellation: !0,
         resumableUploads: !1
       },
@@ -3361,7 +3368,7 @@ class zi {
         ...this.opts.meta
       },
       info: []
-    }), M(this, we)[we] = new vd(() => this.opts, () => this.i18n), M(this, dr)[dr] = this.store.subscribe((o, n, s) => {
+    }), M(this, we)[we] = new wd(() => this.opts, () => this.i18n), M(this, dr)[dr] = this.store.subscribe((o, n, s) => {
       this.emit("state-update", o, n, s), this.updateAll(n);
     }), this.opts.debug && typeof window < "u" && (window[this.opts.id] = this), M(this, bo)[bo]();
   }
@@ -3427,7 +3434,7 @@ class zi {
     });
   }
   i18nInit() {
-    const e = (i) => this.log(`Missing i18n string: ${i}`, "error"), t = new gl([this.defaultLocale, this.opts.locale], {
+    const e = (i) => this.log(`Missing i18n string: ${i}`, "error"), t = new bl([this.defaultLocale, this.opts.locale], {
       onMissingKey: e
     });
     this.i18n = t.translate.bind(t), this.i18nArray = t.translateArray.bind(t), this.locale = t.locale;
@@ -3998,7 +4005,7 @@ Uppy plugins must have unique \`id\` options.`;
     }));
   }
 }
-function Sd(r) {
+function Pd(r) {
   for (const n of r)
     n.isRestriction ? this.emit("restriction-failed", n.file, n) : this.emit("error", n, n.file), this.log(n, "warning");
   const e = r.filter((n) => n.isUserFacing), t = 4, i = e.slice(0, t), o = e.slice(t);
@@ -4017,7 +4024,7 @@ function Sd(r) {
     })
   });
 }
-function Pd(r) {
+function kd(r) {
   const {
     missingFields: e,
     error: t
@@ -4026,13 +4033,13 @@ function Pd(r) {
     missingRequiredMetaFields: e
   }), this.log(t.message), this.emit("restriction-failed", r, t), !1) : !0;
 }
-function kd(r) {
+function Fd(r) {
   let e = !0;
   for (const t of Object.values(r))
     M(this, jr)[jr](t) || (e = !1);
   return e;
 }
-function Fd(r) {
+function Dd(r) {
   const {
     allowNewUpload: e
   } = this.getState();
@@ -4043,13 +4050,13 @@ function Fd(r) {
     throw M(this, Ue)[Ue]([t]), t;
   }
 }
-function Dd(r) {
+function Td(r) {
   const e = r instanceof File ? {
     name: r.name,
     type: r.type,
     size: r.size,
     data: r
-  } : r, t = Pl(e), i = ud(t, e), o = Sl(i).extension, n = ad(e, this.getID()), s = e.meta || {};
+  } : r, t = kl(e), i = pd(t, e), o = Pl(i).extension, n = ld(e, this.getID()), s = e.meta || {};
   s.name = i, s.type = t;
   const a = Number.isFinite(e.data.size) ? e.data.size : null;
   return {
@@ -4077,14 +4084,14 @@ function Dd(r) {
     preview: e.preview
   };
 }
-function Td() {
+function Id() {
   this.opts.autoProceed && !this.scheduledAutoProceed && (this.scheduledAutoProceed = setTimeout(() => {
     this.scheduledAutoProceed = null, this.upload().catch((r) => {
       r.isRestriction || this.log(r.stack || r.message || r);
     });
   }, 4));
 }
-function Id(r) {
+function Cd(r) {
   const {
     files: e
   } = this.getState(), t = {
@@ -4133,13 +4140,13 @@ function Id(r) {
     errors: o
   };
 }
-function Cd() {
+function Bd() {
   const {
     files: r
   } = this.getState();
   return Object.keys(r).filter((e) => r[e].error);
 }
-async function Bd() {
+async function Od() {
   const r = M(this, Ur)[Ur](), e = {
     ...this.getState().files
   };
@@ -4163,7 +4170,7 @@ async function Bd() {
   });
   return M(this, tt)[tt](t);
 }
-function Od() {
+function Ad() {
   var r, e;
   const t = M(this, Zo)[Zo]();
   let i = null;
@@ -4171,7 +4178,7 @@ function Od() {
     totalProgress: (e = i) != null ? e : 0
   });
 }
-function Ad() {
+function Ed() {
   const e = this.getFiles().filter((a) => a.progress.uploadStarted || a.progress.preprocess || a.progress.postprocess);
   if (e.length === 0)
     return 0;
@@ -4186,7 +4193,7 @@ function Ad() {
   }, 0), s = i.reduce((a, l) => a + (l.progress.bytesUploaded || 0), 0);
   return n === 0 ? 0 : s / n;
 }
-function Ed() {
+function Ud() {
   const r = (i, o, n) => {
     let s = i.message || "Unknown error";
     i.details && (s += ` ${i.details}`), this.setState({
@@ -4319,7 +4326,7 @@ function Ed() {
     i && M(this, jr)[jr](i);
   }), typeof window < "u" && window.addEventListener && (window.addEventListener("online", M(this, qe)[qe]), window.addEventListener("offline", M(this, qe)[qe]), setTimeout(M(this, qe)[qe], 3e3));
 }
-function Ud(r, e) {
+function Rd(r, e) {
   e === void 0 && (e = {});
   const {
     forceAllowNewUpload: t = !1
@@ -4342,13 +4349,13 @@ function Ud(r, e) {
     }
   }), n;
 }
-function Rd(r) {
+function Md(r) {
   const {
     currentUploads: e
   } = this.getState();
   return e[r];
 }
-function Md(r) {
+function $d(r) {
   const e = {
     ...this.getState().currentUploads
   };
@@ -4356,7 +4363,7 @@ function Md(r) {
     currentUploads: e
   });
 }
-async function $d(r) {
+async function zd(r) {
   const e = () => {
     const {
       currentUploads: n
@@ -4400,8 +4407,8 @@ async function $d(r) {
   let o;
   return t && (o = t.result, M(this, Ot)[Ot](r)), o == null && this.log(`Not setting result for an upload that has been removed: ${r}`), o;
 }
-zi.VERSION = xd.version;
-var ri, se, kl, It, js, Fl, Jo, Dl, An, Qo, en, qr = {}, Tl = [], zd = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, Ni = Array.isArray;
+zi.VERSION = Sd.version;
+var ri, se, Fl, It, qs, Dl, Jo, Tl, An, Qo, en, qr = {}, Il = [], Nd = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i, Ni = Array.isArray;
 function st(r, e) {
   for (var t in e) r[t] = e[t];
   return r;
@@ -4416,10 +4423,10 @@ function c(r, e, t) {
   return Rr(r, s, i, o, null);
 }
 function Rr(r, e, t, i, o) {
-  var n = { type: r, props: e, key: t, ref: i, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: o ?? ++kl, __i: -1, __u: 0 };
+  var n = { type: r, props: e, key: t, ref: i, __k: null, __: null, __b: 0, __e: null, __c: null, constructor: void 0, __v: o ?? ++Fl, __i: -1, __u: 0 };
   return o == null && se.vnode != null && se.vnode(n), n;
 }
-function Nd() {
+function Ld() {
   return { current: null };
 }
 function ft(r) {
@@ -4433,39 +4440,39 @@ function tr(r, e) {
   for (var t; e < r.__k.length; e++) if ((t = r.__k[e]) != null && t.__e != null) return t.__e;
   return typeof r.type == "function" ? tr(r) : null;
 }
-function Il(r) {
+function Cl(r) {
   var e, t;
   if ((r = r.__) != null && r.__c != null) {
     for (r.__e = r.__c.base = null, e = 0; e < r.__k.length; e++) if ((t = r.__k[e]) != null && t.__e != null) {
       r.__e = r.__c.base = t.__e;
       break;
     }
-    return Il(r);
+    return Cl(r);
   }
 }
-function qs(r) {
-  (!r.__d && (r.__d = !0) && It.push(r) && !Ai.__r++ || js !== se.debounceRendering) && ((js = se.debounceRendering) || Fl)(Ai);
+function Hs(r) {
+  (!r.__d && (r.__d = !0) && It.push(r) && !Ai.__r++ || qs !== se.debounceRendering) && ((qs = se.debounceRendering) || Dl)(Ai);
 }
 function Ai() {
   var r, e, t, i, o, n, s, a;
-  for (It.sort(Jo); r = It.shift(); ) r.__d && (e = It.length, i = void 0, n = (o = (t = r).__v).__e, s = [], a = [], t.__P && ((i = st({}, o)).__v = o.__v + 1, se.vnode && se.vnode(i), Un(t.__P, i, o, t.__n, t.__P.namespaceURI, 32 & o.__u ? [n] : null, s, n ?? tr(o), !!(32 & o.__u), a), i.__v = o.__v, i.__.__k[i.__i] = i, Ol(s, i, a), i.__e != n && Il(i)), It.length > e && It.sort(Jo));
+  for (It.sort(Jo); r = It.shift(); ) r.__d && (e = It.length, i = void 0, n = (o = (t = r).__v).__e, s = [], a = [], t.__P && ((i = st({}, o)).__v = o.__v + 1, se.vnode && se.vnode(i), Un(t.__P, i, o, t.__n, t.__P.namespaceURI, 32 & o.__u ? [n] : null, s, n ?? tr(o), !!(32 & o.__u), a), i.__v = o.__v, i.__.__k[i.__i] = i, Al(s, i, a), i.__e != n && Cl(i)), It.length > e && It.sort(Jo));
   Ai.__r = 0;
 }
-function Cl(r, e, t, i, o, n, s, a, l, u, p) {
-  var d, h, x, D, O, _, T = i && i.__k || Tl, m = e.length;
-  for (l = Ld(t, e, T, l, m), d = 0; d < m; d++) (x = t.__k[d]) != null && (h = x.__i === -1 ? qr : T[x.__i] || qr, x.__i = d, _ = Un(r, x, h, o, n, s, a, l, u, p), D = x.__e, x.ref && h.ref != x.ref && (h.ref && Rn(h.ref, null, x), p.push(x.ref, x.__c || D, x)), O == null && D != null && (O = D), 4 & x.__u || h.__k === x.__k ? l = Bl(x, l, r) : typeof x.type == "function" && _ !== void 0 ? l = _ : D && (l = D.nextSibling), x.__u &= -7);
+function Bl(r, e, t, i, o, n, s, a, l, u, p) {
+  var d, h, x, D, O, _, T = i && i.__k || Il, m = e.length;
+  for (l = jd(t, e, T, l, m), d = 0; d < m; d++) (x = t.__k[d]) != null && (h = x.__i === -1 ? qr : T[x.__i] || qr, x.__i = d, _ = Un(r, x, h, o, n, s, a, l, u, p), D = x.__e, x.ref && h.ref != x.ref && (h.ref && Rn(h.ref, null, x), p.push(x.ref, x.__c || D, x)), O == null && D != null && (O = D), 4 & x.__u || h.__k === x.__k ? l = Ol(x, l, r) : typeof x.type == "function" && _ !== void 0 ? l = _ : D && (l = D.nextSibling), x.__u &= -7);
   return t.__e = O, l;
 }
-function Ld(r, e, t, i, o) {
+function jd(r, e, t, i, o) {
   var n, s, a, l, u, p = t.length, d = p, h = 0;
-  for (r.__k = new Array(o), n = 0; n < o; n++) (s = e[n]) != null && typeof s != "boolean" && typeof s != "function" ? (l = n + h, (s = r.__k[n] = typeof s == "string" || typeof s == "number" || typeof s == "bigint" || s.constructor == String ? Rr(null, s, null, null, null) : Ni(s) ? Rr(ft, { children: s }, null, null, null) : s.constructor === void 0 && s.__b > 0 ? Rr(s.type, s.props, s.key, s.ref ? s.ref : null, s.__v) : s).__ = r, s.__b = r.__b + 1, a = null, (u = s.__i = jd(s, t, l, d)) !== -1 && (d--, (a = t[u]) && (a.__u |= 2)), a == null || a.__v === null ? (u == -1 && h--, typeof s.type != "function" && (s.__u |= 4)) : u != l && (u == l - 1 ? h-- : u == l + 1 ? h++ : (u > l ? h-- : h++, s.__u |= 4))) : r.__k[n] = null;
-  if (d) for (n = 0; n < p; n++) (a = t[n]) != null && (2 & a.__u) == 0 && (a.__e == i && (i = tr(a)), Al(a, a));
+  for (r.__k = new Array(o), n = 0; n < o; n++) (s = e[n]) != null && typeof s != "boolean" && typeof s != "function" ? (l = n + h, (s = r.__k[n] = typeof s == "string" || typeof s == "number" || typeof s == "bigint" || s.constructor == String ? Rr(null, s, null, null, null) : Ni(s) ? Rr(ft, { children: s }, null, null, null) : s.constructor === void 0 && s.__b > 0 ? Rr(s.type, s.props, s.key, s.ref ? s.ref : null, s.__v) : s).__ = r, s.__b = r.__b + 1, a = null, (u = s.__i = qd(s, t, l, d)) !== -1 && (d--, (a = t[u]) && (a.__u |= 2)), a == null || a.__v === null ? (u == -1 && h--, typeof s.type != "function" && (s.__u |= 4)) : u != l && (u == l - 1 ? h-- : u == l + 1 ? h++ : (u > l ? h-- : h++, s.__u |= 4))) : r.__k[n] = null;
+  if (d) for (n = 0; n < p; n++) (a = t[n]) != null && (2 & a.__u) == 0 && (a.__e == i && (i = tr(a)), El(a, a));
   return i;
 }
-function Bl(r, e, t) {
+function Ol(r, e, t) {
   var i, o;
   if (typeof r.type == "function") {
-    for (i = r.__k, o = 0; i && o < i.length; o++) i[o] && (i[o].__ = r, e = Bl(i[o], e, t));
+    for (i = r.__k, o = 0; i && o < i.length; o++) i[o] && (i[o].__ = r, e = Ol(i[o], e, t));
     return e;
   }
   r.__e != e && (e && r.type && !t.contains(e) && (e = tr(r)), t.insertBefore(r.__e, e || null), e = r.__e);
@@ -4479,7 +4486,7 @@ function ut(r, e) {
     ut(t, e);
   }) : e.push(r)), e;
 }
-function jd(r, e, t, i) {
+function qd(r, e, t, i) {
   var o, n, s = r.key, a = r.type, l = e[t];
   if (l === null || l && s == l.key && a === l.type && (2 & l.__u) == 0) return t;
   if (i > (l != null && (2 & l.__u) == 0 ? 1 : 0)) for (o = t - 1, n = t + 1; o >= 0 || n < e.length; ) {
@@ -4494,17 +4501,17 @@ function jd(r, e, t, i) {
   }
   return -1;
 }
-function Hs(r, e, t) {
-  e[0] == "-" ? r.setProperty(e, t ?? "") : r[e] = t == null ? "" : typeof t != "number" || zd.test(e) ? t : t + "px";
+function Ws(r, e, t) {
+  e[0] == "-" ? r.setProperty(e, t ?? "") : r[e] = t == null ? "" : typeof t != "number" || Nd.test(e) ? t : t + "px";
 }
 function ai(r, e, t, i, o) {
   var n;
   e: if (e == "style") if (typeof t == "string") r.style.cssText = t;
   else {
-    if (typeof i == "string" && (r.style.cssText = i = ""), i) for (e in i) t && e in t || Hs(r.style, e, "");
-    if (t) for (e in t) i && t[e] === i[e] || Hs(r.style, e, t[e]);
+    if (typeof i == "string" && (r.style.cssText = i = ""), i) for (e in i) t && e in t || Ws(r.style, e, "");
+    if (t) for (e in t) i && t[e] === i[e] || Ws(r.style, e, t[e]);
   }
-  else if (e[0] == "o" && e[1] == "n") n = e != (e = e.replace(Dl, "$1")), e = e.toLowerCase() in r || e == "onFocusOut" || e == "onFocusIn" ? e.toLowerCase().slice(2) : e.slice(2), r.l || (r.l = {}), r.l[e + n] = t, t ? i ? t.u = i.u : (t.u = An, r.addEventListener(e, n ? en : Qo, n)) : r.removeEventListener(e, n ? en : Qo, n);
+  else if (e[0] == "o" && e[1] == "n") n = e != (e = e.replace(Tl, "$1")), e = e.toLowerCase() in r || e == "onFocusOut" || e == "onFocusIn" ? e.toLowerCase().slice(2) : e.slice(2), r.l || (r.l = {}), r.l[e + n] = t, t ? i ? t.u = i.u : (t.u = An, r.addEventListener(e, n ? en : Qo, n)) : r.removeEventListener(e, n ? en : Qo, n);
   else {
     if (o == "http://www.w3.org/2000/svg") e = e.replace(/xlink(H|:h)/, "h").replace(/sName$/, "s");
     else if (e != "width" && e != "height" && e != "href" && e != "list" && e != "form" && e != "tabIndex" && e != "download" && e != "rowSpan" && e != "colSpan" && e != "role" && e != "popover" && e in r) try {
@@ -4515,7 +4522,7 @@ function ai(r, e, t, i, o) {
     typeof t == "function" || (t == null || t === !1 && e[4] != "-" ? r.removeAttribute(e) : r.setAttribute(e, e == "popover" && t == 1 ? "" : t));
   }
 }
-function Ws(r) {
+function Gs(r) {
   return function(e) {
     if (this.l) {
       var t = this.l[e.type + r];
@@ -4530,7 +4537,7 @@ function Un(r, e, t, i, o, n, s, a, l, u) {
   if (e.constructor !== void 0) return null;
   128 & t.__u && (l = !!(32 & t.__u), n = [a = e.__e = t.__e]), (p = se.__b) && p(e);
   e: if (typeof J == "function") try {
-    if (T = e.props, m = "prototype" in J && J.prototype.render, w = (p = J.contextType) && i[p.__c], S = p ? w ? w.props.value : p.__ : i, t.__c ? _ = (d = e.__c = t.__c).__ = d.__E : (m ? e.__c = d = new J(T, S) : (e.__c = d = new at(T, S), d.constructor = J, d.render = Hd), w && w.sub(d), d.props = T, d.state || (d.state = {}), d.context = S, d.__n = i, h = d.__d = !0, d.__h = [], d._sb = []), m && d.__s == null && (d.__s = d.state), m && J.getDerivedStateFromProps != null && (d.__s == d.state && (d.__s = st({}, d.__s)), st(d.__s, J.getDerivedStateFromProps(T, d.__s))), x = d.props, D = d.state, d.__v = e, h) m && J.getDerivedStateFromProps == null && d.componentWillMount != null && d.componentWillMount(), m && d.componentDidMount != null && d.__h.push(d.componentDidMount);
+    if (T = e.props, m = "prototype" in J && J.prototype.render, w = (p = J.contextType) && i[p.__c], S = p ? w ? w.props.value : p.__ : i, t.__c ? _ = (d = e.__c = t.__c).__ = d.__E : (m ? e.__c = d = new J(T, S) : (e.__c = d = new at(T, S), d.constructor = J, d.render = Wd), w && w.sub(d), d.props = T, d.state || (d.state = {}), d.context = S, d.__n = i, h = d.__d = !0, d.__h = [], d._sb = []), m && d.__s == null && (d.__s = d.state), m && J.getDerivedStateFromProps != null && (d.__s == d.state && (d.__s = st({}, d.__s)), st(d.__s, J.getDerivedStateFromProps(T, d.__s))), x = d.props, D = d.state, d.__v = e, h) m && J.getDerivedStateFromProps == null && d.componentWillMount != null && d.componentWillMount(), m && d.componentDidMount != null && d.__h.push(d.componentDidMount);
     else {
       if (m && J.getDerivedStateFromProps == null && T !== x && d.componentWillReceiveProps != null && d.componentWillReceiveProps(T, S), !d.__e && (d.shouldComponentUpdate != null && d.shouldComponentUpdate(T, d.__s, S) === !1 || e.__v == t.__v)) {
         for (e.__v != t.__v && (d.props = T, d.state = d.__s, d.__d = !1), e.__e = t.__e, e.__k = t.__k, e.__k.some(function(re) {
@@ -4549,7 +4556,7 @@ function Un(r, e, t, i, o, n, s, a, l, u) {
     } else do
       d.__d = !1, A && A(e), p = d.render(d.props, d.state, d.context), d.state = d.__s;
     while (d.__d && ++E < 25);
-    d.state = d.__s, d.getChildContext != null && (i = st(st({}, i), d.getChildContext())), m && !h && d.getSnapshotBeforeUpdate != null && (O = d.getSnapshotBeforeUpdate(x, D)), a = Cl(r, Ni(L = p != null && p.type === ft && p.key == null ? p.props.children : p) ? L : [L], e, t, i, o, n, s, a, l, u), d.base = e.__e, e.__u &= -161, d.__h.length && s.push(d), _ && (d.__E = d.__ = null);
+    d.state = d.__s, d.getChildContext != null && (i = st(st({}, i), d.getChildContext())), m && !h && d.getSnapshotBeforeUpdate != null && (O = d.getSnapshotBeforeUpdate(x, D)), a = Bl(r, Ni(L = p != null && p.type === ft && p.key == null ? p.props.children : p) ? L : [L], e, t, i, o, n, s, a, l, u), d.base = e.__e, e.__u &= -161, d.__h.length && s.push(d), _ && (d.__E = d.__ = null);
   } catch (re) {
     if (e.__v = null, l || n != null) if (re.then) {
       for (e.__u |= l ? 160 : 128; a && a.nodeType == 8 && a.nextSibling; ) a = a.nextSibling;
@@ -4558,10 +4565,10 @@ function Un(r, e, t, i, o, n, s, a, l, u) {
     else e.__e = t.__e, e.__k = t.__k;
     se.__e(re, e, t);
   }
-  else n == null && e.__v == t.__v ? (e.__k = t.__k, e.__e = t.__e) : a = e.__e = qd(t.__e, e, t, i, o, n, s, l, u);
+  else n == null && e.__v == t.__v ? (e.__k = t.__k, e.__e = t.__e) : a = e.__e = Hd(t.__e, e, t, i, o, n, s, l, u);
   return (p = se.diffed) && p(e), 128 & e.__u ? void 0 : a;
 }
-function Ol(r, e, t) {
+function Al(r, e, t) {
   for (var i = 0; i < t.length; i++) Rn(t[i], t[++i], t[++i]);
   se.__c && se.__c(e, r), r.some(function(o) {
     try {
@@ -4573,7 +4580,7 @@ function Ol(r, e, t) {
     }
   });
 }
-function qd(r, e, t, i, o, n, s, a, l) {
+function Hd(r, e, t, i, o, n, s, a, l) {
   var u, p, d, h, x, D, O, _ = t.props, T = e.props, m = e.type;
   if (m == "svg" ? o = "http://www.w3.org/2000/svg" : m == "math" ? o = "http://www.w3.org/1998/Math/MathML" : o || (o = "http://www.w3.org/1999/xhtml"), n != null) {
     for (u = 0; u < n.length; u++) if ((x = n[u]) && "setAttribute" in x == !!m && (m ? x.localName == m : x.nodeType == 3)) {
@@ -4597,7 +4604,7 @@ function qd(r, e, t, i, o, n, s, a, l) {
     }
     for (u in T) x = T[u], u == "children" ? h = x : u == "dangerouslySetInnerHTML" ? p = x : u == "value" ? D = x : u == "checked" ? O = x : a && typeof x != "function" || _[u] === x || ai(r, u, x, _[u], o);
     if (p) a || d && (p.__html === d.__html || p.__html === r.innerHTML) || (r.innerHTML = p.__html), e.__k = [];
-    else if (d && (r.innerHTML = ""), Cl(r, Ni(h) ? h : [h], e, t, i, m == "foreignObject" ? "http://www.w3.org/1999/xhtml" : o, n, s, n ? n[0] : t.__k && tr(t, 0), a, l), n != null) for (u = n.length; u--; ) En(n[u]);
+    else if (d && (r.innerHTML = ""), Bl(r, Ni(h) ? h : [h], e, t, i, m == "foreignObject" ? "http://www.w3.org/1999/xhtml" : o, n, s, n ? n[0] : t.__k && tr(t, 0), a, l), n != null) for (u = n.length; u--; ) En(n[u]);
     a || (u = "value", m == "progress" && D == null ? r.removeAttribute("value") : D !== void 0 && (D !== r[u] || m == "progress" && !D || m == "option" && D !== _[u]) && ai(r, u, D, _[u], o), u = "checked", O !== void 0 && O !== r[u] && ai(r, u, O, _[u], o));
   }
   return r;
@@ -4612,7 +4619,7 @@ function Rn(r, e, t) {
     se.__e(o, t);
   }
 }
-function Al(r, e, t) {
+function El(r, e, t) {
   var i, o;
   if (se.unmount && se.unmount(r), (i = r.ref) && (i.current && i.current !== r.__e || Rn(i, null, e)), (i = r.__c) != null) {
     if (i.componentWillUnmount) try {
@@ -4622,48 +4629,48 @@ function Al(r, e, t) {
     }
     i.base = i.__P = null;
   }
-  if (i = r.__k) for (o = 0; o < i.length; o++) i[o] && Al(i[o], e, t || typeof r.type != "function");
+  if (i = r.__k) for (o = 0; o < i.length; o++) i[o] && El(i[o], e, t || typeof r.type != "function");
   t || En(r.__e), r.__c = r.__ = r.__e = void 0;
 }
-function Hd(r, e, t) {
+function Wd(r, e, t) {
   return this.constructor(r, t);
 }
-function Gs(r, e, t) {
+function Vs(r, e, t) {
   var i, o, n, s;
-  e == document && (e = document.documentElement), se.__ && se.__(r, e), o = (i = !1) ? null : e.__k, n = [], s = [], Un(e, r = e.__k = c(ft, null, [r]), o || qr, qr, e.namespaceURI, o ? null : e.firstChild ? ri.call(e.childNodes) : null, n, o ? o.__e : e.firstChild, i, s), Ol(n, r, s);
+  e == document && (e = document.documentElement), se.__ && se.__(r, e), o = (i = !1) ? null : e.__k, n = [], s = [], Un(e, r = e.__k = c(ft, null, [r]), o || qr, qr, e.namespaceURI, o ? null : e.firstChild ? ri.call(e.childNodes) : null, n, o ? o.__e : e.firstChild, i, s), Al(n, r, s);
 }
-function El(r, e, t) {
+function Ul(r, e, t) {
   var i, o, n, s, a = st({}, r.props);
   for (n in r.type && r.type.defaultProps && (s = r.type.defaultProps), e) n == "key" ? i = e[n] : n == "ref" ? o = e[n] : a[n] = e[n] === void 0 && s !== void 0 ? s[n] : e[n];
   return arguments.length > 2 && (a.children = arguments.length > 3 ? ri.call(arguments, 2) : t), Rr(r.type, a, i || r.key, o || r.ref, null);
 }
-ri = Tl.slice, se = { __e: function(r, e, t, i) {
+ri = Il.slice, se = { __e: function(r, e, t, i) {
   for (var o, n, s; e = e.__; ) if ((o = e.__c) && !o.__) try {
     if ((n = o.constructor) && n.getDerivedStateFromError != null && (o.setState(n.getDerivedStateFromError(r)), s = o.__d), o.componentDidCatch != null && (o.componentDidCatch(r, i || {}), s = o.__d), s) return o.__E = o;
   } catch (a) {
     r = a;
   }
   throw r;
-} }, kl = 0, at.prototype.setState = function(r, e) {
+} }, Fl = 0, at.prototype.setState = function(r, e) {
   var t;
-  t = this.__s != null && this.__s !== this.state ? this.__s : this.__s = st({}, this.state), typeof r == "function" && (r = r(st({}, t), this.props)), r && st(t, r), r != null && this.__v && (e && this._sb.push(e), qs(this));
+  t = this.__s != null && this.__s !== this.state ? this.__s : this.__s = st({}, this.state), typeof r == "function" && (r = r(st({}, t), this.props)), r && st(t, r), r != null && this.__v && (e && this._sb.push(e), Hs(this));
 }, at.prototype.forceUpdate = function(r) {
-  this.__v && (this.__e = !0, r && this.__h.push(r), qs(this));
-}, at.prototype.render = ft, It = [], Fl = typeof Promise == "function" ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, Jo = function(r, e) {
+  this.__v && (this.__e = !0, r && this.__h.push(r), Hs(this));
+}, at.prototype.render = ft, It = [], Dl = typeof Promise == "function" ? Promise.prototype.then.bind(Promise.resolve()) : setTimeout, Jo = function(r, e) {
   return r.__v.__b - e.__v.__b;
-}, Ai.__r = 0, Dl = /(PointerCapture)$|Capture$/i, An = 0, Qo = Ws(!1), en = Ws(!0);
-function Ul(r) {
+}, Ai.__r = 0, Tl = /(PointerCapture)$|Capture$/i, An = 0, Qo = Gs(!1), en = Gs(!0);
+function Rl(r) {
   return typeof r != "object" || r === null || !("nodeType" in r) ? !1 : r.nodeType === Node.ELEMENT_NODE;
 }
-function Wd(r, e) {
-  return e === void 0 && (e = document), typeof r == "string" ? e.querySelector(r) : Ul(r) ? r : null;
+function Gd(r, e) {
+  return e === void 0 && (e = document), typeof r == "string" ? e.querySelector(r) : Rl(r) ? r : null;
 }
-function Rl(r) {
+function Ml(r) {
   for (var e; r && !r.dir; )
     r = r.parentNode;
   return (e = r) == null ? void 0 : e.dir;
 }
-class Ml {
+class $l {
   constructor(e, t) {
     this.uppy = e, this.opts = t ?? {};
   }
@@ -4694,7 +4701,7 @@ class Ml {
     }, this.setPluginState(void 0), this.i18nInit();
   }
   i18nInit() {
-    const e = new gl([this.defaultLocale, this.uppy.locale, this.opts.locale]);
+    const e = new bl([this.defaultLocale, this.uppy.locale, this.opts.locale]);
     this.i18n = e.translate.bind(e), this.i18nArray = e.translateArray.bind(e), this.setPluginState(void 0);
   }
   /**
@@ -4718,15 +4725,15 @@ class Ml {
   afterUpdate() {
   }
 }
-function Vs(r, e) {
+function Ks(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var Gd = 0;
-function Vd(r) {
-  return "__private_" + Gd++ + "_" + r;
-}
+var Vd = 0;
 function Kd(r) {
+  return "__private_" + Vd++ + "_" + r;
+}
+function Xd(r) {
   let e = null, t;
   return function() {
     for (var i = arguments.length, o = new Array(i), n = 0; n < i; n++)
@@ -4734,8 +4741,8 @@ function Kd(r) {
     return t = o, e || (e = Promise.resolve().then(() => (e = null, r(...t)))), e;
   };
 }
-var br = /* @__PURE__ */ Vd("updateUI");
-class Rt extends Ml {
+var br = /* @__PURE__ */ Kd("updateUI");
+class Rt extends $l {
   constructor() {
     super(...arguments), Object.defineProperty(this, br, {
       writable: !0,
@@ -4765,13 +4772,13 @@ class Rt extends Ml {
    * for a plugin with same name and return its target.
    */
   mount(e, t) {
-    const i = t.id, o = Wd(e);
+    const i = t.id, o = Gd(e);
     if (o) {
       this.isTargetDOMEl = !0;
       const a = document.createElement("div");
-      return a.classList.add("uppy-Root"), Vs(this, br)[br] = Kd((l) => {
-        this.uppy.getPlugin(this.id) && (Gs(this.render(l, a), a), this.afterUpdate());
-      }), this.uppy.log(`Installing ${i} to a DOM element '${e}'`), this.opts.replaceTargetContent && (o.innerHTML = ""), Gs(this.render(this.uppy.getState(), a), a), this.el = a, o.appendChild(a), a.dir = this.opts.direction || Rl(a) || "ltr", this.onMount(), this.el;
+      return a.classList.add("uppy-Root"), Ks(this, br)[br] = Xd((l) => {
+        this.uppy.getPlugin(this.id) && (Vs(this.render(l, a), a), this.afterUpdate());
+      }), this.uppy.log(`Installing ${i} to a DOM element '${e}'`), this.opts.replaceTargetContent && (o.innerHTML = ""), Vs(this.render(this.uppy.getState(), a), a), this.el = a, o.appendChild(a), a.dir = this.opts.direction || Ml(a) || "ltr", this.onMount(), this.el;
     }
     const n = this.getTargetPlugin(e);
     if (n)
@@ -4792,7 +4799,7 @@ class Rt extends Ml {
   update(e) {
     if (this.el != null) {
       var t, i;
-      (t = (i = Vs(this, br))[br]) == null || t.call(i, e);
+      (t = (i = Ks(this, br))[br]) == null || t.call(i, e);
     }
   }
   unmount() {
@@ -4807,7 +4814,7 @@ class Rt extends Ml {
   onUnmount() {
   }
 }
-function Ks(r, e, t, i) {
+function Xs(r, e, t, i) {
   return r === e ? r : i === 0 ? e : r + (e - r) * 2 ** (-i / t);
 }
 const Ve = {
@@ -4824,9 +4831,9 @@ var wo = { exports: {} };
 	Licensed under the MIT License (MIT), see
 	http://jedwatson.github.io/classnames
 */
-var Xs;
-function Xd() {
-  return Xs || (Xs = 1, function(r) {
+var Ys;
+function Yd() {
+  return Ys || (Ys = 1, function(r) {
     (function() {
       var e = {}.hasOwnProperty;
       function t() {
@@ -4857,8 +4864,8 @@ function Xd() {
     })();
   }(wo)), wo.exports;
 }
-var Yd = Xd();
-const He = /* @__PURE__ */ zt(Yd);
+var Zd = Yd();
+const He = /* @__PURE__ */ zt(Zd);
 function _o(r) {
   const e = [];
   let t = "indeterminate", i;
@@ -4881,7 +4888,7 @@ function _o(r) {
     value: o
   };
 }
-function Zd(r) {
+function Jd(r) {
   const e = Math.floor(r / 3600) % 24, t = Math.floor(r / 60) % 60, i = Math.floor(r % 60);
   return {
     hours: e,
@@ -4889,12 +4896,12 @@ function Zd(r) {
     seconds: i
   };
 }
-function Jd(r) {
-  const e = Zd(r), t = e.hours === 0 ? "" : `${e.hours}h`, i = e.minutes === 0 ? "" : `${e.hours === 0 ? e.minutes : ` ${e.minutes.toString(10).padStart(2, "0")}`}m`, o = e.hours !== 0 ? "" : `${e.minutes === 0 ? e.seconds : ` ${e.seconds.toString(10).padStart(2, "0")}`}s`;
+function Qd(r) {
+  const e = Jd(r), t = e.hours === 0 ? "" : `${e.hours}h`, i = e.minutes === 0 ? "" : `${e.hours === 0 ? e.minutes : ` ${e.minutes.toString(10).padStart(2, "0")}`}m`, o = e.hours !== 0 ? "" : `${e.minutes === 0 ? e.seconds : ` ${e.seconds.toString(10).padStart(2, "0")}`}s`;
   return `${t}${i}${o}`;
 }
-const Qd = "·", Ys = () => ` ${Qd} `;
-function ec(r) {
+const ec = "·", Zs = () => ` ${ec} `;
+function tc(r) {
   const {
     newFiles: e,
     isUploadStarted: t,
@@ -4923,7 +4930,7 @@ function ec(r) {
     "data-uppy-super-focusable": !0
   }, u);
 }
-function tc(r) {
+function rc(r) {
   const {
     i18n: e,
     uppy: t
@@ -4947,7 +4954,7 @@ function tc(r) {
     d: "M4 2.408a2.75 2.75 0 1 0 2.75 2.75.626.626 0 0 1 1.25.018v.023a4 4 0 1 1-4-4.041V.25a.25.25 0 0 1 .389-.208l2.299 1.533a.25.25 0 0 1 0 .416l-2.3 1.533A.25.25 0 0 1 4 3.316v-.908z"
   })), e("retry"));
 }
-function rc(r) {
+function ic(r) {
   const {
     i18n: e,
     uppy: t
@@ -4980,7 +4987,7 @@ function rc(r) {
     d: "M9.283 8l2.567 2.567-1.283 1.283L8 9.283 5.433 11.85 4.15 10.567 6.717 8 4.15 5.433 5.433 4.15 8 6.717l2.567-2.567 1.283 1.283z"
   }))));
 }
-function ic(r) {
+function oc(r) {
   const {
     isAllPaused: e,
     i18n: t,
@@ -5029,7 +5036,7 @@ function ic(r) {
     d: e ? "M6 4.25L11.5 8 6 11.75z" : "M5 4.5h2v7H5v-7zm4 0h2v7H9v-7z"
   }))));
 }
-function oc(r) {
+function nc(r) {
   const {
     i18n: e,
     doneButtonHandler: t
@@ -5041,7 +5048,7 @@ function oc(r) {
     "data-uppy-super-focusable": !0
   }, e("done"));
 }
-function $l() {
+function zl() {
   return c("svg", {
     className: "uppy-StatusBar-spinner",
     "aria-hidden": "true",
@@ -5053,7 +5060,7 @@ function $l() {
     fillRule: "evenodd"
   }));
 }
-function nc(r) {
+function sc(r) {
   const {
     progress: e
   } = r, {
@@ -5063,9 +5070,9 @@ function nc(r) {
   } = e;
   return c("div", {
     className: "uppy-StatusBar-content"
-  }, c($l, null), i === "determinate" ? `${Math.round(t * 100)}% · ` : "", o);
+  }, c(zl, null), i === "determinate" ? `${Math.round(t * 100)}% · ` : "", o);
 }
-function sc(r) {
+function ac(r) {
   const {
     numUploads: e,
     complete: t,
@@ -5081,16 +5088,16 @@ function sc(r) {
     smart_count: e
   }), c("span", {
     className: "uppy-StatusBar-additionalInfo"
-  }, a && Ys(), o != null ? s("dataUploadedOfTotal", {
+  }, a && Zs(), o != null ? s("dataUploadedOfTotal", {
     complete: l,
     total: Bt(o)
   }) : s("dataUploadedOfUnknown", {
     complete: l
-  }), Ys(), n != null && s("xTimeLeft", {
-    time: Jd(n)
+  }), Zs(), n != null && s("xTimeLeft", {
+    time: Qd(n)
   })));
 }
-function zl(r) {
+function Nl(r) {
   const {
     i18n: e,
     complete: t,
@@ -5103,7 +5110,7 @@ function zl(r) {
     smart_count: i
   }));
 }
-function ac(r) {
+function lc(r) {
   const {
     i18n: e,
     newFiles: t,
@@ -5124,7 +5131,7 @@ function ac(r) {
     onClick: i
   }, e("upload")));
 }
-function lc(r) {
+function uc(r) {
   const {
     i18n: e,
     supportsUploadProgress: t,
@@ -5145,14 +5152,14 @@ function lc(r) {
     return null;
   const _ = e(a ? "paused" : "uploading");
   function T() {
-    return !a && !O && o ? t ? c(sc, {
+    return !a && !O && o ? t ? c(ac, {
       numUploads: u,
       complete: p,
       totalUploadedSize: d,
       totalSize: h,
       totalETA: x,
       i18n: e
-    }) : c(zl, {
+    }) : c(Nl, {
       i18n: e,
       complete: p,
       numUploads: u
@@ -5162,17 +5169,17 @@ function lc(r) {
     className: "uppy-StatusBar-content",
     "aria-label": _,
     title: _
-  }, a ? null : c($l, null), c("div", {
+  }, a ? null : c(zl, null), c("div", {
     className: "uppy-StatusBar-status"
   }, c("div", {
     className: "uppy-StatusBar-statusPrimary"
-  }, t && i !== 0 ? `${_}: ${i}%` : _), T(), O ? c(ac, {
+  }, t && i !== 0 ? `${_}: ${i}%` : _), T(), O ? c(lc, {
     i18n: e,
     newFiles: l,
     startUpload: D
   }) : null));
 }
-function uc(r) {
+function pc(r) {
   const {
     i18n: e
   } = r;
@@ -5195,7 +5202,7 @@ function uc(r) {
     d: "M.414 5.843L1.627 4.63l3.472 3.472L13.202 0l1.212 1.213L5.1 10.528z"
   })), e("complete"))));
 }
-function pc(r) {
+function dc(r) {
   const {
     error: e,
     i18n: t,
@@ -5231,21 +5238,21 @@ function pc(r) {
     "data-microtip-size": "medium",
     onClick: n,
     type: "button"
-  }, "?")), c(zl, {
+  }, "?")), c(Nl, {
     i18n: t,
     complete: i,
     numUploads: o
   })));
 }
 const {
-  STATE_ERROR: Zs,
-  STATE_WAITING: dc,
+  STATE_ERROR: Js,
+  STATE_WAITING: cc,
   STATE_PREPROCESSING: xo,
   STATE_UPLOADING: li,
   STATE_POSTPROCESSING: So,
   STATE_COMPLETE: ui
 } = Ve;
-function cc(r) {
+function hc(r) {
   let {
     newFiles: e,
     allowNewUpload: t,
@@ -5284,7 +5291,7 @@ function cc(r) {
         const bt = _o(D);
         return bt.mode === "determinate" ? bt.value * 100 : x;
       }
-      case Zs:
+      case Js:
         return null;
       case li:
         return O ? x : null;
@@ -5307,7 +5314,7 @@ function cc(r) {
         return !1;
     }
   }
-  const y = ie(), f = y ?? 100, g = !s && e && (!i && !o || d) && t && !a, F = !u && h !== dc && h !== ui, B = n && !l && h === li, I = s && !E && !p, W = m && h === ui, R = He("uppy-StatusBar-progress", {
+  const y = ie(), f = y ?? 100, g = !s && e && (!i && !o || d) && t && !a, F = !u && h !== cc && h !== ui, B = n && !l && h === li, I = s && !E && !p, W = m && h === ui, R = He("uppy-StatusBar-progress", {
     "is-indeterminate": le()
   }), V = He("uppy-StatusBar", `is-${h}`, {
     "has-ghosts": T
@@ -5315,22 +5322,22 @@ function cc(r) {
     switch (h) {
       case xo:
       case So:
-        return c(nc, {
+        return c(sc, {
           progress: _o(D)
         });
       case ui:
-        return c(uc, {
+        return c(pc, {
           i18n: S
         });
-      case Zs:
-        return c(pc, {
+      case Js:
+        return c(dc, {
           error: s,
           i18n: S,
           numUploads: L,
           complete: ee
         });
       case li:
-        return c(lc, {
+        return c(uc, {
           i18n: S,
           supportsUploadProgress: O,
           totalProgress: x,
@@ -5365,7 +5372,7 @@ function cc(r) {
     "aria-valuenow": y
   }), ce, c("div", {
     className: "uppy-StatusBar-actions"
-  }, g ? c(ec, {
+  }, g ? c(tc, {
     newFiles: e,
     isUploadStarted: w,
     recoveredState: d,
@@ -5373,24 +5380,24 @@ function cc(r) {
     isSomeGhost: T,
     startUpload: P,
     uploadState: h
-  }) : null, I ? c(tc, {
+  }) : null, I ? c(rc, {
     i18n: S,
     uppy: A
-  }) : null, B ? c(ic, {
+  }) : null, B ? c(oc, {
     isAllPaused: o,
     i18n: S,
     isAllComplete: E,
     resumableUploads: n,
     uppy: A
-  }) : null, F ? c(rc, {
+  }) : null, F ? c(ic, {
     i18n: S,
     uppy: A
-  }) : null, W ? c(oc, {
+  }) : null, W ? c(nc, {
     i18n: S,
     doneButtonHandler: m
   }) : null));
 }
-const hc = {
+const fc = {
   strings: {
     // Shown in the status bar while files are being uploaded.
     uploading: "Uploading",
@@ -5444,14 +5451,14 @@ function ue(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var fc = 0;
+var yc = 0;
 function nr(r) {
-  return "__private_" + fc++ + "_" + r;
+  return "__private_" + yc++ + "_" + r;
 }
-const yc = {
+const mc = {
   version: "4.1.3"
-}, mc = 2e3, gc = 2e3;
-function bc(r, e, t, i) {
+}, gc = 2e3, bc = 2e3;
+function vc(r, e, t, i) {
   if (r)
     return Ve.STATE_ERROR;
   if (e)
@@ -5470,7 +5477,7 @@ function bc(r, e, t, i) {
   }
   return o;
 }
-const vc = {
+const wc = {
   hideUploadButton: !1,
   hideRetryButton: !1,
   hidePauseResumeButton: !1,
@@ -5480,13 +5487,13 @@ const vc = {
   doneButtonHandler: null
 };
 var $e = /* @__PURE__ */ nr("lastUpdateTime"), Le = /* @__PURE__ */ nr("previousUploadedBytes"), rt = /* @__PURE__ */ nr("previousSpeed"), Ae = /* @__PURE__ */ nr("previousETA"), Po = /* @__PURE__ */ nr("computeSmoothETA"), vr = /* @__PURE__ */ nr("onUploadStart");
-class Nl extends Rt {
+class Ll extends Rt {
   constructor(e, t) {
     super(e, {
-      ...vc,
+      ...wc,
       ...t
     }), Object.defineProperty(this, Po, {
-      value: wc
+      value: _c
     }), Object.defineProperty(this, $e, {
       writable: !0,
       value: void 0
@@ -5517,7 +5524,7 @@ class Nl extends Rt {
         }
         ue(this, $e)[$e] = performance.now(), ue(this, Le)[Le] = 0;
       }
-    }), this.id = this.opts.id || "StatusBar", this.title = "StatusBar", this.type = "progressindicator", this.defaultLocale = hc, this.i18nInit(), this.render = this.render.bind(this), this.install = this.install.bind(this);
+    }), this.id = this.opts.id || "StatusBar", this.title = "StatusBar", this.type = "progressindicator", this.defaultLocale = fc, this.i18nInit(), this.render = this.render.bind(this), this.install = this.install.bind(this);
   }
   render(e) {
     const {
@@ -5547,9 +5554,9 @@ class Nl extends Rt {
       uploaded: S,
       total: w
     });
-    return cc({
+    return hc({
       error: s,
-      uploadState: bc(s, h, a, e.files || {}),
+      uploadState: vc(s, h, a, e.files || {}),
       allowNewUpload: o,
       totalProgress: n,
       totalSize: w,
@@ -5581,7 +5588,7 @@ class Nl extends Rt {
   }
   onMount() {
     const e = this.el;
-    Rl(e) || (e.dir = "ltr");
+    Ml(e) || (e.dir = "ltr");
   }
   install() {
     const {
@@ -5593,7 +5600,7 @@ class Nl extends Rt {
     this.unmount(), this.uppy.off("upload", ue(this, vr)[vr]);
   }
 }
-function wc(r) {
+function _c(r) {
   var e, t;
   if (r.total == null || r.total === 0)
     return null;
@@ -5611,22 +5618,22 @@ function wc(r) {
     var a;
     return Math.round(((a = ue(this, Ae)[Ae]) != null ? a : 0) / 100) / 10;
   }
-  const l = s / o, u = ue(this, rt)[rt] == null ? l : Ks(l, ue(this, rt)[rt], mc, o);
+  const l = s / o, u = ue(this, rt)[rt] == null ? l : Xs(l, ue(this, rt)[rt], gc, o);
   ue(this, rt)[rt] = u;
-  const p = i / u, d = Math.max(ue(this, Ae)[Ae] - o, 0), h = ue(this, Ae)[Ae] == null ? p : Ks(p, d, gc, o);
+  const p = i / u, d = Math.max(ue(this, Ae)[Ae] - o, 0), h = ue(this, Ae)[Ae] == null ? p : Xs(p, d, bc, o);
   return ue(this, Ae)[Ae] = h, ue(this, $e)[$e] = performance.now(), Math.round(h / 100) / 10;
 }
-Nl.VERSION = yc.version;
-const Js = 300;
-class _c extends at {
+Ll.VERSION = mc.version;
+const Qs = 300;
+class xc extends at {
   constructor() {
-    super(...arguments), this.ref = Nd();
+    super(...arguments), this.ref = Ld();
   }
   componentWillEnter(e) {
-    this.ref.current.style.opacity = "1", this.ref.current.style.transform = "none", setTimeout(e, Js);
+    this.ref.current.style.opacity = "1", this.ref.current.style.transform = "none", setTimeout(e, Qs);
   }
   componentWillLeave(e) {
-    this.ref.current.style.opacity = "0", this.ref.current.style.transform = "translateY(350%)", setTimeout(e, Js);
+    this.ref.current.style.opacity = "0", this.ref.current.style.transform = "translateY(350%)", setTimeout(e, Qs);
   }
   render() {
     const {
@@ -5638,14 +5645,14 @@ class _c extends at {
     }, e);
   }
 }
-function xc(r, e) {
+function Sc(r, e) {
   return Object.assign(r, e);
 }
-function Sc(r, e) {
+function Pc(r, e) {
   var t;
   return (t = r == null ? void 0 : r.key) != null ? t : e;
 }
-function Pc(r, e) {
+function kc(r, e) {
   const t = r._ptgLinkedRefs || (r._ptgLinkedRefs = {});
   return t[e] || (t[e] = (i) => {
     r.refs[e] = i;
@@ -5655,12 +5662,12 @@ function wr(r) {
   const e = {};
   for (let t = 0; t < r.length; t++)
     if (r[t] != null) {
-      const i = Sc(r[t], t.toString(36));
+      const i = Pc(r[t], t.toString(36));
       e[i] = r[t];
     }
   return e;
 }
-function kc(r, e) {
+function Fc(r, e) {
   r = r || {}, e = e || {};
   const t = (s) => e.hasOwnProperty(s) ? e[s] : r[s], i = {};
   let o = [];
@@ -5679,8 +5686,8 @@ function kc(r, e) {
     n[o[s]] = t(o[s]);
   return n;
 }
-const Fc = (r) => r;
-class Ll extends at {
+const Dc = (r) => r;
+class jl extends at {
   constructor(e, t) {
     super(e, t), this.refs = {}, this.state = {
       children: wr(ut(ut(this.props.children)) || [])
@@ -5697,7 +5704,7 @@ class Ll extends at {
   componentWillReceiveProps(e) {
     const t = wr(ut(e.children) || []), i = this.state.children;
     this.setState((n) => ({
-      children: kc(n.children, t)
+      children: Fc(n.children, t)
     }));
     let o;
     for (o in t)
@@ -5763,7 +5770,7 @@ class Ll extends at {
     if (o && o.hasOwnProperty(e))
       this.performEnter(e);
     else {
-      const n = xc({}, this.state.children);
+      const n = Sc({}, this.state.children);
       delete n[e], this.setState({
         children: n
       });
@@ -5787,8 +5794,8 @@ class Ll extends at {
     const D = Object.entries(x).map((O) => {
       let [_, T] = O;
       if (!T) return;
-      const m = Pc(this, _);
-      return El(i(T), {
+      const m = kc(this, _);
+      return Ul(i(T), {
         ref: m,
         key: _
       });
@@ -5796,18 +5803,18 @@ class Ll extends at {
     return c(d, h, D);
   }
 }
-Ll.defaultProps = {
+jl.defaultProps = {
   component: "span",
-  childFactory: Fc
+  childFactory: Dc
 };
-const Dc = {
+const Tc = {
   version: "4.2.1"
 };
-class jl extends Rt {
+class ql extends Rt {
   constructor(e, t) {
     super(e, t), this.render = (i) => c("div", {
       className: "uppy uppy-Informer"
-    }, c(Ll, null, i.info.map((o) => c(_c, {
+    }, c(jl, null, i.info.map((o) => c(xc, {
       key: o.message
     }, c("p", {
       role: "alert"
@@ -5831,11 +5838,11 @@ class jl extends Rt {
     e && this.mount(e, this);
   }
 }
-jl.VERSION = Dc.version;
-const Tc = /^data:([^/]+\/[^,;]+(?:[^,]*?))(;base64)?,([\s\S]*)$/;
-function Ic(r, e, t) {
+ql.VERSION = Tc.version;
+const Ic = /^data:([^/]+\/[^,;]+(?:[^,]*?))(;base64)?,([\s\S]*)$/;
+function Cc(r, e, t) {
   var i, o;
-  const n = Tc.exec(r), s = (i = (o = e.mimeType) != null ? o : n == null ? void 0 : n[1]) != null ? i : "plain/text";
+  const n = Ic.exec(r), s = (i = (o = e.mimeType) != null ? o : n == null ? void 0 : n[1]) != null ? i : "plain/text";
   let a;
   if ((n == null ? void 0 : n[2]) != null) {
     const l = atob(decodeURIComponent(n[3])), u = new Uint8Array(l.length);
@@ -5847,32 +5854,32 @@ function Ic(r, e, t) {
     type: s
   });
 }
-function Qs(r) {
+function ea(r) {
   return r.startsWith("blob:");
 }
-function ea(r) {
+function ta(r) {
   return r ? /^[^/]+\/(jpe?g|gif|png|svg|svg\+xml|bmp|webp|avif)$/.test(r) : !1;
 }
 function te(r, e, t) {
   return e in r ? Object.defineProperty(r, e, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : r[e] = t, r;
 }
-var ql = typeof self < "u" ? self : global;
-const Hr = typeof navigator < "u", Cc = Hr && typeof HTMLImageElement > "u", ta = !(typeof global > "u" || typeof process > "u" || !process.versions || !process.versions.node), Hl = ql.Buffer, Wl = !!Hl, Bc = (r) => r !== void 0;
-function Gl(r) {
-  return r === void 0 || (r instanceof Map ? r.size === 0 : Object.values(r).filter(Bc).length === 0);
+var Hl = typeof self < "u" ? self : global;
+const Hr = typeof navigator < "u", Bc = Hr && typeof HTMLImageElement > "u", ra = !(typeof global > "u" || typeof process > "u" || !process.versions || !process.versions.node), Wl = Hl.Buffer, Gl = !!Wl, Oc = (r) => r !== void 0;
+function Vl(r) {
+  return r === void 0 || (r instanceof Map ? r.size === 0 : Object.values(r).filter(Oc).length === 0);
 }
 function be(r) {
   let e = new Error(r);
   throw delete e.stack, e;
 }
-function ra(r) {
+function ia(r) {
   let e = function(t) {
     let i = 0;
     return t.ifd0.enabled && (i += 1024), t.exif.enabled && (i += 2048), t.makerNote && (i += 2048), t.userComment && (i += 1024), t.gps.enabled && (i += 512), t.interop.enabled && (i += 100), t.ifd1.enabled && (i += 1024), i + 2048;
   }(r);
   return r.jfif.enabled && (e += 50), r.xmp.enabled && (e += 2e4), r.iptc.enabled && (e += 14e3), r.icc.enabled && (e += 6e3), e;
 }
-const ko = (r) => String.fromCharCode.apply(null, r), ia = typeof TextDecoder < "u" ? new TextDecoder("utf-8") : void 0;
+const ko = (r) => String.fromCharCode.apply(null, r), oa = typeof TextDecoder < "u" ? new TextDecoder("utf-8") : void 0;
 let Wr = class Gt {
   static from(e, t) {
     return e instanceof this && e.le === t ? e : new Gt(e, void 0, void 0, t);
@@ -5917,7 +5924,7 @@ let Wr = class Gt {
     return new Uint8Array(this.buffer, this.byteOffset + e, t);
   }
   getString(e = 0, t = this.byteLength) {
-    return o = this.getUint8Array(e, t), ia ? ia.decode(o) : Wl ? Buffer.from(o).toString("utf8") : decodeURIComponent(escape(ko(o)));
+    return o = this.getUint8Array(e, t), oa ? oa.decode(o) : Gl ? Buffer.from(o).toString("utf8") : decodeURIComponent(escape(ko(o)));
     var o;
   }
   getLatin1String(e = 0, t = this.byteLength) {
@@ -6005,10 +6012,10 @@ class Mn extends Map {
     return Array.from(this.keys());
   }
 }
-var Vl = new Mn("file parser"), je = new Mn("segment parser"), $n = new Mn("file reader");
-let Oc = ql.fetch;
-function oa(r, e) {
-  return (t = r).startsWith("data:") || t.length > 1e4 ? on(r, e, "base64") : ta && r.includes("://") ? rn(r, e, "url", na) : ta ? on(r, e, "fs") : Hr ? rn(r, e, "url", na) : void be("Invalid input argument");
+var Kl = new Mn("file parser"), je = new Mn("segment parser"), $n = new Mn("file reader");
+let Ac = Hl.fetch;
+function na(r, e) {
+  return (t = r).startsWith("data:") || t.length > 1e4 ? on(r, e, "base64") : ra && r.includes("://") ? rn(r, e, "url", sa) : ra ? on(r, e, "fs") : Hr ? rn(r, e, "url", sa) : void be("Invalid input argument");
   var t;
 }
 async function rn(r, e, t, i) {
@@ -6021,16 +6028,16 @@ async function on(r, e, t) {
   let i = new ($n.get(t))(r, e);
   return await i.read(), i;
 }
-const na = (r) => Oc(r).then((e) => e.arrayBuffer()), nn = (r) => new Promise((e, t) => {
+const sa = (r) => Ac(r).then((e) => e.arrayBuffer()), nn = (r) => new Promise((e, t) => {
   let i = new FileReader();
   i.onloadend = () => e(i.result || new ArrayBuffer()), i.onerror = t, i.readAsArrayBuffer(r);
-}), zn = /* @__PURE__ */ new Map(), Ac = /* @__PURE__ */ new Map(), Ec = /* @__PURE__ */ new Map(), pi = ["chunked", "firstChunkSize", "firstChunkSizeNode", "firstChunkSizeBrowser", "chunkSize", "chunkLimit"], Kl = ["jfif", "xmp", "icc", "iptc", "ihdr"], sn = ["tiff", ...Kl], ge = ["ifd0", "ifd1", "exif", "gps", "interop"], di = [...sn, ...ge], ci = ["makerNote", "userComment"], Xl = ["translateKeys", "translateValues", "reviveValues", "multiSegment"], hi = [...Xl, "sanitize", "mergeOutput", "silentErrors"];
-class Yl {
+}), zn = /* @__PURE__ */ new Map(), Ec = /* @__PURE__ */ new Map(), Uc = /* @__PURE__ */ new Map(), pi = ["chunked", "firstChunkSize", "firstChunkSizeNode", "firstChunkSizeBrowser", "chunkSize", "chunkLimit"], Xl = ["jfif", "xmp", "icc", "iptc", "ihdr"], sn = ["tiff", ...Xl], ge = ["ifd0", "ifd1", "exif", "gps", "interop"], di = [...sn, ...ge], ci = ["makerNote", "userComment"], Yl = ["translateKeys", "translateValues", "reviveValues", "multiSegment"], hi = [...Yl, "sanitize", "mergeOutput", "silentErrors"];
+class Zl {
   get translate() {
     return this.translateKeys || this.translateValues || this.reviveValues;
   }
 }
-let _r = class extends Yl {
+let _r = class extends Zl {
   get needed() {
     return this.enabled || this.deps.size > 0;
   }
@@ -6046,7 +6053,7 @@ let _r = class extends Yl {
   }
   applyInheritables(e) {
     let t, i;
-    for (t of Xl) i = e[t], i !== void 0 && (this[t] = i);
+    for (t of Yl) i = e[t], i !== void 0 && (this[t] = i);
   }
   translateTagSet(e, t) {
     if (this.dict) {
@@ -6058,11 +6065,11 @@ let _r = class extends Yl {
     !this.enabled && this.deps.size > 0 ? (this.enabled = !0, Ei(this.pick, this.deps)) : this.enabled && this.pick.size > 0 && Ei(this.pick, this.deps);
   }
 };
-var Fe = { jfif: !1, tiff: !0, xmp: !1, icc: !1, iptc: !1, ifd0: !0, ifd1: !1, exif: !0, gps: !0, interop: !1, ihdr: void 0, makerNote: !1, userComment: !1, multiSegment: !1, skip: [], pick: [], translateKeys: !0, translateValues: !0, reviveValues: !0, sanitize: !0, mergeOutput: !0, silentErrors: !0, chunked: !0, firstChunkSize: void 0, firstChunkSizeNode: 512, firstChunkSizeBrowser: 65536, chunkSize: 65536, chunkLimit: 5 }, sa = /* @__PURE__ */ new Map();
-class Nn extends Yl {
+var Fe = { jfif: !1, tiff: !0, xmp: !1, icc: !1, iptc: !1, ifd0: !0, ifd1: !1, exif: !0, gps: !0, interop: !1, ihdr: void 0, makerNote: !1, userComment: !1, multiSegment: !1, skip: [], pick: [], translateKeys: !0, translateValues: !0, reviveValues: !0, sanitize: !0, mergeOutput: !0, silentErrors: !0, chunked: !0, firstChunkSize: void 0, firstChunkSizeNode: 512, firstChunkSizeBrowser: 65536, chunkSize: 65536, chunkLimit: 5 }, aa = /* @__PURE__ */ new Map();
+class Nn extends Zl {
   static useCached(e) {
-    let t = sa.get(e);
-    return t !== void 0 || (t = new this(e), sa.set(e, t)), t;
+    let t = aa.get(e);
+    return t !== void 0 || (t = new this(e), aa.set(e, t)), t;
   }
   constructor(e) {
     super(), e === !0 ? this.setupFromTrue() : e === void 0 ? this.setupFromUndefined() : Array.isArray(e) ? this.setupFromArray(e) : typeof e == "object" ? this.setupFromObject(e) : be(`Invalid options argument ${e}`), this.firstChunkSize === void 0 && (this.firstChunkSize = Hr ? this.firstChunkSizeBrowser : this.firstChunkSizeNode), this.mergeOutput && (this.ifd1.enabled = !1), this.filterNestedSegmentTags(), this.traverseTiffDependencyTree(), this.checkLoadedPlugins();
@@ -6110,10 +6117,10 @@ class Nn extends Yl {
   setupGlobalFilters(e, t, i, o = i) {
     if (e && e.length) {
       for (let s of o) this[s].enabled = !1;
-      let n = aa(e, i);
+      let n = la(e, i);
       for (let [s, a] of n) Ei(this[s].pick, a), this[s].enabled = !0;
     } else if (t && t.length) {
-      let n = aa(t, i);
+      let n = la(t, i);
       for (let [s, a] of n) Ei(this[s].skip, a);
     }
   }
@@ -6127,13 +6134,13 @@ class Nn extends Yl {
     for (let n of ge) this[n].finalizeFilters();
   }
   get onlyTiff() {
-    return !Kl.map((e) => this[e].enabled).some((e) => e === !0) && this.tiff.enabled;
+    return !Xl.map((e) => this[e].enabled).some((e) => e === !0) && this.tiff.enabled;
   }
   checkLoadedPlugins() {
     for (let e of sn) this[e].enabled && !je.has(e) && tn("segment parser", e);
   }
 }
-function aa(r, e) {
+function la(r, e) {
   let t, i, o, n, s = [];
   for (o of e) {
     for (n of (t = zn.get(o), i = [], t)) (r.includes(n[0]) || r.includes(n[1])) && i.push(n[0]);
@@ -6148,24 +6155,24 @@ function Ei(r, e) {
   for (let t of e) r.add(t);
 }
 te(Nn, "default", Fe);
-class Uc {
+class Rc {
   constructor(e) {
     te(this, "parsers", {}), te(this, "output", {}), te(this, "errors", []), te(this, "pushToErrors", (t) => this.errors.push(t)), this.options = Nn.useCached(e);
   }
   async read(e) {
     this.file = await function(t, i) {
-      return typeof t == "string" ? oa(t, i) : Hr && !Cc && t instanceof HTMLImageElement ? oa(t.src, i) : t instanceof Uint8Array || t instanceof ArrayBuffer || t instanceof DataView ? new Wr(t) : Hr && t instanceof Blob ? rn(t, i, "blob", nn) : void be("Invalid input argument");
+      return typeof t == "string" ? na(t, i) : Hr && !Bc && t instanceof HTMLImageElement ? na(t.src, i) : t instanceof Uint8Array || t instanceof ArrayBuffer || t instanceof DataView ? new Wr(t) : Hr && t instanceof Blob ? rn(t, i, "blob", nn) : void be("Invalid input argument");
     }(e, this.options);
   }
   setup() {
     if (this.fileParser) return;
     let { file: e } = this, t = e.getUint16(0);
-    for (let [i, o] of Vl) if (o.canHandle(e, t)) return this.fileParser = new o(this.options, this.file, this.parsers), e[i] = !0;
+    for (let [i, o] of Kl) if (o.canHandle(e, t)) return this.fileParser = new o(this.options, this.file, this.parsers), e[i] = !0;
     this.file.close && this.file.close(), be("Unknown file format");
   }
   async parse() {
     let { output: e, errors: t } = this;
-    return this.setup(), this.options.silentErrors ? (await this.executeParsers().catch(this.pushToErrors), t.push(...this.fileParser.errors)) : await this.executeParsers(), this.file.close && this.file.close(), this.options.silentErrors && t.length > 0 && (e.errors = t), Gl(i = e) ? void 0 : i;
+    return this.setup(), this.options.silentErrors ? (await this.executeParsers().catch(this.pushToErrors), t.push(...this.fileParser.errors)) : await this.executeParsers(), this.file.close && this.file.close(), this.options.silentErrors && t.length > 0 && (e.errors = t), Vl(i = e) ? void 0 : i;
     var i;
   }
   async executeParsers() {
@@ -6210,7 +6217,7 @@ class Kt {
     return this.translated ? this.translated : this.raw ? Object.fromEntries(this.raw) : void 0;
   }
   translateBlock(e, t) {
-    let i = Ec.get(t), o = Ac.get(t), n = zn.get(t), s = this.options[t], a = s.reviveValues && !!i, l = s.translateValues && !!o, u = s.translateKeys && !!n, p = {};
+    let i = Uc.get(t), o = Ec.get(t), n = zn.get(t), s = this.options[t], a = s.reviveValues && !!i, l = s.translateValues && !!o, u = s.translateKeys && !!n, p = {};
     for (let [d, h] of e) a && i.has(d) ? h = i.get(d)(h) : l && o.has(d) && (h = this.translateValue(h, o.get(d))), u && n.has(d) && (d = n.get(d) || d), p[d] = h;
     return p;
   }
@@ -6226,16 +6233,16 @@ class Kt {
   }
 }
 te(Kt, "headerLength", 4), te(Kt, "type", void 0), te(Kt, "multiSegment", !1), te(Kt, "canHandle", () => !1);
-function Rc(r) {
+function Mc(r) {
   return r === 192 || r === 194 || r === 196 || r === 219 || r === 221 || r === 218 || r === 254;
 }
-function Mc(r) {
+function $c(r) {
   return r >= 224 && r <= 239;
 }
-function $c(r, e, t) {
+function zc(r, e, t) {
   for (let [i, o] of je) if (o.canHandle(r, e, t)) return i;
 }
-class la extends class {
+class ua extends class {
   constructor(e, t, i) {
     te(this, "errors", []), te(this, "ensureSegmentChunk", async (o) => {
       let n = o.start, s = o.size || 65536;
@@ -6300,10 +6307,10 @@ class la extends class {
     t -= 2;
     let i, o, n, s, a, l, { file: u, findAll: p, wanted: d, remaining: h, options: x } = this;
     for (; e < t; e++) if (u.getUint8(e) === 255) {
-      if (i = u.getUint8(e + 1), Mc(i)) {
-        if (o = u.getUint16(e + 2), n = $c(u, e, o), n && d.has(n) && (s = je.get(n), a = s.findPosition(u, e), l = x[n], a.type = n, this.appSegments.push(a), !p && (s.multiSegment && l.multiSegment ? (this.unfinishedMultiSegment = a.chunkNumber < a.chunkCount, this.unfinishedMultiSegment || h.delete(n)) : h.delete(n), h.size === 0))) break;
+      if (i = u.getUint8(e + 1), $c(i)) {
+        if (o = u.getUint16(e + 2), n = zc(u, e, o), n && d.has(n) && (s = je.get(n), a = s.findPosition(u, e), l = x[n], a.type = n, this.appSegments.push(a), !p && (s.multiSegment && l.multiSegment ? (this.unfinishedMultiSegment = a.chunkNumber < a.chunkCount, this.unfinishedMultiSegment || h.delete(n)) : h.delete(n), h.size === 0))) break;
         x.recordUnknownSegments && (a = Kt.findPosition(u, e), a.marker = i, this.unknownSegments.push(a)), e += o + 1;
-      } else if (Rc(i)) {
+      } else if (Mc(i)) {
         if (o = u.getUint16(e + 2), i === 218 && x.stopAfterSos !== !1) return;
         x.recordJpegSegments && this.jpegSegments.push({ offset: e, length: o, marker: i }), e += o + 1;
       }
@@ -6330,9 +6337,9 @@ class la extends class {
     return t === void 0 && (await this.findAppSegments(0, [e]), t = this.getSegment(e)), t;
   }
 }
-te(la, "type", "jpeg"), Vl.set("jpeg", la);
-const zc = [void 0, 1, 1, 2, 4, 8, 1, 1, 2, 4, 8, 4, 8, 4];
-class Nc extends Kt {
+te(ua, "type", "jpeg"), Kl.set("jpeg", ua);
+const Nc = [void 0, 1, 1, 2, 4, 8, 1, 1, 2, 4, 8, 4, 8, 4];
+class Lc extends Kt {
   parseHeader() {
     var e = this.chunk.getUint16();
     e === 18761 ? this.le = !0 : e === 19789 && (this.le = !1), this.chunk.le = this.le, this.headerParsed = !0;
@@ -6352,7 +6359,7 @@ class Nc extends Kt {
     return i;
   }
   parseTag(e, t, i) {
-    let { chunk: o } = this, n = o.getUint16(e + 2), s = o.getUint32(e + 4), a = zc[n];
+    let { chunk: o } = this, n = o.getUint16(e + 2), s = o.getUint32(e + 4), a = Nc[n];
     if (a * s <= 4 ? e += 8 : e = o.getUint32(e + 8), (n < 1 || n > 13) && be(`Invalid TIFF value type. block: ${i.toUpperCase()}, tag: ${t.toString(16)}, type: ${n}, offset ${e}`), e > o.byteLength && be(`Invalid TIFF value offset. block: ${i.toUpperCase()}, tag: ${t.toString(16)}, type: ${n}, offset ${e} is outside of chunk size ${o.byteLength}`), n === 1) return o.getUint8Array(e, s);
     if (n === 2) return (l = function(u) {
       for (; u.endsWith("\0"); ) u = u.slice(0, -1);
@@ -6422,7 +6429,7 @@ class Nc extends Kt {
     }
   }
 }
-class Do extends Nc {
+class Do extends Lc {
   static canHandle(e, t) {
     return e.getUint8(t + 1) === 225 && e.getUint32(t + 4) === 1165519206 && e.getUint16(t + 8) === 0;
   }
@@ -6453,13 +6460,13 @@ class Do extends Nc {
     if (this.ifd0) return;
     let { file: e } = this;
     this.findIfd0Offset(), this.ifd0Offset < 8 && be("Malformed EXIF data"), !e.chunked && this.ifd0Offset > e.byteLength && be(`IFD0 offset points to outside of file.
-this.ifd0Offset: ${this.ifd0Offset}, file.byteLength: ${e.byteLength}`), e.tiff && await e.ensureChunk(this.ifd0Offset, ra(this.options));
+this.ifd0Offset: ${this.ifd0Offset}, file.byteLength: ${e.byteLength}`), e.tiff && await e.ensureChunk(this.ifd0Offset, ia(this.options));
     let t = this.parseBlock(this.ifd0Offset, "ifd0");
     return t.size !== 0 ? (this.exifOffset = t.get(34665), this.interopOffset = t.get(40965), this.gpsOffset = t.get(34853), this.xmp = t.get(700), this.iptc = t.get(33723), this.icc = t.get(34675), this.options.sanitize && (t.delete(34665), t.delete(40965), t.delete(34853), t.delete(700), t.delete(33723), t.delete(34675)), t) : void 0;
   }
   async parseExifBlock() {
     if (this.exif || (this.ifd0 || await this.parseIfd0Block(), this.exifOffset === void 0)) return;
-    this.file.tiff && await this.file.ensureChunk(this.exifOffset, ra(this.options));
+    this.file.tiff && await this.file.ensureChunk(this.exifOffset, ia(this.options));
     let e = this.parseBlock(this.exifOffset, "exif");
     return this.interopOffset || (this.interopOffset = e.get(40965)), this.makerNote = e.get(37500), this.userComment = e.get(37510), this.options.sanitize && (e.delete(40965), e.delete(37500), e.delete(37510)), this.unpack(e, 41728), this.unpack(e, 41729), e;
   }
@@ -6470,7 +6477,7 @@ this.ifd0Offset: ${this.ifd0Offset}, file.byteLength: ${e.byteLength}`), e.tiff 
   async parseGpsBlock() {
     if (this.gps || (this.ifd0 || await this.parseIfd0Block(), this.gpsOffset === void 0)) return;
     let e = this.parseBlock(this.gpsOffset, "gps");
-    return e && e.has(2) && e.has(4) && (e.set("latitude", ua(...e.get(2), e.get(1))), e.set("longitude", ua(...e.get(4), e.get(3)))), e;
+    return e && e.has(2) && e.has(4) && (e.set("latitude", pa(...e.get(2), e.get(1))), e.set("longitude", pa(...e.get(4), e.get(3)))), e;
   }
   async parseInteropBlock() {
     if (!this.interop && (this.ifd0 || await this.parseIfd0Block(), this.interopOffset !== void 0 || this.exif || await this.parseExifBlock(), this.interopOffset !== void 0)) return this.parseBlock(this.interopOffset, "interop");
@@ -6491,7 +6498,7 @@ this.ifd0Offset: ${this.ifd0Offset}, file.byteLength: ${e.byteLength}`), e.tiff 
   }
   createOutput() {
     let e, t, i, o = {};
-    for (t of ge) if (e = this[t], !Gl(e)) if (i = this.canTranslate ? this.translateBlock(e, t) : Object.fromEntries(e), this.options.mergeOutput) {
+    for (t of ge) if (e = this[t], !Vl(e)) if (i = this.canTranslate ? this.translateBlock(e, t) : Object.fromEntries(e), this.options.mergeOutput) {
       if (t === "ifd1") continue;
       Object.assign(o, i);
     } else o[t] = i;
@@ -6502,7 +6509,7 @@ this.ifd0Offset: ${this.ifd0Offset}, file.byteLength: ${e.byteLength}`), e.tiff 
     else for (let [i, o] of Object.entries(t)) this.assignObjectToOutput(e, i, o);
   }
 }
-function ua(r, e, t, i) {
+function pa(r, e, t, i) {
   var o = r + e / 60 + t / 3600;
   return i !== "S" && i !== "W" || (o *= -1), o;
 }
@@ -6510,14 +6517,14 @@ te(Do, "type", "tiff"), te(Do, "headerLength", 10), je.set("tiff", Do);
 const Ln = { ifd0: !1, ifd1: !1, exif: !1, gps: !1, interop: !1, sanitize: !1, reviveValues: !0, translateKeys: !1, translateValues: !1, mergeOutput: !1 };
 Object.assign({}, Ln, { firstChunkSize: 4e4, gps: [1, 2, 3, 4] });
 Object.assign({}, Ln, { tiff: !1, ifd1: !0, mergeOutput: !1 });
-const Lc = Object.assign({}, Ln, { firstChunkSize: 4e4, ifd0: [274] });
-async function jc(r) {
-  let e = new Uc(Lc);
+const jc = Object.assign({}, Ln, { firstChunkSize: 4e4, ifd0: [274] });
+async function qc(r) {
+  let e = new Rc(jc);
   await e.read(r);
   let t = await e.parse();
   if (t && t.ifd0) return t.ifd0[274];
 }
-const qc = Object.freeze({ 1: { dimensionSwapped: !1, scaleX: 1, scaleY: 1, deg: 0, rad: 0 }, 2: { dimensionSwapped: !1, scaleX: -1, scaleY: 1, deg: 0, rad: 0 }, 3: { dimensionSwapped: !1, scaleX: 1, scaleY: 1, deg: 180, rad: 180 * Math.PI / 180 }, 4: { dimensionSwapped: !1, scaleX: -1, scaleY: 1, deg: 180, rad: 180 * Math.PI / 180 }, 5: { dimensionSwapped: !0, scaleX: 1, scaleY: -1, deg: 90, rad: 90 * Math.PI / 180 }, 6: { dimensionSwapped: !0, scaleX: 1, scaleY: 1, deg: 90, rad: 90 * Math.PI / 180 }, 7: { dimensionSwapped: !0, scaleX: 1, scaleY: -1, deg: 270, rad: 270 * Math.PI / 180 }, 8: { dimensionSwapped: !0, scaleX: 1, scaleY: 1, deg: 270, rad: 270 * Math.PI / 180 } });
+const Hc = Object.freeze({ 1: { dimensionSwapped: !1, scaleX: 1, scaleY: 1, deg: 0, rad: 0 }, 2: { dimensionSwapped: !1, scaleX: -1, scaleY: 1, deg: 0, rad: 0 }, 3: { dimensionSwapped: !1, scaleX: 1, scaleY: 1, deg: 180, rad: 180 * Math.PI / 180 }, 4: { dimensionSwapped: !1, scaleX: -1, scaleY: 1, deg: 180, rad: 180 * Math.PI / 180 }, 5: { dimensionSwapped: !0, scaleX: 1, scaleY: -1, deg: 90, rad: 90 * Math.PI / 180 }, 6: { dimensionSwapped: !0, scaleX: 1, scaleY: 1, deg: 90, rad: 90 * Math.PI / 180 }, 7: { dimensionSwapped: !0, scaleX: 1, scaleY: -1, deg: 270, rad: 270 * Math.PI / 180 }, 8: { dimensionSwapped: !0, scaleX: 1, scaleY: 1, deg: 270, rad: 270 * Math.PI / 180 } });
 let Ir = !0, Cr = !0;
 if (typeof navigator == "object") {
   let r = navigator.userAgent;
@@ -6539,13 +6546,13 @@ if (typeof navigator == "object") {
     Ir = Cr = Number(e) < 77;
   }
 }
-async function Hc(r) {
-  let e = await jc(r);
-  return Object.assign({ canvas: Ir, css: Cr }, qc[e]);
+async function Wc(r) {
+  let e = await qc(r);
+  return Object.assign({ canvas: Ir, css: Cr }, Hc[e]);
 }
-class Wc extends Wr {
+class Gc extends Wr {
   constructor(...e) {
-    super(...e), te(this, "ranges", new Gc()), this.byteLength !== 0 && this.ranges.add(0, this.byteLength);
+    super(...e), te(this, "ranges", new Vc()), this.byteLength !== 0 && this.ranges.add(0, this.byteLength);
   }
   _tryExtend(e, t, i) {
     if (e === 0 && this.byteLength === 0 && i) {
@@ -6561,7 +6568,7 @@ class Wc extends Wr {
   }
   _extend(e) {
     let t;
-    t = Wl ? Hl.allocUnsafe(e) : new Uint8Array(e);
+    t = Gl ? Wl.allocUnsafe(e) : new Uint8Array(e);
     let i = new DataView(t.buffer, t.byteOffset, t.byteLength);
     return t.set(new Uint8Array(this.buffer, this.byteOffset, this.byteLength), 0), { uintView: t, dataView: i };
   }
@@ -6580,7 +6587,7 @@ class Wc extends Wr {
     return this.ranges.available(e, t);
   }
 }
-class Gc {
+class Vc {
   constructor() {
     te(this, "list", []);
   }
@@ -6588,7 +6595,7 @@ class Gc {
     return this.list.length;
   }
   add(e, t, i = 0) {
-    let o = e + t, n = this.list.filter((s) => pa(e, s.offset, o) || pa(e, s.end, o));
+    let o = e + t, n = this.list.filter((s) => da(e, s.offset, o) || da(e, s.end, o));
     if (n.length > 0) {
       e = Math.min(e, ...n.map((a) => a.offset)), o = Math.max(o, ...n.map((a) => a.end)), t = o - e;
       let s = n.shift();
@@ -6600,10 +6607,10 @@ class Gc {
     return this.list.some((o) => o.offset <= e && i <= o.end);
   }
 }
-function pa(r, e, t) {
+function da(r, e, t) {
   return r <= e && e <= t;
 }
-class Vc extends Wc {
+class Kc extends Gc {
   constructor(e, t) {
     super(0), te(this, "chunksRead", 0), this.input = e, this.options = t;
   }
@@ -6639,7 +6646,7 @@ class Vc extends Wc {
   close() {
   }
 }
-$n.set("blob", class extends Vc {
+$n.set("blob", class extends Kc {
   async readWhole() {
     this.chunked = !1;
     let r = await nn(this.input);
@@ -6653,14 +6660,14 @@ $n.set("blob", class extends Vc {
     return this.set(o, r, !0);
   }
 });
-const Kc = {
+const Xc = {
   strings: {
     generatingThumbnails: "Generating thumbnails..."
   }
-}, Xc = {
+}, Yc = {
   version: "4.1.1"
 };
-function Yc(r, e, t) {
+function Zc(r, e, t) {
   try {
     r.getContext("2d").getImageData(0, 0, 1, 1);
   } catch (i) {
@@ -6673,13 +6680,13 @@ function Yc(r, e, t) {
     if (i === null)
       throw new Error("cannot read image, probably an svg with external resources");
     return i;
-  }) : Promise.resolve().then(() => Ic(r.toDataURL(e, t), {})).then((i) => {
+  }) : Promise.resolve().then(() => Cc(r.toDataURL(e, t), {})).then((i) => {
     if (i === null)
       throw new Error("could not extract blob, probably an old browser");
     return i;
   });
 }
-function Zc(r, e) {
+function Jc(r, e) {
   let t = r.width, i = r.height;
   (e.deg === 90 || e.deg === 270) && (t = r.height, i = r.width);
   const o = document.createElement("canvas");
@@ -6687,7 +6694,7 @@ function Zc(r, e) {
   const n = o.getContext("2d");
   return n.translate(t / 2, i / 2), e.canvas && (n.rotate(e.rad), n.scale(e.scaleX, e.scaleY)), n.drawImage(r, -r.width / 2, -r.height / 2, r.width, r.height), o;
 }
-function Jc(r) {
+function Qc(r) {
   const e = r.width / r.height, t = 5e6, i = 4096;
   let o = Math.floor(Math.sqrt(t * e)), n = Math.floor(t / Math.sqrt(t * e));
   if (o > i && (o = i, n = Math.round(o / e)), n > i && (n = i, o = Math.round(e * n)), r.width > o) {
@@ -6696,29 +6703,29 @@ function Jc(r) {
   }
   return r;
 }
-const Qc = {
+const eh = {
   thumbnailWidth: null,
   thumbnailHeight: null,
   thumbnailType: "image/jpeg",
   waitForThumbnailsBeforeUpload: !1,
   lazy: !1
 };
-class Zl extends Rt {
+class Jl extends Rt {
   constructor(e, t) {
     if (super(e, {
-      ...Qc,
+      ...eh,
       ...t
     }), this.onFileAdded = (i) => {
-      !i.preview && i.data && ea(i.type) && !i.isRemote && this.addToQueue(i.id);
+      !i.preview && i.data && ta(i.type) && !i.isRemote && this.addToQueue(i.id);
     }, this.onCancelRequest = (i) => {
       const o = this.queue.indexOf(i.id);
       o !== -1 && this.queue.splice(o, 1);
     }, this.onFileRemoved = (i) => {
       const o = this.queue.indexOf(i.id);
-      o !== -1 && this.queue.splice(o, 1), i.preview && Qs(i.preview) && URL.revokeObjectURL(i.preview);
+      o !== -1 && this.queue.splice(o, 1), i.preview && ea(i.preview) && URL.revokeObjectURL(i.preview);
     }, this.onRestored = () => {
       this.uppy.getFiles().filter((o) => o.isRestored).forEach((o) => {
-        (!o.preview || Qs(o.preview)) && this.addToQueue(o.id);
+        (!o.preview || ea(o.preview)) && this.addToQueue(o.id);
       });
     }, this.onAllFilesRemoved = () => {
       this.queue = [];
@@ -6741,7 +6748,7 @@ class Zl extends Rt {
           o(), n();
         }) : (o(), n());
       });
-    }, this.type = "modifier", this.id = this.opts.id || "ThumbnailGenerator", this.title = "Thumbnail Generator", this.queue = [], this.queueProcessing = !1, this.defaultThumbnailDimension = 200, this.thumbnailType = this.opts.thumbnailType, this.defaultLocale = Kc, this.i18nInit(), this.opts.lazy && this.opts.waitForThumbnailsBeforeUpload)
+    }, this.type = "modifier", this.id = this.opts.id || "ThumbnailGenerator", this.title = "Thumbnail Generator", this.queue = [], this.queueProcessing = !1, this.defaultThumbnailDimension = 200, this.thumbnailType = this.opts.thumbnailType, this.defaultLocale = Xc, this.i18nInit(), this.opts.lazy && this.opts.waitForThumbnailsBeforeUpload)
       throw new Error("ThumbnailGenerator: The `lazy` and `waitForThumbnailsBeforeUpload` options are mutually exclusive. Please ensure at most one of them is set to `true`.");
   }
   createThumbnail(e, t, i) {
@@ -6752,11 +6759,11 @@ class Zl extends Rt {
       }), u.addEventListener("error", (p) => {
         URL.revokeObjectURL(o), l(p.error || new Error("Could not create thumbnail"));
       });
-    }), s = Hc(e.data).catch(() => 1);
+    }), s = Wc(e.data).catch(() => 1);
     return Promise.all([n, s]).then((a) => {
       let [l, u] = a;
-      const p = this.getProportionalDimensions(l, t, i, u.deg), d = Zc(l, u), h = this.resizeImage(d, p.width, p.height);
-      return Yc(h, this.thumbnailType, 80);
+      const p = this.getProportionalDimensions(l, t, i, u.deg), d = Jc(l, u), h = this.resizeImage(d, p.width, p.height);
+      return Zc(h, this.thumbnailType, 80);
     }).then((a) => URL.createObjectURL(a));
   }
   /**
@@ -6785,7 +6792,7 @@ class Zl extends Rt {
    */
   // eslint-disable-next-line class-methods-use-this
   resizeImage(e, t, i) {
-    let o = Jc(e), n = Math.ceil(Math.log2(o.width / t));
+    let o = Qc(e), n = Math.ceil(Math.log2(o.width / t));
     n < 1 && (n = 1);
     let s = t * 2 ** (n - 1), a = i * 2 ** (n - 1);
     const l = 2;
@@ -6815,7 +6822,7 @@ class Zl extends Rt {
     return this.queueProcessing = !1, this.uppy.log("[ThumbnailGenerator] Emptied thumbnail queue"), this.uppy.emit("thumbnail:all-generated"), Promise.resolve();
   }
   requestThumbnail(e) {
-    return ea(e.type) && !e.isRemote ? this.createThumbnail(e, this.opts.thumbnailWidth, this.opts.thumbnailHeight).then((t) => {
+    return ta(e.type) && !e.isRemote ? this.createThumbnail(e, this.opts.thumbnailWidth, this.opts.thumbnailHeight).then((t) => {
       this.setPreviewURL(e.id, t), this.uppy.log(`[ThumbnailGenerator] Generated thumbnail for ${e.id}`), this.uppy.emit("thumbnail:generated", this.uppy.getFile(e.id), t);
     }).catch((t) => {
       this.uppy.log(`[ThumbnailGenerator] Failed thumbnail for ${e.id}:`, "warning"), this.uppy.log(t, "warning"), this.uppy.emit("thumbnail:error", this.uppy.getFile(e.id), t);
@@ -6828,16 +6835,16 @@ class Zl extends Rt {
     this.uppy.off("file-removed", this.onFileRemoved), this.uppy.off("cancel-all", this.onAllFilesRemoved), this.opts.lazy ? (this.uppy.off("thumbnail:request", this.onFileAdded), this.uppy.off("thumbnail:cancel", this.onCancelRequest)) : (this.uppy.off("thumbnail:request", this.onFileAdded), this.uppy.off("file-added", this.onFileAdded), this.uppy.off("restored", this.onRestored)), this.opts.waitForThumbnailsBeforeUpload && this.uppy.removePreProcessor(this.waitUntilAllProcessed);
   }
 }
-Zl.VERSION = Xc.version;
-function da(r) {
+Jl.VERSION = Yc.version;
+function ca(r) {
   if (typeof r == "string") {
     const e = document.querySelectorAll(r);
     return e.length === 0 ? null : Array.from(e);
   }
-  return typeof r == "object" && Ul(r) ? [r] : null;
+  return typeof r == "object" && Rl(r) ? [r] : null;
 }
 const Mr = Array.from;
-function Jl(r, e, t, i) {
+function Ql(r, e, t, i) {
   let {
     onSuccess: o
   } = i;
@@ -6845,7 +6852,7 @@ function Jl(r, e, t, i) {
     (n) => {
       const s = [...e, ...n];
       n.length ? queueMicrotask(() => {
-        Jl(r, s, t, {
+        Ql(r, s, t, {
           onSuccess: o
         });
       }) : o(s);
@@ -6856,7 +6863,7 @@ function Jl(r, e, t, i) {
     }
   );
 }
-function Ql(r, e) {
+function eu(r, e) {
   return r == null ? r : {
     kind: (
       // eslint-disable-next-line no-nested-ternary
@@ -6869,15 +6876,15 @@ function Ql(r, e) {
     async *values() {
       const t = r.createReader();
       yield* await new Promise((o) => {
-        Jl(t, [], e, {
-          onSuccess: (n) => o(n.map((s) => Ql(s, e)))
+        Ql(t, [], e, {
+          onSuccess: (n) => o(n.map((s) => eu(s, e)))
         });
       });
     },
     isSameEntry: void 0
   };
 }
-function eu(r, e, t) {
+function tu(r, e, t) {
   try {
     return t === void 0 && (t = void 0), async function* () {
       const i = () => `${e}/${r.name}`;
@@ -6886,19 +6893,19 @@ function eu(r, e, t) {
         o != null ? (o.relativePath = e ? i() : null, yield o) : t != null && (yield t);
       } else if (r.kind === "directory")
         for await (const o of r.values())
-          yield* eu(o, e ? i() : r.name);
+          yield* tu(o, e ? i() : r.name);
       else t != null && (yield t);
     }();
   } catch (i) {
     return Promise.reject(i);
   }
 }
-async function* eh(r, e) {
+async function* th(r, e) {
   const t = await Promise.all(Array.from(r.items, async (i) => {
     var o;
     let n;
     const s = () => typeof i.getAsEntry == "function" ? i.getAsEntry() : i.webkitGetAsEntry();
-    return (o = n) != null || (n = Ql(s(), e)), {
+    return (o = n) != null || (n = eu(s(), e)), {
       fileSystemHandle: n,
       lastResortFile: i.getAsFile()
       // can be used as a fallback in case other methods fail
@@ -6910,40 +6917,40 @@ async function* eh(r, e) {
   } of t)
     if (o != null)
       try {
-        yield* eu(o, "", i);
+        yield* tu(o, "", i);
       } catch (n) {
         i != null ? yield i : e(n);
       }
     else i != null && (yield i);
 }
-function th(r) {
+function rh(r) {
   const e = Mr(r.files);
   return Promise.resolve(e);
 }
-async function rh(r, e) {
+async function ih(r, e) {
   var t;
   const i = (t = e == null ? void 0 : e.logDropError) != null ? t : Function.prototype;
   try {
     const o = [];
-    for await (const n of eh(r, i))
+    for await (const n of th(r, i))
       o.push(n);
     return o;
   } catch {
-    return th(r);
+    return rh(r);
   }
 }
-var Gr, de, To, ca, Vr = 0, tu = [], he = se, ha = he.__b, fa = he.__r, ya = he.diffed, ma = he.__c, ga = he.unmount, ba = he.__;
+var Gr, de, To, ha, Vr = 0, ru = [], he = se, fa = he.__b, ya = he.__r, ma = he.diffed, ga = he.__c, ba = he.unmount, va = he.__;
 function jn(r, e) {
   he.__h && he.__h(de, r, Vr || e), Vr = 0;
   var t = de.__H || (de.__H = { __: [], __h: [] });
   return r >= t.__.length && t.__.push({}), t.__[r];
 }
 function Ui(r) {
-  return Vr = 1, ih(iu, r);
+  return Vr = 1, oh(ou, r);
 }
-function ih(r, e, t) {
+function oh(r, e, t) {
   var i = jn(Gr++, 2);
-  if (i.t = r, !i.__c && (i.__ = [iu(void 0, e), function(a) {
+  if (i.t = r, !i.__c && (i.__ = [ou(void 0, e), function(a) {
     var l = i.__N ? i.__N[0] : i.__[0], u = i.t(l, a);
     l !== u && (i.__N = [u, i.__[1]], i.__c.setState({}));
   }], i.__c = de, !de.u)) {
@@ -6977,7 +6984,7 @@ function ih(r, e, t) {
 }
 function an(r, e) {
   var t = jn(Gr++, 3);
-  !he.__s && ru(t.__H, e) && (t.__ = r, t.i = e, de.__H.__h.push(t));
+  !he.__s && iu(t.__H, e) && (t.__ = r, t.i = e, de.__H.__h.push(t));
 }
 function xi(r) {
   return Vr = 5, qn(function() {
@@ -6986,34 +6993,34 @@ function xi(r) {
 }
 function qn(r, e) {
   var t = jn(Gr++, 7);
-  return ru(t.__H, e) && (t.__ = r(), t.__H = e, t.__h = r), t.__;
+  return iu(t.__H, e) && (t.__ = r(), t.__H = e, t.__h = r), t.__;
 }
-function oh(r, e) {
+function nh(r, e) {
   return Vr = 8, qn(function() {
     return r;
   }, e);
 }
-function nh() {
-  for (var r; r = tu.shift(); ) if (r.__P && r.__H) try {
+function sh() {
+  for (var r; r = ru.shift(); ) if (r.__P && r.__H) try {
     r.__H.__h.forEach(Si), r.__H.__h.forEach(ln), r.__H.__h = [];
   } catch (e) {
     r.__H.__h = [], he.__e(e, r.__v);
   }
 }
 he.__b = function(r) {
-  de = null, ha && ha(r);
+  de = null, fa && fa(r);
 }, he.__ = function(r, e) {
-  r && e.__k && e.__k.__m && (r.__m = e.__k.__m), ba && ba(r, e);
+  r && e.__k && e.__k.__m && (r.__m = e.__k.__m), va && va(r, e);
 }, he.__r = function(r) {
-  fa && fa(r), Gr = 0;
+  ya && ya(r), Gr = 0;
   var e = (de = r.__c).__H;
   e && (To === de ? (e.__h = [], de.__h = [], e.__.forEach(function(t) {
     t.__N && (t.__ = t.__N), t.i = t.__N = void 0;
   })) : (e.__h.forEach(Si), e.__h.forEach(ln), e.__h = [], Gr = 0)), To = de;
 }, he.diffed = function(r) {
-  ya && ya(r);
+  ma && ma(r);
   var e = r.__c;
-  e && e.__H && (e.__H.__h.length && (tu.push(e) !== 1 && ca === he.requestAnimationFrame || ((ca = he.requestAnimationFrame) || sh)(nh)), e.__H.__.forEach(function(t) {
+  e && e.__H && (e.__H.__h.length && (ru.push(e) !== 1 && ha === he.requestAnimationFrame || ((ha = he.requestAnimationFrame) || ah)(sh)), e.__H.__.forEach(function(t) {
     t.i && (t.__H = t.i), t.i = void 0;
   })), To = de = null;
 }, he.__c = function(r, e) {
@@ -7027,9 +7034,9 @@ he.__b = function(r) {
         o.__h && (o.__h = []);
       }), e = [], he.__e(i, t.__v);
     }
-  }), ma && ma(r, e);
+  }), ga && ga(r, e);
 }, he.unmount = function(r) {
-  ga && ga(r);
+  ba && ba(r);
   var e, t = r.__c;
   t && t.__H && (t.__H.__.forEach(function(i) {
     try {
@@ -7039,12 +7046,12 @@ he.__b = function(r) {
     }
   }), t.__H = void 0, e && he.__e(e, t.__v));
 };
-var va = typeof requestAnimationFrame == "function";
-function sh(r) {
+var wa = typeof requestAnimationFrame == "function";
+function ah(r) {
   var e, t = function() {
-    clearTimeout(i), va && cancelAnimationFrame(e), setTimeout(r);
+    clearTimeout(i), wa && cancelAnimationFrame(e), setTimeout(r);
   }, i = setTimeout(t, 100);
-  va && (e = requestAnimationFrame(t));
+  wa && (e = requestAnimationFrame(t));
 }
 function Si(r) {
   var e = de, t = r.__c;
@@ -7054,12 +7061,12 @@ function ln(r) {
   var e = de;
   r.__c = r.__(), de = e;
 }
-function ru(r, e) {
+function iu(r, e) {
   return !r || r.length !== e.length || e.some(function(t, i) {
     return t !== r[i];
   });
 }
-function iu(r, e) {
+function ou(r, e) {
   return typeof e == "function" ? e(r) : e;
 }
 function un() {
@@ -7071,7 +7078,7 @@ function un() {
     return r;
   }, un.apply(null, arguments);
 }
-const ah = {
+const lh = {
   position: "relative",
   // Disabled for our use case: the wrapper elements around FileList already deal with overflow,
   // and this additional property would hide things that we want to show.
@@ -7079,7 +7086,7 @@ const ah = {
   // overflow: 'hidden',
   width: "100%",
   minHeight: "100%"
-}, lh = {
+}, uh = {
   position: "absolute",
   top: 0,
   left: 0,
@@ -7091,7 +7098,7 @@ const ah = {
   width: "100%",
   overflow: "visible"
 };
-class uh extends at {
+class ph extends at {
   constructor(e) {
     super(e), this.handleScroll = () => {
       this.setState({
@@ -7141,10 +7148,10 @@ class uh extends at {
     let u = Math.floor(a / i), p = Math.floor(l / i);
     n && (u = Math.max(0, u - u % n), p += n);
     const d = u + p + 4, h = t.slice(u, d), x = {
-      ...ah,
+      ...lh,
       height: t.length * i
     }, D = {
-      ...lh,
+      ...uh,
       top: u * i
     };
     return (
@@ -7161,7 +7168,7 @@ class uh extends at {
     );
   }
 }
-function ph() {
+function dh() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7172,22 +7179,22 @@ function ph() {
     d: "M15 30c8.284 0 15-6.716 15-15 0-8.284-6.716-15-15-15C6.716 0 0 6.716 0 15c0 8.284 6.716 15 15 15zm4.258-12.676v6.846h-8.426v-6.846H5.204l9.82-12.364 9.82 12.364H19.26z"
   }));
 }
-var wa = Number.isNaN || function(e) {
+var _a = Number.isNaN || function(e) {
   return typeof e == "number" && e !== e;
 };
-function dh(r, e) {
-  return !!(r === e || wa(r) && wa(e));
-}
 function ch(r, e) {
+  return !!(r === e || _a(r) && _a(e));
+}
+function hh(r, e) {
   if (r.length !== e.length)
     return !1;
   for (var t = 0; t < r.length; t++)
-    if (!dh(r[t], e[t]))
+    if (!ch(r[t], e[t]))
       return !1;
   return !0;
 }
-function _a(r, e) {
-  e === void 0 && (e = ch);
+function xa(r, e) {
+  e === void 0 && (e = hh);
   var t = null;
   function i() {
     for (var o = [], n = 0; n < arguments.length; n++)
@@ -7205,38 +7212,38 @@ function _a(r, e) {
     t = null;
   }, i;
 }
-const ou = ['a[href]:not([tabindex^="-"]):not([inert]):not([aria-hidden])', 'area[href]:not([tabindex^="-"]):not([inert]):not([aria-hidden])', "input:not([disabled]):not([inert]):not([aria-hidden])", "select:not([disabled]):not([inert]):not([aria-hidden])", "textarea:not([disabled]):not([inert]):not([aria-hidden])", "button:not([disabled]):not([inert]):not([aria-hidden])", 'iframe:not([tabindex^="-"]):not([inert]):not([aria-hidden])', 'object:not([tabindex^="-"]):not([inert]):not([aria-hidden])', 'embed:not([tabindex^="-"]):not([inert]):not([aria-hidden])', '[contenteditable]:not([tabindex^="-"]):not([inert]):not([aria-hidden])', '[tabindex]:not([tabindex^="-"]):not([inert]):not([aria-hidden])'];
-function nu(r, e) {
+const nu = ['a[href]:not([tabindex^="-"]):not([inert]):not([aria-hidden])', 'area[href]:not([tabindex^="-"]):not([inert]):not([aria-hidden])', "input:not([disabled]):not([inert]):not([aria-hidden])", "select:not([disabled]):not([inert]):not([aria-hidden])", "textarea:not([disabled]):not([inert]):not([aria-hidden])", "button:not([disabled]):not([inert]):not([aria-hidden])", 'iframe:not([tabindex^="-"]):not([inert]):not([aria-hidden])', 'object:not([tabindex^="-"]):not([inert]):not([aria-hidden])', 'embed:not([tabindex^="-"]):not([inert]):not([aria-hidden])', '[contenteditable]:not([tabindex^="-"]):not([inert]):not([aria-hidden])', '[tabindex]:not([tabindex^="-"]):not([inert]):not([aria-hidden])'];
+function su(r, e) {
   if (e) {
     const t = r.querySelector(`[data-uppy-paneltype="${e}"]`);
     if (t) return t;
   }
   return r;
 }
-function xa(r, e) {
+function Sa(r, e) {
   const t = e[0];
   t && (t.focus(), r.preventDefault());
 }
-function hh(r, e) {
+function fh(r, e) {
   const t = e[e.length - 1];
   t && (t.focus(), r.preventDefault());
 }
-function fh(r) {
+function yh(r) {
   return r.contains(document.activeElement);
 }
-function su(r, e, t) {
-  const i = nu(t, e), o = Mr(i.querySelectorAll(ou)), n = o.indexOf(document.activeElement);
-  fh(i) ? r.shiftKey && n === 0 ? hh(r, o) : !r.shiftKey && n === o.length - 1 && xa(r, o) : xa(r, o);
+function au(r, e, t) {
+  const i = su(t, e), o = Mr(i.querySelectorAll(nu)), n = o.indexOf(document.activeElement);
+  yh(i) ? r.shiftKey && n === 0 ? fh(r, o) : !r.shiftKey && n === o.length - 1 && Sa(r, o) : Sa(r, o);
 }
-function yh(r, e, t) {
-  e === null || su(r, e, t);
+function mh(r, e, t) {
+  e === null || au(r, e, t);
 }
-var mh = wl();
-const gh = /* @__PURE__ */ zt(mh);
-function bh() {
+var gh = _l();
+const bh = /* @__PURE__ */ zt(gh);
+function vh() {
   let r = !1;
-  return gh((t, i) => {
-    const o = nu(t, i), n = o.contains(document.activeElement);
+  return bh((t, i) => {
+    const o = su(t, i), n = o.contains(document.activeElement);
     if (n && r) return;
     const s = o.querySelector("[data-uppy-super-focusable]");
     if (!(n && !s))
@@ -7245,18 +7252,18 @@ function bh() {
           preventScroll: !0
         }), r = !0;
       else {
-        const a = o.querySelector(ou);
+        const a = o.querySelector(nu);
         a == null || a.focus({
           preventScroll: !0
         }), r = !1;
       }
   }, 260);
 }
-function vh() {
+function wh() {
   const r = document.body;
   return !(!("draggable" in r) || !("ondragstart" in r && "ondrop" in r) || !("FormData" in window) || !("FileReader" in window));
 }
-function wh(r, e) {
+function _h(r, e) {
   if (r === e)
     return !0;
   if (!r || !e)
@@ -7271,7 +7278,7 @@ function wh(r, e) {
   }
   return !0;
 }
-function _h() {
+function xh() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7293,7 +7300,7 @@ function _h() {
     r: "1.5"
   })));
 }
-function xh() {
+function Sh() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7307,7 +7314,7 @@ function xh() {
     fillRule: "nonzero"
   }));
 }
-function Sh() {
+function Ph() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7321,7 +7328,7 @@ function Sh() {
     fillRule: "nonzero"
   }));
 }
-function Ph() {
+function kh() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7335,7 +7342,7 @@ function Ph() {
     fillRule: "nonzero"
   }));
 }
-function kh() {
+function Fh() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7348,7 +7355,7 @@ function kh() {
     fillRule: "nonzero"
   }));
 }
-function Fh() {
+function Dh() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7365,7 +7372,7 @@ function Fh() {
     d: "M15 4v3a1 1 0 0 0 1 1h3V7h-3V4h-1z"
   })));
 }
-function Dh() {
+function Th() {
   return c("svg", {
     "aria-hidden": "true",
     focusable: "false",
@@ -7382,31 +7389,31 @@ function Dh() {
 function Hn(r) {
   const e = {
     color: "#838999",
-    icon: Fh()
+    icon: Dh()
   };
   if (!r) return e;
   const t = r.split("/")[0], i = r.split("/")[1];
   return t === "text" ? {
     color: "#5a5e69",
-    icon: Dh()
+    icon: Th()
   } : t === "image" ? {
     color: "#686de0",
-    icon: _h()
+    icon: xh()
   } : t === "audio" ? {
     color: "#068dbb",
-    icon: xh()
+    icon: Sh()
   } : t === "video" ? {
     color: "#19af67",
-    icon: Sh()
+    icon: Ph()
   } : t === "application" && i === "pdf" ? {
     color: "#e25149",
-    icon: Ph()
+    icon: kh()
   } : t === "application" && ["zip", "x-7z-compressed", "x-zip-compressed", "x-rar-compressed", "x-tar", "x-gzip", "x-apple-diskimage"].indexOf(i) !== -1 ? {
     color: "#00C469",
-    icon: kh()
+    icon: Fh()
   } : e;
 }
-function au(r) {
+function lu(r) {
   const {
     file: e
   } = r;
@@ -7443,8 +7450,8 @@ function au(r) {
     fillRule: "evenodd"
   })));
 }
-const Th = (r, e) => (typeof e == "function" ? e() : e).filter((o) => o.id === r)[0].name;
-function lu(r) {
+const Ih = (r, e) => (typeof e == "function" ? e() : e).filter((o) => o.id === r)[0].name;
+function uu(r) {
   const {
     file: e,
     toggleFileCard: t,
@@ -7455,7 +7462,7 @@ function lu(r) {
   } = e;
   if (!(n != null && n.length))
     return null;
-  const s = n.map((a) => Th(a, o)).join(", ");
+  const s = n.map((a) => Ih(a, o)).join(", ");
   return c("div", {
     className: "uppy-Dashboard-Item-errorMessage"
   }, i("missingRequiredMetaFields", {
@@ -7467,7 +7474,7 @@ function lu(r) {
     onClick: () => t(!0, e.id)
   }, i("editFile")));
 }
-function Ih(r) {
+function Ch(r) {
   const {
     file: e,
     i18n: t,
@@ -7488,16 +7495,16 @@ function Ih(r) {
     "aria-label": e.meta.name
   }, c("span", {
     hidden: !0
-  }, e.meta.name)), c(au, {
+  }, e.meta.name)), c(lu, {
     file: e
-  }), c(lu, {
+  }), c(uu, {
     file: e,
     i18n: t,
     toggleFileCard: i,
     metaFields: o
   }));
 }
-function Ch(r) {
+function Bh(r) {
   if (!r.isUploaded) {
     if (r.error && !r.hideRetryButton) {
       r.uppy.retryUpload(r.file.id);
@@ -7506,7 +7513,7 @@ function Ch(r) {
     r.resumableUploads && !r.hidePauseResumeButton ? r.uppy.pauseResume(r.file.id) : r.individualCancellation && !r.hideCancelButton && r.uppy.removeFile(r.file.id);
   }
 }
-function Sa(r) {
+function Pa(r) {
   return r.isUploaded ? r.i18n("uploadComplete") : r.error ? r.i18n("retryUpload") : r.resumableUploads ? r.file.isPaused ? r.i18n("resumeUpload") : r.i18n("pauseUpload") : r.individualCancellation ? r.i18n("cancelUpload") : "";
 }
 function Io(r) {
@@ -7515,9 +7522,9 @@ function Io(r) {
   }, c("button", {
     className: "uppy-u-reset uppy-c-btn uppy-Dashboard-Item-progressIndicator",
     type: "button",
-    "aria-label": Sa(r),
-    title: Sa(r),
-    onClick: () => Ch(r)
+    "aria-label": Pa(r),
+    title: Pa(r),
+    onClick: () => Bh(r)
   }, r.children));
 }
 function fi(r) {
@@ -7557,7 +7564,7 @@ function Co(r) {
     "stroke-dashoffset": t - t / 100 * e
   }));
 }
-function Bh(r) {
+function Oh(r) {
   return !r.file.progress.uploadStarted || r.file.progress.percentage === void 0 ? null : r.isUploaded ? c("div", {
     className: "uppy-Dashboard-Item-progress"
   }, c("div", {
@@ -7631,14 +7638,14 @@ function Bh(r) {
   }))));
 }
 const Bo = "...";
-function uu(r, e) {
+function pu(r, e) {
   if (e === 0) return "";
   if (r.length <= e) return r;
   if (e <= Bo.length + 1) return `${r.slice(0, e - 1)}…`;
   const t = e - Bo.length, i = Math.ceil(t / 2), o = Math.floor(t / 2);
   return r.slice(0, i) + Bo + r.slice(-o);
 }
-const Oh = (r) => {
+const Ah = (r) => {
   const {
     author: e,
     name: t
@@ -7649,8 +7656,8 @@ const Oh = (r) => {
   return c("div", {
     className: "uppy-Dashboard-Item-name",
     title: t
-  }, uu(t, i()));
-}, Ah = (r) => {
+  }, pu(t, i()));
+}, Eh = (r) => {
   var e;
   const {
     author: t
@@ -7661,14 +7668,14 @@ const Oh = (r) => {
     href: `${t.url}?utm_source=Companion&utm_medium=referral`,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, uu(t.name, 13)), i ? c(Fragment, null, ` ${o} `, i, ` ${o} `) : null) : null;
-}, Eh = (r) => r.file.size && c("div", {
+  }, pu(t.name, 13)), i ? c(Fragment, null, ` ${o} `, i, ` ${o} `) : null) : null;
+}, Uh = (r) => r.file.size && c("div", {
   className: "uppy-Dashboard-Item-statusSize"
-}, Bt(r.file.size)), Uh = (r) => r.file.isGhost && c("span", null, " • ", c("button", {
+}, Bt(r.file.size)), Rh = (r) => r.file.isGhost && c("span", null, " • ", c("button", {
   className: "uppy-u-reset uppy-c-btn uppy-Dashboard-Item-reSelect",
   type: "button",
   onClick: () => r.toggleAddFilesPanel(!0)
-}, r.i18n("reSelect"))), Rh = (r) => {
+}, r.i18n("reSelect"))), Mh = (r) => {
   let {
     file: e,
     onClick: t
@@ -7682,7 +7689,7 @@ const Oh = (r) => {
     type: "button"
   }, "?") : null;
 };
-function Mh(r) {
+function $h(r) {
   const {
     file: e,
     i18n: t,
@@ -7698,32 +7705,32 @@ function Mh(r) {
     "data-uppy-file-source": e.source
   }, c("div", {
     className: "uppy-Dashboard-Item-fileName"
-  }, Oh({
+  }, Ah({
     file: e,
     isSingleFile: s,
     containerHeight: a,
     containerWidth: l
-  }), c(Rh, {
+  }), c(Mh, {
     file: e,
     onClick: () => alert(e.error)
   })), c("div", {
     className: "uppy-Dashboard-Item-status"
-  }, Ah({
-    file: e
-  }), Eh({
+  }, Eh({
     file: e
   }), Uh({
+    file: e
+  }), Rh({
     file: e,
     toggleAddFilesPanel: n,
     i18n: t
-  })), c(lu, {
+  })), c(uu, {
     file: e,
     i18n: t,
     toggleFileCard: i,
     metaFields: o
   }));
 }
-function $h(r, e) {
+function zh(r, e) {
   return e === void 0 && (e = "Copy the URL below"), new Promise((t) => {
     const i = document.createElement("textarea");
     i.setAttribute("style", {
@@ -7748,7 +7755,7 @@ function $h(r, e) {
     }
   });
 }
-function zh(r) {
+function Nh(r) {
   let {
     file: e,
     uploadInProgressOrComplete: t,
@@ -7790,7 +7797,7 @@ function zh(r) {
     d: "M6.793 2.5L9.5 5.207l.707-.707L7.5 1.793z"
   })))) : null;
 }
-function Nh(r) {
+function Lh(r) {
   let {
     i18n: e,
     onClick: t,
@@ -7820,14 +7827,14 @@ function Nh(r) {
     d: "M13 12.222l-.778.778L9 9.778 5.778 13 5 12.222 8.222 9 5 5.778 5.778 5 9 8.222 12.222 5l.778.778L9.778 9z"
   })));
 }
-function Lh(r) {
+function jh(r) {
   let {
     file: e,
     uppy: t,
     i18n: i
   } = r;
   const o = (n) => {
-    $h(e.uploadURL, i("copyLinkToClipboardFallback")).then(() => {
+    zh(e.uploadURL, i("copyLinkToClipboardFallback")).then(() => {
       t.log("Link copied to clipboard."), t.info(i("copyLinkToClipboardSuccess"), "info", 3e3);
     }).catch(t.log).then(() => n.target.focus({
       preventScroll: !0
@@ -7850,7 +7857,7 @@ function Lh(r) {
     d: "M7.94 7.703a2.613 2.613 0 0 1-.626 2.681l-.852.851a2.597 2.597 0 0 1-1.849.766A2.616 2.616 0 0 1 2.764 7.54l.852-.852a2.596 2.596 0 0 1 2.69-.625L5.267 7.099a1.44 1.44 0 0 0-.833.407l-.852.851a1.458 1.458 0 0 0 1.03 2.486c.39 0 .755-.152 1.03-.426l.852-.852c.231-.231.363-.522.406-.824l1.04-1.038zm4.295-5.937A2.596 2.596 0 0 0 10.387 1c-.698 0-1.355.272-1.849.766l-.852.851a2.614 2.614 0 0 0-.624 2.688l1.036-1.036c.041-.304.173-.6.407-.833l.852-.852c.275-.275.64-.426 1.03-.426a1.458 1.458 0 0 1 1.03 2.486l-.852.851a1.442 1.442 0 0 1-.824.406l-1.04 1.04a2.596 2.596 0 0 0 2.683-.628l.851-.85a2.616 2.616 0 0 0 0-3.697zm-6.88 6.883a.577.577 0 0 0 .82 0l3.474-3.474a.579.579 0 1 0-.819-.82L5.355 7.83a.579.579 0 0 0 0 .819z"
   })));
 }
-function jh(r) {
+function qh(r) {
   const {
     uppy: e,
     file: t,
@@ -7865,7 +7872,7 @@ function jh(r) {
   } = r;
   return c("div", {
     className: "uppy-Dashboard-Item-actionWrapper"
-  }, c(zh, {
+  }, c(Nh, {
     i18n: l,
     file: t,
     uploadInProgressOrComplete: i,
@@ -7874,17 +7881,17 @@ function jh(r) {
     onClick: () => {
       n && n.length > 0 ? u(!0, t.id) : p(t);
     }
-  }), s && t.uploadURL ? c(Lh, {
+  }), s && t.uploadURL ? c(jh, {
     file: t,
     uppy: e,
     i18n: l
-  }) : null, a ? c(Nh, {
+  }) : null, a ? c(Lh, {
     i18n: l,
     file: t,
     onClick: () => e.removeFile(t.id)
   }) : null);
 }
-class qh extends at {
+class Hh extends at {
   componentDidMount() {
     const {
       file: e
@@ -7892,7 +7899,7 @@ class qh extends at {
     e.preview || this.props.handleRequestThumbnail(e);
   }
   shouldComponentUpdate(e) {
-    return !wh(this.props, e);
+    return !_h(this.props, e);
   }
   // VirtualList mounts FileItems again and they emit `thumbnail:request`
   // Otherwise thumbnails are broken or missing after Golden Retriever restores files
@@ -7932,13 +7939,13 @@ class qh extends at {
       role: this.props.role
     }, c("div", {
       className: "uppy-Dashboard-Item-preview"
-    }, c(Ih, {
+    }, c(Ch, {
       file: e,
       showLinkToFileUploadResult: this.props.showLinkToFileUploadResult,
       i18n: this.props.i18n,
       toggleFileCard: this.props.toggleFileCard,
       metaFields: this.props.metaFields
-    }), c(Bh, {
+    }), c(Oh, {
       uppy: this.props.uppy,
       file: e,
       error: s,
@@ -7952,7 +7959,7 @@ class qh extends at {
       i18n: this.props.i18n
     })), c("div", {
       className: "uppy-Dashboard-Item-fileInfoAndButtons"
-    }, c(Mh, {
+    }, c($h, {
       file: e,
       containerWidth: this.props.containerWidth,
       containerHeight: this.props.containerHeight,
@@ -7961,7 +7968,7 @@ class qh extends at {
       toggleFileCard: this.props.toggleFileCard,
       metaFields: this.props.metaFields,
       isSingleFile: this.props.isSingleFile
-    }), c(jh, {
+    }), c(qh, {
       file: e,
       metaFields: this.props.metaFields,
       showLinkToFileUploadResult: this.props.showLinkToFileUploadResult,
@@ -7975,14 +7982,14 @@ class qh extends at {
     })));
   }
 }
-function Hh(r, e) {
+function Wh(r, e) {
   const t = [];
   let i = [];
   return r.forEach((o) => {
     i.length < e ? i.push(o) : (t.push(i), i = [o]);
   }), i.length && t.push(i), t;
 }
-function Wh(r) {
+function Gh(r) {
   let {
     id: e,
     i18n: t,
@@ -8013,12 +8020,12 @@ function Wh(r) {
     71
   ) : 200, L = qn(() => {
     const J = (C, ie) => Number(o[ie].isGhost) - Number(o[C].isGhost), re = Object.keys(o);
-    return _ && re.sort(J), Hh(re, m);
+    return _ && re.sort(J), Wh(re, m);
   }, [o, m, _]), ee = (J) => c("div", {
     class: "uppy-Dashboard-filesInner",
     role: "presentation",
     key: J[0]
-  }, J.map((re) => c(qh, {
+  }, J.map((re) => c(Hh, {
     key: re,
     uppy: i,
     id: e,
@@ -8046,7 +8053,7 @@ function Wh(r) {
   })));
   return h ? c("div", {
     class: "uppy-Dashboard-files"
-  }, ee(L[0])) : c(uh, {
+  }, ee(L[0])) : c(ph, {
     class: "uppy-Dashboard-files",
     role: "list",
     data: L,
@@ -8054,7 +8061,7 @@ function Wh(r) {
     rowHeight: U
   });
 }
-class pu extends at {
+class du extends at {
   constructor() {
     super(...arguments), this.fileInput = null, this.folderInput = null, this.mobilePhotoFileInput = null, this.mobileVideoFileInput = null, this.triggerFileInputClick = () => {
       var e;
@@ -8332,7 +8339,7 @@ class pu extends at {
     }, this.props.note), this.props.proudlyDisplayPoweredByUppy && this.renderPoweredByUppy()));
   }
 }
-const Gh = (r) => c("div", {
+const Vh = (r) => c("div", {
   className: He("uppy-Dashboard-AddFilesPanel", r.className),
   "data-uppy-panelType": "AddFiles",
   "aria-hidden": !r.showAddFilesPanel
@@ -8346,7 +8353,7 @@ const Gh = (r) => c("div", {
   className: "uppy-DashboardContent-back",
   type: "button",
   onClick: () => r.toggleAddFilesPanel(!1)
-}, r.i18n("back"))), c(pu, r));
+}, r.i18n("back"))), c(du, r));
 function yt(r) {
   const {
     tagName: e
@@ -8357,7 +8364,7 @@ function yt(r) {
   }
   r.preventDefault(), r.stopPropagation();
 }
-function Vh(r) {
+function Kh(r) {
   let {
     activePickerPanel: e,
     className: t,
@@ -8393,7 +8400,7 @@ function Vh(r) {
     className: "uppy-DashboardContent-panelBody"
   }, s.getPlugin(e.id).render(n, a.current)));
 }
-function Kh(r) {
+function Xh(r) {
   const e = r.files[r.fileCardFor], t = () => {
     r.uppy.emit("file-editor:cancel", e), r.closeFileEditor();
   };
@@ -8433,7 +8440,7 @@ const Ge = {
   STATE_COMPLETE: "complete",
   STATE_PAUSED: "paused"
 };
-function Xh(r, e, t, i) {
+function Yh(r, e, t, i) {
   if (i === void 0 && (i = {}), r)
     return Ge.STATE_ERROR;
   if (e)
@@ -8452,7 +8459,7 @@ function Xh(r, e, t, i) {
   }
   return o;
 }
-function Yh(r) {
+function Zh(r) {
   let {
     files: e,
     i18n: t,
@@ -8463,7 +8470,7 @@ function Yh(r) {
     newFiles: a,
     processingFiles: l
   } = r;
-  switch (Xh(o, i, n, e)) {
+  switch (Yh(o, i, n, e)) {
     case "uploading":
       return t("uploadingXFiles", {
         smart_count: s.length
@@ -8485,7 +8492,7 @@ function Yh(r) {
       return t("error");
   }
 }
-function Zh(r) {
+function Jh(r) {
   const {
     i18n: e,
     isAllComplete: t,
@@ -8507,7 +8514,7 @@ function Zh(r) {
     className: "uppy-DashboardContent-title",
     role: "heading",
     "aria-level": "1"
-  }, c(Yh, r)), a ? c("button", {
+  }, c(Zh, r)), a ? c("button", {
     className: "uppy-DashboardContent-addMore",
     type: "button",
     "aria-label": e("addMoreFiles"),
@@ -8526,7 +8533,7 @@ function Zh(r) {
     className: "uppy-DashboardContent-addMoreCaption"
   }, e("addMore"))) : c("div", null));
 }
-function Jh(r) {
+function Qh(r) {
   const {
     computedMetaFields: e,
     requiredMetaFields: t,
@@ -8563,7 +8570,7 @@ function Jh(r) {
     }));
   });
 }
-function Qh(r) {
+function ef(r) {
   var e;
   const {
     files: t,
@@ -8582,7 +8589,7 @@ function Qh(r) {
     var L;
     T[U.id] = (L = D.meta[U.id]) != null ? L : "";
   });
-  const [m, w] = Ui(T), S = oh((U) => {
+  const [m, w] = Ui(T), S = nh((U) => {
     U.preventDefault(), n(m, i);
   }, [n, m, i]), P = (U, L) => {
     w({
@@ -8627,7 +8634,7 @@ function Qh(r) {
     style: {
       backgroundColor: Hn(D.type).color
     }
-  }, c(au, {
+  }, c(lu, {
     file: D
   }), _ && c("button", {
     type: "button",
@@ -8637,7 +8644,7 @@ function Qh(r) {
     }
   }, u("editImage"))), c("div", {
     className: "uppy-Dashboard-FileCard-info"
-  }, c(Jh, {
+  }, c(Qh, {
     computedMetaFields: O,
     requiredMetaFields: a,
     updateMeta: P,
@@ -8656,7 +8663,7 @@ function Qh(r) {
     form: E.id
   }, u("cancel")))));
 }
-const qt = "uppy-transition-slideDownUp", Pa = 250;
+const qt = "uppy-transition-slideDownUp", ka = 250;
 function yi(r) {
   let {
     children: e
@@ -8665,13 +8672,13 @@ function yi(r) {
     n(`${qt}-enter`), cancelAnimationFrame(l.current), clearTimeout(a.current), a.current = void 0, l.current = requestAnimationFrame(() => {
       n(`${qt}-enter ${qt}-enter-active`), s.current = setTimeout(() => {
         n("");
-      }, Pa);
+      }, ka);
     });
   }, p = () => {
     n(`${qt}-leave`), cancelAnimationFrame(l.current), clearTimeout(s.current), s.current = void 0, l.current = requestAnimationFrame(() => {
       n(`${qt}-leave ${qt}-leave-active`), a.current = setTimeout(() => {
         i(null), n("");
-      }, Pa);
+      }, ka);
     });
   };
   return an(() => {
@@ -8679,7 +8686,7 @@ function yi(r) {
     t !== d && (d && !t ? u() : t && !d && !a.current && p(), i(d));
   }, [e, t]), an(() => () => {
     clearTimeout(s.current), clearTimeout(a.current), cancelAnimationFrame(l.current);
-  }, []), t ? El(t, {
+  }, []), t ? Ul(t, {
     className: He(o, t.props.className)
   }) : null;
 }
@@ -8692,9 +8699,9 @@ function Xt() {
     return r;
   }, Xt.apply(null, arguments);
 }
-const ka = 900, Fa = 700, Oo = 576, Da = 330;
-function ef(r) {
-  const e = r.totalFileCount === 0, t = r.totalFileCount === 1, i = r.containerWidth > Oo, o = r.containerHeight > Da, n = He({
+const Fa = 900, Da = 700, Oo = 576, Ta = 330;
+function tf(r) {
+  const e = r.totalFileCount === 0, t = r.totalFileCount === 1, i = r.containerWidth > Oo, o = r.containerHeight > Ta, n = He({
     "uppy-Dashboard": !0,
     "uppy-Dashboard--isDisabled": r.disabled,
     "uppy-Dashboard--animateOpenClose": r.animateOpenClose,
@@ -8702,9 +8709,9 @@ function ef(r) {
     "uppy-Dashboard--isDraggingOver": r.isDraggingOver,
     "uppy-Dashboard--modal": !r.inline,
     "uppy-size--md": r.containerWidth > Oo,
-    "uppy-size--lg": r.containerWidth > Fa,
-    "uppy-size--xl": r.containerWidth > ka,
-    "uppy-size--height-md": r.containerHeight > Da,
+    "uppy-size--lg": r.containerWidth > Da,
+    "uppy-size--xl": r.containerWidth > Fa,
+    "uppy-size--height-md": r.containerHeight > Ta,
     // We might want to enable this in the future
     // 'uppy-size--height-lg': props.containerHeight > HEIGHT_LG,
     // 'uppy-size--height-xl': props.containerHeight > HEIGHT_XL,
@@ -8714,7 +8721,7 @@ function ef(r) {
     "uppy-Dashboard--singleFile": r.singleFileFullScreen && t && o
   });
   let s = 1;
-  r.containerWidth > ka ? s = 5 : r.containerWidth > Fa ? s = 4 : r.containerWidth > Oo && (s = 3);
+  r.containerWidth > Fa ? s = 5 : r.containerWidth > Da ? s = 4 : r.containerWidth > Oo && (s = 3);
   const a = r.showSelectedFiles && !e, l = r.recoveredState ? Object.keys(r.recoveredState.files).length : null, u = r.files ? Object.keys(r.files).filter((h) => r.files[h].isGhost).length : 0, p = () => u > 0 ? r.i18n("recoveredXFiles", {
     smart_count: u
   }) : r.i18n("recoveredAllFiles");
@@ -8722,7 +8729,7 @@ function ef(r) {
     className: n,
     "data-uppy-theme": r.theme,
     "data-uppy-num-acquirers": r.acquirers.length,
-    "data-uppy-drag-drop-supported": !r.disableLocalFiles && vh(),
+    "data-uppy-drag-drop-supported": !r.disableLocalFiles && wh(),
     "aria-hidden": r.inline ? "false" : r.isHidden,
     "aria-disabled": r.disabled,
     "aria-label": r.inline ? r.i18n("dashboardTitle") : r.i18n("dashboardWindowTitle"),
@@ -8755,7 +8762,7 @@ function ef(r) {
     className: "uppy-Dashboard-innerWrap"
   }, c("div", {
     className: "uppy-Dashboard-dropFilesHereHint"
-  }, r.i18n("dropHint")), a && c(Zh, r), l && c("div", {
+  }, r.i18n("dropHint")), a && c(Jh, r), l && c("div", {
     className: "uppy-Dashboard-serviceMsg"
   }, c("svg", {
     className: "uppy-Dashboard-serviceMsg-icon",
@@ -8783,7 +8790,7 @@ function ef(r) {
     className: "uppy-Dashboard-serviceMsg-title"
   }, r.i18n("sessionRestored")), c("div", {
     className: "uppy-Dashboard-serviceMsg-text"
-  }, p())), a ? c(Wh, {
+  }, p())), a ? c(Gh, {
     id: r.id,
     i18n: r.i18n,
     uppy: r.uppy,
@@ -8807,7 +8814,7 @@ function ef(r) {
     itemsPerRow: s,
     containerWidth: r.containerWidth,
     containerHeight: r.containerHeight
-  }) : c(pu, {
+  }) : c(du, {
     i18n: r.i18n,
     i18nArray: r.i18nArray,
     acquirers: r.acquirers,
@@ -8823,21 +8830,21 @@ function ef(r) {
     fileManagerSelectionType: r.fileManagerSelectionType,
     note: r.note,
     proudlyDisplayPoweredByUppy: r.proudlyDisplayPoweredByUppy
-  }), c(yi, null, r.showAddFilesPanel ? c(Gh, Xt({
+  }), c(yi, null, r.showAddFilesPanel ? c(Vh, Xt({
     key: "AddFiles"
   }, r, {
     isSizeMD: i
-  })) : null), c(yi, null, r.fileCardFor ? c(Qh, Xt({
+  })) : null), c(yi, null, r.fileCardFor ? c(ef, Xt({
     key: "FileCard"
-  }, r)) : null), c(yi, null, r.activePickerPanel ? c(Vh, Xt({
+  }, r)) : null), c(yi, null, r.activePickerPanel ? c(Kh, Xt({
     key: "Picker"
-  }, r)) : null), c(yi, null, r.showFileEditor ? c(Kh, Xt({
+  }, r)) : null), c(yi, null, r.showFileEditor ? c(Xh, Xt({
     key: "Editor"
   }, r)) : null), c("div", {
     className: "uppy-Dashboard-progressindicators"
   }, r.progressindicators.map((h) => r.uppy.getPlugin(h.id).render(r.state))))));
 }
-const tf = {
+const rf = {
   strings: {
     // When `inline: false`, used as the screen reader label for the button that closes the modal.
     closeModal: "Close Modal",
@@ -8934,26 +8941,26 @@ function Q(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var rf = 0;
+var of = 0;
 function xe(r) {
-  return "__private_" + rf++ + "_" + r;
+  return "__private_" + of++ + "_" + r;
 }
-const of = {
+const nf = {
   version: "4.3.3"
-}, Ao = _a.default || _a, Ta = 9, nf = 27;
-function Ia() {
+}, Ao = xa.default || xa, Ia = 9, sf = 27;
+function Ca() {
   const r = {};
   return r.promise = new Promise((e, t) => {
     r.resolve = e, r.reject = t;
   }), r;
 }
-const sf = {
+const af = {
   target: "body",
   metaFields: [],
   thumbnailWidth: 280,
   thumbnailType: "image/jpeg",
   waitForThumbnailsBeforeUpload: !1,
-  defaultPickerIcon: ph,
+  defaultPickerIcon: dh,
   showLinkToFileUploadResult: !1,
   showProgressDetails: !1,
   hideUploadButton: !1,
@@ -9002,31 +9009,31 @@ const sf = {
   height: 550
 };
 var wt = /* @__PURE__ */ xe("disabledNodes"), Ye = /* @__PURE__ */ xe("generateLargeThumbnailIfSingleFile"), xr = /* @__PURE__ */ xe("openFileEditorWhenFilesAdded"), _t = /* @__PURE__ */ xe("attachRenderFunctionToTarget"), Eo = /* @__PURE__ */ xe("isTargetSupported"), Uo = /* @__PURE__ */ xe("getAcquirers"), Ro = /* @__PURE__ */ xe("getProgressIndicators"), Ze = /* @__PURE__ */ xe("getEditors"), Mo = /* @__PURE__ */ xe("addSpecifiedPluginsFromOptions"), $o = /* @__PURE__ */ xe("autoDiscoverPlugins"), xt = /* @__PURE__ */ xe("addSupportedPluginIfNoTarget"), Sr = /* @__PURE__ */ xe("getStatusBarOpts"), Pr = /* @__PURE__ */ xe("getThumbnailGeneratorOpts"), zo = /* @__PURE__ */ xe("getInformerOpts"), kr = /* @__PURE__ */ xe("getStatusBarId"), Fr = /* @__PURE__ */ xe("getThumbnailGeneratorId"), No = /* @__PURE__ */ xe("getInformerId");
-class du extends Rt {
+class cu extends Rt {
   // Timeouts
   constructor(e, t) {
     var i, o, n;
     const s = (i = t == null ? void 0 : t.autoOpen) != null ? i : null;
     super(e, {
-      ...sf,
+      ...af,
       ...t,
       autoOpen: s
     }), Object.defineProperty(this, No, {
-      value: cf
+      value: hf
     }), Object.defineProperty(this, Fr, {
-      value: df
+      value: cf
     }), Object.defineProperty(this, kr, {
-      value: pf
+      value: df
     }), Object.defineProperty(this, zo, {
-      value: uf
+      value: pf
     }), Object.defineProperty(this, Pr, {
-      value: lf
+      value: uf
     }), Object.defineProperty(this, Sr, {
-      value: af
+      value: lf
     }), Object.defineProperty(this, wt, {
       writable: !0,
       value: void 0
-    }), this.modalName = `uppy-Dashboard-${Bn()}`, this.superFocus = bh(), this.ifFocusedOnUppyRecently = !1, this.removeTarget = (a) => {
+    }), this.modalName = `uppy-Dashboard-${Bn()}`, this.superFocus = vh(), this.ifFocusedOnUppyRecently = !1, this.removeTarget = (a) => {
       const u = this.getPluginState().targets.filter((p) => p.id !== a.id);
       this.setPluginState({
         targets: u
@@ -9100,7 +9107,7 @@ class du extends Rt {
       const {
         promise: a,
         resolve: l
-      } = Ia();
+      } = Ca();
       if (this.savedScrollPosition = window.pageYOffset, this.savedActiveElement = document.activeElement, this.opts.disablePageScrollWhenModalOpen && document.body.classList.add("uppy-Dashboard-isFixed"), this.opts.animateOpenClose && this.getPluginState().isClosing) {
         const u = () => {
           this.setPluginState({
@@ -9124,7 +9131,7 @@ class du extends Rt {
       const {
         promise: h,
         resolve: x
-      } = Ia();
+      } = Ca();
       if (this.opts.disablePageScrollWhenModalOpen && document.body.classList.remove("uppy-Dashboard-isFixed"), this.opts.animateOpenClose) {
         this.setPluginState({
           isClosing: !0
@@ -9229,7 +9236,7 @@ class du extends Rt {
         manualClose: !1
       }), !this.isModalOpen() && (l = a.state) != null && l[this.modalName] && history.back();
     }, this.handleKeyDownInModal = (a) => {
-      a.keyCode === nf && this.requestCloseModal(), a.keyCode === Ta && su(a, this.getPluginState().activeOverlayType, this.el);
+      a.keyCode === sf && this.requestCloseModal(), a.keyCode === Ia && au(a, this.getPluginState().activeOverlayType, this.el);
     }, this.handleClickOutside = () => {
       this.opts.closeModalOnClickOutside && this.requestCloseModal();
     }, this.handlePaste = (a) => {
@@ -9279,7 +9286,7 @@ class du extends Rt {
         this.uppy.log(d, "error"), l || (this.uppy.info(d.message, "error"), l = !0);
       };
       this.uppy.log("[Dashboard] Processing dropped files");
-      const p = await rh(a.dataTransfer, {
+      const p = await ih(a.dataTransfer, {
         logDropError: u
       });
       p.length > 0 && (this.uppy.log("[Dashboard] Files dropped"), this.addFiles(p)), this.opts.onDrop(a);
@@ -9288,7 +9295,7 @@ class du extends Rt {
     }, this.handleCancelThumbnail = (a) => {
       this.opts.waitForThumbnailsBeforeUpload || this.uppy.emit("thumbnail:cancel", a);
     }, this.handleKeyDownInInline = (a) => {
-      a.keyCode === Ta && yh(a, this.getPluginState().activeOverlayType, this.el);
+      a.keyCode === Ia && mh(a, this.getPluginState().activeOverlayType, this.el);
     }, this.handlePasteOnBody = (a) => {
       this.el.contains(document.activeElement) && this.handlePaste(a);
     }, this.handleComplete = (a) => {
@@ -9330,12 +9337,12 @@ class du extends Rt {
       }
     }), this.initEvents = () => {
       if (this.opts.trigger && !this.opts.inline) {
-        const a = da(this.opts.trigger);
+        const a = ca(this.opts.trigger);
         a ? a.forEach((l) => l.addEventListener("click", this.openModal)) : this.uppy.log("Dashboard modal trigger not found. Make sure `trigger` is set in Dashboard options, unless you are planning to call `dashboard.openModal()` method yourself", "warning");
       }
       this.startListeningToResize(), document.addEventListener("paste", this.handlePasteOnBody), this.uppy.on("plugin-added", Q(this, xt)[xt]), this.uppy.on("plugin-remove", this.removeTarget), this.uppy.on("file-added", this.hideAllPanels), this.uppy.on("dashboard:modal-closed", this.hideAllPanels), this.uppy.on("complete", this.handleComplete), this.uppy.on("files-added", Q(this, Ye)[Ye]), this.uppy.on("file-removed", Q(this, Ye)[Ye]), document.addEventListener("focus", this.recordIfFocusedOnUppyRecently, !0), document.addEventListener("click", this.recordIfFocusedOnUppyRecently, !0), this.opts.inline && this.el.addEventListener("keydown", this.handleKeyDownInInline), this.opts.autoOpen && this.uppy.on("files-added", Q(this, xr)[xr]);
     }, this.removeEvents = () => {
-      const a = da(this.opts.trigger);
+      const a = ca(this.opts.trigger);
       !this.opts.inline && a && a.forEach((l) => l.removeEventListener("click", this.openModal)), this.stopListeningToResize(), document.removeEventListener("paste", this.handlePasteOnBody), window.removeEventListener("popstate", this.handlePopState, !1), this.uppy.off("plugin-added", Q(this, xt)[xt]), this.uppy.off("plugin-remove", this.removeTarget), this.uppy.off("file-added", this.hideAllPanels), this.uppy.off("dashboard:modal-closed", this.hideAllPanels), this.uppy.off("complete", this.handleComplete), this.uppy.off("files-added", Q(this, Ye)[Ye]), this.uppy.off("file-removed", Q(this, Ye)[Ye]), document.removeEventListener("focus", this.recordIfFocusedOnUppyRecently), document.removeEventListener("click", this.recordIfFocusedOnUppyRecently), this.opts.inline && this.el.removeEventListener("keydown", this.handleKeyDownInInline), this.opts.autoOpen && this.uppy.off("files-added", Q(this, xr)[xr]);
     }, this.superFocusOnEachUpdate = () => {
       const a = this.el.contains(document.activeElement), l = document.activeElement === document.body || document.activeElement === null, u = this.uppy.getState().info.length === 0, p = !this.opts.inline;
@@ -9404,7 +9411,7 @@ class du extends Rt {
         isAllPaused: P
       } = this.uppy.getObjectOfFilesPerState(), A = Q(this, Uo)[Uo](l.targets), E = Q(this, Ro)[Ro](l.targets), U = Q(this, Ze)[Ze](l.targets);
       let L;
-      return this.opts.theme === "auto" ? L = p.darkMode ? "dark" : "light" : L = this.opts.theme, ["files", "folders", "both"].indexOf(this.opts.fileManagerSelectionType) < 0 && (this.opts.fileManagerSelectionType = "files", console.warn(`Unsupported option for "fileManagerSelectionType". Using default of "${this.opts.fileManagerSelectionType}".`)), ef({
+      return this.opts.theme === "auto" ? L = p.darkMode ? "dark" : "light" : L = this.opts.theme, ["files", "folders", "both"].indexOf(this.opts.fileManagerSelectionType) < 0 && (this.opts.fileManagerSelectionType = "files", console.warn(`Unsupported option for "fileManagerSelectionType". Using default of "${this.opts.fileManagerSelectionType}".`)), tf({
         state: a,
         isHidden: l.isHidden,
         files: u,
@@ -9541,15 +9548,15 @@ class du extends Rt {
       const {
         target: d
       } = this.opts;
-      d && this.mount(d, this), this.opts.disableStatusBar || this.uppy.use(Nl, {
+      d && this.mount(d, this), this.opts.disableStatusBar || this.uppy.use(Ll, {
         id: Q(this, kr)[kr](),
         target: this,
         ...Q(this, Sr)[Sr]()
-      }), this.opts.disableInformer || this.uppy.use(jl, {
+      }), this.opts.disableInformer || this.uppy.use(ql, {
         id: Q(this, No)[No](),
         target: this,
         ...Q(this, zo)[zo]()
-      }), this.opts.disableThumbnailGenerator || this.uppy.use(Zl, {
+      }), this.opts.disableThumbnailGenerator || this.uppy.use(Jl, {
         id: Q(this, Fr)[Fr](),
         ...Q(this, Pr)[Pr]()
       }), this.darkModeMediaQuery = typeof window < "u" && window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
@@ -9583,7 +9590,7 @@ class du extends Rt {
         (l = this.darkModeMediaQuery) == null || l.removeListener(this.handleSystemDarkModeChange);
       }
       this.opts.disablePageScrollWhenModalOpen && document.body.classList.remove("uppy-Dashboard-isFixed"), this.unmount(), this.removeEvents();
-    }, this.id = this.opts.id || "Dashboard", this.title = "Dashboard", this.type = "orchestrator", this.defaultLocale = tf, this.opts.doneButtonHandler === void 0 && (this.opts.doneButtonHandler = () => {
+    }, this.id = this.opts.id || "Dashboard", this.title = "Dashboard", this.type = "orchestrator", this.defaultLocale = rf, this.opts.doneButtonHandler === void 0 && (this.opts.doneButtonHandler = () => {
       this.uppy.clear(), this.requestCloseModal();
     }), (n = (o = this.opts).onRequestCloseModal) != null || (o.onRequestCloseModal = () => this.closeModal()), this.i18nInit();
   }
@@ -9592,7 +9599,7 @@ class du extends Rt {
     super.setOptions(e), (t = this.uppy.getPlugin(Q(this, kr)[kr]())) == null || t.setOptions(Q(this, Sr)[Sr]()), (i = this.uppy.getPlugin(Q(this, Fr)[Fr]())) == null || i.setOptions(Q(this, Pr)[Pr]());
   }
 }
-function af() {
+function lf() {
   const {
     hideUploadButton: r,
     hideRetryButton: e,
@@ -9614,7 +9621,7 @@ function af() {
     doneButtonHandler: a
   };
 }
-function lf() {
+function uf() {
   const {
     thumbnailWidth: r,
     thumbnailHeight: e,
@@ -9630,21 +9637,21 @@ function lf() {
     lazy: !i
   };
 }
-function uf() {
+function pf() {
   return {
     // currently no options
   };
 }
-function pf() {
+function df() {
   return `${this.id}:StatusBar`;
 }
-function df() {
+function cf() {
   return `${this.id}:ThumbnailGenerator`;
 }
-function cf() {
+function hf() {
   return `${this.id}:Informer`;
 }
-du.VERSION = of.version;
+cu.VERSION = nf.version;
 function pn(r) {
   "@babel/helpers - typeof";
   return pn = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(e) {
@@ -9653,29 +9660,29 @@ function pn(r) {
     return e && typeof Symbol == "function" && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
   }, pn(r);
 }
-function hf(r, e, t) {
+function ff(r, e, t) {
   return Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function ff(r, e) {
+function yf(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function yf(r, e, t) {
-  return e = Xr(e), mf(r, Wn() ? Reflect.construct(e, t || [], Xr(r).constructor) : e.apply(r, t));
+function mf(r, e, t) {
+  return e = Xr(e), gf(r, Wn() ? Reflect.construct(e, t || [], Xr(r).constructor) : e.apply(r, t));
 }
-function mf(r, e) {
+function gf(r, e) {
   if (e && (pn(e) === "object" || typeof e == "function"))
     return e;
   if (e !== void 0)
     throw new TypeError("Derived constructors may only return object or undefined");
-  return gf(r);
+  return bf(r);
 }
-function gf(r) {
+function bf(r) {
   if (r === void 0)
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   return r;
 }
-function bf(r, e) {
+function vf(r, e) {
   if (typeof e != "function" && e !== null)
     throw new TypeError("Super expression must either be null or a function");
   r.prototype = Object.create(e && e.prototype, { constructor: { value: r, writable: !0, configurable: !0 } }), Object.defineProperty(r, "prototype", { writable: !1 }), e && Kr(r, e);
@@ -9683,7 +9690,7 @@ function bf(r, e) {
 function dn(r) {
   var e = typeof Map == "function" ? /* @__PURE__ */ new Map() : void 0;
   return dn = function(i) {
-    if (i === null || !wf(i)) return i;
+    if (i === null || !_f(i)) return i;
     if (typeof i != "function")
       throw new TypeError("Super expression must either be null or a function");
     if (typeof e < "u") {
@@ -9691,12 +9698,12 @@ function dn(r) {
       e.set(i, o);
     }
     function o() {
-      return vf(i, arguments, Xr(this).constructor);
+      return wf(i, arguments, Xr(this).constructor);
     }
     return o.prototype = Object.create(i.prototype, { constructor: { value: o, enumerable: !1, writable: !0, configurable: !0 } }), Kr(o, i);
   }, dn(r);
 }
-function vf(r, e, t) {
+function wf(r, e, t) {
   if (Wn()) return Reflect.construct.apply(null, arguments);
   var i = [null];
   i.push.apply(i, e);
@@ -9713,7 +9720,7 @@ function Wn() {
     return !!r;
   })();
 }
-function wf(r) {
+function _f(r) {
   try {
     return Function.toString.call(r).indexOf("[native code]") !== -1;
   } catch {
@@ -9733,13 +9740,13 @@ function Xr(r) {
 var mi = /* @__PURE__ */ function(r) {
   function e(t) {
     var i, o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null, n = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : null, s = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : null;
-    if (ff(this, e), i = yf(this, e, [t]), i.originalRequest = n, i.originalResponse = s, i.causingError = o, o != null && (t += ", caused by ".concat(o.toString())), n != null) {
+    if (yf(this, e), i = mf(this, e, [t]), i.originalRequest = n, i.originalResponse = s, i.causingError = o, o != null && (t += ", caused by ".concat(o.toString())), n != null) {
       var a = n.getHeader("X-Request-ID") || "n/a", l = n.getMethod(), u = n.getURL(), p = s ? s.getStatus() : "n/a", d = s ? s.getBody() || "" : "n/a";
       t += ", originated from request (method: ".concat(l, ", url: ").concat(u, ", response code: ").concat(p, ", response text: ").concat(d, ", request id: ").concat(a, ")");
     }
     return i.message = t, i;
   }
-  return bf(e, r), hf(e);
+  return vf(e, r), ff(e);
 }(/* @__PURE__ */ dn(Error));
 function Yr(r) {
   "@babel/helpers - typeof";
@@ -9749,24 +9756,24 @@ function Yr(r) {
     return e && typeof Symbol == "function" && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
   }, Yr(r);
 }
-function _f(r, e) {
+function xf(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function xf(r, e) {
+function Sf(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Pf(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, kf(i.key), i);
   }
 }
-function Sf(r, e, t) {
-  return e && xf(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
+function Pf(r, e, t) {
+  return e && Sf(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function Pf(r) {
-  var e = kf(r, "string");
+function kf(r) {
+  var e = Ff(r, "string");
   return Yr(e) == "symbol" ? e : e + "";
 }
-function kf(r, e) {
+function Ff(r, e) {
   if (Yr(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -9776,11 +9783,11 @@ function kf(r, e) {
   }
   return String(r);
 }
-var Ff = /* @__PURE__ */ function() {
+var Df = /* @__PURE__ */ function() {
   function r() {
-    _f(this, r);
+    xf(this, r);
   }
-  return Sf(r, [{
+  return Pf(r, [{
     key: "listAllUploads",
     value: function() {
       return Promise.resolve([]);
@@ -9802,10 +9809,10 @@ var Ff = /* @__PURE__ */ function() {
     }
   }]);
 }();
-const cu = "3.7.7", Df = cu, sr = typeof Buffer == "function", Ca = typeof TextDecoder == "function" ? new TextDecoder() : void 0, Ba = typeof TextEncoder == "function" ? new TextEncoder() : void 0, Tf = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", Br = Array.prototype.slice.call(Tf), gi = ((r) => {
+const hu = "3.7.7", Tf = hu, sr = typeof Buffer == "function", Ba = typeof TextDecoder == "function" ? new TextDecoder() : void 0, Oa = typeof TextEncoder == "function" ? new TextEncoder() : void 0, If = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", Br = Array.prototype.slice.call(If), gi = ((r) => {
   let e = {};
   return r.forEach((t, i) => e[t] = i), e;
-})(Br), If = /^(?:[A-Za-z\d+\/]{4})*?(?:[A-Za-z\d+\/]{2}(?:==)?|[A-Za-z\d+\/]{3}=?)?$/, _e = String.fromCharCode.bind(String), Oa = typeof Uint8Array.from == "function" ? Uint8Array.from.bind(Uint8Array) : (r) => new Uint8Array(Array.prototype.slice.call(r, 0)), hu = (r) => r.replace(/=/g, "").replace(/[+\/]/g, (e) => e == "+" ? "-" : "_"), fu = (r) => r.replace(/[^A-Za-z0-9\+\/]/g, ""), yu = (r) => {
+})(Br), Cf = /^(?:[A-Za-z\d+\/]{4})*?(?:[A-Za-z\d+\/]{2}(?:==)?|[A-Za-z\d+\/]{3}=?)?$/, _e = String.fromCharCode.bind(String), Aa = typeof Uint8Array.from == "function" ? Uint8Array.from.bind(Uint8Array) : (r) => new Uint8Array(Array.prototype.slice.call(r, 0)), fu = (r) => r.replace(/=/g, "").replace(/[+\/]/g, (e) => e == "+" ? "-" : "_"), yu = (r) => r.replace(/[^A-Za-z0-9\+\/]/g, ""), mu = (r) => {
   let e, t, i, o, n = "";
   const s = r.length % 3;
   for (let a = 0; a < r.length; ) {
@@ -9814,12 +9821,12 @@ const cu = "3.7.7", Df = cu, sr = typeof Buffer == "function", Ca = typeof TextD
     e = t << 16 | i << 8 | o, n += Br[e >> 18 & 63] + Br[e >> 12 & 63] + Br[e >> 6 & 63] + Br[e & 63];
   }
   return s ? n.slice(0, s - 3) + "===".substring(s) : n;
-}, Gn = typeof btoa == "function" ? (r) => btoa(r) : sr ? (r) => Buffer.from(r, "binary").toString("base64") : yu, cn = sr ? (r) => Buffer.from(r).toString("base64") : (r) => {
+}, Gn = typeof btoa == "function" ? (r) => btoa(r) : sr ? (r) => Buffer.from(r, "binary").toString("base64") : mu, cn = sr ? (r) => Buffer.from(r).toString("base64") : (r) => {
   let t = [];
   for (let i = 0, o = r.length; i < o; i += 4096)
     t.push(_e.apply(null, r.subarray(i, i + 4096)));
   return Gn(t.join(""));
-}, Pi = (r, e = !1) => e ? hu(cn(r)) : cn(r), Cf = (r) => {
+}, Pi = (r, e = !1) => e ? fu(cn(r)) : cn(r), Bf = (r) => {
   if (r.length < 2) {
     var e = r.charCodeAt(0);
     return e < 128 ? r : e < 2048 ? _e(192 | e >>> 6) + _e(128 | e & 63) : _e(224 | e >>> 12 & 15) + _e(128 | e >>> 6 & 63) + _e(128 | e & 63);
@@ -9827,7 +9834,7 @@ const cu = "3.7.7", Df = cu, sr = typeof Buffer == "function", Ca = typeof TextD
     var e = 65536 + (r.charCodeAt(0) - 55296) * 1024 + (r.charCodeAt(1) - 56320);
     return _e(240 | e >>> 18 & 7) + _e(128 | e >>> 12 & 63) + _e(128 | e >>> 6 & 63) + _e(128 | e & 63);
   }
-}, Bf = /[\uD800-\uDBFF][\uDC00-\uDFFFF]|[^\x00-\x7F]/g, mu = (r) => r.replace(Bf, Cf), Aa = sr ? (r) => Buffer.from(r, "utf8").toString("base64") : Ba ? (r) => cn(Ba.encode(r)) : (r) => Gn(mu(r)), Jt = (r, e = !1) => e ? hu(Aa(r)) : Aa(r), Ea = (r) => Jt(r, !0), Of = /[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/g, Af = (r) => {
+}, Of = /[\uD800-\uDBFF][\uDC00-\uDFFFF]|[^\x00-\x7F]/g, gu = (r) => r.replace(Of, Bf), Ea = sr ? (r) => Buffer.from(r, "utf8").toString("base64") : Oa ? (r) => cn(Oa.encode(r)) : (r) => Gn(gu(r)), Jt = (r, e = !1) => e ? fu(Ea(r)) : Ea(r), Ua = (r) => Jt(r, !0), Af = /[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/g, Ef = (r) => {
   switch (r.length) {
     case 4:
       var e = (7 & r.charCodeAt(0)) << 18 | (63 & r.charCodeAt(1)) << 12 | (63 & r.charCodeAt(2)) << 6 | 63 & r.charCodeAt(3), t = e - 65536;
@@ -9837,26 +9844,26 @@ const cu = "3.7.7", Df = cu, sr = typeof Buffer == "function", Ca = typeof TextD
     default:
       return _e((31 & r.charCodeAt(0)) << 6 | 63 & r.charCodeAt(1));
   }
-}, gu = (r) => r.replace(Of, Af), bu = (r) => {
-  if (r = r.replace(/\s+/g, ""), !If.test(r))
+}, bu = (r) => r.replace(Af, Ef), vu = (r) => {
+  if (r = r.replace(/\s+/g, ""), !Cf.test(r))
     throw new TypeError("malformed base64.");
   r += "==".slice(2 - (r.length & 3));
   let e, t = "", i, o;
   for (let n = 0; n < r.length; )
     e = gi[r.charAt(n++)] << 18 | gi[r.charAt(n++)] << 12 | (i = gi[r.charAt(n++)]) << 6 | (o = gi[r.charAt(n++)]), t += i === 64 ? _e(e >> 16 & 255) : o === 64 ? _e(e >> 16 & 255, e >> 8 & 255) : _e(e >> 16 & 255, e >> 8 & 255, e & 255);
   return t;
-}, Vn = typeof atob == "function" ? (r) => atob(fu(r)) : sr ? (r) => Buffer.from(r, "base64").toString("binary") : bu, vu = sr ? (r) => Oa(Buffer.from(r, "base64")) : (r) => Oa(Vn(r).split("").map((e) => e.charCodeAt(0))), wu = (r) => vu(_u(r)), Ef = sr ? (r) => Buffer.from(r, "base64").toString("utf8") : Ca ? (r) => Ca.decode(vu(r)) : (r) => gu(Vn(r)), _u = (r) => fu(r.replace(/[-_]/g, (e) => e == "-" ? "+" : "/")), hn = (r) => Ef(_u(r)), Uf = (r) => {
+}, Vn = typeof atob == "function" ? (r) => atob(yu(r)) : sr ? (r) => Buffer.from(r, "base64").toString("binary") : vu, wu = sr ? (r) => Aa(Buffer.from(r, "base64")) : (r) => Aa(Vn(r).split("").map((e) => e.charCodeAt(0))), _u = (r) => wu(xu(r)), Uf = sr ? (r) => Buffer.from(r, "base64").toString("utf8") : Ba ? (r) => Ba.decode(wu(r)) : (r) => bu(Vn(r)), xu = (r) => yu(r.replace(/[-_]/g, (e) => e == "-" ? "+" : "/")), hn = (r) => Uf(xu(r)), Rf = (r) => {
   if (typeof r != "string")
     return !1;
   const e = r.replace(/\s+/g, "").replace(/={0,2}$/, "");
   return !/[^\s0-9a-zA-Z\+/]/.test(e) || !/[^\s0-9a-zA-Z\-_]/.test(e);
-}, xu = (r) => ({
+}, Su = (r) => ({
   value: r,
   enumerable: !1,
   writable: !0,
   configurable: !0
-}), Su = function() {
-  const r = (e, t) => Object.defineProperty(String.prototype, e, xu(t));
+}), Pu = function() {
+  const r = (e, t) => Object.defineProperty(String.prototype, e, Su(t));
   r("fromBase64", function() {
     return hn(this);
   }), r("toBase64", function(e) {
@@ -9866,10 +9873,10 @@ const cu = "3.7.7", Df = cu, sr = typeof Buffer == "function", Ca = typeof TextD
   }), r("toBase64URL", function() {
     return Jt(this, !0);
   }), r("toUint8Array", function() {
-    return wu(this);
+    return _u(this);
   });
-}, Pu = function() {
-  const r = (e, t) => Object.defineProperty(Uint8Array.prototype, e, xu(t));
+}, ku = function() {
+  const r = (e, t) => Object.defineProperty(Uint8Array.prototype, e, Su(t));
   r("toBase64", function(e) {
     return Pi(this, e);
   }), r("toBase64URI", function() {
@@ -9877,33 +9884,33 @@ const cu = "3.7.7", Df = cu, sr = typeof Buffer == "function", Ca = typeof TextD
   }), r("toBase64URL", function() {
     return Pi(this, !0);
   });
-}, Rf = () => {
-  Su(), Pu();
-}, Mf = {
-  version: cu,
-  VERSION: Df,
+}, Mf = () => {
+  Pu(), ku();
+}, $f = {
+  version: hu,
+  VERSION: Tf,
   atob: Vn,
-  atobPolyfill: bu,
+  atobPolyfill: vu,
   btoa: Gn,
-  btoaPolyfill: yu,
+  btoaPolyfill: mu,
   fromBase64: hn,
   toBase64: Jt,
   encode: Jt,
-  encodeURI: Ea,
-  encodeURL: Ea,
-  utob: mu,
-  btou: gu,
+  encodeURI: Ua,
+  encodeURL: Ua,
+  utob: gu,
+  btou: bu,
   decode: hn,
-  isValid: Uf,
+  isValid: Rf,
   fromUint8Array: Pi,
-  toUint8Array: wu,
-  extendString: Su,
-  extendUint8Array: Pu,
-  extendBuiltins: Rf
+  toUint8Array: _u,
+  extendString: Pu,
+  extendUint8Array: ku,
+  extendBuiltins: Mf
 };
-var Lo, Ua;
-function $f() {
-  return Ua || (Ua = 1, Lo = function(e, t) {
+var Lo, Ra;
+function zf() {
+  return Ra || (Ra = 1, Lo = function(e, t) {
     if (t = t.split(":")[0], e = +e, !e) return !1;
     switch (t) {
       case "http":
@@ -9922,10 +9929,10 @@ function $f() {
     return e !== 0;
   }), Lo;
 }
-var bi = {}, Ra;
-function zf() {
-  if (Ra) return bi;
-  Ra = 1;
+var bi = {}, Ma;
+function Nf() {
+  if (Ma) return bi;
+  Ma = 1;
   var r = Object.prototype.hasOwnProperty, e;
   function t(s) {
     try {
@@ -9961,11 +9968,11 @@ function zf() {
   }
   return bi.stringify = n, bi.parse = o, bi;
 }
-var jo, Ma;
-function Nf() {
-  if (Ma) return jo;
-  Ma = 1;
-  var r = $f(), e = zf(), t = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, i = /[\n\r\t]/g, o = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, n = /:\d+$/, s = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, a = /^[a-zA-Z]:/;
+var jo, $a;
+function Lf() {
+  if ($a) return jo;
+  $a = 1;
+  var r = zf(), e = Nf(), t = /^[\x00-\x20\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]+/, i = /[\n\r\t]/g, o = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//, n = /:\d+$/, s = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i, a = /^[a-zA-Z]:/;
   function l(m) {
     return (m || "").toString().replace(t, "");
   }
@@ -10087,9 +10094,9 @@ function Nf() {
   }
   return O.prototype = { set: _, toString: T }, O.extractProtocol = x, O.location = d, O.trimLeft = l, O.qs = e, jo = O, jo;
 }
-var Lf = Nf();
-const jf = /* @__PURE__ */ zt(Lf);
-function qf() {
+var jf = Lf();
+const qf = /* @__PURE__ */ zt(jf);
+function Hf() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(r) {
     var e = Math.random() * 16 | 0, t = r === "x" ? e : e & 3 | 8;
     return t.toString(16);
@@ -10333,7 +10340,7 @@ function fn() {
     return this.delegate = { iterator: le(f), resultName: g, nextLoc: F }, this.method === "next" && (this.arg = r), _;
   } }, e;
 }
-function $a(r, e, t, i, o, n, s) {
+function za(r, e, t, i, o, n, s) {
   try {
     var a = r[n](s), l = a.value;
   } catch (u) {
@@ -10342,29 +10349,29 @@ function $a(r, e, t, i, o, n, s) {
   }
   a.done ? e(l) : Promise.resolve(l).then(i, o);
 }
-function Hf(r) {
+function Wf(r) {
   return function() {
     var e = this, t = arguments;
     return new Promise(function(i, o) {
       var n = r.apply(e, t);
       function s(l) {
-        $a(n, i, o, s, a, "next", l);
+        za(n, i, o, s, a, "next", l);
       }
       function a(l) {
-        $a(n, i, o, s, a, "throw", l);
+        za(n, i, o, s, a, "throw", l);
       }
       s(void 0);
     });
   };
 }
-function ku(r, e) {
-  return Vf(r) || Gf(r, e) || Fu(r, e) || Wf();
+function Fu(r, e) {
+  return Kf(r) || Vf(r, e) || Du(r, e) || Gf();
 }
-function Wf() {
+function Gf() {
   throw new TypeError(`Invalid attempt to destructure non-iterable instance.
 In order to be iterable, non-array objects must have a [Symbol.iterator]() method.`);
 }
-function Gf(r, e) {
+function Vf(r, e) {
   var t = r == null ? null : typeof Symbol < "u" && r[Symbol.iterator] || r["@@iterator"];
   if (t != null) {
     var i, o, n, s, a = [], l = !0, u = !1;
@@ -10382,7 +10389,7 @@ function Gf(r, e) {
     return a;
   }
 }
-function Vf(r) {
+function Kf(r) {
   if (Array.isArray(r)) return r;
 }
 function Mt(r) {
@@ -10393,10 +10400,10 @@ function Mt(r) {
     return e && typeof Symbol == "function" && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
   }, Mt(r);
 }
-function Kf(r, e) {
+function Xf(r, e) {
   var t = typeof Symbol < "u" && r[Symbol.iterator] || r["@@iterator"];
   if (!t) {
-    if (Array.isArray(r) || (t = Fu(r)) || e) {
+    if (Array.isArray(r) || (t = Du(r)) || e) {
       t && (r = t);
       var i = 0, o = function() {
       };
@@ -10425,20 +10432,20 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     }
   } };
 }
-function Fu(r, e) {
+function Du(r, e) {
   if (r) {
-    if (typeof r == "string") return za(r, e);
+    if (typeof r == "string") return Na(r, e);
     var t = Object.prototype.toString.call(r).slice(8, -1);
     if (t === "Object" && r.constructor && (t = r.constructor.name), t === "Map" || t === "Set") return Array.from(r);
-    if (t === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)) return za(r, e);
+    if (t === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)) return Na(r, e);
   }
 }
-function za(r, e) {
+function Na(r, e) {
   (e == null || e > r.length) && (e = r.length);
   for (var t = 0, i = new Array(e); t < e; t++) i[t] = r[t];
   return i;
 }
-function Na(r, e) {
+function La(r, e) {
   var t = Object.keys(r);
   if (Object.getOwnPropertySymbols) {
     var i = Object.getOwnPropertySymbols(r);
@@ -10451,35 +10458,35 @@ function Na(r, e) {
 function Ht(r) {
   for (var e = 1; e < arguments.length; e++) {
     var t = arguments[e] != null ? arguments[e] : {};
-    e % 2 ? Na(Object(t), !0).forEach(function(i) {
-      Xf(r, i, t[i]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(r, Object.getOwnPropertyDescriptors(t)) : Na(Object(t)).forEach(function(i) {
+    e % 2 ? La(Object(t), !0).forEach(function(i) {
+      Yf(r, i, t[i]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(r, Object.getOwnPropertyDescriptors(t)) : La(Object(t)).forEach(function(i) {
       Object.defineProperty(r, i, Object.getOwnPropertyDescriptor(t, i));
     });
   }
   return r;
 }
-function Xf(r, e, t) {
-  return e = Du(e), e in r ? Object.defineProperty(r, e, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : r[e] = t, r;
+function Yf(r, e, t) {
+  return e = Tu(e), e in r ? Object.defineProperty(r, e, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : r[e] = t, r;
 }
-function Yf(r, e) {
+function Zf(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function La(r, e) {
+function ja(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Du(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Tu(i.key), i);
   }
 }
-function Zf(r, e, t) {
-  return e && La(r.prototype, e), t && La(r, t), Object.defineProperty(r, "prototype", { writable: !1 }), r;
+function Jf(r, e, t) {
+  return e && ja(r.prototype, e), t && ja(r, t), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function Du(r) {
-  var e = Jf(r, "string");
+function Tu(r) {
+  var e = Qf(r, "string");
   return Mt(e) == "symbol" ? e : e + "";
 }
-function Jf(r, e) {
+function Qf(r, e) {
   if (Mt(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -10489,7 +10496,7 @@ function Jf(r, e) {
   }
   return String(r);
 }
-var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
+var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", ey = {
   endpoint: null,
   uploadUrl: null,
   metadata: {},
@@ -10506,7 +10513,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
   addRequestId: !1,
   onBeforeRequest: null,
   onAfterResponse: null,
-  onShouldRetry: Tu,
+  onShouldRetry: Iu,
   chunkSize: Number.POSITIVE_INFINITY,
   retryDelays: [0, 1e3, 3e3, 5e3],
   parallelUploads: 1,
@@ -10521,9 +10528,9 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
   protocol: ki
 }, Ri = /* @__PURE__ */ function() {
   function r(e, t) {
-    Yf(this, r), "resume" in t && console.log("tus: The `resume` option has been removed in tus-js-client v2. Please use the URL storage API instead."), this.options = t, this.options.chunkSize = Number(this.options.chunkSize), this._urlStorage = this.options.urlStorage, this.file = e, this.url = null, this._req = null, this._fingerprint = null, this._urlStorageKey = null, this._offset = null, this._aborted = !1, this._size = null, this._source = null, this._retryAttempt = 0, this._retryTimeout = null, this._offsetBeforeRetry = 0, this._parallelUploads = null, this._parallelUploadUrls = null;
+    Zf(this, r), "resume" in t && console.log("tus: The `resume` option has been removed in tus-js-client v2. Please use the URL storage API instead."), this.options = t, this.options.chunkSize = Number(this.options.chunkSize), this._urlStorage = this.options.urlStorage, this.file = e, this.url = null, this._req = null, this._fingerprint = null, this._urlStorageKey = null, this._offset = null, this._aborted = !1, this._size = null, this._source = null, this._retryAttempt = 0, this._retryTimeout = null, this._offsetBeforeRetry = 0, this._parallelUploads = null, this._parallelUploadUrls = null;
   }
-  return Zf(r, [{
+  return Jf(r, [{
     key: "findPreviousUploads",
     value: function() {
       var t = this;
@@ -10605,7 +10612,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
     value: function() {
       var t, i = this, o = this._size, n = 0;
       this._parallelUploads = [];
-      var s = this._parallelUploadUrls != null ? this._parallelUploadUrls.length : this.options.parallelUploads, a = (t = this.options.parallelUploadBoundaries) !== null && t !== void 0 ? t : ty(this._source.size, s);
+      var s = this._parallelUploadUrls != null ? this._parallelUploadUrls.length : this.options.parallelUploads, a = (t = this.options.parallelUploadBoundaries) !== null && t !== void 0 ? t : ry(this._source.size, s);
       this._parallelUploadUrls && a.forEach(function(p, d) {
         p.uploadUrl = i._parallelUploadUrls[d] || null;
       }), this._parallelUploadUrls = new Array(a.length);
@@ -10652,7 +10659,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
       }), u;
       Promise.all(l).then(function() {
         u = i._openRequest("POST", i.options.endpoint), u.setHeader("Upload-Concat", "final;".concat(i._parallelUploadUrls.join(" ")));
-        var p = ja(i.options.metadata);
+        var p = qa(i.options.metadata);
         return p !== "" && u.setHeader("Upload-Metadata", p), i._sendRequest(u, null);
       }).then(function(p) {
         if (!Vt(p.getStatus(), 200)) {
@@ -10664,7 +10671,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
           i._emitHttpError(u, p, "tus: invalid or missing Location header");
           return;
         }
-        i.url = Ga(i.options.endpoint, d), "Created upload at ".concat(i.url), i._emitSuccess(p);
+        i.url = Va(i.options.endpoint, d), "Created upload at ".concat(i.url), i._emitSuccess(p);
       }).catch(function(p) {
         i._emitError(p);
       });
@@ -10703,7 +10710,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
     value: function(t) {
       var i = this;
       if (this._parallelUploads != null) {
-        var o = Kf(this._parallelUploads), n;
+        var o = Xf(this._parallelUploads), n;
         try {
           for (o.s(); !(n = o.n()).done; ) {
             var s = n.value;
@@ -10731,7 +10738,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
       if (!this._aborted) {
         if (this.options.retryDelays != null) {
           var o = this._offset != null && this._offset > this._offsetBeforeRetry;
-          if (o && (this._retryAttempt = 0), Wa(t, this._retryAttempt, this.options)) {
+          if (o && (this._retryAttempt = 0), Ga(t, this._retryAttempt, this.options)) {
             var n = this.options.retryDelays[this._retryAttempt++];
             this._offsetBeforeRetry = this._offset, this._retryTimeout = setTimeout(function() {
               i.start();
@@ -10802,7 +10809,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
       }
       var i = this._openRequest("POST", this.options.endpoint);
       this.options.uploadLengthDeferred ? i.setHeader("Upload-Defer-Length", "1") : i.setHeader("Upload-Length", "".concat(this._size));
-      var o = ja(this.options.metadata);
+      var o = qa(this.options.metadata);
       o !== "" && i.setHeader("Upload-Metadata", o);
       var n;
       this.options.uploadDataDuringCreation && !this.options.uploadLengthDeferred ? (this._offset = 0, n = this._addChunkToRequest(i)) : ((this.options.protocol === Fi || this.options.protocol === Or) && i.setHeader("Upload-Complete", "?0"), n = this._sendRequest(i, null)), n.then(function(s) {
@@ -10815,7 +10822,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
           t._emitHttpError(i, s, "tus: invalid or missing Location header");
           return;
         }
-        if (t.url = Ga(t.options.endpoint, a), "Created upload at ".concat(t.url), typeof t.options.onUploadUrlAvailable == "function" && t.options.onUploadUrlAvailable(), t._size === 0) {
+        if (t.url = Va(t.options.endpoint, a), "Created upload at ".concat(t.url), typeof t.options.onUploadUrlAvailable == "function" && t.options.onUploadUrlAvailable(), t._size === 0) {
           t._emitSuccess(s), t._source.close();
           return;
         }
@@ -10945,7 +10952,7 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
   }, {
     key: "_openRequest",
     value: function(t, i) {
-      var o = qa(t, i, this.options);
+      var o = Ha(t, i, this.options);
       return this._req = o, o;
     }
     /**
@@ -10990,17 +10997,17 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
     key: "_sendRequest",
     value: function(t) {
       var i = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : null;
-      return Ha(t, i, this.options);
+      return Wa(t, i, this.options);
     }
   }], [{
     key: "terminate",
     value: function(t) {
-      var i = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, o = qa("DELETE", t, i);
-      return Ha(o, null, i).then(function(n) {
+      var i = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, o = Ha("DELETE", t, i);
+      return Wa(o, null, i).then(function(n) {
         if (n.getStatus() !== 204)
           throw new mi("tus: unexpected response while terminating upload", null, o, n);
       }).catch(function(n) {
-        if (n instanceof mi || (n = new mi("tus: failed to terminate upload", n, o, null)), !Wa(n, 0, i))
+        if (n instanceof mi || (n = new mi("tus: failed to terminate upload", n, o, null)), !Ga(n, 0, i))
           throw n;
         var s = i.retryDelays[0], a = i.retryDelays.slice(1), l = Ht(Ht({}, i), {}, {
           retryDelays: a
@@ -11014,33 +11021,33 @@ var ki = "tus-v1", Fi = "ietf-draft-03", Or = "ietf-draft-05", Qf = {
     }
   }]);
 }();
-function ja(r) {
+function qa(r) {
   return Object.entries(r).map(function(e) {
-    var t = ku(e, 2), i = t[0], o = t[1];
-    return "".concat(i, " ").concat(Mf.encode(String(o)));
+    var t = Fu(e, 2), i = t[0], o = t[1];
+    return "".concat(i, " ").concat($f.encode(String(o)));
   }).join(",");
 }
 function Vt(r, e) {
   return r >= e && r < e + 100;
 }
-function qa(r, e, t) {
+function Ha(r, e, t) {
   var i = t.httpStack.createRequest(r, e);
   t.protocol === Fi ? i.setHeader("Upload-Draft-Interop-Version", "5") : t.protocol === Or ? i.setHeader("Upload-Draft-Interop-Version", "6") : i.setHeader("Tus-Resumable", "1.0.0");
   for (var o = t.headers || {}, n = 0, s = Object.entries(o); n < s.length; n++) {
-    var a = ku(s[n], 2), l = a[0], u = a[1];
+    var a = Fu(s[n], 2), l = a[0], u = a[1];
     i.setHeader(l, u);
   }
   if (t.addRequestId) {
-    var p = qf();
+    var p = Hf();
     i.setHeader("X-Request-ID", p);
   }
   return i;
 }
-function Ha(r, e, t) {
+function Wa(r, e, t) {
   return yn.apply(this, arguments);
 }
 function yn() {
-  return yn = Hf(/* @__PURE__ */ fn().mark(function r(e, t, i) {
+  return yn = Wf(/* @__PURE__ */ fn().mark(function r(e, t, i) {
     var o;
     return fn().wrap(function(s) {
       for (; ; ) switch (s.prev = s.next) {
@@ -11067,21 +11074,21 @@ function yn() {
     }, r);
   })), yn.apply(this, arguments);
 }
-function ey() {
+function ty() {
   var r = !0;
   return typeof navigator < "u" && navigator.onLine === !1 && (r = !1), r;
 }
-function Wa(r, e, t) {
-  return t.retryDelays == null || e >= t.retryDelays.length || r.originalRequest == null ? !1 : t && typeof t.onShouldRetry == "function" ? t.onShouldRetry(r, e, t) : Tu(r);
+function Ga(r, e, t) {
+  return t.retryDelays == null || e >= t.retryDelays.length || r.originalRequest == null ? !1 : t && typeof t.onShouldRetry == "function" ? t.onShouldRetry(r, e, t) : Iu(r);
 }
-function Tu(r) {
+function Iu(r) {
   var e = r.originalResponse ? r.originalResponse.getStatus() : 0;
-  return (!Vt(e, 400) || e === 409 || e === 423) && ey();
+  return (!Vt(e, 400) || e === 409 || e === 423) && ty();
 }
-function Ga(r, e) {
-  return new jf(e, r).toString();
+function Va(r, e) {
+  return new qf(e, r).toString();
 }
-function ty(r, e) {
+function ry(r, e) {
   for (var t = Math.floor(r / e), i = [], o = 0; o < e; o++)
     i.push({
       start: t * o,
@@ -11089,11 +11096,11 @@ function ty(r, e) {
     });
   return i[e - 1].end = r, i;
 }
-Ri.defaultOptions = Qf;
-var Iu = function() {
+Ri.defaultOptions = ey;
+var Cu = function() {
   return typeof navigator < "u" && typeof navigator.product == "string" && navigator.product.toLowerCase() === "reactnative";
 };
-function ry(r) {
+function iy(r) {
   return new Promise(function(e, t) {
     var i = new XMLHttpRequest();
     i.responseType = "blob", i.onload = function() {
@@ -11104,10 +11111,10 @@ function ry(r) {
     }, i.open("GET", r), i.send();
   });
 }
-var iy = function() {
+var oy = function() {
   return typeof window < "u" && (typeof window.PhoneGap < "u" || typeof window.Cordova < "u" || typeof window.cordova < "u");
 };
-function oy(r) {
+function ny(r) {
   return new Promise(function(e, t) {
     var i = new FileReader();
     i.onload = function() {
@@ -11128,24 +11135,24 @@ function Zr(r) {
     return e && typeof Symbol == "function" && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
   }, Zr(r);
 }
-function ny(r, e) {
+function sy(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function sy(r, e) {
+function ay(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, ly(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, uy(i.key), i);
   }
 }
-function ay(r, e, t) {
-  return e && sy(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
+function ly(r, e, t) {
+  return e && ay(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function ly(r) {
-  var e = uy(r, "string");
+function uy(r) {
+  var e = py(r, "string");
   return Zr(e) == "symbol" ? e : e + "";
 }
-function uy(r, e) {
+function py(r, e) {
   if (Zr(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -11155,15 +11162,15 @@ function uy(r, e) {
   }
   return String(r);
 }
-var Va = /* @__PURE__ */ function() {
+var Ka = /* @__PURE__ */ function() {
   function r(e) {
-    ny(this, r), this._file = e, this.size = e.size;
+    sy(this, r), this._file = e, this.size = e.size;
   }
-  return ay(r, [{
+  return ly(r, [{
     key: "slice",
     value: function(t, i) {
-      if (iy())
-        return oy(this._file.slice(t, i));
+      if (oy())
+        return ny(this._file.slice(t, i));
       var o = this._file.slice(t, i), n = i >= this.size;
       return Promise.resolve({
         value: o,
@@ -11184,24 +11191,24 @@ function Jr(r) {
     return e && typeof Symbol == "function" && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
   }, Jr(r);
 }
-function py(r, e) {
+function dy(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function dy(r, e) {
+function cy(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, hy(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, fy(i.key), i);
   }
 }
-function cy(r, e, t) {
-  return e && dy(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
+function hy(r, e, t) {
+  return e && cy(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function hy(r) {
-  var e = fy(r, "string");
+function fy(r) {
+  var e = yy(r, "string");
   return Jr(e) == "symbol" ? e : e + "";
 }
-function fy(r, e) {
+function yy(r, e) {
   if (Jr(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -11211,10 +11218,10 @@ function fy(r, e) {
   }
   return String(r);
 }
-function Ka(r) {
+function Xa(r) {
   return r === void 0 ? 0 : r.size !== void 0 ? r.size : r.length;
 }
-function yy(r, e) {
+function my(r, e) {
   if (r.concat)
     return r.concat(e);
   if (r instanceof Blob)
@@ -11227,11 +11234,11 @@ function yy(r, e) {
   }
   throw new Error("Unknown data type");
 }
-var my = /* @__PURE__ */ function() {
+var gy = /* @__PURE__ */ function() {
   function r(e) {
-    py(this, r), this._buffer = void 0, this._bufferOffset = 0, this._reader = e, this._done = !1;
+    dy(this, r), this._buffer = void 0, this._bufferOffset = 0, this._reader = e, this._done = !1;
   }
-  return cy(r, [{
+  return hy(r, [{
     key: "slice",
     value: function(t, i) {
       return t < this._bufferOffset ? Promise.reject(new Error("Requested data is before the reader's current offset")) : this._readUntilEnoughDataOrDone(t, i);
@@ -11239,7 +11246,7 @@ var my = /* @__PURE__ */ function() {
   }, {
     key: "_readUntilEnoughDataOrDone",
     value: function(t, i) {
-      var o = this, n = i <= this._bufferOffset + Ka(this._buffer);
+      var o = this, n = i <= this._bufferOffset + Xa(this._buffer);
       if (this._done || n) {
         var s = this._getDataFromBuffer(t, i), a = s == null ? this._done : !1;
         return Promise.resolve({
@@ -11249,14 +11256,14 @@ var my = /* @__PURE__ */ function() {
       }
       return this._reader.read().then(function(l) {
         var u = l.value, p = l.done;
-        return p ? o._done = !0 : o._buffer === void 0 ? o._buffer = u : o._buffer = yy(o._buffer, u), o._readUntilEnoughDataOrDone(t, i);
+        return p ? o._done = !0 : o._buffer === void 0 ? o._buffer = u : o._buffer = my(o._buffer, u), o._readUntilEnoughDataOrDone(t, i);
       });
     }
   }, {
     key: "_getDataFromBuffer",
     value: function(t, i) {
       t > this._bufferOffset && (this._buffer = this._buffer.slice(t - this._bufferOffset), this._bufferOffset = t);
-      var o = Ka(this._buffer) === 0;
+      var o = Xa(this._buffer) === 0;
       return this._done && o ? null : this._buffer.slice(0, i - t);
     }
   }, {
@@ -11512,7 +11519,7 @@ function mn() {
     return this.delegate = { iterator: le(f), resultName: g, nextLoc: F }, this.method === "next" && (this.arg = r), _;
   } }, e;
 }
-function Xa(r, e, t, i, o, n, s) {
+function Ya(r, e, t, i, o, n, s) {
   try {
     var a = r[n](s), l = a.value;
   } catch (u) {
@@ -11521,39 +11528,39 @@ function Xa(r, e, t, i, o, n, s) {
   }
   a.done ? e(l) : Promise.resolve(l).then(i, o);
 }
-function gy(r) {
+function by(r) {
   return function() {
     var e = this, t = arguments;
     return new Promise(function(i, o) {
       var n = r.apply(e, t);
       function s(l) {
-        Xa(n, i, o, s, a, "next", l);
+        Ya(n, i, o, s, a, "next", l);
       }
       function a(l) {
-        Xa(n, i, o, s, a, "throw", l);
+        Ya(n, i, o, s, a, "throw", l);
       }
       s(void 0);
     });
   };
 }
-function by(r, e) {
+function vy(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function vy(r, e) {
+function wy(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, _y(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, xy(i.key), i);
   }
 }
-function wy(r, e, t) {
-  return e && vy(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
+function _y(r, e, t) {
+  return e && wy(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function _y(r) {
-  var e = xy(r, "string");
+function xy(r) {
+  var e = Sy(r, "string");
   return $t(e) == "symbol" ? e : e + "";
 }
-function xy(r, e) {
+function Sy(r, e) {
   if ($t(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -11563,25 +11570,25 @@ function xy(r, e) {
   }
   return String(r);
 }
-var Sy = /* @__PURE__ */ function() {
+var Py = /* @__PURE__ */ function() {
   function r() {
-    by(this, r);
+    vy(this, r);
   }
-  return wy(r, [{
+  return _y(r, [{
     key: "openFile",
     value: function() {
-      var e = gy(/* @__PURE__ */ mn().mark(function i(o, n) {
+      var e = by(/* @__PURE__ */ mn().mark(function i(o, n) {
         var s;
         return mn().wrap(function(l) {
           for (; ; ) switch (l.prev = l.next) {
             case 0:
-              if (!(Iu() && o && typeof o.uri < "u")) {
+              if (!(Cu() && o && typeof o.uri < "u")) {
                 l.next = 11;
                 break;
               }
-              return l.prev = 1, l.next = 4, ry(o.uri);
+              return l.prev = 1, l.next = 4, iy(o.uri);
             case 4:
-              return s = l.sent, l.abrupt("return", new Va(s));
+              return s = l.sent, l.abrupt("return", new Ka(s));
             case 8:
               throw l.prev = 8, l.t0 = l.catch(1), new Error("tus: cannot fetch `file.uri` as Blob, make sure the uri is correct and accessible. ".concat(l.t0));
             case 11:
@@ -11589,7 +11596,7 @@ var Sy = /* @__PURE__ */ function() {
                 l.next = 13;
                 break;
               }
-              return l.abrupt("return", Promise.resolve(new Va(o)));
+              return l.abrupt("return", Promise.resolve(new Ka(o)));
             case 13:
               if (typeof o.read != "function") {
                 l.next = 18;
@@ -11601,7 +11608,7 @@ var Sy = /* @__PURE__ */ function() {
               }
               return l.abrupt("return", Promise.reject(new Error("cannot create source for stream without a finite value for the `chunkSize` option")));
             case 17:
-              return l.abrupt("return", Promise.resolve(new my(o, n)));
+              return l.abrupt("return", Promise.resolve(new gy(o, n)));
             case 18:
               return l.abrupt("return", Promise.reject(new Error("source object may only be an instance of File, Blob, or Reader in this environment")));
             case 19:
@@ -11617,14 +11624,14 @@ var Sy = /* @__PURE__ */ function() {
     }()
   }]);
 }();
-function Py(r, e) {
-  return Iu() ? Promise.resolve(ky(r, e)) : Promise.resolve(["tus-br", r.name, r.type, r.size, r.lastModified, e.endpoint].join("-"));
-}
 function ky(r, e) {
-  var t = r.exif ? Fy(JSON.stringify(r.exif)) : "noexif";
+  return Cu() ? Promise.resolve(Fy(r, e)) : Promise.resolve(["tus-br", r.name, r.type, r.size, r.lastModified, e.endpoint].join("-"));
+}
+function Fy(r, e) {
+  var t = r.exif ? Dy(JSON.stringify(r.exif)) : "noexif";
   return ["tus-rn", r.name || "noname", r.size || "nosize", t, e.endpoint].join("/");
 }
-function Fy(r) {
+function Dy(r) {
   var e = 0;
   if (r.length === 0)
     return e;
@@ -11646,20 +11653,20 @@ function Kn(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function Dy(r, e) {
+function Ty(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Ty(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Iy(i.key), i);
   }
 }
 function Xn(r, e, t) {
-  return e && Dy(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
+  return e && Ty(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function Ty(r) {
-  var e = Iy(r, "string");
+function Iy(r) {
+  var e = Cy(r, "string");
   return Qr(e) == "symbol" ? e : e + "";
 }
-function Iy(r, e) {
+function Cy(r, e) {
   if (Qr(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -11669,14 +11676,14 @@ function Iy(r, e) {
   }
   return String(r);
 }
-var Cy = /* @__PURE__ */ function() {
+var By = /* @__PURE__ */ function() {
   function r() {
     Kn(this, r);
   }
   return Xn(r, [{
     key: "createRequest",
     value: function(t, i) {
-      return new By(t, i);
+      return new Oy(t, i);
     }
   }, {
     key: "getName",
@@ -11684,7 +11691,7 @@ var Cy = /* @__PURE__ */ function() {
       return "XHRHttpStack";
     }
   }]);
-}(), By = /* @__PURE__ */ function() {
+}(), Oy = /* @__PURE__ */ function() {
   function r(e, t) {
     Kn(this, r), this._xhr = new XMLHttpRequest(), this._xhr.open(e, t, !0), this._method = e, this._url = t, this._headers = {};
   }
@@ -11721,7 +11728,7 @@ var Cy = /* @__PURE__ */ function() {
       var t = this, i = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null;
       return new Promise(function(o, n) {
         t._xhr.onload = function() {
-          o(new Oy(t._xhr));
+          o(new Ay(t._xhr));
         }, t._xhr.onerror = function(s) {
           n(s);
         }, t._xhr.send(i);
@@ -11738,7 +11745,7 @@ var Cy = /* @__PURE__ */ function() {
       return this._xhr;
     }
   }]);
-}(), Oy = /* @__PURE__ */ function() {
+}(), Ay = /* @__PURE__ */ function() {
   function r(e) {
     Kn(this, r), this._xhr = e;
   }
@@ -11772,24 +11779,24 @@ function ei(r) {
     return e && typeof Symbol == "function" && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
   }, ei(r);
 }
-function Ay(r, e) {
+function Ey(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function Ey(r, e) {
+function Uy(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Ry(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, My(i.key), i);
   }
 }
-function Uy(r, e, t) {
-  return e && Ey(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
+function Ry(r, e, t) {
+  return e && Uy(r.prototype, e), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function Ry(r) {
-  var e = My(r, "string");
+function My(r) {
+  var e = $y(r, "string");
   return ei(e) == "symbol" ? e : e + "";
 }
-function My(r, e) {
+function $y(r, e) {
   if (ei(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -11802,19 +11809,19 @@ function My(r, e) {
 var gn = !1;
 try {
   gn = "localStorage" in window;
-  var qo = "tusSupport", Ya = localStorage.getItem(qo);
-  localStorage.setItem(qo, Ya), Ya === null && localStorage.removeItem(qo);
+  var qo = "tusSupport", Za = localStorage.getItem(qo);
+  localStorage.setItem(qo, Za), Za === null && localStorage.removeItem(qo);
 } catch (r) {
   if (r.code === r.SECURITY_ERR || r.code === r.QUOTA_EXCEEDED_ERR)
     gn = !1;
   else
     throw r;
 }
-var $y = gn, zy = /* @__PURE__ */ function() {
+var zy = gn, Ny = /* @__PURE__ */ function() {
   function r() {
-    Ay(this, r);
+    Ey(this, r);
   }
-  return Uy(r, [{
+  return Ry(r, [{
     key: "findAllUploads",
     value: function() {
       var t = this._findEntries("tus::");
@@ -11861,41 +11868,41 @@ function rr(r) {
     return e && typeof Symbol == "function" && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;
   }, rr(r);
 }
-function Ny(r, e) {
+function Ly(r, e) {
   if (!(r instanceof e))
     throw new TypeError("Cannot call a class as a function");
 }
-function Ly(r, e) {
+function jy(r, e) {
   for (var t = 0; t < e.length; t++) {
     var i = e[t];
-    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Bu(i.key), i);
+    i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(r, Ou(i.key), i);
   }
 }
-function jy(r, e, t) {
-  return t && Ly(r, t), Object.defineProperty(r, "prototype", { writable: !1 }), r;
-}
 function qy(r, e, t) {
-  return e = Mi(e), Hy(r, Cu() ? Reflect.construct(e, t || [], Mi(r).constructor) : e.apply(r, t));
+  return t && jy(r, t), Object.defineProperty(r, "prototype", { writable: !1 }), r;
 }
-function Hy(r, e) {
+function Hy(r, e, t) {
+  return e = Mi(e), Wy(r, Bu() ? Reflect.construct(e, t || [], Mi(r).constructor) : e.apply(r, t));
+}
+function Wy(r, e) {
   if (e && (rr(e) === "object" || typeof e == "function"))
     return e;
   if (e !== void 0)
     throw new TypeError("Derived constructors may only return object or undefined");
-  return Wy(r);
+  return Gy(r);
 }
-function Wy(r) {
+function Gy(r) {
   if (r === void 0)
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   return r;
 }
-function Cu() {
+function Bu() {
   try {
     var r = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
     }));
   } catch {
   }
-  return (Cu = function() {
+  return (Bu = function() {
     return !!r;
   })();
 }
@@ -11904,7 +11911,7 @@ function Mi(r) {
     return t.__proto__ || Object.getPrototypeOf(t);
   }, Mi(r);
 }
-function Gy(r, e) {
+function Vy(r, e) {
   if (typeof e != "function" && e !== null)
     throw new TypeError("Super expression must either be null or a function");
   r.prototype = Object.create(e && e.prototype, { constructor: { value: r, writable: !0, configurable: !0 } }), Object.defineProperty(r, "prototype", { writable: !1 }), e && bn(r, e);
@@ -11914,7 +11921,7 @@ function bn(r, e) {
     return i.__proto__ = o, i;
   }, bn(r, e);
 }
-function Za(r, e) {
+function Ja(r, e) {
   var t = Object.keys(r);
   if (Object.getOwnPropertySymbols) {
     var i = Object.getOwnPropertySymbols(r);
@@ -11927,22 +11934,22 @@ function Za(r, e) {
 function Yt(r) {
   for (var e = 1; e < arguments.length; e++) {
     var t = arguments[e] != null ? arguments[e] : {};
-    e % 2 ? Za(Object(t), !0).forEach(function(i) {
-      Vy(r, i, t[i]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(r, Object.getOwnPropertyDescriptors(t)) : Za(Object(t)).forEach(function(i) {
+    e % 2 ? Ja(Object(t), !0).forEach(function(i) {
+      Ky(r, i, t[i]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(r, Object.getOwnPropertyDescriptors(t)) : Ja(Object(t)).forEach(function(i) {
       Object.defineProperty(r, i, Object.getOwnPropertyDescriptor(t, i));
     });
   }
   return r;
 }
-function Vy(r, e, t) {
-  return e = Bu(e), e in r ? Object.defineProperty(r, e, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : r[e] = t, r;
+function Ky(r, e, t) {
+  return e = Ou(e), e in r ? Object.defineProperty(r, e, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : r[e] = t, r;
 }
-function Bu(r) {
-  var e = Ky(r, "string");
+function Ou(r) {
+  var e = Xy(r, "string");
   return rr(e) == "symbol" ? e : e + "";
 }
-function Ky(r, e) {
+function Xy(r, e) {
   if (rr(r) != "object" || !r) return r;
   var t = r[Symbol.toPrimitive];
   if (t !== void 0) {
@@ -11953,16 +11960,16 @@ function Ky(r, e) {
   return (e === "string" ? String : Number)(r);
 }
 var vn = Yt(Yt({}, Ri.defaultOptions), {}, {
-  httpStack: new Cy(),
-  fileReader: new Sy(),
-  urlStorage: $y ? new zy() : new Ff(),
-  fingerprint: Py
-}), Xy = /* @__PURE__ */ function(r) {
+  httpStack: new By(),
+  fileReader: new Py(),
+  urlStorage: zy ? new Ny() : new Df(),
+  fingerprint: ky
+}), Yy = /* @__PURE__ */ function(r) {
   function e() {
     var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null, i = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-    return Ny(this, e), i = Yt(Yt({}, vn), i), qy(this, e, [t, i]);
+    return Ly(this, e), i = Yt(Yt({}, vn), i), Hy(this, e, [t, i]);
   }
-  return Gy(e, r), jy(e, null, [{
+  return Vy(e, r), qy(e, null, [{
     key: "terminate",
     value: function(i) {
       var o = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
@@ -11974,12 +11981,12 @@ function Je(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var Yy = 0;
-function Ou(r) {
-  return "__private_" + Yy++ + "_" + r;
+var Zy = 0;
+function Au(r) {
+  return "__private_" + Zy++ + "_" + r;
 }
-var Se = /* @__PURE__ */ Ou("uppy"), Dr = /* @__PURE__ */ Ou("events");
-class Zy {
+var Se = /* @__PURE__ */ Au("uppy"), Dr = /* @__PURE__ */ Au("events");
+class Jy {
   constructor(e) {
     Object.defineProperty(this, Se, {
       writable: !0,
@@ -12038,28 +12045,28 @@ class Zy {
     });
   }
 }
-class Jy extends Error {
+class Qy extends Error {
   constructor(e, t) {
     t === void 0 && (t = null), super("This looks like a network error, the endpoint might be blocked by an internet provider or a firewall."), this.cause = e, this.isNetworkError = !0, this.request = t;
   }
 }
-function Qy(r) {
+function em(r) {
   return r ? r.readyState !== 0 && r.readyState !== 4 || r.status === 0 : !1;
 }
 function G(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var em = 0;
+var tm = 0;
 function Be(r) {
-  return "__private_" + em++ + "_" + r;
+  return "__private_" + tm++ + "_" + r;
 }
-function tm(r) {
+function rm(r) {
   return new Error("Cancelled", {
     cause: r
   });
 }
-function Ja(r) {
+function Qa(r) {
   if (r != null) {
     var e;
     const t = () => this.abort(r.reason);
@@ -12074,18 +12081,18 @@ function Ja(r) {
   return this;
 }
 var Ee = /* @__PURE__ */ Be("activeRequests"), Te = /* @__PURE__ */ Be("queuedHandlers"), Oe = /* @__PURE__ */ Be("paused"), St = /* @__PURE__ */ Be("pauseTimer"), Pe = /* @__PURE__ */ Be("downLimit"), Pt = /* @__PURE__ */ Be("upperLimit"), Qe = /* @__PURE__ */ Be("rateLimitingTimer"), $r = /* @__PURE__ */ Be("call"), nt = /* @__PURE__ */ Be("queueNext"), wn = /* @__PURE__ */ Be("next"), Ho = /* @__PURE__ */ Be("queue"), _n = /* @__PURE__ */ Be("dequeue"), Wo = /* @__PURE__ */ Be("resume"), kt = /* @__PURE__ */ Be("increaseLimit");
-class rm {
+class im {
   constructor(e) {
     Object.defineProperty(this, _n, {
-      value: am
+      value: lm
     }), Object.defineProperty(this, Ho, {
-      value: sm
+      value: am
     }), Object.defineProperty(this, wn, {
-      value: nm
+      value: sm
     }), Object.defineProperty(this, nt, {
-      value: om
+      value: nm
     }), Object.defineProperty(this, $r, {
-      value: im
+      value: om
     }), Object.defineProperty(this, Ee, {
       writable: !0,
       value: 0
@@ -12135,7 +12142,7 @@ class rm {
       const a = i.run(() => (e(...n), queueMicrotask(() => a.done()), () => {
       }), t);
       return {
-        abortOn: Ja,
+        abortOn: Qa,
         abort() {
           a.abort();
         }
@@ -12161,13 +12168,13 @@ class rm {
           }, (x) => {
             d ? p(d) : (a.done(), p(x));
           }), (x) => {
-            d = tm(x);
+            d = rm(x);
           };
         }, t);
       });
       return l.abort = (u) => {
         a.abort(u);
-      }, l.abortOn = Ja, l;
+      }, l.abortOn = Qa, l;
     };
   }
   resume() {
@@ -12201,7 +12208,7 @@ class rm {
     return G(this, Oe)[Oe];
   }
 }
-function im(r) {
+function om(r) {
   G(this, Ee)[Ee] += 1;
   let e = !1, t;
   try {
@@ -12218,10 +12225,10 @@ function im(r) {
     }
   };
 }
-function om() {
+function nm() {
   queueMicrotask(() => G(this, wn)[wn]());
 }
-function nm() {
+function sm() {
   if (G(this, Oe)[Oe] || G(this, Ee)[Ee] >= this.limit || G(this, Te)[Te].length === 0)
     return;
   const r = G(this, Te)[Te].shift();
@@ -12230,7 +12237,7 @@ function nm() {
   const e = G(this, $r)[$r](r.fn);
   r.abort = e.abort, r.done = e.done;
 }
-function sm(r, e) {
+function am(r, e) {
   const t = {
     fn: r,
     priority: (e == null ? void 0 : e.priority) || 0,
@@ -12243,38 +12250,38 @@ function sm(r, e) {
   }, i = G(this, Te)[Te].findIndex((o) => t.priority > o.priority);
   return i === -1 ? G(this, Te)[Te].push(t) : G(this, Te)[Te].splice(i, 0, t), t;
 }
-function am(r) {
+function lm(r) {
   const e = G(this, Te)[Te].indexOf(r);
   e !== -1 && G(this, Te)[Te].splice(e, 1);
 }
 function Go(r, e) {
   return Object.prototype.hasOwnProperty.call(r, e);
 }
-function lm(r) {
+function um(r) {
   const e = (t) => "error" in t && !!t.error;
   return r.filter((t) => !e(t));
 }
-function um(r) {
+function pm(r) {
   return r.filter((e) => {
     var t;
     return !((t = e.progress) != null && t.uploadStarted) || !e.isRestored;
   });
 }
-function pm(r, e) {
+function dm(r, e) {
   return r === !0 ? Object.keys(e) : Array.isArray(r) ? r : [];
 }
-function dm() {
+function cm() {
   return typeof window < "u" && // @ts-expect-error may exist
   (typeof window.PhoneGap < "u" || // @ts-expect-error may exist
   typeof window.Cordova < "u" || // @ts-expect-error may exist
   typeof window.cordova < "u");
 }
-function cm() {
+function hm() {
   return typeof navigator < "u" && typeof navigator.product == "string" && navigator.product.toLowerCase() === "reactnative";
 }
-function hm(r) {
+function fm(r) {
   return (e, t) => {
-    if (dm() || cm())
+    if (cm() || hm())
       return vn.fingerprint(e, t);
     const i = ["tus", r.id, t.endpoint].join("-");
     return Promise.resolve(i);
@@ -12284,13 +12291,13 @@ function At(r, e) {
   if (!{}.hasOwnProperty.call(r, e)) throw new TypeError("attempted to use private field on non-instance");
   return r;
 }
-var fm = 0;
+var ym = 0;
 function ii(r) {
-  return "__private_" + fm++ + "_" + r;
+  return "__private_" + ym++ + "_" + r;
 }
-const ym = {
+const mm = {
   version: "4.2.2"
-}, Au = {
+}, Eu = {
   endpoint: "",
   uploadUrl: null,
   metadata: {},
@@ -12308,25 +12315,25 @@ const ym = {
   removeFingerprintOnSuccess: !1,
   uploadLengthDeferred: !1,
   uploadDataDuringCreation: !1
-}, mm = {
+}, gm = {
   limit: 20,
-  retryDelays: Au.retryDelays,
+  retryDelays: Eu.retryDelays,
   withCredentials: !1,
   allowedMetaFields: !0
 };
 var zr = /* @__PURE__ */ ii("retryDelayIterator"), xn = /* @__PURE__ */ ii("uploadLocalFile"), Sn = /* @__PURE__ */ ii("getCompanionClientArgs"), Vo = /* @__PURE__ */ ii("uploadFiles"), Tr = /* @__PURE__ */ ii("handleUpload");
-class Eu extends Ml {
+class Uu extends $l {
   constructor(e, t) {
     var i, o;
     if (super(e, {
-      ...mm,
+      ...gm,
       ...t
     }), Object.defineProperty(this, Vo, {
-      value: vm
+      value: wm
     }), Object.defineProperty(this, Sn, {
-      value: bm
+      value: vm
     }), Object.defineProperty(this, xn, {
-      value: gm
+      value: bm
     }), Object.defineProperty(this, zr, {
       writable: !0,
       value: void 0
@@ -12345,7 +12352,7 @@ class Eu extends Ml {
       throw new Error("The `metaFields` option has been renamed to `allowedMetaFields`.");
     if ("autoRetry" in t)
       throw new Error("The `autoRetry` option was deprecated and has been removed.");
-    this.requests = (i = this.opts.rateLimitedQueue) != null ? i : new rm(this.opts.limit), At(this, zr)[zr] = (o = this.opts.retryDelays) == null ? void 0 : o.values(), this.uploaders = /* @__PURE__ */ Object.create(null), this.uploaderEvents = /* @__PURE__ */ Object.create(null);
+    this.requests = (i = this.opts.rateLimitedQueue) != null ? i : new im(this.opts.limit), At(this, zr)[zr] = (o = this.opts.retryDelays) == null ? void 0 : o.values(), this.uploaders = /* @__PURE__ */ Object.create(null), this.uploaderEvents = /* @__PURE__ */ Object.create(null);
   }
   /**
    * Clean up all references for a file's upload: the tus.Upload instance,
@@ -12385,7 +12392,7 @@ class Eu extends Ml {
     }), this.uppy.removeUploader(At(this, Tr)[Tr]);
   }
 }
-function gm(r) {
+function bm(r) {
   return this.resetUploaderReferences(r.id), new Promise((e, t) => {
     let i, o, n;
     const s = {
@@ -12398,10 +12405,10 @@ function gm(r) {
       onBeforeRequest: l,
       ...u
     } = s, p = {
-      ...Au,
+      ...Eu,
       ...u
     };
-    p.fingerprint = hm(r), p.onBeforeRequest = async (_) => {
+    p.fingerprint = fm(r), p.onBeforeRequest = async (_) => {
       const T = _.getUnderlyingObject();
       T.withCredentials = !!s.withCredentials;
       let m;
@@ -12420,7 +12427,7 @@ function gm(r) {
       var T;
       this.uppy.log(_);
       const m = _.originalRequest != null ? _.originalRequest.getUnderlyingObject() : null;
-      Qy(m) && (_ = new Jy(_, m)), this.resetUploaderReferences(r.id), (T = i) == null || T.abort(), typeof s.onError == "function" && s.onError(_), t(_);
+      em(m) && (_ = new Qy(_, m)), this.resetUploaderReferences(r.id), (T = i) == null || T.abort(), typeof s.onError == "function" && s.onError(_), t(_);
     }, p.onProgress = (_, T) => {
       var m;
       this.onReceiveUploadUrl(r, n.url), typeof s.onProgress == "function" && s.onProgress(_, T);
@@ -12490,10 +12497,10 @@ function gm(r) {
     const h = (_, T, m) => {
       Go(_, T) && !Go(_, m) && (_[m] = _[T]);
     }, x = {};
-    pm(s.allowedMetaFields, r.meta).forEach((_) => {
+    dm(s.allowedMetaFields, r.meta).forEach((_) => {
       x[_] = String(r.meta[_]);
-    }), h(x, "type", "filetype"), h(x, "name", "filename"), p.metadata = x, n = new Xy(r.data, p), this.uploaders[r.id] = n;
-    const O = new Zy(this.uppy);
+    }), h(x, "type", "filetype"), h(x, "name", "filename"), p.metadata = x, n = new Yy(r.data, p), this.uploaders[r.id] = n;
+    const O = new Jy(this.uppy);
     this.uploaderEvents[r.id] = O, o = () => (r.isPaused || n.start(), () => {
     }), n.findPreviousUploads().then((_) => {
       const T = _[0];
@@ -12517,7 +12524,7 @@ function gm(r) {
     throw this.uppy.emit("upload-error", r, e), e;
   });
 }
-function bm(r) {
+function vm(r) {
   var e;
   const t = {
     ...this.opts
@@ -12532,8 +12539,8 @@ function bm(r) {
     metadata: r.meta
   };
 }
-async function vm(r) {
-  const e = lm(r), t = um(e);
+async function wm(r) {
+  const e = um(r), t = pm(e);
   this.uppy.emit("upload-start", t), await Promise.allSettled(e.map((i) => {
     if (i.isRemote) {
       const o = () => this.requests, n = new AbortController(), s = (l) => {
@@ -12553,19 +12560,19 @@ async function vm(r) {
     return At(this, xn)[xn](i);
   }));
 }
-Eu.VERSION = ym.version;
-const wm = ".uppy-Root{box-sizing:border-box;color:#333;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;line-height:1;position:relative;text-align:left;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.uppy-Root[dir=rtl],[dir=rtl] .uppy-Root{text-align:right}.uppy-Root *,.uppy-Root :after,.uppy-Root :before{box-sizing:inherit}.uppy-Root [hidden]{display:none}.uppy-u-reset{all:initial;-webkit-appearance:none;-moz-appearance:none;appearance:none;box-sizing:border-box;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;line-height:1}[dir=rtl] .uppy-u-reset{text-align:right}.uppy-c-textInput{background-color:#fff;border:1px solid #ddd;border-radius:4px;font-family:inherit;font-size:14px;line-height:1.5;padding:6px 8px}.uppy-size--md .uppy-c-textInput{padding:8px 10px}.uppy-c-textInput:focus{border-color:#1269cf99;box-shadow:0 0 0 3px #1269cf26;outline:none}[data-uppy-theme=dark] .uppy-c-textInput{background-color:#333;border-color:#333;color:#eaeaea}[data-uppy-theme=dark] .uppy-c-textInput:focus{border-color:#525252;box-shadow:none}.uppy-c-icon{display:inline-block;max-height:100%;max-width:100%;overflow:hidden;fill:currentColor}.uppy-c-btn{align-items:center;color:inherit;display:inline-flex;font-family:inherit;font-size:inherit;font-weight:500;justify-content:center;line-height:1;transition-duration:.3s;transition-property:background-color,color;-webkit-user-select:none;user-select:none;white-space:nowrap}.uppy-c-btn,[dir=rtl] .uppy-c-btn{text-align:center}.uppy-c-btn:not(:disabled):not(.disabled){cursor:pointer}.uppy-c-btn::-moz-focus-inner{border:0}.uppy-c-btn-primary{background-color:#1269cf;border-radius:4px;color:#fff;font-size:14px;padding:10px 18px}.uppy-c-btn-primary:not(:disabled):hover{background-color:#0e51a0}.uppy-c-btn-primary:focus{box-shadow:0 0 0 3px #1269cf66;outline:none}.uppy-size--md .uppy-c-btn-primary{padding:13px 22px}[data-uppy-theme=dark] .uppy-c-btn-primary{color:#eaeaea}[data-uppy-theme=dark] .uppy-c-btn-primary:focus{outline:none}[data-uppy-theme=dark] .uppy-c-btn-primary::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-c-btn-primary:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-c-btn-primary.uppy-c-btn--disabled{background-color:#8eb2db}.uppy-c-btn-link{background-color:initial;border-radius:4px;color:#525252;font-size:14px;line-height:1;padding:10px 15px}.uppy-c-btn-link:hover{color:#333}.uppy-c-btn-link:focus{box-shadow:0 0 0 3px #1269cf40;outline:none}.uppy-size--md .uppy-c-btn-link{padding:13px 18px}[data-uppy-theme=dark] .uppy-c-btn-link{color:#eaeaea}[data-uppy-theme=dark] .uppy-c-btn-link:focus{outline:none}[data-uppy-theme=dark] .uppy-c-btn-link::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-c-btn-link:focus{box-shadow:0 0 0 2px #aae1ffd9}[data-uppy-theme=dark] .uppy-c-btn-link:hover{color:#939393}", _m = `@charset "UTF-8";.uppy-Informer{bottom:60px;left:0;position:absolute;right:0;text-align:center;z-index:1005}.uppy-Informer span>div{margin-bottom:6px}.uppy-Informer-animated{opacity:0;transform:translateY(350%);transition:all .3s ease-in;z-index:-1000}.uppy-Informer p{background-color:#757575;border-radius:18px;color:#fff;display:inline-block;font-size:12px;font-weight:400;line-height:1.4;margin:0;max-width:90%;padding:6px 15px}.uppy-size--md .uppy-Informer p{font-size:14px;line-height:1.3;max-width:500px;padding:10px 20px}[data-uppy-theme=dark] .uppy-Informer p{background-color:#333}[dir=ltr] .uppy-Informer p span{left:3px}[dir=rtl] .uppy-Informer p span{right:3px}[dir=ltr] .uppy-Informer p span{margin-left:-1px}[dir=rtl] .uppy-Informer p span{margin-right:-1px}.uppy-Informer p span{background-color:#fff;border-radius:50%;color:#525252;display:inline-block;font-size:10px;height:13px;line-height:12px;position:relative;top:-1px;vertical-align:middle;width:13px}.uppy-Informer p span:hover{cursor:help}.uppy-Informer p span:after{line-height:1.3;word-wrap:break-word}.uppy-Root [aria-label][role~=tooltip]{position:relative}.uppy-Root [aria-label][role~=tooltip]:after,.uppy-Root [aria-label][role~=tooltip]:before{-webkit-backface-visibility:hidden;backface-visibility:hidden;box-sizing:border-box;opacity:0;pointer-events:none;position:absolute;transform:translateZ(0);transform-origin:top;transition:all var(--microtip-transition-duration,.18s) var(--microtip-transition-easing,ease-in-out) var(--microtip-transition-delay,0s);will-change:transform;z-index:10}.uppy-Root [aria-label][role~=tooltip]:before{background-size:100% auto!important;content:""}.uppy-Root [aria-label][role~=tooltip]:after{background:#111111e6;border-radius:4px;box-sizing:initial;color:#fff;content:attr(aria-label);font-size:var(--microtip-font-size,13px);font-weight:var(--microtip-font-weight,normal);padding:.5em 1em;text-transform:var(--microtip-text-transform,none);white-space:nowrap}.uppy-Root [aria-label][role~=tooltip]:focus:after,.uppy-Root [aria-label][role~=tooltip]:focus:before,.uppy-Root [aria-label][role~=tooltip]:hover:after,.uppy-Root [aria-label][role~=tooltip]:hover:before{opacity:1;pointer-events:auto}.uppy-Root [role~=tooltip][data-microtip-position|=top]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='12'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M2.658 0h32.004c-6 0-11.627 12.002-16.002 12.002S8.594 0 2.658 0'/%3E%3C/svg%3E") no-repeat;bottom:100%;height:6px;left:50%;margin-bottom:5px;transform:translate3d(-50%,0,0);width:18px}.uppy-Root [role~=tooltip][data-microtip-position|=top]:after{bottom:100%;left:50%;margin-bottom:11px;transform:translate3d(-50%,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=top]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position|=top]:hover:before{transform:translate3d(-50%,-5px,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-left]:after{bottom:100%;transform:translate3d(calc(-100% + 16px),0,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-left]:hover:after{transform:translate3d(calc(-100% + 16px),-5px,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-right]:after{bottom:100%;transform:translate3d(-16px,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-right]:hover:after{transform:translate3d(-16px,-5px,0)}.uppy-Root [role~=tooltip][data-microtip-position|=bottom]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='12'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M33.342 12H1.338c6 0 11.627-12.002 16.002-12.002S27.406 12 33.342 12'/%3E%3C/svg%3E") no-repeat;bottom:auto;height:6px;left:50%;margin-bottom:0;margin-top:5px;top:100%;transform:translate3d(-50%,-10px,0);width:18px}.uppy-Root [role~=tooltip][data-microtip-position|=bottom]:after{left:50%;margin-top:11px;top:100%;transform:translate3d(-50%,-10px,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position|=bottom]:hover:before{transform:translate3d(-50%,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-left]:after{top:100%;transform:translate3d(calc(-100% + 16px),-10px,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-left]:hover:after{transform:translate3d(calc(-100% + 16px),0,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-right]:after{top:100%;transform:translate3d(-16px,-10px,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-right]:hover:after{transform:translate3d(-16px,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=left]:after,.uppy-Root [role~=tooltip][data-microtip-position=left]:before{bottom:auto;left:auto;right:100%;top:50%;transform:translate3d(10px,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-position=left]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='36'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M0 33.342V1.338c0 6 12.002 11.627 12.002 16.002S0 27.406 0 33.342'/%3E%3C/svg%3E") no-repeat;height:18px;margin-bottom:0;margin-right:5px;width:6px}.uppy-Root [role~=tooltip][data-microtip-position=left]:after{margin-right:11px}.uppy-Root [role~=tooltip][data-microtip-position=left]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position=left]:hover:before{transform:translate3d(0,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-position=right]:after,.uppy-Root [role~=tooltip][data-microtip-position=right]:before{bottom:auto;left:100%;top:50%;transform:translate3d(-10px,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-position=right]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='36'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M12 2.658v32.004c0-6-12.002-11.627-12.002-16.002S12 8.594 12 2.658'/%3E%3C/svg%3E") no-repeat;height:18px;margin-bottom:0;margin-left:5px;width:6px}.uppy-Root [role~=tooltip][data-microtip-position=right]:after{margin-left:11px}.uppy-Root [role~=tooltip][data-microtip-position=right]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position=right]:hover:before{transform:translate3d(0,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-size=small]:after{white-space:normal;width:80px}.uppy-Root [role~=tooltip][data-microtip-size=medium]:after{white-space:normal;width:150px}.uppy-Root [role~=tooltip][data-microtip-size=large]:after{white-space:normal;width:260px}.uppy-StatusBar{background-color:#fff;color:#fff;display:flex;font-size:12px;font-weight:400;height:46px;line-height:40px;position:relative;transition:height .2s;z-index:1001}[data-uppy-theme=dark] .uppy-StatusBar{background-color:#1f1f1f}.uppy-StatusBar:before{background-color:#eaeaea;bottom:0;content:"";height:2px;left:0;position:absolute;right:0;top:0;width:100%}[data-uppy-theme=dark] .uppy-StatusBar:before{background-color:#757575}.uppy-StatusBar[aria-hidden=true]{height:0;overflow-y:hidden}.uppy-StatusBar.is-complete .uppy-StatusBar-progress{background-color:#1bb240}.uppy-StatusBar.is-error .uppy-StatusBar-progress{background-color:#e32437}.uppy-StatusBar.is-complete .uppy-StatusBar-statusIndicator{color:#1bb240}.uppy-StatusBar.is-error .uppy-StatusBar-statusIndicator{color:#e32437}.uppy-StatusBar:not([aria-hidden=true]).is-waiting{background-color:#fff;border-top:1px solid #eaeaea;height:65px}[data-uppy-theme=dark] .uppy-StatusBar:not([aria-hidden=true]).is-waiting{background-color:#1f1f1f;border-top:1px solid #333}.uppy-StatusBar-progress{background-color:#1269cf;height:2px;position:absolute;transition:background-color,width .3s ease-out;z-index:1001}.uppy-StatusBar-progress.is-indeterminate{animation:uppy-StatusBar-ProgressStripes 1s linear infinite;background-image:linear-gradient(45deg,#0000004d 25%,#0000 0,#0000 50%,#0000004d 0,#0000004d 75%,#0000 0,#0000);background-size:64px 64px}@keyframes uppy-StatusBar-ProgressStripes{0%{background-position:0 0}to{background-position:64px 0}}.uppy-StatusBar.is-postprocessing .uppy-StatusBar-progress,.uppy-StatusBar.is-preprocessing .uppy-StatusBar-progress{background-color:#f6a623}.uppy-StatusBar.is-waiting .uppy-StatusBar-progress{display:none}[dir=ltr] .uppy-StatusBar-content{padding-left:10px}[dir=rtl] .uppy-StatusBar-content{padding-right:10px}.uppy-StatusBar-content{align-items:center;color:#333;display:flex;height:100%;position:relative;text-overflow:ellipsis;white-space:nowrap;z-index:1002}[dir=ltr] .uppy-size--md .uppy-StatusBar-content{padding-left:15px}[dir=rtl] .uppy-size--md .uppy-StatusBar-content{padding-right:15px}[data-uppy-theme=dark] .uppy-StatusBar-content{color:#eaeaea}[dir=ltr] .uppy-StatusBar-status{padding-right:.3em}[dir=rtl] .uppy-StatusBar-status{padding-left:.3em}.uppy-StatusBar-status{display:flex;flex-direction:column;font-weight:400;justify-content:center;line-height:1.4}.uppy-StatusBar-statusPrimary{display:flex;font-weight:500;line-height:1}.uppy-StatusBar-statusPrimary button.uppy-StatusBar-details{margin-left:5px}[data-uppy-theme=dark] .uppy-StatusBar-statusPrimary{color:#eaeaea}.uppy-StatusBar-statusSecondary{color:#757575;display:inline-block;font-size:11px;line-height:1.2;margin-top:1px;white-space:nowrap}[data-uppy-theme=dark] .uppy-StatusBar-statusSecondary{color:#bbb}[dir=ltr] .uppy-StatusBar-statusSecondaryHint{margin-right:5px}[dir=rtl] .uppy-StatusBar-statusSecondaryHint{margin-left:5px}.uppy-StatusBar-statusSecondaryHint{display:inline-block;line-height:1;vertical-align:middle}[dir=ltr] .uppy-size--md .uppy-StatusBar-statusSecondaryHint{margin-right:8px}[dir=rtl] .uppy-size--md .uppy-StatusBar-statusSecondaryHint{margin-left:8px}[dir=ltr] .uppy-StatusBar-statusIndicator{margin-right:7px}[dir=rtl] .uppy-StatusBar-statusIndicator{margin-left:7px}.uppy-StatusBar-statusIndicator{color:#525252;position:relative;top:1px}.uppy-StatusBar-statusIndicator svg{vertical-align:text-bottom}[dir=ltr] .uppy-StatusBar-actions{right:10px}[dir=rtl] .uppy-StatusBar-actions{left:10px}.uppy-StatusBar-actions{align-items:center;bottom:0;display:flex;position:absolute;top:0;z-index:1004}.uppy-StatusBar.is-waiting .uppy-StatusBar-actions{background-color:#fafafa;height:100%;padding:0 15px;position:static;width:100%}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actions{background-color:#1f1f1f}.uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts{flex-direction:column;height:90px}.uppy-size--md .uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts{flex-direction:row;height:65px}.uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts .uppy-StatusBar-actions{flex-direction:column;justify-content:center}.uppy-size--md .uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts .uppy-StatusBar-actions{flex-direction:row;justify-content:normal}.uppy-StatusBar-actionCircleBtn{cursor:pointer;line-height:1;margin:3px;opacity:.9}.uppy-StatusBar-actionCircleBtn:focus{outline:none}.uppy-StatusBar-actionCircleBtn::-moz-focus-inner{border:0}.uppy-StatusBar-actionCircleBtn:focus{box-shadow:0 0 0 3px #1269cf80}[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn:focus{outline:none}[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-StatusBar-actionCircleBtn:hover{opacity:1}.uppy-StatusBar-actionCircleBtn:focus{border-radius:50%}.uppy-StatusBar-actionCircleBtn svg{vertical-align:bottom}.uppy-StatusBar-actionBtn{color:#1269cf;display:inline-block;font-size:10px;line-height:inherit;vertical-align:middle}.uppy-size--md .uppy-StatusBar-actionBtn{font-size:11px}.uppy-StatusBar-actionBtn--disabled{opacity:.4}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--disabled{opacity:.7}[dir=ltr] .uppy-StatusBar-actionBtn--retry{margin-right:6px}[dir=rtl] .uppy-StatusBar-actionBtn--retry{margin-left:6px}.uppy-StatusBar-actionBtn--retry{background-color:#ff4b23;border-radius:8px;color:#fff;height:16px;line-height:1;padding:1px 6px 3px 18px;position:relative}.uppy-StatusBar-actionBtn--retry:focus{outline:none}.uppy-StatusBar-actionBtn--retry::-moz-focus-inner{border:0}.uppy-StatusBar-actionBtn--retry:focus{box-shadow:0 0 0 3px #1269cf80}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry:focus{outline:none}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-StatusBar-actionBtn--retry:hover{background-color:#f92d00}[dir=ltr] .uppy-StatusBar-actionBtn--retry svg{left:6px}[dir=rtl] .uppy-StatusBar-actionBtn--retry svg{right:6px}.uppy-StatusBar-actionBtn--retry svg{position:absolute;top:3px}.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload{background-color:#1bb240;color:#fff;font-size:14px;line-height:1;padding:15px 10px;width:100%}.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload:hover{background-color:#189c38}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload{background-color:#1c8b37}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload:hover{background-color:#18762f}.uppy-size--md .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload{padding:13px 22px;width:auto}.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload.uppy-StatusBar-actionBtn--disabled:hover{background-color:#1bb240;cursor:not-allowed}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload.uppy-StatusBar-actionBtn--disabled:hover{background-color:#1c8b37}.uppy-StatusBar:not(.is-waiting) .uppy-StatusBar-actionBtn--upload{background-color:initial;color:#1269cf}[dir=ltr] .uppy-StatusBar-actionBtn--uploadNewlyAdded{padding-right:3px}[dir=ltr] .uppy-StatusBar-actionBtn--uploadNewlyAdded,[dir=rtl] .uppy-StatusBar-actionBtn--uploadNewlyAdded{padding-left:3px}[dir=rtl] .uppy-StatusBar-actionBtn--uploadNewlyAdded{padding-right:3px}.uppy-StatusBar-actionBtn--uploadNewlyAdded{border-radius:3px;padding-bottom:1px}.uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{outline:none}.uppy-StatusBar-actionBtn--uploadNewlyAdded::-moz-focus-inner{border:0}.uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{box-shadow:0 0 0 3px #1269cf80}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{outline:none}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-StatusBar.is-postprocessing .uppy-StatusBar-actionBtn--uploadNewlyAdded,.uppy-StatusBar.is-preprocessing .uppy-StatusBar-actionBtn--uploadNewlyAdded{display:none}.uppy-StatusBar-actionBtn--done{border-radius:3px;line-height:1;padding:7px 8px}.uppy-StatusBar-actionBtn--done:focus{outline:none}.uppy-StatusBar-actionBtn--done::-moz-focus-inner{border:0}.uppy-StatusBar-actionBtn--done:hover{color:#0e51a0}.uppy-StatusBar-actionBtn--done:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--done:focus{background-color:#333}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--done{color:#02baf2}.uppy-size--md .uppy-StatusBar-actionBtn--done{font-size:14px}.uppy-StatusBar-serviceMsg{color:#000;font-size:11px;line-height:1.1;padding-left:10px}.uppy-size--md .uppy-StatusBar-serviceMsg{font-size:14px;padding-left:15px}[data-uppy-theme=dark] .uppy-StatusBar-serviceMsg{color:#eaeaea}.uppy-StatusBar-serviceMsg-ghostsIcon{left:6px;opacity:.5;position:relative;top:2px;vertical-align:text-bottom;width:10px}.uppy-size--md .uppy-StatusBar-serviceMsg-ghostsIcon{left:10px;top:1px;width:15px}[dir=ltr] .uppy-StatusBar-details{left:2px}[dir=rtl] .uppy-StatusBar-details{right:2px}.uppy-StatusBar-details{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#939393;border-radius:50%;color:#fff;cursor:help;display:inline-block;font-size:10px;font-weight:600;height:13px;line-height:12px;position:relative;text-align:center;top:0;vertical-align:middle;width:13px}.uppy-StatusBar-details:after{line-height:1.3;word-wrap:break-word}[dir=ltr] .uppy-StatusBar-spinner{margin-right:10px}[dir=rtl] .uppy-StatusBar-spinner{margin-left:10px}.uppy-StatusBar-spinner{animation-duration:1s;animation-iteration-count:infinite;animation-name:uppy-StatusBar-spinnerAnimation;animation-timing-function:linear;fill:#1269cf}.uppy-StatusBar.is-postprocessing .uppy-StatusBar-spinner,.uppy-StatusBar.is-preprocessing .uppy-StatusBar-spinner{fill:#f6a623}@keyframes uppy-StatusBar-spinnerAnimation{0%{transform:rotate(0)}to{transform:rotate(1turn)}}.uppy-ProviderBrowser-viewType--grid ul.uppy-ProviderBrowser-list,.uppy-ProviderBrowser-viewType--unsplash ul.uppy-ProviderBrowser-list{align-items:flex-start;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;padding:6px}.uppy-ProviderBrowser-viewType--grid ul.uppy-ProviderBrowser-list:after,.uppy-ProviderBrowser-viewType--unsplash ul.uppy-ProviderBrowser-list:after{content:"";flex:auto}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem{margin:0;position:relative;width:50%}.uppy-size--md .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem,.uppy-size--md .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem{width:33.3333%}.uppy-size--lg .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem,.uppy-size--lg .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem{width:25%}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem:before,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem:before{content:"";display:block;padding-top:100%}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--selected img,.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--selected svg,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--selected img,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--selected svg{opacity:.85}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--disabled,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--disabled{opacity:.5}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner{background-color:#93939333}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner,[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner{background-color:#eaeaea33}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview svg,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview svg{height:30%;width:30%;fill:#000000b3}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview svg,[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview svg{fill:#fffc}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner{border-radius:4px;bottom:7px;height:calc(100% - 14px);left:7px;overflow:hidden;position:absolute;right:7px;text-align:center;top:7px;width:calc(100% - 14px)}@media (hover:none){.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner .uppy-ProviderBrowserItem-author{display:block}}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner,[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner{box-shadow:0 0 0 3px #aae1ffb3}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner img,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner img{border-radius:4px;height:100%;object-fit:cover;width:100%}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-author{background:#0000004d;bottom:0;color:#fff;display:none;font-size:12px;font-weight:500;left:0;margin:0;padding:5px;position:absolute;text-decoration:none;width:100%}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-author:hover,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-author:hover{background:#0006;text-decoration:underline}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox{background-color:#1269cf;border-radius:50%;height:26px;opacity:0;position:absolute;right:16px;top:16px;width:26px;z-index:1002}[dir=ltr] .uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox:after,[dir=ltr] .uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox:after{left:7px}[dir=rtl] .uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox:after,[dir=rtl] .uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox:after{right:7px}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox:after,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox:after{height:7px;top:8px;width:12px}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox{opacity:1}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:hover+label .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:hover+label .uppy-ProviderBrowserItem-author{display:block}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label{box-shadow:0 0 0 3px #1269cf80}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label:focus,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label:focus{outline:none}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label::-moz-focus-inner,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label::-moz-focus-inner{border:0}.uppy-ProviderBrowser-viewType--list{background-color:#fff}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--list{background-color:#1f1f1f}.uppy-ProviderBrowser-viewType--list li.uppy-ProviderBrowserItem{align-items:center;display:flex;margin:0;padding:7px 15px}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--list li.uppy-ProviderBrowserItem{color:#eaeaea}.uppy-ProviderBrowser-viewType--list li.uppy-ProviderBrowserItem--disabled{opacity:.6}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox{margin-right:15px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox{margin-left:15px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox{background-color:#fff;border:1px solid #cfcfcf;border-radius:3px;height:17px;width:17px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:focus{border:1px solid #1269cf;box-shadow:0 0 0 3px #1269cf40;outline:none}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:after{left:3px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:after{right:3px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:after{height:5px;opacity:0;top:4px;width:9px}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:focus{border-color:#02baf2b3;box-shadow:0 0 0 3px #02baf233}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox,.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-partial .uppy-ProviderBrowserItem-checkbox{background-color:#1269cf;border-color:#1269cf}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox:after,.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-partial .uppy-ProviderBrowserItem-checkbox:after{opacity:1}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner{align-items:center;color:inherit;display:flex;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;overflow:hidden;padding:2px;text-overflow:ellipsis;white-space:nowrap}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner:focus{outline:none;text-decoration:underline}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner img,[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner svg{margin-right:8px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner img,[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner svg{margin-left:8px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner span{line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--disabled .uppy-ProviderBrowserItem-inner{cursor:default}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-iconWrap{margin-right:7px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-iconWrap{margin-left:7px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-iconWrap{width:20px}.uppy-ProviderBrowserItem-checkbox{cursor:pointer;flex-shrink:0;position:relative}.uppy-ProviderBrowserItem-checkbox:disabled,.uppy-ProviderBrowserItem-checkbox:disabled:after{cursor:default}[data-uppy-theme=dark] .uppy-ProviderBrowserItem-checkbox{background-color:#1f1f1f;border-color:#939393}[data-uppy-theme=dark] .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox{background-color:#333}.uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox:after{border-bottom:2px solid #eaeaea;border-left:2px solid #eaeaea;content:"";cursor:pointer;position:absolute;transform:rotate(-45deg)}.uppy-ProviderBrowserItem--is-partial .uppy-ProviderBrowserItem-checkbox:after{background-color:#eaeaea!important;content:""!important;height:2px!important;left:20%!important;position:absolute!important;right:20%!important;top:50%!important;transform:translateY(-50%)!important}.uppy-SearchProvider{align-items:center;display:flex;flex:1;flex-direction:column;height:100%;justify-content:center;width:100%}[data-uppy-theme=dark] .uppy-SearchProvider{background-color:#1f1f1f}.uppy-SearchProvider-input{margin-bottom:15px;max-width:650px;width:90%}.uppy-size--md .uppy-SearchProvider-input{margin-bottom:20px}.uppy-SearchProvider-input::-webkit-search-cancel-button{display:none}.uppy-SearchProvider-searchButton{padding:13px 25px}.uppy-size--md .uppy-SearchProvider-searchButton{padding:13px 30px}.uppy-DashboardContent-panelBody{align-items:center;display:flex;flex:1;justify-content:center}[data-uppy-theme=dark] .uppy-DashboardContent-panelBody{background-color:#1f1f1f}.uppy-Provider-auth,.uppy-Provider-empty,.uppy-Provider-error,.uppy-Provider-loading{align-items:center;color:#939393;display:flex;flex:1;flex-flow:column wrap;justify-content:center}.uppy-Provider-empty{color:#939393}.uppy-Provider-authIcon svg{height:75px;width:100px}.uppy-Provider-authTitle{color:#757575;font-size:17px;font-weight:400;line-height:1.4;margin-bottom:30px;max-width:500px;padding:0 15px;text-align:center}.uppy-size--md .uppy-Provider-authTitle{font-size:20px}[data-uppy-theme=dark] .uppy-Provider-authTitle{color:#cfcfcf}.uppy-Provider-btn-google{align-items:center;background:#4285f4;display:flex;padding:8px 12px!important}.uppy-Provider-btn-google:hover{background-color:#1266f1}.uppy-Provider-btn-google:focus{box-shadow:0 0 0 3px #4285f466;outline:none}.uppy-Provider-btn-google svg{margin-right:8px}[dir=ltr] .uppy-Provider-breadcrumbs{text-align:left}[dir=rtl] .uppy-Provider-breadcrumbs{text-align:right}.uppy-Provider-breadcrumbs{color:#525252;flex:1;font-size:12px;margin-bottom:10px}.uppy-size--md .uppy-Provider-breadcrumbs{margin-bottom:0}[data-uppy-theme=dark] .uppy-Provider-breadcrumbs{color:#eaeaea}[dir=ltr] .uppy-Provider-breadcrumbsIcon{margin-right:4px}[dir=rtl] .uppy-Provider-breadcrumbsIcon{margin-left:4px}.uppy-Provider-breadcrumbsIcon{color:#525252;display:inline-block;line-height:1;vertical-align:middle}.uppy-Provider-breadcrumbsIcon svg{height:13px;width:13px;fill:#525252}.uppy-Provider-breadcrumbs button{border-radius:3px;display:inline-block;line-height:inherit;padding:4px}.uppy-Provider-breadcrumbs button:focus{outline:none}.uppy-Provider-breadcrumbs button::-moz-focus-inner{border:0}.uppy-Provider-breadcrumbs button:hover{color:#0e51a0}.uppy-Provider-breadcrumbs button:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-Provider-breadcrumbs button:focus{background-color:#333}.uppy-Provider-breadcrumbs button:not(:last-of-type){text-decoration:underline}.uppy-Provider-breadcrumbs button:last-of-type{color:#333;cursor:normal;font-weight:500;pointer-events:none}.uppy-Provider-breadcrumbs button:hover{cursor:pointer}[data-uppy-theme=dark] .uppy-Provider-breadcrumbs button{color:#eaeaea}.uppy-ProviderBrowser{display:flex;flex:1;flex-direction:column;font-size:14px;font-weight:400;height:100%}.uppy-ProviderBrowser-user{color:#333;font-weight:500;margin:0 8px 0 0}[data-uppy-theme=dark] .uppy-ProviderBrowser-user{color:#eaeaea}[dir=ltr] .uppy-ProviderBrowser-user:after{left:4px}[dir=rtl] .uppy-ProviderBrowser-user:after{right:4px}.uppy-ProviderBrowser-user:after{color:#939393;content:"·";font-weight:400;position:relative}.uppy-ProviderBrowser-header{border-bottom:1px solid #eaeaea;position:relative;z-index:1001}[data-uppy-theme=dark] .uppy-ProviderBrowser-header{border-bottom:1px solid #333}.uppy-ProviderBrowser-headerBar{background-color:#fafafa;color:#757575;font-size:12px;line-height:1.4;padding:7px 15px;z-index:1001}.uppy-size--md .uppy-ProviderBrowser-headerBar{align-items:center;display:flex}[data-uppy-theme=dark] .uppy-ProviderBrowser-headerBar{background-color:#1f1f1f}.uppy-ProviderBrowser-headerBar--simple{display:block;justify-content:center;text-align:center}.uppy-ProviderBrowser-headerBar--simple .uppy-Provider-breadcrumbsWrap{display:inline-block;flex:none;vertical-align:middle}.uppy-ProviderBrowser-searchFilter{align-items:center;display:flex;height:30px;margin-bottom:15px;margin-top:15px;padding-left:8px;padding-right:8px;position:relative;width:100%}[dir=ltr] .uppy-ProviderBrowser-searchFilterInput{padding-left:30px}[dir=ltr] .uppy-ProviderBrowser-searchFilterInput,[dir=rtl] .uppy-ProviderBrowser-searchFilterInput{padding-right:30px}[dir=rtl] .uppy-ProviderBrowser-searchFilterInput{padding-left:30px}.uppy-ProviderBrowser-searchFilterInput{background-color:#eaeaea;border:0;border-radius:4px;color:#333;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;font-size:13px;height:30px;line-height:1.4;outline:0;width:100%;z-index:1001}.uppy-ProviderBrowser-searchFilterInput::-webkit-search-cancel-button{display:none}[data-uppy-theme=dark] .uppy-ProviderBrowser-searchFilterInput{background-color:#1f1f1f;color:#eaeaea}.uppy-ProviderBrowser-searchFilterInput:focus{background-color:#cfcfcf;border:0}[data-uppy-theme=dark] .uppy-ProviderBrowser-searchFilterInput:focus{background-color:#333}[dir=ltr] .uppy-ProviderBrowser-searchFilterIcon{left:16px}[dir=rtl] .uppy-ProviderBrowser-searchFilterIcon{right:16px}.uppy-ProviderBrowser-searchFilterIcon{color:#757575;height:12px;position:absolute;width:12px;z-index:1002}.uppy-ProviderBrowser-searchFilterInput::placeholder{color:#939393;opacity:1}[dir=ltr] .uppy-ProviderBrowser-searchFilterReset{right:16px}[dir=rtl] .uppy-ProviderBrowser-searchFilterReset{left:16px}.uppy-ProviderBrowser-searchFilterReset{border-radius:3px;color:#939393;cursor:pointer;height:22px;padding:6px;position:absolute;width:22px;z-index:1002}.uppy-ProviderBrowser-searchFilterReset:focus{outline:none}.uppy-ProviderBrowser-searchFilterReset::-moz-focus-inner{border:0}.uppy-ProviderBrowser-searchFilterReset:focus{box-shadow:0 0 0 3px #1269cf80}.uppy-ProviderBrowser-searchFilterReset:hover{color:#757575}.uppy-ProviderBrowser-searchFilterReset svg{vertical-align:text-top}.uppy-ProviderBrowser-userLogout{border-radius:3px;color:#1269cf;cursor:pointer;line-height:inherit;padding:4px}.uppy-ProviderBrowser-userLogout:focus{outline:none}.uppy-ProviderBrowser-userLogout::-moz-focus-inner{border:0}.uppy-ProviderBrowser-userLogout:hover{color:#0e51a0}.uppy-ProviderBrowser-userLogout:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-ProviderBrowser-userLogout:focus{background-color:#333}.uppy-ProviderBrowser-userLogout:hover{text-decoration:underline}[data-uppy-theme=dark] .uppy-ProviderBrowser-userLogout{color:#eaeaea}.uppy-ProviderBrowser-body{flex:1;position:relative}.uppy-ProviderBrowser-list{background-color:#fff;border-spacing:0;bottom:0;display:block;flex:1;height:100%;left:0;list-style:none;margin:0;overflow-x:hidden;overflow-y:auto;padding:0;position:absolute;right:0;top:0;width:100%;-webkit-overflow-scrolling:touch}[data-uppy-theme=dark] .uppy-ProviderBrowser-list{background-color:#1f1f1f}.uppy-ProviderBrowser-list:focus{outline:none}.uppy-ProviderBrowserItem-inner{cursor:pointer;font-size:13px;font-weight:500}.uppy-ProviderBrowser-footer{align-items:center;background-color:#fff;border-top:1px solid #eaeaea;display:flex;justify-content:space-between;padding:15px}[dir=ltr] .uppy-ProviderBrowser-footer button{margin-right:8px}[dir=rtl] .uppy-ProviderBrowser-footer button{margin-left:8px}[data-uppy-theme=dark] .uppy-ProviderBrowser-footer{background-color:#1f1f1f;border-top:1px solid #333}.uppy-ProviderBrowser-footer-buttons{flex-shrink:0}.uppy-ProviderBrowser-footer-error{color:#e32437;line-height:18px}@media (max-width:426px){.uppy-ProviderBrowser-footer{align-items:stretch;flex-direction:column-reverse}.uppy-ProviderBrowser-footer-error{padding-bottom:10px}}.picker-dialog-bg{z-index:20000!important}.picker-dialog{z-index:20001!important}.uppy-Dashboard-Item-previewInnerWrap{align-items:center;border-radius:3px;box-shadow:0 0 2px #0006;display:flex;flex-direction:column;height:100%;justify-content:center;overflow:hidden;position:relative;width:100%}.uppy-size--md .uppy-Dashboard-Item-previewInnerWrap{box-shadow:0 1px 2px #00000026}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-previewInnerWrap{box-shadow:none}.uppy-Dashboard-Item-previewInnerWrap:after{background-color:#000000a6;bottom:0;content:"";display:none;left:0;position:absolute;right:0;top:0;z-index:1001}.uppy-Dashboard-Item-previewLink{bottom:0;left:0;position:absolute;right:0;top:0;z-index:1002}.uppy-Dashboard-Item-previewLink:focus{box-shadow:inset 0 0 0 3px #579df0}[data-uppy-theme=dark] .uppy-Dashboard-Item-previewLink:focus{box-shadow:inset 0 0 0 3px #016c8d}.uppy-Dashboard-Item-preview img.uppy-Dashboard-Item-previewImg{border-radius:3px;height:100%;object-fit:cover;transform:translateZ(0);width:100%}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-preview img.uppy-Dashboard-Item-previewImg{height:auto;max-height:100%;max-width:100%;object-fit:contain;padding:10px;width:auto}.uppy-Dashboard-Item-progress{color:#fff;left:50%;position:absolute;text-align:center;top:50%;transform:translate(-50%,-50%);transition:all .35 ease;width:120px;z-index:1002}.uppy-Dashboard-Item-progressIndicator{color:#fff;display:inline-block;height:38px;opacity:.9;width:38px}.uppy-size--md .uppy-Dashboard-Item-progressIndicator{height:55px;width:55px}button.uppy-Dashboard-Item-progressIndicator{cursor:pointer}button.uppy-Dashboard-Item-progressIndicator:focus{outline:none}button.uppy-Dashboard-Item-progressIndicator::-moz-focus-inner{border:0}button.uppy-Dashboard-Item-progressIndicator:focus .uppy-Dashboard-Item-progressIcon--bg,button.uppy-Dashboard-Item-progressIndicator:focus .uppy-Dashboard-Item-progressIcon--retry{fill:#579df0}.uppy-Dashboard-Item-progressIcon--circle{height:100%;width:100%}.uppy-Dashboard-Item-progressIcon--bg{stroke:#fff6}.uppy-Dashboard-Item-progressIcon--progress{transition:stroke-dashoffset .5s ease-out;stroke:#fff}.uppy-Dashboard-Item-progressIcon--play{transition:all .2s;fill:#fff;stroke:#fff}.uppy-Dashboard-Item-progressIcon--cancel{transition:all .2s;fill:#fff}.uppy-Dashboard-Item-progressIcon--pause{transition:all .2s;fill:#fff;stroke:#fff}.uppy-Dashboard-Item-progressIcon--check{transition:all .2s;fill:#fff}.uppy-Dashboard-Item-progressIcon--retry{fill:#fff}[dir=ltr] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{right:-8px}[dir=rtl] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{left:-8px}[dir=ltr] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{left:auto}[dir=rtl] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{right:auto}.uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{top:-9px;transform:none;width:auto}.uppy-Dashboard-Item.is-error .uppy-Dashboard-Item-progressIndicator{height:18px;width:18px}.uppy-size--md .uppy-Dashboard-Item.is-error .uppy-Dashboard-Item-progressIndicator{height:28px;width:28px}.uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progressIndicator{height:18px;opacity:1;width:18px}.uppy-size--md .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progressIndicator{height:22px;width:22px}.uppy-Dashboard-Item.is-processing .uppy-Dashboard-Item-progress{opacity:0}[dir=ltr] .uppy-Dashboard-Item-fileInfo{padding-right:5px}[dir=rtl] .uppy-Dashboard-Item-fileInfo{padding-left:5px}[dir=ltr] .uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-right:10px}[dir=rtl] .uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-left:10px}[dir=ltr] .uppy-size--md.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-right:15px}[dir=rtl] .uppy-size--md.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-left:15px}.uppy-Dashboard-Item-name{font-size:12px;font-weight:500;line-height:1.3;margin-bottom:5px;word-wrap:anywhere;word-break:break-all}[data-uppy-theme=dark] .uppy-Dashboard-Item-name{color:#eaeaea}.uppy-size--md.uppy-Dashboard--singleFile .uppy-Dashboard-Item-name{font-size:14px;line-height:1.4}.uppy-Dashboard-Item-fileName{align-items:baseline;display:flex}.uppy-Dashboard-Item-fileName button{margin-left:5px}.uppy-Dashboard-Item-author{color:#757575;display:inline-block;font-size:11px;font-weight:400;line-height:1;margin-bottom:5px;vertical-align:bottom}.uppy-Dashboard-Item-author a{color:#757575}.uppy-Dashboard-Item-status{color:#757575;font-size:11px;font-weight:400;line-height:1}[data-uppy-theme=dark] .uppy-Dashboard-Item-status{color:#bbb}.uppy-Dashboard-Item-statusSize{display:inline-block;margin-bottom:5px;text-transform:uppercase;vertical-align:bottom}.uppy-Dashboard-Item-reSelect{color:#1269cf;font-family:inherit;font-size:inherit;font-weight:600}.uppy-Dashboard-Item-errorMessage{background-color:#fdeff1;color:#a51523;font-size:11px;font-weight:500;line-height:1.3;padding:5px 6px}.uppy-Dashboard-Item-errorMessageBtn{color:#a51523;cursor:pointer;font-size:11px;font-weight:500;text-decoration:underline}.uppy-Dashboard-Item-preview .uppy-Dashboard-Item-errorMessage{display:none}.uppy-size--md .uppy-Dashboard-Item-preview .uppy-Dashboard-Item-errorMessage{border-bottom-left-radius:3px;border-bottom-right-radius:3px;border-top:1px solid #f7c2c8;bottom:0;display:block;left:0;line-height:1.4;padding:6px 8px;position:absolute;right:0}.uppy-Dashboard-Item-fileInfo .uppy-Dashboard-Item-errorMessage{border:1px solid #f7c2c8;border-radius:3px;display:inline-block;position:static}.uppy-size--md .uppy-Dashboard-Item-fileInfo .uppy-Dashboard-Item-errorMessage{display:none}.uppy-Dashboard-Item-action{color:#939393;cursor:pointer}.uppy-Dashboard-Item-action:focus{outline:none}.uppy-Dashboard-Item-action::-moz-focus-inner{border:0}.uppy-Dashboard-Item-action:focus{box-shadow:0 0 0 3px #1269cf80}.uppy-Dashboard-Item-action:hover{color:#1f1f1f;opacity:1}[data-uppy-theme=dark] .uppy-Dashboard-Item-action{color:#cfcfcf}[data-uppy-theme=dark] .uppy-Dashboard-Item-action:focus{outline:none}[data-uppy-theme=dark] .uppy-Dashboard-Item-action::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-Dashboard-Item-action:focus{box-shadow:0 0 0 2px #aae1ffd9}[data-uppy-theme=dark] .uppy-Dashboard-Item-action:hover{color:#eaeaea}.uppy-Dashboard-Item-action--remove{color:#1f1f1f;opacity:.95}.uppy-Dashboard-Item-action--remove:hover{color:#000;opacity:1}[dir=ltr] .uppy-size--md .uppy-Dashboard-Item-action--remove{right:-8px}[dir=rtl] .uppy-size--md .uppy-Dashboard-Item-action--remove{left:-8px}.uppy-size--md .uppy-Dashboard-Item-action--remove{height:18px;padding:0;position:absolute;top:-8px;width:18px;z-index:1002}.uppy-size--md .uppy-Dashboard-Item-action--remove:focus{border-radius:50%}[dir=ltr] .uppy-Dashboard--singleFile.uppy-size--height-md .uppy-Dashboard-Item-action--remove{right:8px}[dir=rtl] .uppy-Dashboard--singleFile.uppy-size--height-md .uppy-Dashboard-Item-action--remove{left:8px}.uppy-Dashboard--singleFile.uppy-size--height-md .uppy-Dashboard-Item-action--remove{position:absolute;top:8px}[data-uppy-theme=dark] .uppy-Dashboard-Item-action--remove{color:#525252}[data-uppy-theme=dark] .uppy-Dashboard-Item-action--remove:hover{color:#333}.uppy-Dashboard:not(.uppy-size--md):not(.uppy-Dashboard--singleFile.uppy-size--height-md) .uppy-Dashboard-Item-actionWrapper{align-items:center;display:flex}.uppy-Dashboard:not(.uppy-size--md):not(.uppy-Dashboard--singleFile.uppy-size--height-md) .uppy-Dashboard-Item-action{height:22px;margin-left:3px;padding:3px;width:22px}.uppy-Dashboard:not(.uppy-size--md):not(.uppy-Dashboard--singleFile.uppy-size--height-md) .uppy-Dashboard-Item-action:focus{border-radius:3px}.uppy-size--md .uppy-Dashboard-Item-action--copyLink,.uppy-size--md .uppy-Dashboard-Item-action--edit{height:16px;padding:0;width:16px}.uppy-size--md .uppy-Dashboard-Item-action--copyLink:focus,.uppy-size--md .uppy-Dashboard-Item-action--edit:focus{border-radius:3px}.uppy-Dashboard-Item{align-items:center;border-bottom:1px solid #eaeaea;display:flex;padding:10px}[dir=ltr] .uppy-Dashboard:not(.uppy-Dashboard--singleFile) .uppy-Dashboard-Item{padding-right:0}[dir=rtl] .uppy-Dashboard:not(.uppy-Dashboard--singleFile) .uppy-Dashboard-Item{padding-left:0}[data-uppy-theme=dark] .uppy-Dashboard-Item{border-bottom:1px solid #333}[dir=ltr] .uppy-size--md .uppy-Dashboard-Item{float:left}[dir=rtl] .uppy-size--md .uppy-Dashboard-Item{float:right}.uppy-size--md .uppy-Dashboard-Item{border-bottom:0;display:block;height:215px;margin:5px 15px;padding:0;position:relative;width:calc(33.333% - 30px)}.uppy-size--lg .uppy-Dashboard-Item{height:190px;margin:5px 15px;padding:0;width:calc(25% - 30px)}.uppy-size--xl .uppy-Dashboard-Item{height:210px;padding:0;width:calc(20% - 30px)}.uppy-Dashboard--singleFile .uppy-Dashboard-Item{border-bottom:0;display:flex;flex-direction:column;height:100%;max-width:400px;padding:15px;position:relative;width:100%}.uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-previewInnerWrap{opacity:.2}.uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-name{opacity:.7}.uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-preview:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='35' height='39' viewBox='0 0 35 39'%3E%3Cpath fill='%2523000' d='M1.708 38.66c1.709 0 3.417-3.417 6.834-3.417s5.125 3.417 8.61 3.417c3.348 0 5.056-3.417 8.473-3.417 4.305 0 5.125 3.417 6.833 3.417.889 0 1.709-.889 1.709-1.709v-19.68C34.167-5.757 0-5.757 0 17.271v19.68c0 .82.888 1.709 1.708 1.709m8.542-17.084a3.383 3.383 0 0 1-3.417-3.416 3.383 3.383 0 0 1 3.417-3.417 3.383 3.383 0 0 1 3.417 3.417 3.383 3.383 0 0 1-3.417 3.416m13.667 0A3.383 3.383 0 0 1 20.5 18.16a3.383 3.383 0 0 1 3.417-3.417 3.383 3.383 0 0 1 3.416 3.417 3.383 3.383 0 0 1-3.416 3.416'/%3E%3C/svg%3E");background-position:50% 10px;background-repeat:no-repeat;background-size:25px;bottom:0;content:"";left:0;opacity:.5;position:absolute;right:0;top:0;z-index:1005}.uppy-size--md .uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-preview:before{background-position:50% 50%;background-size:40px}.uppy-Dashboard--singleFile .uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-preview:before{background-position:50% 50%;background-size:30%}.uppy-Dashboard-Item-preview{flex-grow:0;flex-shrink:0;height:50px;position:relative;width:50px}.uppy-size--md .uppy-Dashboard-Item-preview{height:140px;width:100%}.uppy-size--lg .uppy-Dashboard-Item-preview{height:120px}.uppy-size--xl .uppy-Dashboard-Item-preview{height:140px}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-preview{flex-grow:1;max-height:75%;width:100%}.uppy-Dashboard--singleFile.uppy-size--md .uppy-Dashboard-Item-preview{max-height:100%}[dir=ltr] .uppy-Dashboard-Item-fileInfoAndButtons{padding-right:8px}[dir=rtl] .uppy-Dashboard-Item-fileInfoAndButtons{padding-left:8px}[dir=ltr] .uppy-Dashboard-Item-fileInfoAndButtons{padding-left:12px}[dir=rtl] .uppy-Dashboard-Item-fileInfoAndButtons{padding-right:12px}.uppy-Dashboard-Item-fileInfoAndButtons{align-items:center;display:flex;flex-grow:1;justify-content:space-between}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfoAndButtons,.uppy-size--md .uppy-Dashboard-Item-fileInfoAndButtons{align-items:flex-start;padding:9px 0 0}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfoAndButtons{flex-grow:0;width:100%}.uppy-Dashboard-Item-fileInfo{flex-grow:1;flex-shrink:1}.uppy-Dashboard-Item-actionWrapper{flex-grow:0;flex-shrink:0}.uppy-Dashboard-Item.is-error .uppy-Dashboard-Item-previewInnerWrap:after,.uppy-Dashboard-Item.is-inprogress .uppy-Dashboard-Item-previewInnerWrap:after{display:block}[dir=ltr] .uppy-Dashboard-Item-errorDetails{left:2px}[dir=rtl] .uppy-Dashboard-Item-errorDetails{right:2px}.uppy-Dashboard-Item-errorDetails{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#939393;border:none;border-radius:50%;color:#fff;cursor:help;flex-shrink:0;font-size:10px;font-weight:600;height:13px;line-height:12px;position:relative;text-align:center;top:0;width:13px}.uppy-Dashboard-Item-errorDetails:after{line-height:1.3;word-wrap:break-word}.uppy-Dashboard-FileCard{background-color:#fff;border-radius:5px;bottom:0;box-shadow:0 0 10px 4px #0000001a;display:flex;flex-direction:column;height:100%;left:0;position:absolute;right:0;top:0;width:100%;z-index:1005}.uppy-Dashboard-FileCard .uppy-DashboardContent-bar{border-top-left-radius:5px;border-top-right-radius:5px}.uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actions{border-bottom-left-radius:5px;border-bottom-right-radius:5px}.uppy-Dashboard-FileCard-inner{display:flex;flex-direction:column;flex-grow:1;flex-shrink:1;height:100%;min-height:0}.uppy-Dashboard-FileCard-preview{align-items:center;border-bottom:1px solid #eaeaea;display:flex;flex-grow:0;flex-shrink:1;height:60%;justify-content:center;min-height:0;position:relative}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-preview{background-color:#333;border-bottom:0}.uppy-Dashboard-FileCard-preview img.uppy-Dashboard-Item-previewImg{border-radius:3px;box-shadow:0 3px 20px #00000026;flex:0 0 auto;max-height:90%;max-width:90%;object-fit:cover}[dir=ltr] .uppy-Dashboard-FileCard-edit{right:10px}[dir=rtl] .uppy-Dashboard-FileCard-edit{left:10px}.uppy-Dashboard-FileCard-edit{background-color:#00000080;border-radius:50px;color:#fff;font-size:13px;padding:7px 15px;position:absolute;top:10px}.uppy-Dashboard-FileCard-edit:focus{outline:none}.uppy-Dashboard-FileCard-edit::-moz-focus-inner{border:0}.uppy-Dashboard-FileCard-edit:focus{box-shadow:0 0 0 3px #1269cf80}.uppy-Dashboard-FileCard-edit:hover{background-color:#000c}.uppy-Dashboard-FileCard-info{flex-grow:0;flex-shrink:0;height:40%;overflow-y:auto;padding:30px 20px 20px;-webkit-overflow-scrolling:touch}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-info{background-color:#1f1f1f}.uppy-Dashboard-FileCard-fieldset{border:0;font-size:0;margin:auto auto 12px;max-width:640px;padding:0}.uppy-Dashboard-FileCard-label{color:#525252;display:inline-block;font-size:12px;vertical-align:middle;width:22%}.uppy-size--md .uppy-Dashboard-FileCard-label{font-size:14px}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-label{color:#eaeaea}.uppy-Dashboard-FileCard-input{display:inline-block;vertical-align:middle;width:78%}.uppy-Dashboard-FileCard-actions{align-items:center;background-color:#fafafa;border-top:1px solid #eaeaea;display:flex;flex-grow:0;flex-shrink:0;height:55px;padding:0 15px}.uppy-size--md .uppy-Dashboard-FileCard-actions{height:65px}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-actions{background-color:#1f1f1f;border-top:1px solid #333}[dir=ltr] .uppy-Dashboard-FileCard-actionsBtn{margin-right:10px}[dir=rtl] .uppy-Dashboard-FileCard-actionsBtn{margin-left:10px}.uppy-transition-slideDownUp-enter{opacity:.01;transform:translate3d(0,-105%,0);transition:transform .25s ease-in-out,opacity .25s ease-in-out}.uppy-transition-slideDownUp-enter.uppy-transition-slideDownUp-enter-active{opacity:1;transform:translateZ(0)}.uppy-transition-slideDownUp-leave{opacity:1;transform:translateZ(0);transition:transform .25s ease-in-out,opacity .25s ease-in-out}.uppy-transition-slideDownUp-leave.uppy-transition-slideDownUp-leave-active{opacity:.01;transform:translate3d(0,-105%,0)}@keyframes uppy-Dashboard-fadeIn{0%{opacity:0}to{opacity:1}}@keyframes uppy-Dashboard-fadeOut{0%{opacity:1}to{opacity:0}}@keyframes uppy-Dashboard-slideDownAndFadeIn{0%{opacity:0;transform:translate3d(-50%,-70%,0)}to{opacity:1;transform:translate3d(-50%,-50%,0)}}@keyframes uppy-Dashboard-slideDownAndFadeIn--small{0%{opacity:0;transform:translate3d(0,-20%,0)}to{opacity:1;transform:translateZ(0)}}@keyframes uppy-Dashboard-slideUpFadeOut{0%{opacity:1;transform:translate3d(-50%,-50%,0)}to{opacity:0;transform:translate3d(-50%,-70%,0)}}@keyframes uppy-Dashboard-slideUpFadeOut--small{0%{opacity:1;transform:translateZ(0)}to{opacity:0;transform:translate3d(0,-20%,0)}}.uppy-Dashboard--modal{z-index:1001}.uppy-Dashboard--modal[aria-hidden=true]{display:none}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideDownAndFadeIn--small .3s cubic-bezier(0,0,.2,1)}@media only screen and (min-width:820px){.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideDownAndFadeIn .3s cubic-bezier(0,0,.2,1)}}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose>.uppy-Dashboard-overlay{animation:uppy-Dashboard-fadeIn .3s cubic-bezier(0,0,.2,1)}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose.uppy-Dashboard--isClosing>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideUpFadeOut--small .3s cubic-bezier(0,0,.2,1)}@media only screen and (min-width:820px){.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose.uppy-Dashboard--isClosing>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideUpFadeOut .3s cubic-bezier(0,0,.2,1)}}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose.uppy-Dashboard--isClosing>.uppy-Dashboard-overlay{animation:uppy-Dashboard-fadeOut .3s cubic-bezier(0,0,.2,1)}.uppy-Dashboard-isFixed{height:100vh;overflow:hidden}.uppy-Dashboard--modal .uppy-Dashboard-overlay{background-color:#00000080;bottom:0;left:0;position:fixed;right:0;top:0;z-index:1001}.uppy-Dashboard-inner{background-color:#f4f4f4;border:1px solid #eaeaea;border-radius:5px;max-height:100%;max-width:100%;outline:none;position:relative}.uppy-size--md .uppy-Dashboard-inner{min-height:auto}@media only screen and (min-width:820px){.uppy-Dashboard-inner{height:500px;width:650px}}.uppy-Dashboard--modal .uppy-Dashboard-inner{z-index:1002}[data-uppy-theme=dark] .uppy-Dashboard-inner{background-color:#1f1f1f}.uppy-Dashboard--isDisabled .uppy-Dashboard-inner{cursor:not-allowed}.uppy-Dashboard-innerWrap{border-radius:5px;display:flex;flex-direction:column;height:100%;opacity:0;overflow:hidden;position:relative}.uppy-Dashboard--isInnerWrapVisible .uppy-Dashboard-innerWrap{opacity:1}.uppy-Dashboard--isDisabled .uppy-Dashboard-innerWrap{cursor:not-allowed;filter:grayscale(100%);opacity:.6;-webkit-user-select:none;user-select:none}.uppy-Dashboard--isDisabled .uppy-ProviderIconBg{fill:#9f9f9f}.uppy-Dashboard--isDisabled [aria-disabled],.uppy-Dashboard--isDisabled [disabled]{cursor:not-allowed;pointer-events:none}.uppy-Dashboard--modal .uppy-Dashboard-inner{border:none;bottom:15px;left:15px;position:fixed;right:15px;top:35px}@media only screen and (min-width:820px){.uppy-Dashboard--modal .uppy-Dashboard-inner{box-shadow:0 5px 15px 4px #00000026;left:50%;right:auto;top:50%;transform:translate(-50%,-50%)}}[dir=ltr] .uppy-Dashboard-close{right:-2px}[dir=rtl] .uppy-Dashboard-close{left:-2px}.uppy-Dashboard-close{color:#ffffffe6;cursor:pointer;display:block;font-size:27px;position:absolute;top:-33px;z-index:1005}.uppy-Dashboard-close:focus{outline:none}.uppy-Dashboard-close::-moz-focus-inner{border:0}.uppy-Dashboard-close:focus{color:#6eabf2}@media only screen and (min-width:820px){[dir=ltr] .uppy-Dashboard-close{right:-35px}[dir=rtl] .uppy-Dashboard-close{left:-35px}.uppy-Dashboard-close{font-size:35px;top:-10px}}.uppy-Dashboard-serviceMsg{background-color:#fffbf7;border-bottom:1px solid #edd4b9;border-top:1px solid #edd4b9;font-size:12px;font-weight:500;line-height:1.3;padding:12px 0;position:relative;top:-1px;z-index:1004}.uppy-size--md .uppy-Dashboard-serviceMsg{font-size:14px;line-height:1.4}[data-uppy-theme=dark] .uppy-Dashboard-serviceMsg{background-color:#1f1f1f;border-bottom:1px solid #333;border-top:1px solid #333;color:#eaeaea}.uppy-Dashboard-serviceMsg-title{display:block;line-height:1;margin-bottom:4px;padding-left:42px}.uppy-Dashboard-serviceMsg-text{padding:0 15px}.uppy-Dashboard-serviceMsg-actionBtn{color:#1269cf;font-size:inherit;font-weight:inherit;vertical-align:initial}[data-uppy-theme=dark] .uppy-Dashboard-serviceMsg-actionBtn{color:#02baf2e6}.uppy-Dashboard-serviceMsg-icon{left:15px;position:absolute;top:10px}.uppy-Dashboard-AddFiles{align-items:center;display:flex;flex-direction:column;height:100%;justify-content:center;position:relative;text-align:center}[data-uppy-drag-drop-supported=true] .uppy-Dashboard-AddFiles{border:1px dashed #dfdfdf;border-radius:3px;height:calc(100% - 14px);margin:7px}.uppy-Dashboard-AddFilesPanel .uppy-Dashboard-AddFiles{border:none;height:calc(100% - 54px)}.uppy-Dashboard--modal .uppy-Dashboard-AddFiles{border-color:#cfcfcf}[data-uppy-theme=dark] .uppy-Dashboard-AddFiles{border-color:#757575}.uppy-Dashboard-AddFiles-info{display:none;margin-top:auto;padding-bottom:15px;padding-top:15px}.uppy-size--height-md .uppy-Dashboard-AddFiles-info{display:block}.uppy-size--md .uppy-Dashboard-AddFiles-info{bottom:25px;left:0;padding-bottom:0;padding-top:30px;position:absolute;right:0}[data-uppy-num-acquirers="0"] .uppy-Dashboard-AddFiles-info{margin-top:0}.uppy-Dashboard-browse{color:#1269cf;cursor:pointer}.uppy-Dashboard-browse:focus{outline:none}.uppy-Dashboard-browse::-moz-focus-inner{border:0}.uppy-Dashboard-browse:focus,.uppy-Dashboard-browse:hover{border-bottom:1px solid #1269cf}[data-uppy-theme=dark] .uppy-Dashboard-browse{color:#02baf2e6}[data-uppy-theme=dark] .uppy-Dashboard-browse:focus,[data-uppy-theme=dark] .uppy-Dashboard-browse:hover{border-bottom:1px solid #02baf2}.uppy-Dashboard-browseBtn{display:block;font-size:14px;font-weight:500;margin-bottom:5px;margin-top:8px;width:100%}.uppy-size--md .uppy-Dashboard-browseBtn{font-size:15px;margin:15px auto;padding:13px 44px;width:auto}.uppy-Dashboard-AddFiles-list{display:flex;flex:1;flex-direction:column;margin-top:2px;overflow-y:auto;padding:2px 0;width:100%;-webkit-overflow-scrolling:touch}.uppy-size--md .uppy-Dashboard-AddFiles-list{flex:none;flex-direction:row;flex-wrap:wrap;justify-content:center;margin-top:15px;max-width:600px;overflow-y:visible;padding-top:0}.uppy-DashboardTab{border-bottom:1px solid #eaeaea;text-align:center;width:100%}[data-uppy-theme=dark] .uppy-DashboardTab{border-bottom:1px solid #333}.uppy-size--md .uppy-DashboardTab{border-bottom:none;display:inline-block;margin-bottom:10px;width:auto}.uppy-DashboardTab-btn{align-items:center;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:initial;color:#525252;cursor:pointer;flex-direction:row;height:100%;justify-content:left;padding:12px 15px;width:100%}.uppy-DashboardTab-btn:focus{outline:none}[dir=ltr] .uppy-size--md .uppy-DashboardTab-btn{margin-right:1px}[dir=rtl] .uppy-size--md .uppy-DashboardTab-btn{margin-left:1px}.uppy-size--md .uppy-DashboardTab-btn{border-radius:5px;flex-direction:column;padding:10px 3px;width:86px}[data-uppy-theme=dark] .uppy-DashboardTab-btn{color:#eaeaea}.uppy-DashboardTab-btn::-moz-focus-inner{border:0}.uppy-DashboardTab-btn:hover{background-color:#e9ecef}[data-uppy-theme=dark] .uppy-DashboardTab-btn:hover{background-color:#333}.uppy-DashboardTab-btn:active,.uppy-DashboardTab-btn:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-DashboardTab-btn:active,[data-uppy-theme=dark] .uppy-DashboardTab-btn:focus{background-color:#525252}.uppy-DashboardTab-btn svg{display:inline-block;max-height:100%;max-width:100%;overflow:hidden;transition:transform .15s ease-in-out;vertical-align:text-top}[dir=ltr] .uppy-DashboardTab-inner{margin-right:10px}[dir=rtl] .uppy-DashboardTab-inner{margin-left:10px}.uppy-DashboardTab-inner{align-items:center;background-color:#fff;border-radius:8px;box-shadow:0 1px 1px #0000001a,0 1px 2px #0000001a,0 2px 3px #00000005;display:flex;height:32px;justify-content:center;width:32px}[dir=ltr] .uppy-size--md .uppy-DashboardTab-inner{margin-right:0}[dir=rtl] .uppy-size--md .uppy-DashboardTab-inner{margin-left:0}[data-uppy-theme=dark] .uppy-DashboardTab-inner{background-color:#323232;box-shadow:0 1px 1px #0003,0 1px 2px #0003,0 2px 3px #00000014}.uppy-DashboardTab-name{font-size:14px;font-weight:400}.uppy-size--md .uppy-DashboardTab-name{font-size:12px;line-height:15px;margin-bottom:0;margin-top:8px}.uppy-DashboardTab-iconMyDevice{color:#1269cf}[data-uppy-theme=dark] .uppy-DashboardTab-iconMyDevice{color:#02baf2}.uppy-DashboardTab-iconBox{color:#0061d5}[data-uppy-theme=dark] .uppy-DashboardTab-iconBox{color:#eaeaea}.uppy-DashboardTab-iconDropbox{color:#0061fe}[data-uppy-theme=dark] .uppy-DashboardTab-iconDropbox{color:#eaeaea}.uppy-DashboardTab-iconUnsplash{color:#111}[data-uppy-theme=dark] .uppy-DashboardTab-iconUnsplash{color:#eaeaea}.uppy-DashboardTab-iconWebdav{color:#111}[data-uppy-theme=dark] .uppy-DashboardTab-iconWebdav{color:#eaeaea}.uppy-DashboardTab-iconScreenRec{color:#2c3e50}[data-uppy-theme=dark] .uppy-DashboardTab-iconScreenRec{color:#eaeaea}.uppy-DashboardTab-iconAudio{color:#8030a3}[data-uppy-theme=dark] .uppy-DashboardTab-iconAudio{color:#bf6ee3}.uppy-Dashboard-input{height:.1px;opacity:0;overflow:hidden;position:absolute;width:.1px;z-index:-1}.uppy-DashboardContent-bar{align-items:center;background-color:#fafafa;border-bottom:1px solid #eaeaea;display:flex;flex-shrink:0;height:40px;justify-content:space-between;padding:0 10px;position:relative;width:100%;z-index:1004}.uppy-size--md .uppy-DashboardContent-bar{height:50px;padding:0 15px}[data-uppy-theme=dark] .uppy-DashboardContent-bar{background-color:#1f1f1f;border-bottom:1px solid #333}.uppy-DashboardContent-title{font-size:12px;font-weight:500;left:0;line-height:40px;margin:auto;max-width:170px;overflow-x:hidden;position:absolute;right:0;text-align:center;text-overflow:ellipsis;top:0;white-space:nowrap;width:100%}.uppy-size--md .uppy-DashboardContent-title{font-size:14px;line-height:50px;max-width:300px}[data-uppy-theme=dark] .uppy-DashboardContent-title{color:#eaeaea}[dir=ltr] .uppy-DashboardContent-back,[dir=ltr] .uppy-DashboardContent-save{margin-left:-6px}[dir=rtl] .uppy-DashboardContent-back,[dir=rtl] .uppy-DashboardContent-save{margin-right:-6px}.uppy-DashboardContent-back,.uppy-DashboardContent-save{-webkit-appearance:none;background:none;border:0;border-radius:3px;color:inherit;color:#1269cf;cursor:pointer;font-family:inherit;font-size:inherit;font-size:12px;font-weight:400;line-height:1;margin:0;padding:7px 6px}.uppy-DashboardContent-back:focus,.uppy-DashboardContent-save:focus{outline:none}.uppy-DashboardContent-back::-moz-focus-inner,.uppy-DashboardContent-save::-moz-focus-inner{border:0}.uppy-DashboardContent-back:hover,.uppy-DashboardContent-save:hover{color:#0e51a0}.uppy-DashboardContent-back:focus,.uppy-DashboardContent-save:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-DashboardContent-back:focus,[data-uppy-theme=dark] .uppy-DashboardContent-save:focus{background-color:#333}.uppy-size--md .uppy-DashboardContent-back,.uppy-size--md .uppy-DashboardContent-save{font-size:14px}[data-uppy-theme=dark] .uppy-DashboardContent-back,[data-uppy-theme=dark] .uppy-DashboardContent-save{color:#02baf2}[dir=ltr] .uppy-DashboardContent-addMore{margin-right:-5px}[dir=rtl] .uppy-DashboardContent-addMore{margin-left:-5px}.uppy-DashboardContent-addMore{-webkit-appearance:none;background:none;border:0;border-radius:3px;color:inherit;color:#1269cf;cursor:pointer;font-family:inherit;font-size:inherit;font-weight:500;height:29px;line-height:1;margin:0;padding:7px 8px;width:29px}.uppy-DashboardContent-addMore:focus{outline:none}.uppy-DashboardContent-addMore::-moz-focus-inner{border:0}.uppy-DashboardContent-addMore:hover{color:#0e51a0}.uppy-DashboardContent-addMore:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-DashboardContent-addMore:focus{background-color:#333}[dir=ltr] .uppy-size--md .uppy-DashboardContent-addMore{margin-right:-8px}[dir=rtl] .uppy-size--md .uppy-DashboardContent-addMore{margin-left:-8px}.uppy-size--md .uppy-DashboardContent-addMore{font-size:14px;height:auto;width:auto}[data-uppy-theme=dark] .uppy-DashboardContent-addMore{color:#02baf2}[dir=ltr] .uppy-DashboardContent-addMore svg{margin-right:4px}[dir=rtl] .uppy-DashboardContent-addMore svg{margin-left:4px}.uppy-DashboardContent-addMore svg{vertical-align:initial}.uppy-size--md .uppy-DashboardContent-addMore svg{height:11px;width:11px}.uppy-DashboardContent-addMoreCaption{display:none}.uppy-size--md .uppy-DashboardContent-addMoreCaption{display:inline}.uppy-DashboardContent-panel{background-color:#f5f5f5;flex:1}.uppy-Dashboard-AddFilesPanel,.uppy-DashboardContent-panel{border-radius:5px;bottom:0;display:flex;flex-direction:column;left:0;overflow:hidden;position:absolute;right:0;top:0;z-index:1005}.uppy-Dashboard-AddFilesPanel{background:#fafafa;background:linear-gradient(0deg,#fafafa 35%,#fafafad9);box-shadow:0 0 10px 5px #00000026}[data-uppy-theme=dark] .uppy-Dashboard-AddFilesPanel{background-color:#333;background-image:linear-gradient(0deg,#1f1f1f 35%,#1f1f1fd9)}.uppy-Dashboard--isAddFilesPanelVisible .uppy-Dashboard-files{filter:blur(2px)}.uppy-Dashboard-progress{bottom:0;height:12%;left:0;position:absolute;width:100%}.uppy-Dashboard-progressBarContainer.is-active{height:100%;left:0;position:absolute;top:0;width:100%;z-index:1004}.uppy-Dashboard-filesContainer{flex:1;margin:0;overflow-y:hidden;position:relative}.uppy-Dashboard-filesContainer:after{clear:both;content:"";display:table}.uppy-Dashboard-files{flex:1;margin:0;overflow-y:auto;padding:0 0 10px;-webkit-overflow-scrolling:touch}.uppy-size--md .uppy-Dashboard-files{padding-top:10px}.uppy-Dashboard--singleFile .uppy-Dashboard-filesInner{align-items:center;display:flex;height:100%;justify-content:center}.uppy-Dashboard-dropFilesHereHint{align-items:center;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath fill='%231269CF' d='M24 1v1C11.85 2 2 11.85 2 24s9.85 22 22 22 22-9.85 22-22S36.15 2 24 2zm0 0V0c13.254 0 24 10.746 24 24S37.254 48 24 48 0 37.254 0 24 10.746 0 24 0zm7.707 19.293a.999.999 0 1 1-1.414 1.414L25 16.414V34a1 1 0 1 1-2 0V16.414l-5.293 5.293a.999.999 0 1 1-1.414-1.414l7-7a1 1 0 0 1 1.414 0z'/%3E%3C/svg%3E");background-position:50% 50%;background-repeat:no-repeat;border:1px dashed #1269cf;border-radius:3px;bottom:7px;color:#757575;display:flex;font-size:16px;justify-content:center;left:7px;padding-top:90px;position:absolute;right:7px;text-align:center;top:7px;visibility:hidden;z-index:2000}[data-uppy-theme=dark] .uppy-Dashboard-dropFilesHereHint{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath fill='%2302BAF2' d='M24 1v1C11.85 2 2 11.85 2 24s9.85 22 22 22 22-9.85 22-22S36.15 2 24 2zm0 0V0c13.254 0 24 10.746 24 24S37.254 48 24 48 0 37.254 0 24 10.746 0 24 0zm7.707 19.293a.999.999 0 1 1-1.414 1.414L25 16.414V34a1 1 0 1 1-2 0V16.414l-5.293 5.293a.999.999 0 1 1-1.414-1.414l7-7a1 1 0 0 1 1.414 0z'/%3E%3C/svg%3E");border-color:#02baf2;color:#bbb}.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-dropFilesHereHint{pointer-events:none;visibility:visible}.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-files,.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-progressindicators,.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-serviceMsg,.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-DashboardContent-bar{opacity:.15}.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-AddFiles{opacity:.03}.uppy-Dashboard-AddFiles-title{color:#000;font-size:17px;font-weight:500;line-height:1.35;margin-bottom:5px;margin-top:15px;padding:0 15px;text-align:inline-start;width:100%}.uppy-size--md .uppy-Dashboard-AddFiles-title{font-size:21px;font-weight:400;margin-top:5px;max-width:480px;padding:0 35px;text-align:center}[data-uppy-num-acquirers="0"] .uppy-Dashboard-AddFiles-title{text-align:center}[data-uppy-theme=dark] .uppy-Dashboard-AddFiles-title{color:#eaeaea}.uppy-Dashboard-AddFiles-title button{font-weight:500}.uppy-size--md .uppy-Dashboard-AddFiles-title button{font-weight:400}.uppy-Dashboard-note{color:#757575;font-size:14px;line-height:1.25;margin:auto;max-width:350px;padding:0 15px;text-align:center}.uppy-size--md .uppy-Dashboard-note{line-height:1.35;max-width:600px}[data-uppy-theme=dark] .uppy-Dashboard-note{color:#cfcfcf}a.uppy-Dashboard-poweredBy{color:#939393;display:inline-block;font-size:11px;margin-top:8px;text-align:center;text-decoration:none}.uppy-Dashboard-poweredByIcon{margin-left:1px;margin-right:1px;opacity:.9;position:relative;top:1px;vertical-align:text-top;fill:none;stroke:#939393}.uppy-Dashboard-Item-previewIcon{height:25px;left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:25px;z-index:100}.uppy-size--md .uppy-Dashboard-Item-previewIcon{height:38px;width:38px}.uppy-Dashboard-Item-previewIcon svg{height:100%;width:100%}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-previewIcon{height:100%;max-height:60%;max-width:60%;width:100%}.uppy-Dashboard-Item-previewIconWrap{height:76px;max-height:75%;position:relative}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-previewIconWrap{height:100%;width:100%}.uppy-Dashboard-Item-previewIconBg{filter:drop-shadow(rgba(0,0,0,.1) 0 1px 1px);height:100%;width:100%}.uppy-Dashboard-upload{height:50px;position:relative;width:50px}.uppy-size--md .uppy-Dashboard-upload{height:60px;width:60px}.uppy-Dashboard-upload .uppy-c-icon{position:relative;top:1px;width:50%}[dir=ltr] .uppy-Dashboard-uploadCount{right:-12px}[dir=rtl] .uppy-Dashboard-uploadCount{left:-12px}.uppy-Dashboard-uploadCount{background-color:#1bb240;border-radius:50%;color:#fff;font-size:8px;height:16px;line-height:16px;position:absolute;top:-12px;width:16px}.uppy-size--md .uppy-Dashboard-uploadCount{font-size:9px;height:18px;line-height:18px;width:18px}`;
-var xm = Object.defineProperty, Sm = Object.getOwnPropertyDescriptor, Uu = (r) => {
+Uu.VERSION = mm.version;
+const _m = ".uppy-Root{box-sizing:border-box;color:#333;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;line-height:1;position:relative;text-align:left;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.uppy-Root[dir=rtl],[dir=rtl] .uppy-Root{text-align:right}.uppy-Root *,.uppy-Root :after,.uppy-Root :before{box-sizing:inherit}.uppy-Root [hidden]{display:none}.uppy-u-reset{all:initial;-webkit-appearance:none;-moz-appearance:none;appearance:none;box-sizing:border-box;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;line-height:1}[dir=rtl] .uppy-u-reset{text-align:right}.uppy-c-textInput{background-color:#fff;border:1px solid #ddd;border-radius:4px;font-family:inherit;font-size:14px;line-height:1.5;padding:6px 8px}.uppy-size--md .uppy-c-textInput{padding:8px 10px}.uppy-c-textInput:focus{border-color:#1269cf99;box-shadow:0 0 0 3px #1269cf26;outline:none}[data-uppy-theme=dark] .uppy-c-textInput{background-color:#333;border-color:#333;color:#eaeaea}[data-uppy-theme=dark] .uppy-c-textInput:focus{border-color:#525252;box-shadow:none}.uppy-c-icon{display:inline-block;max-height:100%;max-width:100%;overflow:hidden;fill:currentColor}.uppy-c-btn{align-items:center;color:inherit;display:inline-flex;font-family:inherit;font-size:inherit;font-weight:500;justify-content:center;line-height:1;transition-duration:.3s;transition-property:background-color,color;-webkit-user-select:none;user-select:none;white-space:nowrap}.uppy-c-btn,[dir=rtl] .uppy-c-btn{text-align:center}.uppy-c-btn:not(:disabled):not(.disabled){cursor:pointer}.uppy-c-btn::-moz-focus-inner{border:0}.uppy-c-btn-primary{background-color:#1269cf;border-radius:4px;color:#fff;font-size:14px;padding:10px 18px}.uppy-c-btn-primary:not(:disabled):hover{background-color:#0e51a0}.uppy-c-btn-primary:focus{box-shadow:0 0 0 3px #1269cf66;outline:none}.uppy-size--md .uppy-c-btn-primary{padding:13px 22px}[data-uppy-theme=dark] .uppy-c-btn-primary{color:#eaeaea}[data-uppy-theme=dark] .uppy-c-btn-primary:focus{outline:none}[data-uppy-theme=dark] .uppy-c-btn-primary::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-c-btn-primary:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-c-btn-primary.uppy-c-btn--disabled{background-color:#8eb2db}.uppy-c-btn-link{background-color:initial;border-radius:4px;color:#525252;font-size:14px;line-height:1;padding:10px 15px}.uppy-c-btn-link:hover{color:#333}.uppy-c-btn-link:focus{box-shadow:0 0 0 3px #1269cf40;outline:none}.uppy-size--md .uppy-c-btn-link{padding:13px 18px}[data-uppy-theme=dark] .uppy-c-btn-link{color:#eaeaea}[data-uppy-theme=dark] .uppy-c-btn-link:focus{outline:none}[data-uppy-theme=dark] .uppy-c-btn-link::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-c-btn-link:focus{box-shadow:0 0 0 2px #aae1ffd9}[data-uppy-theme=dark] .uppy-c-btn-link:hover{color:#939393}", xm = `@charset "UTF-8";.uppy-Informer{bottom:60px;left:0;position:absolute;right:0;text-align:center;z-index:1005}.uppy-Informer span>div{margin-bottom:6px}.uppy-Informer-animated{opacity:0;transform:translateY(350%);transition:all .3s ease-in;z-index:-1000}.uppy-Informer p{background-color:#757575;border-radius:18px;color:#fff;display:inline-block;font-size:12px;font-weight:400;line-height:1.4;margin:0;max-width:90%;padding:6px 15px}.uppy-size--md .uppy-Informer p{font-size:14px;line-height:1.3;max-width:500px;padding:10px 20px}[data-uppy-theme=dark] .uppy-Informer p{background-color:#333}[dir=ltr] .uppy-Informer p span{left:3px}[dir=rtl] .uppy-Informer p span{right:3px}[dir=ltr] .uppy-Informer p span{margin-left:-1px}[dir=rtl] .uppy-Informer p span{margin-right:-1px}.uppy-Informer p span{background-color:#fff;border-radius:50%;color:#525252;display:inline-block;font-size:10px;height:13px;line-height:12px;position:relative;top:-1px;vertical-align:middle;width:13px}.uppy-Informer p span:hover{cursor:help}.uppy-Informer p span:after{line-height:1.3;word-wrap:break-word}.uppy-Root [aria-label][role~=tooltip]{position:relative}.uppy-Root [aria-label][role~=tooltip]:after,.uppy-Root [aria-label][role~=tooltip]:before{-webkit-backface-visibility:hidden;backface-visibility:hidden;box-sizing:border-box;opacity:0;pointer-events:none;position:absolute;transform:translateZ(0);transform-origin:top;transition:all var(--microtip-transition-duration,.18s) var(--microtip-transition-easing,ease-in-out) var(--microtip-transition-delay,0s);will-change:transform;z-index:10}.uppy-Root [aria-label][role~=tooltip]:before{background-size:100% auto!important;content:""}.uppy-Root [aria-label][role~=tooltip]:after{background:#111111e6;border-radius:4px;box-sizing:initial;color:#fff;content:attr(aria-label);font-size:var(--microtip-font-size,13px);font-weight:var(--microtip-font-weight,normal);padding:.5em 1em;text-transform:var(--microtip-text-transform,none);white-space:nowrap}.uppy-Root [aria-label][role~=tooltip]:focus:after,.uppy-Root [aria-label][role~=tooltip]:focus:before,.uppy-Root [aria-label][role~=tooltip]:hover:after,.uppy-Root [aria-label][role~=tooltip]:hover:before{opacity:1;pointer-events:auto}.uppy-Root [role~=tooltip][data-microtip-position|=top]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='12'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M2.658 0h32.004c-6 0-11.627 12.002-16.002 12.002S8.594 0 2.658 0'/%3E%3C/svg%3E") no-repeat;bottom:100%;height:6px;left:50%;margin-bottom:5px;transform:translate3d(-50%,0,0);width:18px}.uppy-Root [role~=tooltip][data-microtip-position|=top]:after{bottom:100%;left:50%;margin-bottom:11px;transform:translate3d(-50%,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=top]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position|=top]:hover:before{transform:translate3d(-50%,-5px,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-left]:after{bottom:100%;transform:translate3d(calc(-100% + 16px),0,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-left]:hover:after{transform:translate3d(calc(-100% + 16px),-5px,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-right]:after{bottom:100%;transform:translate3d(-16px,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=top-right]:hover:after{transform:translate3d(-16px,-5px,0)}.uppy-Root [role~=tooltip][data-microtip-position|=bottom]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='12'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M33.342 12H1.338c6 0 11.627-12.002 16.002-12.002S27.406 12 33.342 12'/%3E%3C/svg%3E") no-repeat;bottom:auto;height:6px;left:50%;margin-bottom:0;margin-top:5px;top:100%;transform:translate3d(-50%,-10px,0);width:18px}.uppy-Root [role~=tooltip][data-microtip-position|=bottom]:after{left:50%;margin-top:11px;top:100%;transform:translate3d(-50%,-10px,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position|=bottom]:hover:before{transform:translate3d(-50%,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-left]:after{top:100%;transform:translate3d(calc(-100% + 16px),-10px,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-left]:hover:after{transform:translate3d(calc(-100% + 16px),0,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-right]:after{top:100%;transform:translate3d(-16px,-10px,0)}.uppy-Root [role~=tooltip][data-microtip-position=bottom-right]:hover:after{transform:translate3d(-16px,0,0)}.uppy-Root [role~=tooltip][data-microtip-position=left]:after,.uppy-Root [role~=tooltip][data-microtip-position=left]:before{bottom:auto;left:auto;right:100%;top:50%;transform:translate3d(10px,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-position=left]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='36'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M0 33.342V1.338c0 6 12.002 11.627 12.002 16.002S0 27.406 0 33.342'/%3E%3C/svg%3E") no-repeat;height:18px;margin-bottom:0;margin-right:5px;width:6px}.uppy-Root [role~=tooltip][data-microtip-position=left]:after{margin-right:11px}.uppy-Root [role~=tooltip][data-microtip-position=left]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position=left]:hover:before{transform:translate3d(0,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-position=right]:after,.uppy-Root [role~=tooltip][data-microtip-position=right]:before{bottom:auto;left:100%;top:50%;transform:translate3d(-10px,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-position=right]:before{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='36'%3E%3Cpath fill='rgba(17, 17, 17, 0.9)' d='M12 2.658v32.004c0-6-12.002-11.627-12.002-16.002S12 8.594 12 2.658'/%3E%3C/svg%3E") no-repeat;height:18px;margin-bottom:0;margin-left:5px;width:6px}.uppy-Root [role~=tooltip][data-microtip-position=right]:after{margin-left:11px}.uppy-Root [role~=tooltip][data-microtip-position=right]:hover:after,.uppy-Root [role~=tooltip][data-microtip-position=right]:hover:before{transform:translate3d(0,-50%,0)}.uppy-Root [role~=tooltip][data-microtip-size=small]:after{white-space:normal;width:80px}.uppy-Root [role~=tooltip][data-microtip-size=medium]:after{white-space:normal;width:150px}.uppy-Root [role~=tooltip][data-microtip-size=large]:after{white-space:normal;width:260px}.uppy-StatusBar{background-color:#fff;color:#fff;display:flex;font-size:12px;font-weight:400;height:46px;line-height:40px;position:relative;transition:height .2s;z-index:1001}[data-uppy-theme=dark] .uppy-StatusBar{background-color:#1f1f1f}.uppy-StatusBar:before{background-color:#eaeaea;bottom:0;content:"";height:2px;left:0;position:absolute;right:0;top:0;width:100%}[data-uppy-theme=dark] .uppy-StatusBar:before{background-color:#757575}.uppy-StatusBar[aria-hidden=true]{height:0;overflow-y:hidden}.uppy-StatusBar.is-complete .uppy-StatusBar-progress{background-color:#1bb240}.uppy-StatusBar.is-error .uppy-StatusBar-progress{background-color:#e32437}.uppy-StatusBar.is-complete .uppy-StatusBar-statusIndicator{color:#1bb240}.uppy-StatusBar.is-error .uppy-StatusBar-statusIndicator{color:#e32437}.uppy-StatusBar:not([aria-hidden=true]).is-waiting{background-color:#fff;border-top:1px solid #eaeaea;height:65px}[data-uppy-theme=dark] .uppy-StatusBar:not([aria-hidden=true]).is-waiting{background-color:#1f1f1f;border-top:1px solid #333}.uppy-StatusBar-progress{background-color:#1269cf;height:2px;position:absolute;transition:background-color,width .3s ease-out;z-index:1001}.uppy-StatusBar-progress.is-indeterminate{animation:uppy-StatusBar-ProgressStripes 1s linear infinite;background-image:linear-gradient(45deg,#0000004d 25%,#0000 0,#0000 50%,#0000004d 0,#0000004d 75%,#0000 0,#0000);background-size:64px 64px}@keyframes uppy-StatusBar-ProgressStripes{0%{background-position:0 0}to{background-position:64px 0}}.uppy-StatusBar.is-postprocessing .uppy-StatusBar-progress,.uppy-StatusBar.is-preprocessing .uppy-StatusBar-progress{background-color:#f6a623}.uppy-StatusBar.is-waiting .uppy-StatusBar-progress{display:none}[dir=ltr] .uppy-StatusBar-content{padding-left:10px}[dir=rtl] .uppy-StatusBar-content{padding-right:10px}.uppy-StatusBar-content{align-items:center;color:#333;display:flex;height:100%;position:relative;text-overflow:ellipsis;white-space:nowrap;z-index:1002}[dir=ltr] .uppy-size--md .uppy-StatusBar-content{padding-left:15px}[dir=rtl] .uppy-size--md .uppy-StatusBar-content{padding-right:15px}[data-uppy-theme=dark] .uppy-StatusBar-content{color:#eaeaea}[dir=ltr] .uppy-StatusBar-status{padding-right:.3em}[dir=rtl] .uppy-StatusBar-status{padding-left:.3em}.uppy-StatusBar-status{display:flex;flex-direction:column;font-weight:400;justify-content:center;line-height:1.4}.uppy-StatusBar-statusPrimary{display:flex;font-weight:500;line-height:1}.uppy-StatusBar-statusPrimary button.uppy-StatusBar-details{margin-left:5px}[data-uppy-theme=dark] .uppy-StatusBar-statusPrimary{color:#eaeaea}.uppy-StatusBar-statusSecondary{color:#757575;display:inline-block;font-size:11px;line-height:1.2;margin-top:1px;white-space:nowrap}[data-uppy-theme=dark] .uppy-StatusBar-statusSecondary{color:#bbb}[dir=ltr] .uppy-StatusBar-statusSecondaryHint{margin-right:5px}[dir=rtl] .uppy-StatusBar-statusSecondaryHint{margin-left:5px}.uppy-StatusBar-statusSecondaryHint{display:inline-block;line-height:1;vertical-align:middle}[dir=ltr] .uppy-size--md .uppy-StatusBar-statusSecondaryHint{margin-right:8px}[dir=rtl] .uppy-size--md .uppy-StatusBar-statusSecondaryHint{margin-left:8px}[dir=ltr] .uppy-StatusBar-statusIndicator{margin-right:7px}[dir=rtl] .uppy-StatusBar-statusIndicator{margin-left:7px}.uppy-StatusBar-statusIndicator{color:#525252;position:relative;top:1px}.uppy-StatusBar-statusIndicator svg{vertical-align:text-bottom}[dir=ltr] .uppy-StatusBar-actions{right:10px}[dir=rtl] .uppy-StatusBar-actions{left:10px}.uppy-StatusBar-actions{align-items:center;bottom:0;display:flex;position:absolute;top:0;z-index:1004}.uppy-StatusBar.is-waiting .uppy-StatusBar-actions{background-color:#fafafa;height:100%;padding:0 15px;position:static;width:100%}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actions{background-color:#1f1f1f}.uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts{flex-direction:column;height:90px}.uppy-size--md .uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts{flex-direction:row;height:65px}.uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts .uppy-StatusBar-actions{flex-direction:column;justify-content:center}.uppy-size--md .uppy-StatusBar:not([aria-hidden=true]).is-waiting.has-ghosts .uppy-StatusBar-actions{flex-direction:row;justify-content:normal}.uppy-StatusBar-actionCircleBtn{cursor:pointer;line-height:1;margin:3px;opacity:.9}.uppy-StatusBar-actionCircleBtn:focus{outline:none}.uppy-StatusBar-actionCircleBtn::-moz-focus-inner{border:0}.uppy-StatusBar-actionCircleBtn:focus{box-shadow:0 0 0 3px #1269cf80}[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn:focus{outline:none}[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-StatusBar-actionCircleBtn:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-StatusBar-actionCircleBtn:hover{opacity:1}.uppy-StatusBar-actionCircleBtn:focus{border-radius:50%}.uppy-StatusBar-actionCircleBtn svg{vertical-align:bottom}.uppy-StatusBar-actionBtn{color:#1269cf;display:inline-block;font-size:10px;line-height:inherit;vertical-align:middle}.uppy-size--md .uppy-StatusBar-actionBtn{font-size:11px}.uppy-StatusBar-actionBtn--disabled{opacity:.4}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--disabled{opacity:.7}[dir=ltr] .uppy-StatusBar-actionBtn--retry{margin-right:6px}[dir=rtl] .uppy-StatusBar-actionBtn--retry{margin-left:6px}.uppy-StatusBar-actionBtn--retry{background-color:#ff4b23;border-radius:8px;color:#fff;height:16px;line-height:1;padding:1px 6px 3px 18px;position:relative}.uppy-StatusBar-actionBtn--retry:focus{outline:none}.uppy-StatusBar-actionBtn--retry::-moz-focus-inner{border:0}.uppy-StatusBar-actionBtn--retry:focus{box-shadow:0 0 0 3px #1269cf80}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry:focus{outline:none}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--retry:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-StatusBar-actionBtn--retry:hover{background-color:#f92d00}[dir=ltr] .uppy-StatusBar-actionBtn--retry svg{left:6px}[dir=rtl] .uppy-StatusBar-actionBtn--retry svg{right:6px}.uppy-StatusBar-actionBtn--retry svg{position:absolute;top:3px}.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload{background-color:#1bb240;color:#fff;font-size:14px;line-height:1;padding:15px 10px;width:100%}.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload:hover{background-color:#189c38}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload{background-color:#1c8b37}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload:hover{background-color:#18762f}.uppy-size--md .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload{padding:13px 22px;width:auto}.uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload.uppy-StatusBar-actionBtn--disabled:hover{background-color:#1bb240;cursor:not-allowed}[data-uppy-theme=dark] .uppy-StatusBar.is-waiting .uppy-StatusBar-actionBtn--upload.uppy-StatusBar-actionBtn--disabled:hover{background-color:#1c8b37}.uppy-StatusBar:not(.is-waiting) .uppy-StatusBar-actionBtn--upload{background-color:initial;color:#1269cf}[dir=ltr] .uppy-StatusBar-actionBtn--uploadNewlyAdded{padding-right:3px}[dir=ltr] .uppy-StatusBar-actionBtn--uploadNewlyAdded,[dir=rtl] .uppy-StatusBar-actionBtn--uploadNewlyAdded{padding-left:3px}[dir=rtl] .uppy-StatusBar-actionBtn--uploadNewlyAdded{padding-right:3px}.uppy-StatusBar-actionBtn--uploadNewlyAdded{border-radius:3px;padding-bottom:1px}.uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{outline:none}.uppy-StatusBar-actionBtn--uploadNewlyAdded::-moz-focus-inner{border:0}.uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{box-shadow:0 0 0 3px #1269cf80}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{outline:none}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--uploadNewlyAdded:focus{box-shadow:0 0 0 2px #aae1ffd9}.uppy-StatusBar.is-postprocessing .uppy-StatusBar-actionBtn--uploadNewlyAdded,.uppy-StatusBar.is-preprocessing .uppy-StatusBar-actionBtn--uploadNewlyAdded{display:none}.uppy-StatusBar-actionBtn--done{border-radius:3px;line-height:1;padding:7px 8px}.uppy-StatusBar-actionBtn--done:focus{outline:none}.uppy-StatusBar-actionBtn--done::-moz-focus-inner{border:0}.uppy-StatusBar-actionBtn--done:hover{color:#0e51a0}.uppy-StatusBar-actionBtn--done:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--done:focus{background-color:#333}[data-uppy-theme=dark] .uppy-StatusBar-actionBtn--done{color:#02baf2}.uppy-size--md .uppy-StatusBar-actionBtn--done{font-size:14px}.uppy-StatusBar-serviceMsg{color:#000;font-size:11px;line-height:1.1;padding-left:10px}.uppy-size--md .uppy-StatusBar-serviceMsg{font-size:14px;padding-left:15px}[data-uppy-theme=dark] .uppy-StatusBar-serviceMsg{color:#eaeaea}.uppy-StatusBar-serviceMsg-ghostsIcon{left:6px;opacity:.5;position:relative;top:2px;vertical-align:text-bottom;width:10px}.uppy-size--md .uppy-StatusBar-serviceMsg-ghostsIcon{left:10px;top:1px;width:15px}[dir=ltr] .uppy-StatusBar-details{left:2px}[dir=rtl] .uppy-StatusBar-details{right:2px}.uppy-StatusBar-details{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#939393;border-radius:50%;color:#fff;cursor:help;display:inline-block;font-size:10px;font-weight:600;height:13px;line-height:12px;position:relative;text-align:center;top:0;vertical-align:middle;width:13px}.uppy-StatusBar-details:after{line-height:1.3;word-wrap:break-word}[dir=ltr] .uppy-StatusBar-spinner{margin-right:10px}[dir=rtl] .uppy-StatusBar-spinner{margin-left:10px}.uppy-StatusBar-spinner{animation-duration:1s;animation-iteration-count:infinite;animation-name:uppy-StatusBar-spinnerAnimation;animation-timing-function:linear;fill:#1269cf}.uppy-StatusBar.is-postprocessing .uppy-StatusBar-spinner,.uppy-StatusBar.is-preprocessing .uppy-StatusBar-spinner{fill:#f6a623}@keyframes uppy-StatusBar-spinnerAnimation{0%{transform:rotate(0)}to{transform:rotate(1turn)}}.uppy-ProviderBrowser-viewType--grid ul.uppy-ProviderBrowser-list,.uppy-ProviderBrowser-viewType--unsplash ul.uppy-ProviderBrowser-list{align-items:flex-start;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;padding:6px}.uppy-ProviderBrowser-viewType--grid ul.uppy-ProviderBrowser-list:after,.uppy-ProviderBrowser-viewType--unsplash ul.uppy-ProviderBrowser-list:after{content:"";flex:auto}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem{margin:0;position:relative;width:50%}.uppy-size--md .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem,.uppy-size--md .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem{width:33.3333%}.uppy-size--lg .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem,.uppy-size--lg .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem{width:25%}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem:before,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem:before{content:"";display:block;padding-top:100%}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--selected img,.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--selected svg,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--selected img,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--selected svg{opacity:.85}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--disabled,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--disabled{opacity:.5}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner{background-color:#93939333}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner,[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview .uppy-ProviderBrowserItem-inner{background-color:#eaeaea33}.uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview svg,.uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview svg{height:30%;width:30%;fill:#000000b3}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--grid li.uppy-ProviderBrowserItem--noPreview svg,[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--unsplash li.uppy-ProviderBrowserItem--noPreview svg{fill:#fffc}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner{border-radius:4px;bottom:7px;height:calc(100% - 14px);left:7px;overflow:hidden;position:absolute;right:7px;text-align:center;top:7px;width:calc(100% - 14px)}@media (hover:none){.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner .uppy-ProviderBrowserItem-author{display:block}}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner,[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner{box-shadow:0 0 0 3px #aae1ffb3}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-inner img,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-inner img{border-radius:4px;height:100%;object-fit:cover;width:100%}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-author{background:#0000004d;bottom:0;color:#fff;display:none;font-size:12px;font-weight:500;left:0;margin:0;padding:5px;position:absolute;text-decoration:none;width:100%}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-author:hover,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-author:hover{background:#0006;text-decoration:underline}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox{background-color:#1269cf;border-radius:50%;height:26px;opacity:0;position:absolute;right:16px;top:16px;width:26px;z-index:1002}[dir=ltr] .uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox:after,[dir=ltr] .uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox:after{left:7px}[dir=rtl] .uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox:after,[dir=rtl] .uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox:after{right:7px}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox:after,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox:after{height:7px;top:8px;width:12px}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox{opacity:1}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:hover+label .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label .uppy-ProviderBrowserItem-author,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:hover+label .uppy-ProviderBrowserItem-author{display:block}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label{box-shadow:0 0 0 3px #1269cf80}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label:focus,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label:focus{outline:none}.uppy-ProviderBrowser-viewType--grid .uppy-ProviderBrowserItem-checkbox--grid:focus+label::-moz-focus-inner,.uppy-ProviderBrowser-viewType--unsplash .uppy-ProviderBrowserItem-checkbox--grid:focus+label::-moz-focus-inner{border:0}.uppy-ProviderBrowser-viewType--list{background-color:#fff}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--list{background-color:#1f1f1f}.uppy-ProviderBrowser-viewType--list li.uppy-ProviderBrowserItem{align-items:center;display:flex;margin:0;padding:7px 15px}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--list li.uppy-ProviderBrowserItem{color:#eaeaea}.uppy-ProviderBrowser-viewType--list li.uppy-ProviderBrowserItem--disabled{opacity:.6}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox{margin-right:15px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox{margin-left:15px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox{background-color:#fff;border:1px solid #cfcfcf;border-radius:3px;height:17px;width:17px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:focus{border:1px solid #1269cf;box-shadow:0 0 0 3px #1269cf40;outline:none}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:after{left:3px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:after{right:3px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:after{height:5px;opacity:0;top:4px;width:9px}[data-uppy-theme=dark] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-checkbox:focus{border-color:#02baf2b3;box-shadow:0 0 0 3px #02baf233}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox,.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-partial .uppy-ProviderBrowserItem-checkbox{background-color:#1269cf;border-color:#1269cf}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox:after,.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--is-partial .uppy-ProviderBrowserItem-checkbox:after{opacity:1}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner{align-items:center;color:inherit;display:flex;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;overflow:hidden;padding:2px;text-overflow:ellipsis;white-space:nowrap}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner:focus{outline:none;text-decoration:underline}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner img,[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner svg{margin-right:8px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner img,[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner svg{margin-left:8px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-inner span{line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem--disabled .uppy-ProviderBrowserItem-inner{cursor:default}[dir=ltr] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-iconWrap{margin-right:7px}[dir=rtl] .uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-iconWrap{margin-left:7px}.uppy-ProviderBrowser-viewType--list .uppy-ProviderBrowserItem-iconWrap{width:20px}.uppy-ProviderBrowserItem-checkbox{cursor:pointer;flex-shrink:0;position:relative}.uppy-ProviderBrowserItem-checkbox:disabled,.uppy-ProviderBrowserItem-checkbox:disabled:after{cursor:default}[data-uppy-theme=dark] .uppy-ProviderBrowserItem-checkbox{background-color:#1f1f1f;border-color:#939393}[data-uppy-theme=dark] .uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox{background-color:#333}.uppy-ProviderBrowserItem--is-checked .uppy-ProviderBrowserItem-checkbox:after{border-bottom:2px solid #eaeaea;border-left:2px solid #eaeaea;content:"";cursor:pointer;position:absolute;transform:rotate(-45deg)}.uppy-ProviderBrowserItem--is-partial .uppy-ProviderBrowserItem-checkbox:after{background-color:#eaeaea!important;content:""!important;height:2px!important;left:20%!important;position:absolute!important;right:20%!important;top:50%!important;transform:translateY(-50%)!important}.uppy-SearchProvider{align-items:center;display:flex;flex:1;flex-direction:column;height:100%;justify-content:center;width:100%}[data-uppy-theme=dark] .uppy-SearchProvider{background-color:#1f1f1f}.uppy-SearchProvider-input{margin-bottom:15px;max-width:650px;width:90%}.uppy-size--md .uppy-SearchProvider-input{margin-bottom:20px}.uppy-SearchProvider-input::-webkit-search-cancel-button{display:none}.uppy-SearchProvider-searchButton{padding:13px 25px}.uppy-size--md .uppy-SearchProvider-searchButton{padding:13px 30px}.uppy-DashboardContent-panelBody{align-items:center;display:flex;flex:1;justify-content:center}[data-uppy-theme=dark] .uppy-DashboardContent-panelBody{background-color:#1f1f1f}.uppy-Provider-auth,.uppy-Provider-empty,.uppy-Provider-error,.uppy-Provider-loading{align-items:center;color:#939393;display:flex;flex:1;flex-flow:column wrap;justify-content:center}.uppy-Provider-empty{color:#939393}.uppy-Provider-authIcon svg{height:75px;width:100px}.uppy-Provider-authTitle{color:#757575;font-size:17px;font-weight:400;line-height:1.4;margin-bottom:30px;max-width:500px;padding:0 15px;text-align:center}.uppy-size--md .uppy-Provider-authTitle{font-size:20px}[data-uppy-theme=dark] .uppy-Provider-authTitle{color:#cfcfcf}.uppy-Provider-btn-google{align-items:center;background:#4285f4;display:flex;padding:8px 12px!important}.uppy-Provider-btn-google:hover{background-color:#1266f1}.uppy-Provider-btn-google:focus{box-shadow:0 0 0 3px #4285f466;outline:none}.uppy-Provider-btn-google svg{margin-right:8px}[dir=ltr] .uppy-Provider-breadcrumbs{text-align:left}[dir=rtl] .uppy-Provider-breadcrumbs{text-align:right}.uppy-Provider-breadcrumbs{color:#525252;flex:1;font-size:12px;margin-bottom:10px}.uppy-size--md .uppy-Provider-breadcrumbs{margin-bottom:0}[data-uppy-theme=dark] .uppy-Provider-breadcrumbs{color:#eaeaea}[dir=ltr] .uppy-Provider-breadcrumbsIcon{margin-right:4px}[dir=rtl] .uppy-Provider-breadcrumbsIcon{margin-left:4px}.uppy-Provider-breadcrumbsIcon{color:#525252;display:inline-block;line-height:1;vertical-align:middle}.uppy-Provider-breadcrumbsIcon svg{height:13px;width:13px;fill:#525252}.uppy-Provider-breadcrumbs button{border-radius:3px;display:inline-block;line-height:inherit;padding:4px}.uppy-Provider-breadcrumbs button:focus{outline:none}.uppy-Provider-breadcrumbs button::-moz-focus-inner{border:0}.uppy-Provider-breadcrumbs button:hover{color:#0e51a0}.uppy-Provider-breadcrumbs button:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-Provider-breadcrumbs button:focus{background-color:#333}.uppy-Provider-breadcrumbs button:not(:last-of-type){text-decoration:underline}.uppy-Provider-breadcrumbs button:last-of-type{color:#333;cursor:normal;font-weight:500;pointer-events:none}.uppy-Provider-breadcrumbs button:hover{cursor:pointer}[data-uppy-theme=dark] .uppy-Provider-breadcrumbs button{color:#eaeaea}.uppy-ProviderBrowser{display:flex;flex:1;flex-direction:column;font-size:14px;font-weight:400;height:100%}.uppy-ProviderBrowser-user{color:#333;font-weight:500;margin:0 8px 0 0}[data-uppy-theme=dark] .uppy-ProviderBrowser-user{color:#eaeaea}[dir=ltr] .uppy-ProviderBrowser-user:after{left:4px}[dir=rtl] .uppy-ProviderBrowser-user:after{right:4px}.uppy-ProviderBrowser-user:after{color:#939393;content:"·";font-weight:400;position:relative}.uppy-ProviderBrowser-header{border-bottom:1px solid #eaeaea;position:relative;z-index:1001}[data-uppy-theme=dark] .uppy-ProviderBrowser-header{border-bottom:1px solid #333}.uppy-ProviderBrowser-headerBar{background-color:#fafafa;color:#757575;font-size:12px;line-height:1.4;padding:7px 15px;z-index:1001}.uppy-size--md .uppy-ProviderBrowser-headerBar{align-items:center;display:flex}[data-uppy-theme=dark] .uppy-ProviderBrowser-headerBar{background-color:#1f1f1f}.uppy-ProviderBrowser-headerBar--simple{display:block;justify-content:center;text-align:center}.uppy-ProviderBrowser-headerBar--simple .uppy-Provider-breadcrumbsWrap{display:inline-block;flex:none;vertical-align:middle}.uppy-ProviderBrowser-searchFilter{align-items:center;display:flex;height:30px;margin-bottom:15px;margin-top:15px;padding-left:8px;padding-right:8px;position:relative;width:100%}[dir=ltr] .uppy-ProviderBrowser-searchFilterInput{padding-left:30px}[dir=ltr] .uppy-ProviderBrowser-searchFilterInput,[dir=rtl] .uppy-ProviderBrowser-searchFilterInput{padding-right:30px}[dir=rtl] .uppy-ProviderBrowser-searchFilterInput{padding-left:30px}.uppy-ProviderBrowser-searchFilterInput{background-color:#eaeaea;border:0;border-radius:4px;color:#333;font-family:-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Segoe UI Symbol,Segoe UI Emoji,Apple Color Emoji,Roboto,Helvetica,Arial,sans-serif;font-size:13px;height:30px;line-height:1.4;outline:0;width:100%;z-index:1001}.uppy-ProviderBrowser-searchFilterInput::-webkit-search-cancel-button{display:none}[data-uppy-theme=dark] .uppy-ProviderBrowser-searchFilterInput{background-color:#1f1f1f;color:#eaeaea}.uppy-ProviderBrowser-searchFilterInput:focus{background-color:#cfcfcf;border:0}[data-uppy-theme=dark] .uppy-ProviderBrowser-searchFilterInput:focus{background-color:#333}[dir=ltr] .uppy-ProviderBrowser-searchFilterIcon{left:16px}[dir=rtl] .uppy-ProviderBrowser-searchFilterIcon{right:16px}.uppy-ProviderBrowser-searchFilterIcon{color:#757575;height:12px;position:absolute;width:12px;z-index:1002}.uppy-ProviderBrowser-searchFilterInput::placeholder{color:#939393;opacity:1}[dir=ltr] .uppy-ProviderBrowser-searchFilterReset{right:16px}[dir=rtl] .uppy-ProviderBrowser-searchFilterReset{left:16px}.uppy-ProviderBrowser-searchFilterReset{border-radius:3px;color:#939393;cursor:pointer;height:22px;padding:6px;position:absolute;width:22px;z-index:1002}.uppy-ProviderBrowser-searchFilterReset:focus{outline:none}.uppy-ProviderBrowser-searchFilterReset::-moz-focus-inner{border:0}.uppy-ProviderBrowser-searchFilterReset:focus{box-shadow:0 0 0 3px #1269cf80}.uppy-ProviderBrowser-searchFilterReset:hover{color:#757575}.uppy-ProviderBrowser-searchFilterReset svg{vertical-align:text-top}.uppy-ProviderBrowser-userLogout{border-radius:3px;color:#1269cf;cursor:pointer;line-height:inherit;padding:4px}.uppy-ProviderBrowser-userLogout:focus{outline:none}.uppy-ProviderBrowser-userLogout::-moz-focus-inner{border:0}.uppy-ProviderBrowser-userLogout:hover{color:#0e51a0}.uppy-ProviderBrowser-userLogout:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-ProviderBrowser-userLogout:focus{background-color:#333}.uppy-ProviderBrowser-userLogout:hover{text-decoration:underline}[data-uppy-theme=dark] .uppy-ProviderBrowser-userLogout{color:#eaeaea}.uppy-ProviderBrowser-body{flex:1;position:relative}.uppy-ProviderBrowser-list{background-color:#fff;border-spacing:0;bottom:0;display:block;flex:1;height:100%;left:0;list-style:none;margin:0;overflow-x:hidden;overflow-y:auto;padding:0;position:absolute;right:0;top:0;width:100%;-webkit-overflow-scrolling:touch}[data-uppy-theme=dark] .uppy-ProviderBrowser-list{background-color:#1f1f1f}.uppy-ProviderBrowser-list:focus{outline:none}.uppy-ProviderBrowserItem-inner{cursor:pointer;font-size:13px;font-weight:500}.uppy-ProviderBrowser-footer{align-items:center;background-color:#fff;border-top:1px solid #eaeaea;display:flex;justify-content:space-between;padding:15px}[dir=ltr] .uppy-ProviderBrowser-footer button{margin-right:8px}[dir=rtl] .uppy-ProviderBrowser-footer button{margin-left:8px}[data-uppy-theme=dark] .uppy-ProviderBrowser-footer{background-color:#1f1f1f;border-top:1px solid #333}.uppy-ProviderBrowser-footer-buttons{flex-shrink:0}.uppy-ProviderBrowser-footer-error{color:#e32437;line-height:18px}@media (max-width:426px){.uppy-ProviderBrowser-footer{align-items:stretch;flex-direction:column-reverse}.uppy-ProviderBrowser-footer-error{padding-bottom:10px}}.picker-dialog-bg{z-index:20000!important}.picker-dialog{z-index:20001!important}.uppy-Dashboard-Item-previewInnerWrap{align-items:center;border-radius:3px;box-shadow:0 0 2px #0006;display:flex;flex-direction:column;height:100%;justify-content:center;overflow:hidden;position:relative;width:100%}.uppy-size--md .uppy-Dashboard-Item-previewInnerWrap{box-shadow:0 1px 2px #00000026}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-previewInnerWrap{box-shadow:none}.uppy-Dashboard-Item-previewInnerWrap:after{background-color:#000000a6;bottom:0;content:"";display:none;left:0;position:absolute;right:0;top:0;z-index:1001}.uppy-Dashboard-Item-previewLink{bottom:0;left:0;position:absolute;right:0;top:0;z-index:1002}.uppy-Dashboard-Item-previewLink:focus{box-shadow:inset 0 0 0 3px #579df0}[data-uppy-theme=dark] .uppy-Dashboard-Item-previewLink:focus{box-shadow:inset 0 0 0 3px #016c8d}.uppy-Dashboard-Item-preview img.uppy-Dashboard-Item-previewImg{border-radius:3px;height:100%;object-fit:cover;transform:translateZ(0);width:100%}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-preview img.uppy-Dashboard-Item-previewImg{height:auto;max-height:100%;max-width:100%;object-fit:contain;padding:10px;width:auto}.uppy-Dashboard-Item-progress{color:#fff;left:50%;position:absolute;text-align:center;top:50%;transform:translate(-50%,-50%);transition:all .35 ease;width:120px;z-index:1002}.uppy-Dashboard-Item-progressIndicator{color:#fff;display:inline-block;height:38px;opacity:.9;width:38px}.uppy-size--md .uppy-Dashboard-Item-progressIndicator{height:55px;width:55px}button.uppy-Dashboard-Item-progressIndicator{cursor:pointer}button.uppy-Dashboard-Item-progressIndicator:focus{outline:none}button.uppy-Dashboard-Item-progressIndicator::-moz-focus-inner{border:0}button.uppy-Dashboard-Item-progressIndicator:focus .uppy-Dashboard-Item-progressIcon--bg,button.uppy-Dashboard-Item-progressIndicator:focus .uppy-Dashboard-Item-progressIcon--retry{fill:#579df0}.uppy-Dashboard-Item-progressIcon--circle{height:100%;width:100%}.uppy-Dashboard-Item-progressIcon--bg{stroke:#fff6}.uppy-Dashboard-Item-progressIcon--progress{transition:stroke-dashoffset .5s ease-out;stroke:#fff}.uppy-Dashboard-Item-progressIcon--play{transition:all .2s;fill:#fff;stroke:#fff}.uppy-Dashboard-Item-progressIcon--cancel{transition:all .2s;fill:#fff}.uppy-Dashboard-Item-progressIcon--pause{transition:all .2s;fill:#fff;stroke:#fff}.uppy-Dashboard-Item-progressIcon--check{transition:all .2s;fill:#fff}.uppy-Dashboard-Item-progressIcon--retry{fill:#fff}[dir=ltr] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{right:-8px}[dir=rtl] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{left:-8px}[dir=ltr] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{left:auto}[dir=rtl] .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{right:auto}.uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progress{top:-9px;transform:none;width:auto}.uppy-Dashboard-Item.is-error .uppy-Dashboard-Item-progressIndicator{height:18px;width:18px}.uppy-size--md .uppy-Dashboard-Item.is-error .uppy-Dashboard-Item-progressIndicator{height:28px;width:28px}.uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progressIndicator{height:18px;opacity:1;width:18px}.uppy-size--md .uppy-Dashboard-Item.is-complete .uppy-Dashboard-Item-progressIndicator{height:22px;width:22px}.uppy-Dashboard-Item.is-processing .uppy-Dashboard-Item-progress{opacity:0}[dir=ltr] .uppy-Dashboard-Item-fileInfo{padding-right:5px}[dir=rtl] .uppy-Dashboard-Item-fileInfo{padding-left:5px}[dir=ltr] .uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-right:10px}[dir=rtl] .uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-left:10px}[dir=ltr] .uppy-size--md.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-right:15px}[dir=rtl] .uppy-size--md.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfo{padding-left:15px}.uppy-Dashboard-Item-name{font-size:12px;font-weight:500;line-height:1.3;margin-bottom:5px;word-wrap:anywhere;word-break:break-all}[data-uppy-theme=dark] .uppy-Dashboard-Item-name{color:#eaeaea}.uppy-size--md.uppy-Dashboard--singleFile .uppy-Dashboard-Item-name{font-size:14px;line-height:1.4}.uppy-Dashboard-Item-fileName{align-items:baseline;display:flex}.uppy-Dashboard-Item-fileName button{margin-left:5px}.uppy-Dashboard-Item-author{color:#757575;display:inline-block;font-size:11px;font-weight:400;line-height:1;margin-bottom:5px;vertical-align:bottom}.uppy-Dashboard-Item-author a{color:#757575}.uppy-Dashboard-Item-status{color:#757575;font-size:11px;font-weight:400;line-height:1}[data-uppy-theme=dark] .uppy-Dashboard-Item-status{color:#bbb}.uppy-Dashboard-Item-statusSize{display:inline-block;margin-bottom:5px;text-transform:uppercase;vertical-align:bottom}.uppy-Dashboard-Item-reSelect{color:#1269cf;font-family:inherit;font-size:inherit;font-weight:600}.uppy-Dashboard-Item-errorMessage{background-color:#fdeff1;color:#a51523;font-size:11px;font-weight:500;line-height:1.3;padding:5px 6px}.uppy-Dashboard-Item-errorMessageBtn{color:#a51523;cursor:pointer;font-size:11px;font-weight:500;text-decoration:underline}.uppy-Dashboard-Item-preview .uppy-Dashboard-Item-errorMessage{display:none}.uppy-size--md .uppy-Dashboard-Item-preview .uppy-Dashboard-Item-errorMessage{border-bottom-left-radius:3px;border-bottom-right-radius:3px;border-top:1px solid #f7c2c8;bottom:0;display:block;left:0;line-height:1.4;padding:6px 8px;position:absolute;right:0}.uppy-Dashboard-Item-fileInfo .uppy-Dashboard-Item-errorMessage{border:1px solid #f7c2c8;border-radius:3px;display:inline-block;position:static}.uppy-size--md .uppy-Dashboard-Item-fileInfo .uppy-Dashboard-Item-errorMessage{display:none}.uppy-Dashboard-Item-action{color:#939393;cursor:pointer}.uppy-Dashboard-Item-action:focus{outline:none}.uppy-Dashboard-Item-action::-moz-focus-inner{border:0}.uppy-Dashboard-Item-action:focus{box-shadow:0 0 0 3px #1269cf80}.uppy-Dashboard-Item-action:hover{color:#1f1f1f;opacity:1}[data-uppy-theme=dark] .uppy-Dashboard-Item-action{color:#cfcfcf}[data-uppy-theme=dark] .uppy-Dashboard-Item-action:focus{outline:none}[data-uppy-theme=dark] .uppy-Dashboard-Item-action::-moz-focus-inner{border:0}[data-uppy-theme=dark] .uppy-Dashboard-Item-action:focus{box-shadow:0 0 0 2px #aae1ffd9}[data-uppy-theme=dark] .uppy-Dashboard-Item-action:hover{color:#eaeaea}.uppy-Dashboard-Item-action--remove{color:#1f1f1f;opacity:.95}.uppy-Dashboard-Item-action--remove:hover{color:#000;opacity:1}[dir=ltr] .uppy-size--md .uppy-Dashboard-Item-action--remove{right:-8px}[dir=rtl] .uppy-size--md .uppy-Dashboard-Item-action--remove{left:-8px}.uppy-size--md .uppy-Dashboard-Item-action--remove{height:18px;padding:0;position:absolute;top:-8px;width:18px;z-index:1002}.uppy-size--md .uppy-Dashboard-Item-action--remove:focus{border-radius:50%}[dir=ltr] .uppy-Dashboard--singleFile.uppy-size--height-md .uppy-Dashboard-Item-action--remove{right:8px}[dir=rtl] .uppy-Dashboard--singleFile.uppy-size--height-md .uppy-Dashboard-Item-action--remove{left:8px}.uppy-Dashboard--singleFile.uppy-size--height-md .uppy-Dashboard-Item-action--remove{position:absolute;top:8px}[data-uppy-theme=dark] .uppy-Dashboard-Item-action--remove{color:#525252}[data-uppy-theme=dark] .uppy-Dashboard-Item-action--remove:hover{color:#333}.uppy-Dashboard:not(.uppy-size--md):not(.uppy-Dashboard--singleFile.uppy-size--height-md) .uppy-Dashboard-Item-actionWrapper{align-items:center;display:flex}.uppy-Dashboard:not(.uppy-size--md):not(.uppy-Dashboard--singleFile.uppy-size--height-md) .uppy-Dashboard-Item-action{height:22px;margin-left:3px;padding:3px;width:22px}.uppy-Dashboard:not(.uppy-size--md):not(.uppy-Dashboard--singleFile.uppy-size--height-md) .uppy-Dashboard-Item-action:focus{border-radius:3px}.uppy-size--md .uppy-Dashboard-Item-action--copyLink,.uppy-size--md .uppy-Dashboard-Item-action--edit{height:16px;padding:0;width:16px}.uppy-size--md .uppy-Dashboard-Item-action--copyLink:focus,.uppy-size--md .uppy-Dashboard-Item-action--edit:focus{border-radius:3px}.uppy-Dashboard-Item{align-items:center;border-bottom:1px solid #eaeaea;display:flex;padding:10px}[dir=ltr] .uppy-Dashboard:not(.uppy-Dashboard--singleFile) .uppy-Dashboard-Item{padding-right:0}[dir=rtl] .uppy-Dashboard:not(.uppy-Dashboard--singleFile) .uppy-Dashboard-Item{padding-left:0}[data-uppy-theme=dark] .uppy-Dashboard-Item{border-bottom:1px solid #333}[dir=ltr] .uppy-size--md .uppy-Dashboard-Item{float:left}[dir=rtl] .uppy-size--md .uppy-Dashboard-Item{float:right}.uppy-size--md .uppy-Dashboard-Item{border-bottom:0;display:block;height:215px;margin:5px 15px;padding:0;position:relative;width:calc(33.333% - 30px)}.uppy-size--lg .uppy-Dashboard-Item{height:190px;margin:5px 15px;padding:0;width:calc(25% - 30px)}.uppy-size--xl .uppy-Dashboard-Item{height:210px;padding:0;width:calc(20% - 30px)}.uppy-Dashboard--singleFile .uppy-Dashboard-Item{border-bottom:0;display:flex;flex-direction:column;height:100%;max-width:400px;padding:15px;position:relative;width:100%}.uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-previewInnerWrap{opacity:.2}.uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-name{opacity:.7}.uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-preview:before{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='35' height='39' viewBox='0 0 35 39'%3E%3Cpath fill='%2523000' d='M1.708 38.66c1.709 0 3.417-3.417 6.834-3.417s5.125 3.417 8.61 3.417c3.348 0 5.056-3.417 8.473-3.417 4.305 0 5.125 3.417 6.833 3.417.889 0 1.709-.889 1.709-1.709v-19.68C34.167-5.757 0-5.757 0 17.271v19.68c0 .82.888 1.709 1.708 1.709m8.542-17.084a3.383 3.383 0 0 1-3.417-3.416 3.383 3.383 0 0 1 3.417-3.417 3.383 3.383 0 0 1 3.417 3.417 3.383 3.383 0 0 1-3.417 3.416m13.667 0A3.383 3.383 0 0 1 20.5 18.16a3.383 3.383 0 0 1 3.417-3.417 3.383 3.383 0 0 1 3.416 3.417 3.383 3.383 0 0 1-3.416 3.416'/%3E%3C/svg%3E");background-position:50% 10px;background-repeat:no-repeat;background-size:25px;bottom:0;content:"";left:0;opacity:.5;position:absolute;right:0;top:0;z-index:1005}.uppy-size--md .uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-preview:before{background-position:50% 50%;background-size:40px}.uppy-Dashboard--singleFile .uppy-Dashboard-Item.is-ghost .uppy-Dashboard-Item-preview:before{background-position:50% 50%;background-size:30%}.uppy-Dashboard-Item-preview{flex-grow:0;flex-shrink:0;height:50px;position:relative;width:50px}.uppy-size--md .uppy-Dashboard-Item-preview{height:140px;width:100%}.uppy-size--lg .uppy-Dashboard-Item-preview{height:120px}.uppy-size--xl .uppy-Dashboard-Item-preview{height:140px}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-preview{flex-grow:1;max-height:75%;width:100%}.uppy-Dashboard--singleFile.uppy-size--md .uppy-Dashboard-Item-preview{max-height:100%}[dir=ltr] .uppy-Dashboard-Item-fileInfoAndButtons{padding-right:8px}[dir=rtl] .uppy-Dashboard-Item-fileInfoAndButtons{padding-left:8px}[dir=ltr] .uppy-Dashboard-Item-fileInfoAndButtons{padding-left:12px}[dir=rtl] .uppy-Dashboard-Item-fileInfoAndButtons{padding-right:12px}.uppy-Dashboard-Item-fileInfoAndButtons{align-items:center;display:flex;flex-grow:1;justify-content:space-between}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfoAndButtons,.uppy-size--md .uppy-Dashboard-Item-fileInfoAndButtons{align-items:flex-start;padding:9px 0 0}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-fileInfoAndButtons{flex-grow:0;width:100%}.uppy-Dashboard-Item-fileInfo{flex-grow:1;flex-shrink:1}.uppy-Dashboard-Item-actionWrapper{flex-grow:0;flex-shrink:0}.uppy-Dashboard-Item.is-error .uppy-Dashboard-Item-previewInnerWrap:after,.uppy-Dashboard-Item.is-inprogress .uppy-Dashboard-Item-previewInnerWrap:after{display:block}[dir=ltr] .uppy-Dashboard-Item-errorDetails{left:2px}[dir=rtl] .uppy-Dashboard-Item-errorDetails{right:2px}.uppy-Dashboard-Item-errorDetails{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#939393;border:none;border-radius:50%;color:#fff;cursor:help;flex-shrink:0;font-size:10px;font-weight:600;height:13px;line-height:12px;position:relative;text-align:center;top:0;width:13px}.uppy-Dashboard-Item-errorDetails:after{line-height:1.3;word-wrap:break-word}.uppy-Dashboard-FileCard{background-color:#fff;border-radius:5px;bottom:0;box-shadow:0 0 10px 4px #0000001a;display:flex;flex-direction:column;height:100%;left:0;position:absolute;right:0;top:0;width:100%;z-index:1005}.uppy-Dashboard-FileCard .uppy-DashboardContent-bar{border-top-left-radius:5px;border-top-right-radius:5px}.uppy-Dashboard-FileCard .uppy-Dashboard-FileCard-actions{border-bottom-left-radius:5px;border-bottom-right-radius:5px}.uppy-Dashboard-FileCard-inner{display:flex;flex-direction:column;flex-grow:1;flex-shrink:1;height:100%;min-height:0}.uppy-Dashboard-FileCard-preview{align-items:center;border-bottom:1px solid #eaeaea;display:flex;flex-grow:0;flex-shrink:1;height:60%;justify-content:center;min-height:0;position:relative}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-preview{background-color:#333;border-bottom:0}.uppy-Dashboard-FileCard-preview img.uppy-Dashboard-Item-previewImg{border-radius:3px;box-shadow:0 3px 20px #00000026;flex:0 0 auto;max-height:90%;max-width:90%;object-fit:cover}[dir=ltr] .uppy-Dashboard-FileCard-edit{right:10px}[dir=rtl] .uppy-Dashboard-FileCard-edit{left:10px}.uppy-Dashboard-FileCard-edit{background-color:#00000080;border-radius:50px;color:#fff;font-size:13px;padding:7px 15px;position:absolute;top:10px}.uppy-Dashboard-FileCard-edit:focus{outline:none}.uppy-Dashboard-FileCard-edit::-moz-focus-inner{border:0}.uppy-Dashboard-FileCard-edit:focus{box-shadow:0 0 0 3px #1269cf80}.uppy-Dashboard-FileCard-edit:hover{background-color:#000c}.uppy-Dashboard-FileCard-info{flex-grow:0;flex-shrink:0;height:40%;overflow-y:auto;padding:30px 20px 20px;-webkit-overflow-scrolling:touch}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-info{background-color:#1f1f1f}.uppy-Dashboard-FileCard-fieldset{border:0;font-size:0;margin:auto auto 12px;max-width:640px;padding:0}.uppy-Dashboard-FileCard-label{color:#525252;display:inline-block;font-size:12px;vertical-align:middle;width:22%}.uppy-size--md .uppy-Dashboard-FileCard-label{font-size:14px}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-label{color:#eaeaea}.uppy-Dashboard-FileCard-input{display:inline-block;vertical-align:middle;width:78%}.uppy-Dashboard-FileCard-actions{align-items:center;background-color:#fafafa;border-top:1px solid #eaeaea;display:flex;flex-grow:0;flex-shrink:0;height:55px;padding:0 15px}.uppy-size--md .uppy-Dashboard-FileCard-actions{height:65px}[data-uppy-theme=dark] .uppy-Dashboard-FileCard-actions{background-color:#1f1f1f;border-top:1px solid #333}[dir=ltr] .uppy-Dashboard-FileCard-actionsBtn{margin-right:10px}[dir=rtl] .uppy-Dashboard-FileCard-actionsBtn{margin-left:10px}.uppy-transition-slideDownUp-enter{opacity:.01;transform:translate3d(0,-105%,0);transition:transform .25s ease-in-out,opacity .25s ease-in-out}.uppy-transition-slideDownUp-enter.uppy-transition-slideDownUp-enter-active{opacity:1;transform:translateZ(0)}.uppy-transition-slideDownUp-leave{opacity:1;transform:translateZ(0);transition:transform .25s ease-in-out,opacity .25s ease-in-out}.uppy-transition-slideDownUp-leave.uppy-transition-slideDownUp-leave-active{opacity:.01;transform:translate3d(0,-105%,0)}@keyframes uppy-Dashboard-fadeIn{0%{opacity:0}to{opacity:1}}@keyframes uppy-Dashboard-fadeOut{0%{opacity:1}to{opacity:0}}@keyframes uppy-Dashboard-slideDownAndFadeIn{0%{opacity:0;transform:translate3d(-50%,-70%,0)}to{opacity:1;transform:translate3d(-50%,-50%,0)}}@keyframes uppy-Dashboard-slideDownAndFadeIn--small{0%{opacity:0;transform:translate3d(0,-20%,0)}to{opacity:1;transform:translateZ(0)}}@keyframes uppy-Dashboard-slideUpFadeOut{0%{opacity:1;transform:translate3d(-50%,-50%,0)}to{opacity:0;transform:translate3d(-50%,-70%,0)}}@keyframes uppy-Dashboard-slideUpFadeOut--small{0%{opacity:1;transform:translateZ(0)}to{opacity:0;transform:translate3d(0,-20%,0)}}.uppy-Dashboard--modal{z-index:1001}.uppy-Dashboard--modal[aria-hidden=true]{display:none}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideDownAndFadeIn--small .3s cubic-bezier(0,0,.2,1)}@media only screen and (min-width:820px){.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideDownAndFadeIn .3s cubic-bezier(0,0,.2,1)}}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose>.uppy-Dashboard-overlay{animation:uppy-Dashboard-fadeIn .3s cubic-bezier(0,0,.2,1)}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose.uppy-Dashboard--isClosing>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideUpFadeOut--small .3s cubic-bezier(0,0,.2,1)}@media only screen and (min-width:820px){.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose.uppy-Dashboard--isClosing>.uppy-Dashboard-inner{animation:uppy-Dashboard-slideUpFadeOut .3s cubic-bezier(0,0,.2,1)}}.uppy-Dashboard--modal.uppy-Dashboard--animateOpenClose.uppy-Dashboard--isClosing>.uppy-Dashboard-overlay{animation:uppy-Dashboard-fadeOut .3s cubic-bezier(0,0,.2,1)}.uppy-Dashboard-isFixed{height:100vh;overflow:hidden}.uppy-Dashboard--modal .uppy-Dashboard-overlay{background-color:#00000080;bottom:0;left:0;position:fixed;right:0;top:0;z-index:1001}.uppy-Dashboard-inner{background-color:#f4f4f4;border:1px solid #eaeaea;border-radius:5px;max-height:100%;max-width:100%;outline:none;position:relative}.uppy-size--md .uppy-Dashboard-inner{min-height:auto}@media only screen and (min-width:820px){.uppy-Dashboard-inner{height:500px;width:650px}}.uppy-Dashboard--modal .uppy-Dashboard-inner{z-index:1002}[data-uppy-theme=dark] .uppy-Dashboard-inner{background-color:#1f1f1f}.uppy-Dashboard--isDisabled .uppy-Dashboard-inner{cursor:not-allowed}.uppy-Dashboard-innerWrap{border-radius:5px;display:flex;flex-direction:column;height:100%;opacity:0;overflow:hidden;position:relative}.uppy-Dashboard--isInnerWrapVisible .uppy-Dashboard-innerWrap{opacity:1}.uppy-Dashboard--isDisabled .uppy-Dashboard-innerWrap{cursor:not-allowed;filter:grayscale(100%);opacity:.6;-webkit-user-select:none;user-select:none}.uppy-Dashboard--isDisabled .uppy-ProviderIconBg{fill:#9f9f9f}.uppy-Dashboard--isDisabled [aria-disabled],.uppy-Dashboard--isDisabled [disabled]{cursor:not-allowed;pointer-events:none}.uppy-Dashboard--modal .uppy-Dashboard-inner{border:none;bottom:15px;left:15px;position:fixed;right:15px;top:35px}@media only screen and (min-width:820px){.uppy-Dashboard--modal .uppy-Dashboard-inner{box-shadow:0 5px 15px 4px #00000026;left:50%;right:auto;top:50%;transform:translate(-50%,-50%)}}[dir=ltr] .uppy-Dashboard-close{right:-2px}[dir=rtl] .uppy-Dashboard-close{left:-2px}.uppy-Dashboard-close{color:#ffffffe6;cursor:pointer;display:block;font-size:27px;position:absolute;top:-33px;z-index:1005}.uppy-Dashboard-close:focus{outline:none}.uppy-Dashboard-close::-moz-focus-inner{border:0}.uppy-Dashboard-close:focus{color:#6eabf2}@media only screen and (min-width:820px){[dir=ltr] .uppy-Dashboard-close{right:-35px}[dir=rtl] .uppy-Dashboard-close{left:-35px}.uppy-Dashboard-close{font-size:35px;top:-10px}}.uppy-Dashboard-serviceMsg{background-color:#fffbf7;border-bottom:1px solid #edd4b9;border-top:1px solid #edd4b9;font-size:12px;font-weight:500;line-height:1.3;padding:12px 0;position:relative;top:-1px;z-index:1004}.uppy-size--md .uppy-Dashboard-serviceMsg{font-size:14px;line-height:1.4}[data-uppy-theme=dark] .uppy-Dashboard-serviceMsg{background-color:#1f1f1f;border-bottom:1px solid #333;border-top:1px solid #333;color:#eaeaea}.uppy-Dashboard-serviceMsg-title{display:block;line-height:1;margin-bottom:4px;padding-left:42px}.uppy-Dashboard-serviceMsg-text{padding:0 15px}.uppy-Dashboard-serviceMsg-actionBtn{color:#1269cf;font-size:inherit;font-weight:inherit;vertical-align:initial}[data-uppy-theme=dark] .uppy-Dashboard-serviceMsg-actionBtn{color:#02baf2e6}.uppy-Dashboard-serviceMsg-icon{left:15px;position:absolute;top:10px}.uppy-Dashboard-AddFiles{align-items:center;display:flex;flex-direction:column;height:100%;justify-content:center;position:relative;text-align:center}[data-uppy-drag-drop-supported=true] .uppy-Dashboard-AddFiles{border:1px dashed #dfdfdf;border-radius:3px;height:calc(100% - 14px);margin:7px}.uppy-Dashboard-AddFilesPanel .uppy-Dashboard-AddFiles{border:none;height:calc(100% - 54px)}.uppy-Dashboard--modal .uppy-Dashboard-AddFiles{border-color:#cfcfcf}[data-uppy-theme=dark] .uppy-Dashboard-AddFiles{border-color:#757575}.uppy-Dashboard-AddFiles-info{display:none;margin-top:auto;padding-bottom:15px;padding-top:15px}.uppy-size--height-md .uppy-Dashboard-AddFiles-info{display:block}.uppy-size--md .uppy-Dashboard-AddFiles-info{bottom:25px;left:0;padding-bottom:0;padding-top:30px;position:absolute;right:0}[data-uppy-num-acquirers="0"] .uppy-Dashboard-AddFiles-info{margin-top:0}.uppy-Dashboard-browse{color:#1269cf;cursor:pointer}.uppy-Dashboard-browse:focus{outline:none}.uppy-Dashboard-browse::-moz-focus-inner{border:0}.uppy-Dashboard-browse:focus,.uppy-Dashboard-browse:hover{border-bottom:1px solid #1269cf}[data-uppy-theme=dark] .uppy-Dashboard-browse{color:#02baf2e6}[data-uppy-theme=dark] .uppy-Dashboard-browse:focus,[data-uppy-theme=dark] .uppy-Dashboard-browse:hover{border-bottom:1px solid #02baf2}.uppy-Dashboard-browseBtn{display:block;font-size:14px;font-weight:500;margin-bottom:5px;margin-top:8px;width:100%}.uppy-size--md .uppy-Dashboard-browseBtn{font-size:15px;margin:15px auto;padding:13px 44px;width:auto}.uppy-Dashboard-AddFiles-list{display:flex;flex:1;flex-direction:column;margin-top:2px;overflow-y:auto;padding:2px 0;width:100%;-webkit-overflow-scrolling:touch}.uppy-size--md .uppy-Dashboard-AddFiles-list{flex:none;flex-direction:row;flex-wrap:wrap;justify-content:center;margin-top:15px;max-width:600px;overflow-y:visible;padding-top:0}.uppy-DashboardTab{border-bottom:1px solid #eaeaea;text-align:center;width:100%}[data-uppy-theme=dark] .uppy-DashboardTab{border-bottom:1px solid #333}.uppy-size--md .uppy-DashboardTab{border-bottom:none;display:inline-block;margin-bottom:10px;width:auto}.uppy-DashboardTab-btn{align-items:center;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:initial;color:#525252;cursor:pointer;flex-direction:row;height:100%;justify-content:left;padding:12px 15px;width:100%}.uppy-DashboardTab-btn:focus{outline:none}[dir=ltr] .uppy-size--md .uppy-DashboardTab-btn{margin-right:1px}[dir=rtl] .uppy-size--md .uppy-DashboardTab-btn{margin-left:1px}.uppy-size--md .uppy-DashboardTab-btn{border-radius:5px;flex-direction:column;padding:10px 3px;width:86px}[data-uppy-theme=dark] .uppy-DashboardTab-btn{color:#eaeaea}.uppy-DashboardTab-btn::-moz-focus-inner{border:0}.uppy-DashboardTab-btn:hover{background-color:#e9ecef}[data-uppy-theme=dark] .uppy-DashboardTab-btn:hover{background-color:#333}.uppy-DashboardTab-btn:active,.uppy-DashboardTab-btn:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-DashboardTab-btn:active,[data-uppy-theme=dark] .uppy-DashboardTab-btn:focus{background-color:#525252}.uppy-DashboardTab-btn svg{display:inline-block;max-height:100%;max-width:100%;overflow:hidden;transition:transform .15s ease-in-out;vertical-align:text-top}[dir=ltr] .uppy-DashboardTab-inner{margin-right:10px}[dir=rtl] .uppy-DashboardTab-inner{margin-left:10px}.uppy-DashboardTab-inner{align-items:center;background-color:#fff;border-radius:8px;box-shadow:0 1px 1px #0000001a,0 1px 2px #0000001a,0 2px 3px #00000005;display:flex;height:32px;justify-content:center;width:32px}[dir=ltr] .uppy-size--md .uppy-DashboardTab-inner{margin-right:0}[dir=rtl] .uppy-size--md .uppy-DashboardTab-inner{margin-left:0}[data-uppy-theme=dark] .uppy-DashboardTab-inner{background-color:#323232;box-shadow:0 1px 1px #0003,0 1px 2px #0003,0 2px 3px #00000014}.uppy-DashboardTab-name{font-size:14px;font-weight:400}.uppy-size--md .uppy-DashboardTab-name{font-size:12px;line-height:15px;margin-bottom:0;margin-top:8px}.uppy-DashboardTab-iconMyDevice{color:#1269cf}[data-uppy-theme=dark] .uppy-DashboardTab-iconMyDevice{color:#02baf2}.uppy-DashboardTab-iconBox{color:#0061d5}[data-uppy-theme=dark] .uppy-DashboardTab-iconBox{color:#eaeaea}.uppy-DashboardTab-iconDropbox{color:#0061fe}[data-uppy-theme=dark] .uppy-DashboardTab-iconDropbox{color:#eaeaea}.uppy-DashboardTab-iconUnsplash{color:#111}[data-uppy-theme=dark] .uppy-DashboardTab-iconUnsplash{color:#eaeaea}.uppy-DashboardTab-iconWebdav{color:#111}[data-uppy-theme=dark] .uppy-DashboardTab-iconWebdav{color:#eaeaea}.uppy-DashboardTab-iconScreenRec{color:#2c3e50}[data-uppy-theme=dark] .uppy-DashboardTab-iconScreenRec{color:#eaeaea}.uppy-DashboardTab-iconAudio{color:#8030a3}[data-uppy-theme=dark] .uppy-DashboardTab-iconAudio{color:#bf6ee3}.uppy-Dashboard-input{height:.1px;opacity:0;overflow:hidden;position:absolute;width:.1px;z-index:-1}.uppy-DashboardContent-bar{align-items:center;background-color:#fafafa;border-bottom:1px solid #eaeaea;display:flex;flex-shrink:0;height:40px;justify-content:space-between;padding:0 10px;position:relative;width:100%;z-index:1004}.uppy-size--md .uppy-DashboardContent-bar{height:50px;padding:0 15px}[data-uppy-theme=dark] .uppy-DashboardContent-bar{background-color:#1f1f1f;border-bottom:1px solid #333}.uppy-DashboardContent-title{font-size:12px;font-weight:500;left:0;line-height:40px;margin:auto;max-width:170px;overflow-x:hidden;position:absolute;right:0;text-align:center;text-overflow:ellipsis;top:0;white-space:nowrap;width:100%}.uppy-size--md .uppy-DashboardContent-title{font-size:14px;line-height:50px;max-width:300px}[data-uppy-theme=dark] .uppy-DashboardContent-title{color:#eaeaea}[dir=ltr] .uppy-DashboardContent-back,[dir=ltr] .uppy-DashboardContent-save{margin-left:-6px}[dir=rtl] .uppy-DashboardContent-back,[dir=rtl] .uppy-DashboardContent-save{margin-right:-6px}.uppy-DashboardContent-back,.uppy-DashboardContent-save{-webkit-appearance:none;background:none;border:0;border-radius:3px;color:inherit;color:#1269cf;cursor:pointer;font-family:inherit;font-size:inherit;font-size:12px;font-weight:400;line-height:1;margin:0;padding:7px 6px}.uppy-DashboardContent-back:focus,.uppy-DashboardContent-save:focus{outline:none}.uppy-DashboardContent-back::-moz-focus-inner,.uppy-DashboardContent-save::-moz-focus-inner{border:0}.uppy-DashboardContent-back:hover,.uppy-DashboardContent-save:hover{color:#0e51a0}.uppy-DashboardContent-back:focus,.uppy-DashboardContent-save:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-DashboardContent-back:focus,[data-uppy-theme=dark] .uppy-DashboardContent-save:focus{background-color:#333}.uppy-size--md .uppy-DashboardContent-back,.uppy-size--md .uppy-DashboardContent-save{font-size:14px}[data-uppy-theme=dark] .uppy-DashboardContent-back,[data-uppy-theme=dark] .uppy-DashboardContent-save{color:#02baf2}[dir=ltr] .uppy-DashboardContent-addMore{margin-right:-5px}[dir=rtl] .uppy-DashboardContent-addMore{margin-left:-5px}.uppy-DashboardContent-addMore{-webkit-appearance:none;background:none;border:0;border-radius:3px;color:inherit;color:#1269cf;cursor:pointer;font-family:inherit;font-size:inherit;font-weight:500;height:29px;line-height:1;margin:0;padding:7px 8px;width:29px}.uppy-DashboardContent-addMore:focus{outline:none}.uppy-DashboardContent-addMore::-moz-focus-inner{border:0}.uppy-DashboardContent-addMore:hover{color:#0e51a0}.uppy-DashboardContent-addMore:focus{background-color:#dfe6f1}[data-uppy-theme=dark] .uppy-DashboardContent-addMore:focus{background-color:#333}[dir=ltr] .uppy-size--md .uppy-DashboardContent-addMore{margin-right:-8px}[dir=rtl] .uppy-size--md .uppy-DashboardContent-addMore{margin-left:-8px}.uppy-size--md .uppy-DashboardContent-addMore{font-size:14px;height:auto;width:auto}[data-uppy-theme=dark] .uppy-DashboardContent-addMore{color:#02baf2}[dir=ltr] .uppy-DashboardContent-addMore svg{margin-right:4px}[dir=rtl] .uppy-DashboardContent-addMore svg{margin-left:4px}.uppy-DashboardContent-addMore svg{vertical-align:initial}.uppy-size--md .uppy-DashboardContent-addMore svg{height:11px;width:11px}.uppy-DashboardContent-addMoreCaption{display:none}.uppy-size--md .uppy-DashboardContent-addMoreCaption{display:inline}.uppy-DashboardContent-panel{background-color:#f5f5f5;flex:1}.uppy-Dashboard-AddFilesPanel,.uppy-DashboardContent-panel{border-radius:5px;bottom:0;display:flex;flex-direction:column;left:0;overflow:hidden;position:absolute;right:0;top:0;z-index:1005}.uppy-Dashboard-AddFilesPanel{background:#fafafa;background:linear-gradient(0deg,#fafafa 35%,#fafafad9);box-shadow:0 0 10px 5px #00000026}[data-uppy-theme=dark] .uppy-Dashboard-AddFilesPanel{background-color:#333;background-image:linear-gradient(0deg,#1f1f1f 35%,#1f1f1fd9)}.uppy-Dashboard--isAddFilesPanelVisible .uppy-Dashboard-files{filter:blur(2px)}.uppy-Dashboard-progress{bottom:0;height:12%;left:0;position:absolute;width:100%}.uppy-Dashboard-progressBarContainer.is-active{height:100%;left:0;position:absolute;top:0;width:100%;z-index:1004}.uppy-Dashboard-filesContainer{flex:1;margin:0;overflow-y:hidden;position:relative}.uppy-Dashboard-filesContainer:after{clear:both;content:"";display:table}.uppy-Dashboard-files{flex:1;margin:0;overflow-y:auto;padding:0 0 10px;-webkit-overflow-scrolling:touch}.uppy-size--md .uppy-Dashboard-files{padding-top:10px}.uppy-Dashboard--singleFile .uppy-Dashboard-filesInner{align-items:center;display:flex;height:100%;justify-content:center}.uppy-Dashboard-dropFilesHereHint{align-items:center;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath fill='%231269CF' d='M24 1v1C11.85 2 2 11.85 2 24s9.85 22 22 22 22-9.85 22-22S36.15 2 24 2zm0 0V0c13.254 0 24 10.746 24 24S37.254 48 24 48 0 37.254 0 24 10.746 0 24 0zm7.707 19.293a.999.999 0 1 1-1.414 1.414L25 16.414V34a1 1 0 1 1-2 0V16.414l-5.293 5.293a.999.999 0 1 1-1.414-1.414l7-7a1 1 0 0 1 1.414 0z'/%3E%3C/svg%3E");background-position:50% 50%;background-repeat:no-repeat;border:1px dashed #1269cf;border-radius:3px;bottom:7px;color:#757575;display:flex;font-size:16px;justify-content:center;left:7px;padding-top:90px;position:absolute;right:7px;text-align:center;top:7px;visibility:hidden;z-index:2000}[data-uppy-theme=dark] .uppy-Dashboard-dropFilesHereHint{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath fill='%2302BAF2' d='M24 1v1C11.85 2 2 11.85 2 24s9.85 22 22 22 22-9.85 22-22S36.15 2 24 2zm0 0V0c13.254 0 24 10.746 24 24S37.254 48 24 48 0 37.254 0 24 10.746 0 24 0zm7.707 19.293a.999.999 0 1 1-1.414 1.414L25 16.414V34a1 1 0 1 1-2 0V16.414l-5.293 5.293a.999.999 0 1 1-1.414-1.414l7-7a1 1 0 0 1 1.414 0z'/%3E%3C/svg%3E");border-color:#02baf2;color:#bbb}.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-dropFilesHereHint{pointer-events:none;visibility:visible}.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-files,.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-progressindicators,.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-serviceMsg,.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-DashboardContent-bar{opacity:.15}.uppy-Dashboard.uppy-Dashboard--isDraggingOver .uppy-Dashboard-AddFiles{opacity:.03}.uppy-Dashboard-AddFiles-title{color:#000;font-size:17px;font-weight:500;line-height:1.35;margin-bottom:5px;margin-top:15px;padding:0 15px;text-align:inline-start;width:100%}.uppy-size--md .uppy-Dashboard-AddFiles-title{font-size:21px;font-weight:400;margin-top:5px;max-width:480px;padding:0 35px;text-align:center}[data-uppy-num-acquirers="0"] .uppy-Dashboard-AddFiles-title{text-align:center}[data-uppy-theme=dark] .uppy-Dashboard-AddFiles-title{color:#eaeaea}.uppy-Dashboard-AddFiles-title button{font-weight:500}.uppy-size--md .uppy-Dashboard-AddFiles-title button{font-weight:400}.uppy-Dashboard-note{color:#757575;font-size:14px;line-height:1.25;margin:auto;max-width:350px;padding:0 15px;text-align:center}.uppy-size--md .uppy-Dashboard-note{line-height:1.35;max-width:600px}[data-uppy-theme=dark] .uppy-Dashboard-note{color:#cfcfcf}a.uppy-Dashboard-poweredBy{color:#939393;display:inline-block;font-size:11px;margin-top:8px;text-align:center;text-decoration:none}.uppy-Dashboard-poweredByIcon{margin-left:1px;margin-right:1px;opacity:.9;position:relative;top:1px;vertical-align:text-top;fill:none;stroke:#939393}.uppy-Dashboard-Item-previewIcon{height:25px;left:50%;position:absolute;top:50%;transform:translate(-50%,-50%);width:25px;z-index:100}.uppy-size--md .uppy-Dashboard-Item-previewIcon{height:38px;width:38px}.uppy-Dashboard-Item-previewIcon svg{height:100%;width:100%}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-previewIcon{height:100%;max-height:60%;max-width:60%;width:100%}.uppy-Dashboard-Item-previewIconWrap{height:76px;max-height:75%;position:relative}.uppy-Dashboard--singleFile .uppy-Dashboard-Item-previewIconWrap{height:100%;width:100%}.uppy-Dashboard-Item-previewIconBg{filter:drop-shadow(rgba(0,0,0,.1) 0 1px 1px);height:100%;width:100%}.uppy-Dashboard-upload{height:50px;position:relative;width:50px}.uppy-size--md .uppy-Dashboard-upload{height:60px;width:60px}.uppy-Dashboard-upload .uppy-c-icon{position:relative;top:1px;width:50%}[dir=ltr] .uppy-Dashboard-uploadCount{right:-12px}[dir=rtl] .uppy-Dashboard-uploadCount{left:-12px}.uppy-Dashboard-uploadCount{background-color:#1bb240;border-radius:50%;color:#fff;font-size:8px;height:16px;line-height:16px;position:absolute;top:-12px;width:16px}.uppy-size--md .uppy-Dashboard-uploadCount{font-size:9px;height:18px;line-height:18px;width:18px}`;
+var Sm = Object.defineProperty, Pm = Object.getOwnPropertyDescriptor, Ru = (r) => {
   throw TypeError(r);
 }, gt = (r, e, t, i) => {
-  for (var o = i > 1 ? void 0 : i ? Sm(e, t) : e, n = r.length - 1, s; n >= 0; n--)
+  for (var o = i > 1 ? void 0 : i ? Pm(e, t) : e, n = r.length - 1, s; n >= 0; n--)
     (s = r[n]) && (o = (i ? s(e, t, o) : s(o)) || o);
-  return i && o && xm(e, t, o), o;
-}, Ru = (r, e, t) => e.has(r) || Uu("Cannot " + t), Pm = (r, e, t) => (Ru(r, e, "read from private field"), t ? t.call(r) : e.get(r)), km = (r, e, t) => e.has(r) ? Uu("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(r) : e.set(r, t), Fm = (r, e, t, i) => (Ru(r, e, "write to private field"), e.set(r, t), t), Di;
-let Ke = class extends Xu {
+  return i && o && Sm(e, t, o), o;
+}, Mu = (r, e, t) => e.has(r) || Ru("Cannot " + t), km = (r, e, t) => (Mu(r, e, "read from private field"), t ? t.call(r) : e.get(r)), Fm = (r, e, t) => e.has(r) ? Ru("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(r) : e.set(r, t), Dm = (r, e, t, i) => (Mu(r, e, "write to private field"), e.set(r, t), t), Di;
+let Ke = class extends Yu {
   constructor() {
-    super(), km(this, Di), this.endpoint = "", this.selector = "drag-drop-area", this.chunkSize = 52428800, this.maxSize = 1024 * 1024 * 1024 * 25, this.resumable = !1, this.height = 360, this.width = 640, this.consumeContext(Yu, (r) => {
-      Fm(this, Di, r);
+    super(), Fm(this, Di), this.endpoint = "", this.selector = "drag-drop-area", this.chunkSize = 52428800, this.maxSize = 1024 * 1024 * 1024 * 25, this.resumable = !1, this.height = 360, this.width = 640, this.consumeContext(Zu, (r) => {
+      Dm(this, Di, r);
     });
   }
   render() {
@@ -12596,7 +12603,7 @@ let Ke = class extends Xu {
   onBeforeRequest(r, e) {
     return new Promise(async (t) => {
       var n;
-      const i = await ((n = Pm(this, Di)) == null ? void 0 : n.getLatestToken());
+      const i = await ((n = km(this, Di)) == null ? void 0 : n.getLatestToken());
       r.setHeader("Authorization", `Bearer ${i}`);
       const o = new CustomEvent("before-request", {
         detail: {
@@ -12618,14 +12625,14 @@ let Ke = class extends Xu {
         minNumberOfFiles: 1,
         allowedFileTypes: ["video/*"]
       }
-    }).use(du, {
+    }).use(cu, {
       target: this.uppyElement,
       inline: !0,
       height: this.height,
       width: this.width,
       singleFileFullScreen: !0,
       proudlyDisplayPoweredByUppy: !1
-    }).use(Eu, {
+    }).use(Uu, {
       endpoint: this.endpoint,
       chunkSize: this.chunkSize,
       onAfterResponse: (t, i) => this.onAfterResponse(t, i),
@@ -12637,7 +12644,7 @@ let Ke = class extends Xu {
   }
 };
 Di = /* @__PURE__ */ new WeakMap();
-Ke.styles = [Ti(_m), Ti(wm), Fn`
+Ke.styles = [Ti(xm), Ti(_m), Fn`
         .uppy-Dashboard-browse {
             color: #2bc37c;
         }
@@ -12650,7 +12657,7 @@ gt([
   Re()
 ], Ke.prototype, "endpoint", 2);
 gt([
-  bp(".uppy")
+  vp(".uppy")
 ], Ke.prototype, "uppyElement", 2);
 gt([
   Re()
@@ -12670,10 +12677,10 @@ gt([
 Ke = gt([
   Cn("uppy-upload")
 ], Ke);
-var Dm = Object.defineProperty, Tm = Object.getOwnPropertyDescriptor, Li = (r, e, t, i) => {
-  for (var o = i > 1 ? void 0 : i ? Tm(e, t) : e, n = r.length - 1, s; n >= 0; n--)
+var Tm = Object.defineProperty, Im = Object.getOwnPropertyDescriptor, Li = (r, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Im(e, t) : e, n = r.length - 1, s; n >= 0; n--)
     (s = r[n]) && (o = (i ? s(e, t, o) : s(o)) || o);
-  return i && o && Dm(e, t, o), o;
+  return i && o && Tm(e, t, o), o;
 };
 let ir = class extends Zt {
   constructor() {
@@ -12710,7 +12717,7 @@ let ir = class extends Zt {
   }
 };
 ir.styles = [
-  yl,
+  ml,
   Fn`
                 .alert {
                     padding: 0.5rem 1rem;

@@ -15,6 +15,25 @@
         "group": "common",
         "propertyEditorSchemaAlias": "CloudflareStreamMedia"
       }
+    },
+    {
+      "type": "workspaceAction",
+      "kind": "default",
+      "alias": "ReadingRoom.WorkspaceAction.Media.CfStream.Save",
+      "name": "CF Stream Media Save Action",
+      "api": "/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/save-action.js",
+      "overwrites": "Umb.WorkspaceAction.Media.Save",
+      "meta": {
+        "label": "#buttons_save",
+        "look": "primary",
+        "color": "positive"
+      },
+      "conditions": [
+        {
+          "alias": "Umb.Condition.WorkspaceAlias",
+          "match": "Umb.Workspace.Media"
+        }
+      ]
     }
   ]
 }

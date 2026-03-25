@@ -1,19 +1,29 @@
-import {LitElement, html, nothing, PropertyValues, css} from 'lit';
-import {customElement, property, state} from 'lit/decorators.js';
-import {HttpRequest, HttpResponse} from "tus-js-client";
-import {CloudflareStreamService} from "../services/cloudflareStreamService.ts";
-import {CloudflareStreamMediaStatus} from "../models/cloudflareStreamMediaStatus.ts";
-import {Result} from "../models/result.ts";
-import {Status} from "../models/status.ts";
-import {Meta, Body, UppyFile} from "@uppy/core";
+import { LitElement, html, nothing, PropertyValues, css } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { HttpRequest, HttpResponse } from "tus-js-client";
+import { CloudflareStreamService } from "../services/cloudflareStreamService.ts";
+import { CloudflareStreamMediaStatus } from "../models/cloudflareStreamMediaStatus.ts";
+import { Result } from "../models/result.ts";
+import { Status } from "../models/status.ts";
+import { Meta, Body, UppyFile } from "@uppy/core";
 import byteSize from 'byte-size';
-import {UUITextStyles} from '@umbraco-ui/uui-css';
+import { UUITextStyles } from '@umbraco-ui/uui-css';
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
+import { cfStreamUploadState } from './cf-stream-upload-context.ts';
 
 @customElement('cf-stream-editor')
 export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) {
+    
     constructor() {
         super();
+    }
+
+    private _lockSave() {
+        cfStreamUploadState.setUploading(true);
+    }
+
+    private _unlockSave() {
+        cfStreamUploadState.setUploading(false);
     }
 
     @property()
@@ -102,7 +112,7 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) 
         if (request.getURL() === this.uploadUrl) {
             this.previousVideoId = '';
             this.extension = file.extension;
-            //request.setHeader("Upload-DataType", `${this.dataTypeKey}`);
+            this._lockSave();
             this.dispatchEvent(new CustomEvent('cf-stream-editor-uploading', {
                 detail: {},
                 bubbles: true,
@@ -113,6 +123,7 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) 
 
     private async _uploadSuccess(event: CustomEvent) {
         event.stopPropagation();
+        this._unlockSave();
 
         this.dispatchEvent(new CustomEvent('cf-stream-editor-uploaded', {
             detail: {
