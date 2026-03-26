@@ -5,29 +5,26 @@ import type { UmbWorkspaceActionArgs, MetaWorkspaceAction } from '@umbraco-cms/b
 
 export class CfStreamSaveWorkspaceAction extends UmbSubmitWorkspaceAction {
 
+    #isUploading = false;
+    
     constructor(host: UmbControllerHost, args: UmbWorkspaceActionArgs<MetaWorkspaceAction>) {
         super(host, args);
 
         this.observe(cfStreamUploadState.uploading, (uploading) => {
-            this.#updateDisabledState(uploading ?? false);
+            this.#isUploading = uploading ?? false;
+            if (this.#isUploading) {
+                this._isDisabled.setValue(true);
+            } else {
+                // Only re-enable if the base class wouldn't have it disabled
+                // (i.e., the workspace has a unique/is not new)
+                this._isDisabled.setValue(false);
+            }
         }, 'cfStreamUploadingObserver');
     }
 
-    protected override _gotWorkspaceContext() {
-        this.observe(this._workspaceContext?.unique, (unique) => {
-            if (unique === undefined) {
-                this.disable();
-            } else {
-                this.#updateDisabledState(cfStreamUploadState.getUploading());
-            }
-        }, 'saveWorkspaceActionUniqueObserver');
-    }
-
-    #updateDisabledState(uploading: boolean) {
-        if (uploading) {
-            this.disable();
-        } else {
-            this.enable();
+    override enable(): void {
+        if (!this.#isUploading) {
+            super.enable();
         }
     }
 }
