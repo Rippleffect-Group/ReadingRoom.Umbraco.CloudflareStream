@@ -9,7 +9,7 @@ import { Meta, Body, UppyFile } from "@uppy/core";
 import byteSize from 'byte-size';
 import { UUITextStyles } from '@umbraco-ui/uui-css';
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
-import { cfStreamUploadState } from './cf-stream-upload-context.ts';
+import { cfStreamUploadState } from '../common/cf-stream-upload-context.ts';
 
 @customElement('cf-stream-editor')
 export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) {

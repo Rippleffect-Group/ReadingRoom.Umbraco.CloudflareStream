@@ -19,7 +19,7 @@ export default defineConfig({
             output: {
                 // Force shared modules into a separate chunk so the singleton is truly shared
                 manualChunks: {
-                    'shared': ['./src/components/cf-stream-upload-context.ts']
+                    'shared': ['./src/common/cf-stream-upload-context.ts']
                 },
             }
         },

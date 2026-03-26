@@ -4,12 +4,9 @@ import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
 import { UmbFormControlMixin } from '@umbraco-cms/backoffice/validation';
 import { UMB_PROPERTY_CONTEXT } from '@umbraco-cms/backoffice/property';
 import type { UmbPropertyEditorConfigCollection, UmbPropertyEditorUiElement } from '@umbraco-cms/backoffice/property-editor';
-
 import '@umbraco-cms/backoffice/media';
 
-const elementName = 'cf-stream-media-picker';
-
-@customElement(elementName)
+@customElement('cf-stream-media-picker')
 export class CfStreamMediaPickerElement
     extends UmbFormControlMixin(UmbLitElement)
     implements UmbPropertyEditorUiElement
@@ -18,6 +15,7 @@ export class CfStreamMediaPickerElement
     @property({ type: String }) mandatoryMessage = '';
     @property({ type: Boolean, reflect: true }) readonly = false;
 
+    @state() private _config?: UmbPropertyEditorConfigCollection;
     @state() private _allowedMediaTypes: string[] = [];
     @state() private _focalPointEnabled = false;
     @state() private _preselectedCrops: any[] = [];
@@ -28,6 +26,7 @@ export class CfStreamMediaPickerElement
     @state() private _alias?: string;
     @state() private _variantId?: string;
 
+    @property({ attribute: false })
     set config(config: UmbPropertyEditorConfigCollection | undefined) {
         if (!config) return;
         this._allowedMediaTypes = config.getValueByAlias<string>('filter')?.split(',') ?? [];
@@ -39,6 +38,9 @@ export class CfStreamMediaPickerElement
         const minMax = config.getValueByAlias<any>('validationLimit');
         this._min = minMax?.min ?? 0;
         this._max = minMax?.max ?? Infinity;
+    }
+    get config(): UmbPropertyEditorConfigCollection | undefined {
+        return this._config;
     }
 
     constructor() {

@@ -1,5 +1,5 @@
 ﻿import { UmbSubmitWorkspaceAction } from '@umbraco-cms/backoffice/workspace';
-import { cfStreamUploadState } from './cf-stream-upload-context.ts';
+import { cfStreamUploadState } from '../common/cf-stream-upload-context.ts';
 import type { UmbControllerHost } from '@umbraco-cms/backoffice/controller-api';
 import type { UmbWorkspaceActionArgs, MetaWorkspaceAction } from '@umbraco-cms/backoffice/workspace';
 
