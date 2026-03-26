@@ -1,7 +1,7 @@
 ﻿{
   "$schema": "../../ReadingRoom.Umbraco.CloudflareStream.TestSite/umbraco-package-schema.json",
   "name": "ReadingRoom.Umbraco.CloudflareStream",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "extensions": [
     {
       "type": "propertyEditorUi",
