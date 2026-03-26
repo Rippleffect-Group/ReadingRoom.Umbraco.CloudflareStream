@@ -13,7 +13,30 @@
         "label": "Cloudflare Stream Media",
         "icon": "icon-video",
         "group": "common",
-        "propertyEditorSchemaAlias": "CloudflareStreamMedia"
+        "propertyEditorSchemaAlias": "CloudflareStreamMedia",
+        "settings": {
+          "properties": [
+            {
+              "alias": "requiresignedurls",
+              "label": "Require Signed URLs",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Toggle"
+            },
+            {
+              "alias": "expiry",
+              "label": "Expiry",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Integer"
+            },
+            {
+              "alias": "deleteAfter",
+              "label": "Delete After",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Integer"
+            }
+          ],
+          "defaultData": [
+            { "alias": "requiresignedurls", "value": false },
+            { "alias": "deleteAfter", "value": 30 }
+          ]
+        }
       }
     },
     {
@@ -27,7 +50,39 @@
         "icon": "icon-video",
         "group": "media",
         "propertyEditorSchemaAlias": "CloudflareStreamMediaPicker",
-        "supportsReadOnly": true
+        "supportsReadOnly": true,
+        "settings": {
+          "properties": [
+            {
+              "alias": "multiple",
+              "label": "Pick multiple items",
+              "description": "Allows the editor to pick multiple media items.",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Toggle"
+            },
+            {
+              "alias": "validationLimit",
+              "label": "Amount",
+              "description": "Set a required range of media items.",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.NumberRange"
+            },
+            {
+              "alias": "enableLocalFocalPoint",
+              "label": "Enable focal point",
+              "description": "Enable the focal point feature for images.",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Toggle"
+            },
+            {
+              "alias": "filter",
+              "label": "Accepted types",
+              "description": "Limit to specific media types.",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.MediaTypePicker"
+            }
+          ],
+          "defaultData": [
+            { "alias": "multiple", "value": false },
+            { "alias": "enableLocalFocalPoint", "value": false }
+          ]
+        }
       }
     },
     {
