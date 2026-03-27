@@ -53,10 +53,9 @@ branches:
   pull-request:
     regex: ^(pull|pull\-requests|pr)[/-]
     mode: ContinuousDelivery
-    tag: PullRequest
+    tag: PR
     increment: Inherit
     prevent-increment-of-merged-branch-version: false
-    tag-number-pattern: '[/-](?<number>\d+)[-/]'
     track-merge-target: false
     source-branches:
       ["develop", "main", "release", "feature", "support", "hotfix","version-develop-10","version-develop-13","version-develop-14","version-develop-15","version-develop-16","version-develop-17","version-develop-18","version-develop-19","version-develop-20", "version-10","version-13","version-14","version-15","version-16","version-17","version-18","version-19","version-20"]
