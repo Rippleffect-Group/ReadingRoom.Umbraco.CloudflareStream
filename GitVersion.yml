@@ -53,7 +53,7 @@ branches:
   pull-request:
     regex: ^(pull|pull\-requests|pr)[/-]
     mode: ContinuousDelivery
-    tag: PR
+    label: PR
     increment: Inherit
     prevent-increment-of-merged-branch-version: false
     track-merge-target: false
