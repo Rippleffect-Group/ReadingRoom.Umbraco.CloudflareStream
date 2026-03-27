@@ -25,7 +25,7 @@
                     <Key>c5d840b7-db76-449e-a4bc-970084ab80ed</Key>
                     <Type>CloudflareStreamMedia</Type>
                     <Definition>718936c7-6da5-45ca-beb4-ed975de04dd1</Definition>
-                    <Tab Alias="video">Video</Tab>
+                    <Tab Alias="content/video">Video</Tab>
                     <SortOrder>0</SortOrder>
                     <Mandatory>True</Mandatory>
                     <LabelOnTop>False</LabelOnTop>
@@ -38,11 +38,19 @@
             </GenericProperties>
             <Tabs>
                 <Tab>
-                    <Id>59</Id>
+                    <Id>61</Id>
+                    <Key>d67b1c21-109d-4e74-b07a-a1cb41e29b96</Key>
+                    <Type>Tab</Type>
+                    <Caption>Content</Caption>
+                    <Alias>content</Alias>
+                    <SortOrder>0</SortOrder>
+                </Tab>
+                <Tab>
+                    <Id>56</Id>
                     <Key>9a1ec24b-7c8f-4467-88fe-40637450d25d</Key>
                     <Type>Group</Type>
                     <Caption>Video</Caption>
-                    <Alias>video</Alias>
+                    <Alias>content/video</Alias>
                     <SortOrder>1</SortOrder>
                 </Tab>
             </Tabs>
@@ -52,13 +60,11 @@
     <Stylesheets />
     <Scripts />
     <PartialViews />
-    <Macros />
-    <MacroPartialViews />
     <DictionaryItems />
     <Languages />
     <DataTypes>
-        <DataType Name="Cloudflare Stream Video Picker" Id="CloudflareStreamMediaPicker" Definition="d7459e7e-df43-43a5-8c36-ee528f3cfdc7" DatabaseType="Ntext" Configuration="{&quot;multiple&quot;:false,&quot;validationLimit&quot;:{},&quot;enableLocalFocalPoint&quot;:false,&quot;ignoreUserStartNodes&quot;:false}" />
-        <DataType Name="Cloudflare Stream Video Upload" Id="CloudflareStreamMedia" Definition="718936c7-6da5-45ca-beb4-ed975de04dd1" DatabaseType="Nvarchar" Configuration="{&quot;requiresignedurls&quot;:false,&quot;deleteAfter&quot;:30,&quot;GetDeleteAfter&quot;:&quot;30.00:00:00&quot;}" />
+        <DataType Name="Cloudflare Stream Video Upload" Id="CloudflareStreamMedia" EditorUiAlias="ReadingRoom.Umbraco.CloudflareStream.Ui" Definition="718936c7-6da5-45ca-beb4-ed975de04dd1" DatabaseType="Nvarchar" Configuration="{&quot;deleteAfter&quot;:30,&quot;requiresignedurls&quot;:false}" />
+        <DataType Name="Cloudflare Stream Video Picker" Id="CloudflareStreamMediaPicker" EditorUiAlias="Cloudflare.Stream.MediaPicker.UI" Definition="1d79ec3d-7c51-4f5e-825e-fd73e5e34462" DatabaseType="Ntext" Configuration="{&quot;filter&quot;:&quot;436a6dc6-960e-4190-aed8-e43c217500df&quot;}" />
     </DataTypes>
     <MediaItems />
 </umbPackage>

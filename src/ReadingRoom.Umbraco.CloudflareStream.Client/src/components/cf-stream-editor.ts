@@ -1,18 +1,53 @@
-import {LitElement, html, nothing, PropertyValues, css} from 'lit';
-import {customElement, property, state} from 'lit/decorators.js';
-import {HttpRequest, HttpResponse} from "tus-js-client";
-import {CloudflareStreamService} from "../services/cloudflareStreamService.ts";
-import {CloudflareStreamMediaStatus} from "../models/cloudflareStreamMediaStatus.ts";
-import {Result} from "../models/result.ts";
-import {Status} from "../models/status.ts";
-import {Meta, Body, UppyFile} from "@uppy/core";
+import { LitElement, html, nothing, PropertyValues, css } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { HttpRequest, HttpResponse } from "tus-js-client";
+import { CloudflareStreamService } from "../services/cloudflareStreamService.ts";
+import { CloudflareStreamMediaStatus } from "../models/cloudflareStreamMediaStatus.ts";
+import { Result } from "../models/result.ts";
+import { Status } from "../models/status.ts";
+import { Meta, Body, UppyFile } from "@uppy/core";
 import byteSize from 'byte-size';
-import {UUITextStyles} from '@umbraco-ui/uui-css';
+import { UUITextStyles } from '@umbraco-ui/uui-css';
+import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
+import { cfStreamUploadState } from '../common/cf-stream-upload-context.ts';
+import { UMB_AUTH_CONTEXT, UmbAuthContext } from "@umbraco-cms/backoffice/auth";
+import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
+
+interface CloudflareStreamValue {
+    id: string;
+    name: string;
+    size: number;
+    width: number;
+    height: number;
+    uploadDate?: string;
+    duration: number;
+    extension: string;
+    isSigned?: boolean;
+}
 
 @customElement('cf-stream-editor')
-export default class CloudflareStreamEditor extends LitElement {
+export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
+    implements UmbPropertyEditorUiElement {
+
+    #authContext?: UmbAuthContext | undefined;
+    
+    @property({ attribute: false })
+    public value?: CloudflareStreamValue;
+    
     constructor() {
         super();
+
+        this.consumeContext(UMB_AUTH_CONTEXT, (instance) => {
+            this.#authContext = instance;
+        });
+    }
+
+    private _lockSave() {
+        cfStreamUploadState.setUploading(true);
+    }
+
+    private _unlockSave() {
+        cfStreamUploadState.setUploading(false);
     }
 
     @property()
@@ -70,7 +105,8 @@ export default class CloudflareStreamEditor extends LitElement {
     ];
 
     protected firstUpdated(_changedProperties: PropertyValues) {
-        if (this.videoId) {
+        if (this.value?.id) {
+            this.videoId = this.value.id;
             this._getStatus(this.videoId);
         }
     }
@@ -101,7 +137,7 @@ export default class CloudflareStreamEditor extends LitElement {
         if (request.getURL() === this.uploadUrl) {
             this.previousVideoId = '';
             this.extension = file.extension;
-            request.setHeader("Upload-DataType", `${this.dataTypeKey}`);
+            this._lockSave();
             this.dispatchEvent(new CustomEvent('cf-stream-editor-uploading', {
                 detail: {},
                 bubbles: true,
@@ -112,6 +148,7 @@ export default class CloudflareStreamEditor extends LitElement {
 
     private async _uploadSuccess(event: CustomEvent) {
         event.stopPropagation();
+        this._unlockSave();
 
         this.dispatchEvent(new CustomEvent('cf-stream-editor-uploaded', {
             detail: {
@@ -147,6 +184,7 @@ export default class CloudflareStreamEditor extends LitElement {
         this.videoId = ''
         this.details = undefined;
         this.notFound = false;
+        this.value = undefined;
         const event = new CustomEvent('cf-stream-editor-removed', {
             detail: {},
             bubbles: true,
@@ -159,8 +197,8 @@ export default class CloudflareStreamEditor extends LitElement {
         if (toggleLoading) {
             this.loading = true;
         }
-
-        const response = await CloudflareStreamService.getVideoDetails(videoId);
+        const token = await this.#authContext?.getLatestToken();
+        const response = await CloudflareStreamService.getVideoDetails(videoId, token ?? '');
         const result = response?.Result;
 
         if (toggleLoading) {
@@ -182,21 +220,29 @@ export default class CloudflareStreamEditor extends LitElement {
         if (!data) {
             return;
         }
+        const detail: CloudflareStreamValue = {
+            id: data.Uid,
+            size: data.Size,
+            name: data.Meta.Name,
+            width: data.Input.Width,
+            height: data.Input.Height,
+            uploadDate: data.Uploaded.toString(),
+            duration: data.Duration,
+            extension: this.extension
+        };
+        this._setValue(detail);
+        
         const event = new CustomEvent('cf-stream-editor-updated', {
-            detail: {
-                id: data.Uid,
-                size: data.Size,
-                name: data.Meta.Name,
-                width: data.Input.Width,
-                height: data.Input.Height,
-                uploadDate: data.Uploaded,
-                duration: data.Duration,
-                extension: this.extension
-            },
+            detail: detail,
             bubbles: true,
             composed: true
         });
         this.dispatchEvent(event);
+    }
+
+    private _setValue(newValue: CloudflareStreamValue) {
+        this.value = newValue;
+        this.dispatchEvent(new CustomEvent('property-value-change'));
     }
 
     private _renderUpload() {

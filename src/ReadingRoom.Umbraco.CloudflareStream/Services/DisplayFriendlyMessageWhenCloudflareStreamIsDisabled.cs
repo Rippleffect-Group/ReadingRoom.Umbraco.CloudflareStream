@@ -4,7 +4,7 @@ using Umbraco.Extensions;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.Services;
 
-public class DisplayFriendlyMessageWhenCloudflareStreamIsDisabled : INotificationHandler<SendingMediaNotification>
+/*public class DisplayFriendlyMessageWhenCloudflareStreamIsDisabled : INotificationHandler<SendingMediaNotification>
 {
     public void Handle(SendingMediaNotification notification)
     {
@@ -41,4 +41,4 @@ public class DisplayFriendlyMessageWhenCloudflareStreamIsDisabled : INotificatio
                  """;
         }
     }
-}
+}*/

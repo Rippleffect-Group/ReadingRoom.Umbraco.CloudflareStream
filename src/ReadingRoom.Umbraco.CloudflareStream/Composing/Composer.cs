@@ -8,7 +8,7 @@ public class Composer : IComposer
 {
     public void Compose(IUmbracoBuilder builder)
     {
-        builder.ManifestFilters().Append<ManifestFilter>();
+        //builder.ManifestFilters().Append<ManifestFilter>();
         builder.AddCloudflareStream();
     }
 }

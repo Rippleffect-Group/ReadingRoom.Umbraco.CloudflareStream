@@ -1,24 +1,28 @@
-import {defineConfig} from "vite";
-import postcssLit from 'rollup-plugin-postcss-lit';
+import { defineConfig } from "vite";
 
 export default defineConfig({
     build: {
-        minify: false,
-        terserOptions: {
-            compress: false,
-            mangle: false,
-        },
+        target: "es2022",
         lib: {
-            entry: ["src/index.ts", "src/backoffice.ts"],
+            entry: [
+                "src/index.ts",
+                "src/components/save-action.ts",
+                "src/components/media-picker.ts"
+            ],
             formats: ["es"],
         },
-        outDir: "../ReadingRoom.Umbraco.CloudflareStream/wwwroot/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/dist/",
+        outDir: "../ReadingRoom.Umbraco.CloudflareStream/wwwroot/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/",
+        emptyOutDir: true,
         sourcemap: true,
         rollupOptions: {
-            // external: [/^@umbraco-ui/],
-            plugins: [
-                postcssLit(),
-            ]
+            external: [/^@umbraco-cms/, /^@umbraco\/backoffice/], // ignore the Umbraco Backoffice package in the build
+            output: {
+                // Force shared modules into a separate chunk so the singleton is truly shared
+                manualChunks: {
+                    'shared': ['./src/common/cf-stream-upload-context.ts']
+                },
+            }
         },
     },
+    base: "/App_Plugins/ReadingRoom.Umbraco.CloudflareStream/", // the base path of the app in the browser (used for assets)
 });

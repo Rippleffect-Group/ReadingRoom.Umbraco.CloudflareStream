@@ -130,7 +130,7 @@ namespace ReadingRoom.Umbraco.CloudflareStream.TagHelpers
             {
                 try
                 {
-                    var context = httpContextAccessor.GetRequiredHttpContext();
+                    var context = httpContextAccessor.HttpContext;
                     var builder = new UriBuilder(context.Request.GetDisplayUrl())
                     {
                         Path = PosterUrl

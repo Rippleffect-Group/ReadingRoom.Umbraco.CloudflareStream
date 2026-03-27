@@ -2,7 +2,7 @@ using Umbraco.Cms.Core.Manifest;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.Composing;
 
-internal class ManifestFilter : IManifestFilter
+/*internal class ManifestFilter : IManifestFilter
 {
     public void Filter(List<PackageManifest> manifests)
     {
@@ -22,4 +22,4 @@ internal class ManifestFilter : IManifestFilter
             BundleOptions = BundleOptions.None
         });
     }
-}
+}*/
