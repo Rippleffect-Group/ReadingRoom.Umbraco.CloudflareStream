@@ -2,11 +2,13 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaEditor;
 using Umbraco.Cms.Core.Models;
-using Umbraco.Extensions;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.Services;
 
-public class CloudflareStreamMediaUrlGenerator(ICloudflareStreamUrlHelper urlHelper, ILogger<CloudflareStreamMediaUrlGenerator> logger) : IMediaUrlGenerator
+public class CloudflareStreamMediaUrlGenerator(
+    ICloudflareStreamUrlHelper urlHelper, 
+    ILogger<CloudflareStreamMediaUrlGenerator> logger) 
+    : IMediaUrlGenerator
 {
     private readonly ILogger _logger = logger;
 
@@ -30,9 +32,8 @@ public class CloudflareStreamMediaUrlGenerator(ICloudflareStreamUrlHelper urlHel
             {
                 return false;
             }
-
-            var mediaValue = urlHelper.GetMediaPath(dto.Id);
-            mediaPath = mediaValue;
+            
+            mediaPath = $"{urlHelper.BaseMediaPath}/{dto.Id}/thumbnails/thumbnail.jpg";
             return !mediaPath.IsNullOrWhiteSpace();
         }
         catch (Exception ex)

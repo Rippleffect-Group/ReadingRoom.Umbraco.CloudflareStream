@@ -84,8 +84,11 @@ export default class UpplyUpload extends UmbLitElement {
 
     private onBeforeRequest(req: HttpRequest, file: UppyFile<Meta, Body>): Promise<void> {
         return new Promise(async (resolve) => {
-            const token = await this.#authContext?.getLatestToken();
-            req.setHeader('Authorization', `Bearer ${token}`);
+            const url = req.getURL();
+            if (url.includes('/umbraco/backoffice/')) {
+                const token = await this.#authContext?.getLatestToken();
+                req.setHeader('Authorization', `Bearer ${token}`);
+            }
             
             const event =
                 new CustomEvent('before-request', {

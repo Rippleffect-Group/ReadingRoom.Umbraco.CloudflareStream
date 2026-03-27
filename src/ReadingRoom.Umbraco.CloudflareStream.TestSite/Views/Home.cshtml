@@ -34,7 +34,7 @@
 {
     var value = Model.BetterPicker;
     var duration = $"{value.Duration}s";
-    var size = $"{value.Size / 1024 / 1024:0.00}MB";
+    var size = Model.BetterPicker.GetVideoSize();
     var editUrl = "/umbraco#/media/media/edit/" + value.Id;
     var poster = string.Empty;
     if (Model.Poster != null)

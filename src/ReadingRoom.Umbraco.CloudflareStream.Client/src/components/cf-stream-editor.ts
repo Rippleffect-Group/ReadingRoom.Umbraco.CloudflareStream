@@ -10,12 +10,36 @@ import byteSize from 'byte-size';
 import { UUITextStyles } from '@umbraco-ui/uui-css';
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
 import { cfStreamUploadState } from '../common/cf-stream-upload-context.ts';
+import { UMB_AUTH_CONTEXT, UmbAuthContext } from "@umbraco-cms/backoffice/auth";
+import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
+
+interface CloudflareStreamValue {
+    id: string;
+    name: string;
+    size: number;
+    width: number;
+    height: number;
+    uploadDate?: string;
+    duration: number;
+    extension: string;
+    isSigned?: boolean;
+}
 
 @customElement('cf-stream-editor')
-export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) {
+export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
+    implements UmbPropertyEditorUiElement {
+
+    #authContext?: UmbAuthContext | undefined;
+    
+    @property({ attribute: false })
+    public value?: CloudflareStreamValue;
     
     constructor() {
         super();
+
+        this.consumeContext(UMB_AUTH_CONTEXT, (instance) => {
+            this.#authContext = instance;
+        });
     }
 
     private _lockSave() {
@@ -81,7 +105,8 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) 
     ];
 
     protected firstUpdated(_changedProperties: PropertyValues) {
-        if (this.videoId) {
+        if (this.value?.id) {
+            this.videoId = this.value.id;
             this._getStatus(this.videoId);
         }
     }
@@ -159,6 +184,7 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) 
         this.videoId = ''
         this.details = undefined;
         this.notFound = false;
+        this.value = undefined;
         const event = new CustomEvent('cf-stream-editor-removed', {
             detail: {},
             bubbles: true,
@@ -171,8 +197,8 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) 
         if (toggleLoading) {
             this.loading = true;
         }
-
-        const response = await CloudflareStreamService.getVideoDetails(videoId);
+        const token = await this.#authContext?.getLatestToken();
+        const response = await CloudflareStreamService.getVideoDetails(videoId, token ?? '');
         const result = response?.Result;
 
         if (toggleLoading) {
@@ -194,21 +220,29 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement) 
         if (!data) {
             return;
         }
+        const detail: CloudflareStreamValue = {
+            id: data.Uid,
+            size: data.Size,
+            name: data.Meta.Name,
+            width: data.Input.Width,
+            height: data.Input.Height,
+            uploadDate: data.Uploaded.toString(),
+            duration: data.Duration,
+            extension: this.extension
+        };
+        this._setValue(detail);
+        
         const event = new CustomEvent('cf-stream-editor-updated', {
-            detail: {
-                id: data.Uid,
-                size: data.Size,
-                name: data.Meta.Name,
-                width: data.Input.Width,
-                height: data.Input.Height,
-                uploadDate: data.Uploaded,
-                duration: data.Duration,
-                extension: this.extension
-            },
+            detail: detail,
             bubbles: true,
             composed: true
         });
         this.dispatchEvent(event);
+    }
+
+    private _setValue(newValue: CloudflareStreamValue) {
+        this.value = newValue;
+        this.dispatchEvent(new CustomEvent('property-value-change'));
     }
 
     private _renderUpload() {

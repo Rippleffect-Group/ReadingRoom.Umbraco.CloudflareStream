@@ -33,6 +33,12 @@ public class CloudflareStreamMediaValue : PublishedContentWrapped
     public DateTime UploadDate { get; }
 
     public string? AspectRatio => GetAspectRatio();
+
+    public string GetVideoSize()
+    {
+        double value = Size / 1024.0 / 1024.0;
+        return $"{value:F2}MB";
+    }
     
     private string? GetAspectRatio()
     {
