@@ -56,6 +56,16 @@ export default class UpplyUpload extends UmbLitElement {
                 <div class="uppy" id="${this.selector}"></div>
             `
     }
+    
+    private onError(error: Error) {
+        const event =
+            new CustomEvent('upload-error', {
+                detail: {
+                    error: error
+                }
+            });
+        this.dispatchEvent(event);
+    }
 
     private onUploadSuccess(file: UppyFile<Meta, Body> | undefined, response: NonNullable<UppyFile<Meta, Body>['response']>) {
         const event =
@@ -129,6 +139,7 @@ export default class UpplyUpload extends UmbLitElement {
                 chunkSize: this.chunkSize,
                 onAfterResponse: (req, res) => this.onAfterResponse(req, res),
                 onBeforeRequest: (req, file) => this.onBeforeRequest(req, file),
+                onError: (error) => this.onError(error),
                 // @ts-ignore
                 canStoreURLs: this.resumable,
                 removeFingerprintOnSuccess: !this.resumable
