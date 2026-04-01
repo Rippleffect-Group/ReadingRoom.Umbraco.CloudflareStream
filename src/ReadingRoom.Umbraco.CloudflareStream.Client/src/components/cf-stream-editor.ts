@@ -12,6 +12,7 @@ import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
 import { cfStreamUploadState } from '../common/cf-stream-upload-context.ts';
 import { UMB_AUTH_CONTEXT, UmbAuthContext } from "@umbraco-cms/backoffice/auth";
 import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
+import { UMB_NOTIFICATION_CONTEXT, type UmbNotificationDefaultData } from "@umbraco-cms/backoffice/notification";
 
 interface CloudflareStreamValue {
     id: string;
@@ -30,6 +31,7 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
     implements UmbPropertyEditorUiElement {
 
     #authContext?: UmbAuthContext | undefined;
+    #notificationContext?: typeof UMB_NOTIFICATION_CONTEXT.TYPE;
     
     @property({ attribute: false })
     public value?: CloudflareStreamValue;
@@ -39,6 +41,10 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
 
         this.consumeContext(UMB_AUTH_CONTEXT, (instance) => {
             this.#authContext = instance;
+        });
+
+        this.consumeContext(UMB_NOTIFICATION_CONTEXT, (instance) => {
+            this.#notificationContext = instance;
         });
     }
 
@@ -172,6 +178,16 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
     private _isUploadProcessing(status: Status) {
         return status?.State === CloudflareStreamMediaStatus.IN_PROGRESS || status?.State === CloudflareStreamMediaStatus.QUEUED
     }
+    
+    //@ts-ignore
+    private _onError(event: CustomEvent) {
+        const data: UmbNotificationDefaultData = {
+            headline: `Upload Issue!`,
+            message: `There has been an issue uploading your video to Cloudflare Stream. Check your configuration and try again.`,
+        };
+        this.#notificationContext?.peek("danger", { data });
+        this._unlockSave();
+    }
 
     private _undoCurrentVideo() {
         this.videoId = this.previousVideoId;
@@ -197,9 +213,23 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
         if (toggleLoading) {
             this.loading = true;
         }
-        const token = await this.#authContext?.getLatestToken();
-        const response = await CloudflareStreamService.getVideoDetails(videoId, token ?? '');
-        const result = response?.Result;
+        
+        let result: Result | undefined;
+        try {
+            const token = await this.#authContext?.getLatestToken();
+            const response = await CloudflareStreamService.getVideoDetails(videoId, token ?? '');
+            result = response?.Result;
+        }
+        catch (e: unknown)
+        {
+            const data: UmbNotificationDefaultData = {
+                headline: `Cloudflare Stream Issue!`,
+                message: `There was an issue retrieving the video details, please try again later.`,
+            };
+            this.#notificationContext?.peek("danger", { data });
+            return;
+        }
+        
 
         if (toggleLoading) {
             this.loading = false;
@@ -249,9 +279,12 @@ export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
         return html
             `
                 <uui-box headline="Upload">
-                    <uppy-upload endpoint="${this.uploadUrl}" @after-response="${this._afterResponse}"
-                                 @before-request="${this._beforeRequest}"
-                                 @upload-success="${this._uploadSuccess}"></uppy-upload>
+                    <uppy-upload endpoint="${this.uploadUrl}" 
+                         @after-response="${this._afterResponse}"
+                         @before-request="${this._beforeRequest}"
+                         @upload-success="${this._uploadSuccess}"
+                         @upload-error="${this._onError}">
+                    </uppy-upload>
                 </uui-box>
             `
     }
