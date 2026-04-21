@@ -33,7 +33,8 @@ public class CloudflareStreamMediaUrlGenerator(
                 return false;
             }
             
-            mediaPath = $"{urlHelper.BaseMediaPath}/{dto.Id}/thumbnails/thumbnail.jpg";
+            var mediaValue = urlHelper.GetMediaPath(dto.Id);
+            mediaPath = mediaValue;
             return !mediaPath.IsNullOrWhiteSpace();
         }
         catch (Exception ex)
