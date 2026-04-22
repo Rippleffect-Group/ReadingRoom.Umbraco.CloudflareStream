@@ -29,5 +29,5 @@ public class CloudflareStreamMediaValueDto
     public DateTime? UploadDate { get; set; }
 
     [JsonPropertyName("duration")]
-    public long Duration { get; set; }
+    public double Duration { get; set; }
 }
