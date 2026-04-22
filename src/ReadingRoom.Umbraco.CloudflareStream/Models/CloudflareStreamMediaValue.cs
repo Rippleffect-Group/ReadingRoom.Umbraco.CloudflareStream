@@ -73,7 +73,7 @@ public class CloudflareStreamMediaValue : PublishedContentWrapped
         long size,
         long width,
         long height,
-        long duration,
+        double duration,
         DateTime uploadDate,
         CloudflareStreamPlaybackUrls urls,
         IPublishedValueFallback fallback)
