@@ -22,7 +22,7 @@ public class CloudflareStreamMediaService(
 {
     public async Task<UploadResponse> InitialiseUploadAsync(string length, string encodedMetadata, string? creatorName, Guid dataTypeKey)
     {
-        var dataType = dataTypeService.GetDataType(dataTypeKey);
+        var dataType = await dataTypeService.GetAsync(dataTypeKey);
         var config = dataType?.ConfigurationAs<CloudflareStreamMediaConfiguration>();
         if (config == null)
         {

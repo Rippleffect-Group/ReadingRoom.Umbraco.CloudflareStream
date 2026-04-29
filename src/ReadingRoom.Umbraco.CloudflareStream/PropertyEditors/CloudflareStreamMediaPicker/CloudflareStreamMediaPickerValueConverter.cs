@@ -7,6 +7,7 @@ using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
 using Umbraco.Cms.Core.Serialization;
+using Umbraco.Cms.Infrastructure.DeliveryApi;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaPicker;
 
@@ -14,10 +15,12 @@ public class CloudflareStreamMediaPickerValueConverter : MediaPickerWithCropsVal
 {
     [Obsolete("Scheduled for removal in V14")]
     public CloudflareStreamMediaPickerValueConverter(
-        IPublishedSnapshotAccessor publishedSnapshotAccessor,
+        IPublishedMediaCache publishedMediaCache,
         IPublishedUrlProvider publishedUrlProvider,
         IPublishedValueFallback publishedValueFallback,
-        IJsonSerializer jsonSerializer) : base(publishedSnapshotAccessor, publishedUrlProvider, publishedValueFallback, jsonSerializer) { }
+        IJsonSerializer jsonSerializer,
+        IApiMediaWithCropsBuilder apiMediaWithCropsBuilder) 
+        : base(publishedMediaCache, publishedUrlProvider, publishedValueFallback, jsonSerializer, apiMediaWithCropsBuilder) { }
 
     public override bool IsConverter(IPublishedPropertyType propertyType) => propertyType.EditorAlias.Equals(Constants.PropertyEditors.Aliases.CloudflareStreamMediaPicker);
 

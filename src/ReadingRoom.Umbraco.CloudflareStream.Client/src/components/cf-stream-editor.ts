@@ -1,18 +1,59 @@
-import {LitElement, html, nothing, PropertyValues, css} from 'lit';
-import {customElement, property, state} from 'lit/decorators.js';
-import {HttpRequest, HttpResponse} from "tus-js-client";
-import {CloudflareStreamService} from "../services/cloudflareStreamService.ts";
-import {CloudflareStreamMediaStatus} from "../models/cloudflareStreamMediaStatus.ts";
-import {Result} from "../models/result.ts";
-import {Status} from "../models/status.ts";
-import {Meta, Body, UppyFile} from "@uppy/core";
+import { LitElement, html, nothing, PropertyValues, css } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { HttpRequest, HttpResponse } from "tus-js-client";
+import { CloudflareStreamService } from "../services/cloudflareStreamService.ts";
+import { CloudflareStreamMediaStatus } from "../models/cloudflareStreamMediaStatus.ts";
+import { Result } from "../models/result.ts";
+import { Status } from "../models/status.ts";
+import { Meta, Body, UppyFile } from "@uppy/core";
 import byteSize from 'byte-size';
-import {UUITextStyles} from '@umbraco-ui/uui-css';
+import { UUITextStyles } from '@umbraco-ui/uui-css';
+import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
+import { cfStreamUploadState } from '../common/cf-stream-upload-context.ts';
+import { UMB_AUTH_CONTEXT, UmbAuthContext } from "@umbraco-cms/backoffice/auth";
+import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
+import { UMB_NOTIFICATION_CONTEXT, type UmbNotificationDefaultData } from "@umbraco-cms/backoffice/notification";
+
+interface CloudflareStreamValue {
+    id: string;
+    name: string;
+    size: number;
+    width: number;
+    height: number;
+    uploadDate?: string;
+    duration: number;
+    extension: string;
+    isSigned?: boolean;
+}
 
 @customElement('cf-stream-editor')
-export default class CloudflareStreamEditor extends LitElement {
+export default class CloudflareStreamEditor extends UmbElementMixin(LitElement)
+    implements UmbPropertyEditorUiElement {
+
+    #authContext?: UmbAuthContext | undefined;
+    #notificationContext?: typeof UMB_NOTIFICATION_CONTEXT.TYPE;
+    
+    @property({ attribute: false })
+    public value?: CloudflareStreamValue;
+    
     constructor() {
         super();
+
+        this.consumeContext(UMB_AUTH_CONTEXT, (instance) => {
+            this.#authContext = instance;
+        });
+
+        this.consumeContext(UMB_NOTIFICATION_CONTEXT, (instance) => {
+            this.#notificationContext = instance;
+        });
+    }
+
+    private _lockSave() {
+        cfStreamUploadState.setUploading(true);
+    }
+
+    private _unlockSave() {
+        cfStreamUploadState.setUploading(false);
     }
 
     @property()
@@ -70,7 +111,8 @@ export default class CloudflareStreamEditor extends LitElement {
     ];
 
     protected firstUpdated(_changedProperties: PropertyValues) {
-        if (this.videoId) {
+        if (this.value?.id) {
+            this.videoId = this.value.id;
             this._getStatus(this.videoId);
         }
     }
@@ -101,7 +143,7 @@ export default class CloudflareStreamEditor extends LitElement {
         if (request.getURL() === this.uploadUrl) {
             this.previousVideoId = '';
             this.extension = file.extension;
-            request.setHeader("Upload-DataType", `${this.dataTypeKey}`);
+            this._lockSave();
             this.dispatchEvent(new CustomEvent('cf-stream-editor-uploading', {
                 detail: {},
                 bubbles: true,
@@ -112,6 +154,7 @@ export default class CloudflareStreamEditor extends LitElement {
 
     private async _uploadSuccess(event: CustomEvent) {
         event.stopPropagation();
+        this._unlockSave();
 
         this.dispatchEvent(new CustomEvent('cf-stream-editor-uploaded', {
             detail: {
@@ -135,6 +178,16 @@ export default class CloudflareStreamEditor extends LitElement {
     private _isUploadProcessing(status: Status) {
         return status?.State === CloudflareStreamMediaStatus.IN_PROGRESS || status?.State === CloudflareStreamMediaStatus.QUEUED
     }
+    
+    //@ts-ignore
+    private _onError(event: CustomEvent) {
+        const data: UmbNotificationDefaultData = {
+            headline: `Upload Issue!`,
+            message: `There has been an issue uploading your video to Cloudflare Stream. Check your configuration and try again.`,
+        };
+        this.#notificationContext?.peek("danger", { data });
+        this._unlockSave();
+    }
 
     private _undoCurrentVideo() {
         this.videoId = this.previousVideoId;
@@ -147,6 +200,7 @@ export default class CloudflareStreamEditor extends LitElement {
         this.videoId = ''
         this.details = undefined;
         this.notFound = false;
+        this.value = undefined;
         const event = new CustomEvent('cf-stream-editor-removed', {
             detail: {},
             bubbles: true,
@@ -159,9 +213,23 @@ export default class CloudflareStreamEditor extends LitElement {
         if (toggleLoading) {
             this.loading = true;
         }
-
-        const response = await CloudflareStreamService.getVideoDetails(videoId);
-        const result = response?.Result;
+        
+        let result: Result | undefined;
+        try {
+            const token = await this.#authContext?.getLatestToken();
+            const response = await CloudflareStreamService.getVideoDetails(videoId, token ?? '');
+            result = response?.Result;
+        }
+        catch (e: unknown)
+        {
+            const data: UmbNotificationDefaultData = {
+                headline: `Cloudflare Stream Issue!`,
+                message: `There was an issue retrieving the video details, please try again later.`,
+            };
+            this.#notificationContext?.peek("danger", { data });
+            return;
+        }
+        
 
         if (toggleLoading) {
             this.loading = false;
@@ -182,30 +250,41 @@ export default class CloudflareStreamEditor extends LitElement {
         if (!data) {
             return;
         }
+        const detail: CloudflareStreamValue = {
+            id: data.Uid,
+            size: data.Size,
+            name: data.Meta.Name,
+            width: data.Input.Width,
+            height: data.Input.Height,
+            uploadDate: data.Uploaded.toString(),
+            duration: data.Duration,
+            extension: this.extension
+        };
+        this._setValue(detail);
+        
         const event = new CustomEvent('cf-stream-editor-updated', {
-            detail: {
-                id: data.Uid,
-                size: data.Size,
-                name: data.Meta.Name,
-                width: data.Input.Width,
-                height: data.Input.Height,
-                uploadDate: data.Uploaded,
-                duration: data.Duration,
-                extension: this.extension
-            },
+            detail: detail,
             bubbles: true,
             composed: true
         });
         this.dispatchEvent(event);
     }
 
+    private _setValue(newValue: CloudflareStreamValue) {
+        this.value = newValue;
+        this.dispatchEvent(new CustomEvent('property-value-change'));
+    }
+
     private _renderUpload() {
         return html
             `
                 <uui-box headline="Upload">
-                    <uppy-upload endpoint="${this.uploadUrl}" @after-response="${this._afterResponse}"
-                                 @before-request="${this._beforeRequest}"
-                                 @upload-success="${this._uploadSuccess}"></uppy-upload>
+                    <uppy-upload endpoint="${this.uploadUrl}" 
+                         @after-response="${this._afterResponse}"
+                         @before-request="${this._beforeRequest}"
+                         @upload-success="${this._uploadSuccess}"
+                         @upload-error="${this._onError}">
+                    </uppy-upload>
                 </uui-box>
             `
     }

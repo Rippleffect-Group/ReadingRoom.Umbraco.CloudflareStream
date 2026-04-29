@@ -1,33 +1,33 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace ReadingRoom.Umbraco.CloudflareStream.PropertyEditors.CloudflareStreamMediaEditor;
 
 public class CloudflareStreamMediaValueDto
 {
-    [JsonProperty(PropertyName = "size")]
+    [JsonPropertyName("size")]
     public long Size { get; set; }
 
-    [JsonProperty(PropertyName = "name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; } = string.Empty;
 
-    [JsonProperty(PropertyName = "id")]
+    [JsonPropertyName("id")]
     public string Id { get; set; } = string.Empty;
 
-    [JsonProperty(PropertyName = "extension")]
+    [JsonPropertyName("extension")]
     public string Extension { get; set; } = string.Empty;
 
-    [JsonProperty(PropertyName = "isSigned")]
+    [JsonPropertyName("isSigned")]
     public bool IsSigned { get; set; }
 
-    [JsonProperty(PropertyName = "width")]
+    [JsonPropertyName("width")]
     public long Width { get; set; }
 
-    [JsonProperty(PropertyName = "height")]
+    [JsonPropertyName("height")]
     public long Height { get; set; }
 
-    [JsonProperty(PropertyName = "uploadDate")]
+    [JsonPropertyName("uploadDate")]
     public DateTime? UploadDate { get; set; }
 
-    [JsonProperty(PropertyName = "duration")]
-    public long Duration { get; set; }
+    [JsonPropertyName("duration")]
+    public double Duration { get; set; }
 }

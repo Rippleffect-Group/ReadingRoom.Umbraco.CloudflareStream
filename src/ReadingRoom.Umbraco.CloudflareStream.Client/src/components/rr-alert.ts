@@ -1,6 +1,6 @@
-import {customElement, property} from "lit/decorators.js";
-import {css, html, LitElement, nothing} from "lit";
-import {UUITextStyles} from "@umbraco-ui/uui-css";
+import { customElement, property } from "lit/decorators.js";
+import { css, html, LitElement, nothing } from "lit";
+import { UUITextStyles } from "@umbraco-ui/uui-css";
 
 @customElement('rr-alert')
 export class Alert extends LitElement {

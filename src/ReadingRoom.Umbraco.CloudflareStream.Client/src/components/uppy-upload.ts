@@ -1,16 +1,28 @@
-import {LitElement, html, PropertyValues, unsafeCSS, css} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { html, PropertyValues, unsafeCSS, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import Dashboard from "@uppy/dashboard";
 import Tus from "@uppy/tus";
-import {query} from 'lit/decorators/query.js';
+import { query } from 'lit/decorators/query.js';
 import UppyCss from '@uppy/core/dist/style.min.css?inline';
 import UppyDashboardCss from '@uppy/dashboard/dist/style.min.css?inline';
-import {HttpRequest, HttpResponse} from "tus-js-client";
-import {Meta, Body, Uppy, UppyFile} from "@uppy/core";
+import { HttpRequest, HttpResponse } from "tus-js-client";
+import { Meta, Body, Uppy, UppyFile } from "@uppy/core";
+import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
+import { UMB_AUTH_CONTEXT, UmbAuthContext } from "@umbraco-cms/backoffice/auth";
 
 @customElement('uppy-upload')
-export default class UpplyUpload extends LitElement {
-
+export default class UpplyUpload extends UmbLitElement {
+    
+    #authContext?: UmbAuthContext | undefined;
+    
+    constructor()
+    {
+        super();
+        this.consumeContext(UMB_AUTH_CONTEXT, (instance) => {
+            this.#authContext = instance;
+        });
+    }
+    
     @property()
     endpoint = '';
     private selector: string = 'drag-drop-area'
@@ -44,6 +56,16 @@ export default class UpplyUpload extends LitElement {
                 <div class="uppy" id="${this.selector}"></div>
             `
     }
+    
+    private onError(error: Error) {
+        const event =
+            new CustomEvent('upload-error', {
+                detail: {
+                    error: error
+                }
+            });
+        this.dispatchEvent(event);
+    }
 
     private onUploadSuccess(file: UppyFile<Meta, Body> | undefined, response: NonNullable<UppyFile<Meta, Body>['response']>) {
         const event =
@@ -71,7 +93,13 @@ export default class UpplyUpload extends LitElement {
     }
 
     private onBeforeRequest(req: HttpRequest, file: UppyFile<Meta, Body>): Promise<void> {
-        return new Promise((resolve) => {
+        return new Promise(async (resolve) => {
+            const url = req.getURL();
+            if (url.includes('/umbraco/backoffice/')) {
+                const token = await this.#authContext?.getLatestToken();
+                req.setHeader('Authorization', `Bearer ${token}`);
+            }
+            
             const event =
                 new CustomEvent('before-request', {
                     detail: {
@@ -111,6 +139,7 @@ export default class UpplyUpload extends LitElement {
                 chunkSize: this.chunkSize,
                 onAfterResponse: (req, res) => this.onAfterResponse(req, res),
                 onBeforeRequest: (req, file) => this.onBeforeRequest(req, file),
+                onError: (error) => this.onError(error),
                 // @ts-ignore
                 canStoreURLs: this.resumable,
                 removeFingerprintOnSuccess: !this.resumable

@@ -10,7 +10,7 @@ public class CloudflareStreamMediaValue : PublishedContentWrapped
         long size,
         long width,
         long height,
-        long duration,
+        double duration,
         DateTime uploadDate,
         CloudflareStreamPlaybackUrls playback,
         IPublishedValueFallback publishedValueFallback) : base(content, publishedValueFallback)
@@ -29,10 +29,16 @@ public class CloudflareStreamMediaValue : PublishedContentWrapped
     public long Height { get; }
     public long Width { get; }
     public string VideoId { get; }
-    public long Duration { get; }
+    public double Duration { get; }
     public DateTime UploadDate { get; }
 
     public string? AspectRatio => GetAspectRatio();
+
+    public string GetVideoSize()
+    {
+        double value = Size / 1024.0 / 1024.0;
+        return $"{value:F2}MB";
+    }
     
     private string? GetAspectRatio()
     {
@@ -67,7 +73,7 @@ public class CloudflareStreamMediaValue : PublishedContentWrapped
         long size,
         long width,
         long height,
-        long duration,
+        double duration,
         DateTime uploadDate,
         CloudflareStreamPlaybackUrls urls,
         IPublishedValueFallback fallback)
