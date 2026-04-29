@@ -7,13 +7,11 @@ The following table outlines the versions of the project that are currently supp
 | Version                                                                                         | Supported | Umbraco Version |
 |-------------------------------------------------------------------------------------------------|-----------|-----------------|
 | [13.x](https://github.com/Rippleffect-Group/ReadingRoom.Umbraco.CloudflareStream/tree/v13/main) | ✅         | 13              |
+| [17.x](https://github.com/Rippleffect-Group/ReadingRoom.Umbraco.CloudflareStream/tree/v13/main) | ✅         | 17              |
 
 ## Future Support
 
 Project maintainers plan to support all STS (Short-Term Support) and LTS (Long-Term Support) versions of Umbraco.
-
-> [!Important]
-> v15+ rollout is planned and in progress, but no confirmed release dates are available at this time.
 
 ## Reporting a Vulnerability
 
